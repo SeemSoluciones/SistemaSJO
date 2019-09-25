@@ -133,24 +133,11 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
                     <li>
-                        <a href="PanelPricipal.aspx">
+                        <a href="EntregaPB.aspx">
                             <i class="fa fa-dashboard"></i><span>Panel Principal</span>
                         </a>
                     </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-tags"></i>
-                            <span>Ventas</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="Encargos.aspx"><i class="fa fa-circle-o"></i>Encargo de productos</a></li>
-                            <li><a href="Caja.aspx"><i class="fa fa-circle-o"></i>Nueva venta</a></li>
-                            <li><a href="Devolucion.aspx"> <i class=" fa fa-circle-o"></i>Devoluciones</a> </li>
-                        </ul>
-                    </li>
+                    
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-laptop"></i>
@@ -160,65 +147,12 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="Compra.aspx"><i class="fa fa-circle-o"></i>Realizar compras</a></li>
-                            <li><a href="Stock.aspx"><i class="fa fa-circle-o"></i>Stock </a></li>
-                            <li><a href="Productos.aspx"><i class="fa fa-circle-o"></i>Productos</a></li>
-                            <li><a href="Proveedor.aspx"><i class="fa fa-circle-o"></i>Proveedores</a></li>
-                            <li><a href="Categoria.aspx"><i class="fa fa-circle-o"></i>Categoria</a></li>
-                            <li><a href="StockMinimo.aspx"><i class="fa fa-circle-o"></i>Productos bajos </a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>Realizar compras</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>Stock </a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>Productos</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-users"></i><span>Clientes</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="Cliente.aspx"><i class="fa fa-circle-o"></i>CRUD Clientes</a></li>
-                            <li><a href="Credito2.aspx"><i class="fa fa-circle-o"></i>Creditos</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-table"></i><span>Administración</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="Tiendas.aspx"><i class="fa fa-circle-o"></i>Tiendas</a></li>
-                            <li><a href="TipoDePago.aspx"><i class="fa fa-circle-o"></i>Tipo pago</a></li>
-                            <li><a href="Empleados.aspx"><i class="fa fa-circle-o"></i>Empleados</a> </li>
-                            <li> <a href="Exportacion.aspx"><i class="fa fa-circle-o"></i>Exportacion</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-money"></i>  <span>Caja</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li> <a href="CambiosEnCaja.aspx"><i class="fa fa-circle-o"></i>Ingresos y egresos monetarios</a></li>
-                            <li> <a href="AgreCajas.aspx"><i class="fa fa-circle-o"></i>Cajas monetarias</a></li>
-                            <li> <a href="AgregarCaja.aspx"><i class="fa fa-circle-o"></i>Conceptos</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>Reportes</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="ReporteVentas.aspx"><i class="fa fa-circle-o"></i>Ventas</a></li>
-                        </ul>
-                    </li>
+                 
                     <li>
                         <a href="https://www.parts.com" target="_blank"> 
                             <i class="fa fa-internet-explorer"></i>

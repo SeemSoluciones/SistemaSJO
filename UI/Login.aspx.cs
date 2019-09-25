@@ -25,7 +25,7 @@ namespace UI
             int usuario = Datos.Usuario(txtUsuario.Text, TextBox1.Text);
             if (usuario > 0)
             {
-                 tabla = Datos.BuscarUsuario(txtUsuario.Text, TextBox1.Text);
+                tabla = Datos.BuscarUsuario(txtUsuario.Text, TextBox1.Text);
                 Session["Nombre"] = tabla.Rows[0][1].ToString() + "  " + tabla.Rows[0][2].ToString();
                 Session["IDtienda"] = tabla.Rows[0][5].ToString();
                 Session["IdEmpleado"] = tabla.Rows[0][0].ToString();

@@ -7473,7 +7473,6 @@
     </Compile>
     <Compile Include="ReporteCompras.aspx.cs">
       <DependentUpon>ReporteCompras.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ReporteCompras.aspx.designer.cs">
       <DependentUpon>ReporteCompras.aspx</DependentUpon>
