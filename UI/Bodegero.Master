@@ -141,15 +141,15 @@
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-laptop"></i>
-                            <span>Inventario</span>
+                            <span>Reportes</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i>Realizar compras</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i>Stock </a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i>Productos</a></li>
+                            <li><a href="StockCeroTienda.aspx"><i class="fa fa-circle-o"></i>Stock Cero</a></li>
+                            <li><a href="ReporteStockMinimoT.aspx"><i class="fa fa-circle-o"></i>Stock Minimo </a></li>
+                           <%-- <li><a href="#"><i class="fa fa-circle-o"></i>Productos</a></li>--%>
                         </ul>
                     </li>
                  
