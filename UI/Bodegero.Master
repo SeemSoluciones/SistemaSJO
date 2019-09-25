@@ -147,8 +147,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i>Realizar compras</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i>Stock </a></li>
+                            <li><a href="StockB.aspx"><i class="fa fa-circle-o"></i>Stock </a></li>
                             <li><a href="#"><i class="fa fa-circle-o"></i>Productos</a></li>
                         </ul>
                     </li>

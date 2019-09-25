@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bodegero.Master" AutoEventWireup="true" CodeBehind="EntregaPB.aspx.cs" Inherits="UI.EntregaPB" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <meta http-equiv="refresh" content="30"/>
+    <meta http-equiv="refresh" content="300"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row col-md-4">
@@ -16,9 +16,11 @@
     </div>
     </div>
     <br />
-    <div class ="row col-md-8">
-        <div class="row">
-        <div class="col-lg-4 col-xs-8">
+    <div class="row col-md-4">
+
+    </div>
+    <div class ="row col-md-4">
+        <%--<div class="col-lg-4 col-xs-8">--%>
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
@@ -32,7 +34,7 @@
             </div>
             <a href="EntregaPB.aspx" class="small-box-footer">Refrescar la pagina<i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div>
+        <%--</div>--%>
 
             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT COUNT(Venta.ID_Venta) AS total FROM Venta INNER JOIN Estados ON Venta.ID_Venta = Estados.ID_Venta WHERE (Estados.ID_Tienda = @IdTienda) AND (Estados.EstadoBodega = 1)">
                 <SelectParameters>
@@ -41,7 +43,6 @@
             </asp:SqlDataSource>
 
        </div>
-    </div>
     <div class="form-group">
         <label>Listado de productos</label>
         </div>

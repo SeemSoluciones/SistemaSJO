@@ -7239,6 +7239,7 @@
     <Content Include="ReporteVentasMarca.aspx" />
     <Content Include="ReporteVentasTarjeta.aspx" />
     <Content Include="ReporteVentaTienda.aspx" />
+    <Content Include="StockB.aspx" />
     <Content Include="StockD.aspx" />
     <Content Include="StockM.aspx" />
     <Content Include="Vendedor.Master" />
@@ -7637,6 +7638,13 @@
     </Compile>
     <Compile Include="Stock.aspx.designer.cs">
       <DependentUpon>Stock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StockB.aspx.cs">
+      <DependentUpon>StockB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockB.aspx.designer.cs">
+      <DependentUpon>StockB.aspx</DependentUpon>
     </Compile>
     <Compile Include="StockD.aspx.cs">
       <DependentUpon>StockD.aspx</DependentUpon>
