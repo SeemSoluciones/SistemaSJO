@@ -7211,6 +7211,8 @@
     <Content Include="ProductoD.aspx" />
     <Content Include="ProveedorD.aspx" />
     <Content Include="RegistroV.aspx" />
+    <Content Include="ReporteCompraArticulos2.aspx" />
+    <Content Include="ReporteCompras.aspx" />
     <Content Include="ReporteCredito.aspx" />
     <Content Include="BDautorepuestoDataSet.xsc">
       <DependentUpon>BDautorepuestoDataSet.xsd</DependentUpon>
@@ -7232,6 +7234,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="ReporteVentaEmple.aspx" />
+    <Content Include="ReporteVentaRubro.aspx" />
+    <Content Include="ReporteVentas.aspx" />
+    <Content Include="ReporteVentasMarca.aspx" />
+    <Content Include="ReporteVentasTarjeta.aspx" />
+    <Content Include="ReporteVentaTienda.aspx" />
     <Content Include="StockD.aspx" />
     <Content Include="StockM.aspx" />
     <Content Include="Vendedor.Master" />
@@ -7247,7 +7255,6 @@
     <Content Include="Productos.aspx" />
     <Content Include="Proveedor.aspx" />
     <Content Include="Registro.aspx" />
-    <Content Include="ReporteVentas.aspx" />
     <Content Include="Stock.aspx" />
     <Content Include="StockMinimo.aspx" />
     <Content Include="Tiendas.aspx" />
@@ -7457,6 +7464,20 @@
     <Compile Include="RegistroV.aspx.designer.cs">
       <DependentUpon>RegistroV.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ReporteCompraArticulos2.aspx.cs">
+      <DependentUpon>ReporteCompraArticulos2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteCompraArticulos2.aspx.designer.cs">
+      <DependentUpon>ReporteCompraArticulos2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteCompras.aspx.cs">
+      <DependentUpon>ReporteCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteCompras.aspx.designer.cs">
+      <DependentUpon>ReporteCompras.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ReporteCredito.aspx.cs">
       <DependentUpon>ReporteCredito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7576,12 +7597,47 @@
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ReporteVentaEmple.aspx.cs">
+      <DependentUpon>ReporteVentaEmple.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteVentaEmple.aspx.designer.cs">
+      <DependentUpon>ReporteVentaEmple.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteVentaRubro.aspx.cs">
+      <DependentUpon>ReporteVentaRubro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteVentaRubro.aspx.designer.cs">
+      <DependentUpon>ReporteVentaRubro.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ReporteVentas.aspx.cs">
       <DependentUpon>ReporteVentas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ReporteVentas.aspx.designer.cs">
       <DependentUpon>ReporteVentas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteVentasMarca.aspx.cs">
+      <DependentUpon>ReporteVentasMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteVentasMarca.aspx.designer.cs">
+      <DependentUpon>ReporteVentasMarca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteVentasTarjeta.aspx.cs">
+      <DependentUpon>ReporteVentasTarjeta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteVentasTarjeta.aspx.designer.cs">
+      <DependentUpon>ReporteVentasTarjeta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteVentaTienda.aspx.cs">
+      <DependentUpon>ReporteVentaTienda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteVentaTienda.aspx.designer.cs">
+      <DependentUpon>ReporteVentaTienda.aspx</DependentUpon>
     </Compile>
     <Compile Include="Stock.aspx.cs">
       <DependentUpon>Stock.aspx</DependentUpon>
@@ -7652,7 +7708,17 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Factura.rdlc" />
+    <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="Report1Abonos.rdlc" />
+    <EmbeddedResource Include="Report2.rdlc" />
+    <EmbeddedResource Include="ReportCompra.rdlc" />
+    <EmbeddedResource Include="ReportCompraArticulo.rdlc" />
+    <EmbeddedResource Include="ReportVentaEmpleado.rdlc" />
+    <EmbeddedResource Include="ReportVentaMarca.rdlc" />
+    <EmbeddedResource Include="ReportVentaRubro.rdlc" />
+    <EmbeddedResource Include="ReportVentas.rdlc" />
+    <EmbeddedResource Include="ReportVentasTarjeta.rdlc" />
+    <EmbeddedResource Include="ReportVentaTienda.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
