@@ -16,7 +16,30 @@
     </div>
     <br />
     <div class ="row col-md-8">
+        <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>
+                  <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></h3>
 
+              <p>Nuevos Ordenes</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="EntregaPB" class="small-box-footer">Refrescar la pagina<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT COUNT(Venta.ID_Venta) AS total FROM Venta INNER JOIN Estados ON Venta.ID_Venta = Estados.ID_Venta WHERE (Estados.ID_Tienda = @IdTienda)">
+                <SelectParameters>
+                    <asp:Parameter Name="IdTienda" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+
+       </div>
     </div>
     <div class="form-group">
         <label>Listado de productos</label>
