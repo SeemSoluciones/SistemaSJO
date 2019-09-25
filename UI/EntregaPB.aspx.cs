@@ -40,6 +40,21 @@ namespace UI
             //}
         }
 
-       
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            int msj = 0;
+            SqlDataSource1.UpdateParameters["ID_Venta"].DefaultValue = DropDownList1.SelectedValue;
+           msj = SqlDataSource1.Update();
+            if(msj > 0)
+            {
+                Response.Write("<script>alert('Entrega exitosa!')</script>");
+                SqlDataSource2.SelectCommand = "SELECT Venta.ID_Venta FROM Venta INNER JOIN Estados ON Venta.ID_Venta = Estados.ID_Venta WHERE (Estados.ID_Tienda = "+Session["IdTienda"]+") AND Estados.EstadoBodega = 1";
+                SqlDataSource2.DataBind();
+            }
+            else
+            {
+                Response.Write("<script>alert('Error, no se realizo cambio en la Base de datos!')</script>");
+            }
+        }
     }
 }

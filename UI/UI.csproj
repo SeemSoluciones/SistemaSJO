@@ -7212,7 +7212,6 @@
     <Content Include="ProveedorD.aspx" />
     <Content Include="RegistroV.aspx" />
     <Content Include="ReporteCompraArticulos2.aspx" />
-    <Content Include="ReporteCompras.aspx" />
     <Content Include="ReporteCredito.aspx" />
     <Content Include="BDautorepuestoDataSet.xsc">
       <DependentUpon>BDautorepuestoDataSet.xsd</DependentUpon>
@@ -7472,12 +7471,6 @@
     </Compile>
     <Compile Include="ReporteCompraArticulos2.aspx.designer.cs">
       <DependentUpon>ReporteCompraArticulos2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ReporteCompras.aspx.cs">
-      <DependentUpon>ReporteCompras.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ReporteCompras.aspx.designer.cs">
-      <DependentUpon>ReporteCompras.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReporteCredito.aspx.cs">
       <DependentUpon>ReporteCredito.aspx</DependentUpon>
