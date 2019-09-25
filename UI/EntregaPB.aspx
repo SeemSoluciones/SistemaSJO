@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bodegero.Master" AutoEventWireup="true" CodeBehind="EntregaPB.aspx.cs" Inherits="UI.EntregaPB" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <meta http-equiv="refresh" content="30"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row col-md-4">
@@ -17,7 +18,7 @@
     <br />
     <div class ="row col-md-8">
         <div class="row">
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-8">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">

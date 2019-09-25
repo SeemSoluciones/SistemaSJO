@@ -22,18 +22,12 @@ namespace UI
                 Label4.Text = Mensaje;
                 Label5.Text = Session["Tienda"].ToString();
                 Label6.Text = Session["Rol"].ToString();
-                try
-                {
-                    if (Label1.Text == "")
-                    {
+               
+               if (Label1.Text == "" || Label6.Text == "Bodegero" || Label6.Text == "Mostrador"|| Label6.Text == "Caja" || Label6.Text == "Digitador")
+               {
                         Response.Redirect("Login.aspx");
-                    }
-                }
-                catch
-                {
-
-                    Response.Redirect("Login.aspx");
-                }
+               }
+               
             }
             catch (System.Exception)
             {
