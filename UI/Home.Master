@@ -247,7 +247,7 @@
                         </a>
                                <ul class="treeview-menu">
                                  <li><a href="ReporteCompras.aspx"><i class="fa fa-circle-o"></i>Compra General</a></li>
-                                   <li><a href="ReporteCompraArticulo2.aspx"><i class="fa fa-circle-o"></i>Compra Por Articulo</a></li>
+                                   <li><a href="ReporteCompraArticulos2.aspx"><i class="fa fa-circle-o"></i>Compra Por Articulo</a></li>
                                    <li><a href="#"><i class="fa fa-circle-o"></i>Compra Por Proveedor</a></li>
                                   <%-- <li><a href="#"><i class="fa fa-circle-o"></i>Venta Por Articulo</a></li>--%>
                                    <li><a href="#"><i class="fa fa-circle-o"></i>Compra Por Categoria</a></li>
