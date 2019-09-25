@@ -7653,6 +7653,14 @@
   <ItemGroup>
     <EmbeddedResource Include="Factura.rdlc" />
     <EmbeddedResource Include="Report1Abonos.rdlc" />
+    <EmbeddedResource Include="ReportCompra.rdlc" />
+    <EmbeddedResource Include="ReportCompraArticulo.rdlc" />
+    <EmbeddedResource Include="ReportVentaEmpleado.rdlc" />
+    <EmbeddedResource Include="ReportVentaMarca.rdlc" />
+    <EmbeddedResource Include="ReportVentaRubro.rdlc" />
+    <EmbeddedResource Include="ReportVentas.rdlc" />
+    <EmbeddedResource Include="ReportVentasTarjeta.rdlc" />
+    <EmbeddedResource Include="ReportVentaTienda.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
