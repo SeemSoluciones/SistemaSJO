@@ -364,10 +364,33 @@ namespace UI
 
 
         }
-
+        public static bool estadoAuto = false;
         protected void Button11_Click(object sender, EventArgs e)
         {
+            
             if (TxtDescuento.Value != "")
+            {
+
+            if (Convert.ToInt32(TxtDescuento.Value) >= 8 )
+            {
+                   // TxtDescuento.Disabled = true;
+                    Response.Write("<script>window.open('Autorizacion.aspx','Titulo', 'height=200','width=400')</script>");
+                    if (estadoAuto == true)
+                    {
+                       // TxtDescuento.Disabled = false;
+                        double TotalFinal = 0;
+                        double porc = 0;
+                        porc = (Convert.ToDouble(TxtDescuento.Value) * 0.01) * Convert.ToDouble(TextBox12.Text);
+                        TotalFinal = Convert.ToDouble(TextBox12.Text) - (porc + Convert.ToDouble(TextBox13.Text));
+                        TextBox14.Text = TotalFinal.ToString();
+                        TextBox13.Text = porc.ToString();
+                    }
+                    else
+                    {
+                        Response.Write("<script>window.open('Autorizacion.aspx','Titulo', 'height=200','width=400')</script>");
+                    }
+            }
+                else
             {
                 double TotalFinal = 0;
                 double porc = 0;
@@ -375,6 +398,9 @@ namespace UI
                 TotalFinal = Convert.ToDouble(TextBox12.Text) - (porc + Convert.ToDouble(TextBox13.Text));
                 TextBox14.Text = TotalFinal.ToString();
                 TextBox13.Text = porc.ToString();
+            }
+
+               
             }
             else
             {
@@ -445,11 +471,11 @@ namespace UI
             GridViewRow gd = GridView2.SelectedRow;
             TextBox7.Text = GridView2.SelectedRow.Cells[0].Text;
             TextBox8.Text = gd.Cells[2].Text;
-            TextBox9.Text = gd.Cells[11].Text;
+            TextBox9.Text = gd.Cells[9].Text;
             TextBox10.Text = "0";
             TextBox11.Text = "1";
             cantProd = Convert.ToInt32(gd.Cells[8].Text);
-            idStock = Convert.ToInt32(gd.Cells[12].Text);
+            idStock = Convert.ToInt32(gd.Cells[10].Text);
         }
 
     }

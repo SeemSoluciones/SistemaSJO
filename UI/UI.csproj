@@ -99,6 +99,7 @@
   <ItemGroup>
     <Content Include="AgreCajas.aspx" />
     <Content Include="AgregarCaja.aspx" />
+    <Content Include="Autorizacion.aspx" />
     <Content Include="CajaCobrador.aspx" />
     <Content Include="CajaDatos.aspx" />
     <Content Include="CajaV.aspx" />
@@ -7278,6 +7279,13 @@
     </Compile>
     <Compile Include="AgregarCaja.aspx.designer.cs">
       <DependentUpon>AgregarCaja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Autorizacion.aspx.cs">
+      <DependentUpon>Autorizacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Autorizacion.aspx.designer.cs">
+      <DependentUpon>Autorizacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="BDautorepuestoDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
