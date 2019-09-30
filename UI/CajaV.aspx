@@ -275,6 +275,7 @@
             <br />
             <br />
         </div>
+        <asp:Button ID="Button1" runat="server" Text="Imprimir" CssClass="btn btn-info pull-right" OnClick="Button1_Click" Enabled="False"/>
         <asp:Button ID="Button3" runat="server" CssClass="btn btn-success pull-right" Text="Guardar" OnClick="Button3_Click" />
         <asp:Button ID="Button10" runat="server" CssClass="btn btn-danger pull-right" Text="Nueva venta" OnClick="Button10_Click" />
 

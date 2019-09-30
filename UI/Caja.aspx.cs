@@ -364,19 +364,27 @@ namespace UI
             else
             {
             Response.Write("<script>window.open('Factura2.aspx','Titulo', 'height=300','width=300')</script>");
-            }
+                }
         }
 
         protected void Button11_Click(object sender, EventArgs e)
         {
             if(TxtDescuento.Value != "")
             {
+                try
+                {
                 double TotalFinal = 0;
                 double porc = 0;
                 porc = (Convert.ToDouble(TxtDescuento.Value) * 0.01) * Convert.ToDouble(TextBox12.Text);
                 TotalFinal = Convert.ToDouble(TextBox12.Text) - (porc + Convert.ToDouble(TextBox13.Text));
                 TextBox14.Text = TotalFinal.ToString();
                 TextBox13.Text = porc.ToString();
+                }
+                catch
+                {
+                    Response.Write("<script>alert('Ingrese un producto.')</script>");
+                }
+              
             }
             else
             {

@@ -23,17 +23,22 @@ namespace UI
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-            TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            Home.Mensaje = "Ventana Ventas";
-            if (!IsPostBack)
+            try
             {
-                // this.Button12.Click += new System.EventHandler(this.Button12_Click);
-                //Button12_Click(sender, e);
-                TxtDescuento.Value = "";
+                TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                Home.Mensaje = "Ventana Ventas";
+                if (!IsPostBack)
+                {
+                    TxtDescuento.Value = "";
+                }
+                SqlDataSource1.SelectParameters["ID_Tienda"].DefaultValue = Session["IDtienda"].ToString();
+                SqlDataSource1.DataBind();
             }
-            SqlDataSource1.SelectParameters["ID_Tienda"].DefaultValue = Session["IDtienda"].ToString();
-            SqlDataSource1.DataBind();
+           catch
+            {
+                Response.Redirect("Login.aspx");
+            }
+
 
         }
 
@@ -201,6 +206,7 @@ namespace UI
                     iva = 0.12 * Convert.ToDouble(TextBox14.Text);
                     msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue));
                     datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                    datos.InsertarBitacoraCaja(Session["Nombre"].ToString(), Session["Tienda"].ToString(), "Autoriza:  " + Autorizacion.Quien, Convert.ToInt32(msj));
                     foreach (GridViewRow row in GridView1.Rows)
                     {
                         datos.InsertarDetalleVenta(
@@ -219,14 +225,15 @@ namespace UI
                     ciudad = TextBox5.Text;
 
                     Pago = DropDownList4.SelectedItem.ToString();
+                    Button1.Enabled = true;
                     Label6.Text = "La venta ya fue guardada!!!";
                 }
-            }
+                }
             catch
             {
                 Response.Write("<script>alert('Error, ingrese un articulo')</script>");
             }
-        }
+}
 
 
         protected void Button5_Click(object sender, EventArgs e)

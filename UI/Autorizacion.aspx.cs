@@ -21,7 +21,7 @@ namespace UI
             }
 
         }
-
+        public static string Quien = "";
         protected void BtnAceptar_Click(object sender, EventArgs e)
         {
             try
@@ -37,7 +37,7 @@ namespace UI
                     {
                         CajaV.estadoAuto = true;
                         string script = "window.close();";
-
+                        Quien = Lista["Nom"].ToString();
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);
                     }
                     else

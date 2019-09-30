@@ -21,7 +21,7 @@
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <asp:TextBox ID="TextBox2" runat="server" TextMode="Password"></asp:TextBox>
         <asp:Button ID="BtnAceptar" runat="server" Text="Aceptar" OnClick="BtnAceptar_Click" />
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT COUNT(Empleado.ID_Empleado) AS Total FROM Usuario INNER JOIN Rol ON Usuario.ID_Rol = Rol.ID_Rol INNER JOIN Empleado ON Usuario.ID_Usuario = Empleado.ID_Usuario INNER JOIN Tienda ON Empleado.ID_Tienda = Tienda.ID_Tienda WHERE (Usuario.[User] = @User ) AND (Usuario.PassWord = @PassWord) AND (Tienda.ID_Tienda = @IdTienda) AND (Rol.Rol = N'Administrador')">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT COUNT(Empleado.ID_Empleado) AS Total, Empleado.Nombre + '  ' + Empleado.Apellidos AS Nom FROM Usuario INNER JOIN Rol ON Usuario.ID_Rol = Rol.ID_Rol INNER JOIN Empleado ON Usuario.ID_Usuario = Empleado.ID_Usuario INNER JOIN Tienda ON Empleado.ID_Tienda = Tienda.ID_Tienda WHERE (Usuario.[User] = @User ) AND (Usuario.PassWord = @PassWord) AND (Tienda.ID_Tienda = @IdTienda) AND (Rol.Rol = N'Administrador') GROUP BY Empleado.Nombre, Empleado.Apellidos">
             <SelectParameters>
                 <asp:Parameter Name="User" />
                 <asp:Parameter Name="PassWord" />
