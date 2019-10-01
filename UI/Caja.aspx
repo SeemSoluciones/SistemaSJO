@@ -219,7 +219,7 @@
             </div>
             <div class="col-md-3">
                  <div class="input-group input-group-sm">
-                <input type="text" class="form-control" runat="server" id="TxtDescuento"/>
+                <input type="text" class="form-control" runat="server" id="TxtDescuento" enableviewstate="False"/>
                     <span class="input-group-btn">
                         <asp:Button ID="Button11" runat="server" Text="Aplicar" CssClass="btn btn-info btn-flat" OnClick="Button11_Click"/>
                     </span>

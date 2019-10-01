@@ -215,7 +215,7 @@
             </div>
             <div class="col-md-3">
                  <div class="input-group input-group-sm">
-                <input type="text" class="form-control" runat="server" id="TxtDescuento"/>
+                <input type="text" class="form-control" runat="server" id="TxtDescuento" enableviewstate="True"/>
                     <span class="input-group-btn">
                         <asp:Button ID="Button11" runat="server" Text="Aplicar" CssClass="btn btn-info btn-flat" OnClick="Button11_Click"/>
                     </span>
@@ -275,6 +275,7 @@
             <br />
             <br />
         </div>
+        <asp:Button ID="Button1" runat="server" Text="Imprimir" CssClass="btn btn-info pull-right" OnClick="Button1_Click" Enabled="False"/>
         <asp:Button ID="Button3" runat="server" CssClass="btn btn-success pull-right" Text="Guardar" OnClick="Button3_Click" />
         <asp:Button ID="Button10" runat="server" CssClass="btn btn-danger pull-right" Text="Nueva venta" OnClick="Button10_Click" />
 

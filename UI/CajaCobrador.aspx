@@ -1,12 +1,38 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Cobrador.Master" AutoEventWireup="true" CodeBehind="CajaCobrador.aspx.cs" Inherits="UI.CajaCobrador" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <meta http-equiv="refresh" content="30"/>
+     <meta http-equiv="refresh" content="300"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="content">
-        <h3>Ventana para realizar el cobro.</h3>
-        
+        <h3 class="">Clientes pendiente de cobro.</h3>
+        <div class="row">
+            <div class="col-md-8">
+
+            </div>
+            <div class="col-md-4">
+                <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>
+                  <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></h3>
+
+              <p>Total Nuevos Ordenes</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="CajaCobrador.aspx" class="small-box-footer">Refrescar la pagina<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+            </div>
+
+
+
+             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT COUNT(Venta.ID_Venta) AS total FROM Venta INNER JOIN Estados ON Venta.ID_Venta = Estados.ID_Venta WHERE (Estados.ID_Tienda = @IdTienda) AND (Estados.EstadoCajero = 1)">
+                <SelectParameters>
+                    <asp:Parameter Name="IdTienda" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+        </div>
        
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="table table-responsive" DataKeyNames="ID_Venta" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellPadding="4" ForeColor="#333333" GridLines="None">
         <AlternatingRowStyle BackColor="White" />

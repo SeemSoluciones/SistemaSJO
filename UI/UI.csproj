@@ -99,6 +99,7 @@
   <ItemGroup>
     <Content Include="AgreCajas.aspx" />
     <Content Include="AgregarCaja.aspx" />
+    <Content Include="Autorizacion.aspx" />
     <Content Include="CajaCobrador.aspx" />
     <Content Include="CajaDatos.aspx" />
     <Content Include="CajaV.aspx" />
@@ -7233,14 +7234,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="ReporteStockMinimoT.aspx" />
     <Content Include="ReporteVentaEmple.aspx" />
     <Content Include="ReporteVentaRubro.aspx" />
     <Content Include="ReporteVentas.aspx" />
     <Content Include="ReporteVentasMarca.aspx" />
     <Content Include="ReporteVentasTarjeta.aspx" />
     <Content Include="ReporteVentaTienda.aspx" />
-    <Content Include="StockCeroTienda.aspx" />
+    <Content Include="StockB.aspx" />
     <Content Include="StockD.aspx" />
     <Content Include="StockM.aspx" />
     <Content Include="Vendedor.Master" />
@@ -7279,6 +7279,13 @@
     </Compile>
     <Compile Include="AgregarCaja.aspx.designer.cs">
       <DependentUpon>AgregarCaja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Autorizacion.aspx.cs">
+      <DependentUpon>Autorizacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Autorizacion.aspx.designer.cs">
+      <DependentUpon>Autorizacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="BDautorepuestoDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -7591,13 +7598,6 @@
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReporteStockMinimoT.aspx.cs">
-      <DependentUpon>ReporteStockMinimoT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReporteStockMinimoT.aspx.designer.cs">
-      <DependentUpon>ReporteStockMinimoT.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ReporteVentaEmple.aspx.cs">
       <DependentUpon>ReporteVentaEmple.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7647,12 +7647,12 @@
     <Compile Include="Stock.aspx.designer.cs">
       <DependentUpon>Stock.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StockCeroTienda.aspx.cs">
-      <DependentUpon>StockCeroTienda.aspx</DependentUpon>
+    <Compile Include="StockB.aspx.cs">
+      <DependentUpon>StockB.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StockCeroTienda.aspx.designer.cs">
-      <DependentUpon>StockCeroTienda.aspx</DependentUpon>
+    <Compile Include="StockB.aspx.designer.cs">
+      <DependentUpon>StockB.aspx</DependentUpon>
     </Compile>
     <Compile Include="StockD.aspx.cs">
       <DependentUpon>StockD.aspx</DependentUpon>
@@ -7721,8 +7721,6 @@
     <EmbeddedResource Include="Report2.rdlc" />
     <EmbeddedResource Include="ReportCompra.rdlc" />
     <EmbeddedResource Include="ReportCompraArticulo.rdlc" />
-    <EmbeddedResource Include="ReportStockCero.rdlc" />
-    <EmbeddedResource Include="ReportStockMinimoT.rdlc" />
     <EmbeddedResource Include="ReportVentaEmpleado.rdlc" />
     <EmbeddedResource Include="ReportVentaMarca.rdlc" />
     <EmbeddedResource Include="ReportVentaRubro.rdlc" />

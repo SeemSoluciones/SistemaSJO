@@ -23,17 +23,22 @@ namespace UI
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-            TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            Home.Mensaje = "Ventana Ventas";
-            if (!IsPostBack)
+            try
             {
-                // this.Button12.Click += new System.EventHandler(this.Button12_Click);
-                //Button12_Click(sender, e);
-                TxtDescuento.Value = "";
+                TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                Home.Mensaje = "Ventana Ventas";
+                if (!IsPostBack)
+                {
+                    TxtDescuento.Value = "";
+                }
+                SqlDataSource1.SelectParameters["ID_Tienda"].DefaultValue = Session["IDtienda"].ToString();
+                SqlDataSource1.DataBind();
             }
-            SqlDataSource1.SelectParameters["ID_Tienda"].DefaultValue = Session["IDtienda"].ToString();
-            SqlDataSource1.DataBind();
+           catch
+            {
+                Response.Redirect("Login.aspx");
+            }
+
 
         }
 
@@ -201,6 +206,7 @@ namespace UI
                     iva = 0.12 * Convert.ToDouble(TextBox14.Text);
                     msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue));
                     datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                    datos.InsertarBitacoraCaja(Session["Nombre"].ToString(), Session["Tienda"].ToString(), "Autoriza:  " + Autorizacion.Quien, Convert.ToInt32(msj));
                     foreach (GridViewRow row in GridView1.Rows)
                     {
                         datos.InsertarDetalleVenta(
@@ -219,14 +225,15 @@ namespace UI
                     ciudad = TextBox5.Text;
 
                     Pago = DropDownList4.SelectedItem.ToString();
+                    Button1.Enabled = true;
                     Label6.Text = "La venta ya fue guardada!!!";
                 }
-            }
+                }
             catch
             {
                 Response.Write("<script>alert('Error, ingrese un articulo')</script>");
             }
-        }
+}
 
 
         protected void Button5_Click(object sender, EventArgs e)
@@ -364,10 +371,33 @@ namespace UI
 
 
         }
-
+        public static bool estadoAuto = false;
         protected void Button11_Click(object sender, EventArgs e)
         {
+            
             if (TxtDescuento.Value != "")
+            {
+
+            if (Convert.ToInt32(TxtDescuento.Value) >= 8 )
+            {
+                   // TxtDescuento.Disabled = true;
+                    Response.Write("<script>window.open('Autorizacion.aspx','Titulo', 'height=200','width=400')</script>");
+                    if (estadoAuto == true)
+                    {
+                       // TxtDescuento.Disabled = false;
+                        double TotalFinal = 0;
+                        double porc = 0;
+                        porc = (Convert.ToDouble(TxtDescuento.Value) * 0.01) * Convert.ToDouble(TextBox12.Text);
+                        TotalFinal = Convert.ToDouble(TextBox12.Text) - (porc + Convert.ToDouble(TextBox13.Text));
+                        TextBox14.Text = TotalFinal.ToString();
+                        TextBox13.Text = porc.ToString();
+                    }
+                    else
+                    {
+                        Response.Write("<script>window.open('Autorizacion.aspx','Titulo', 'height=200','width=400')</script>");
+                    }
+            }
+                else
             {
                 double TotalFinal = 0;
                 double porc = 0;
@@ -375,6 +405,9 @@ namespace UI
                 TotalFinal = Convert.ToDouble(TextBox12.Text) - (porc + Convert.ToDouble(TextBox13.Text));
                 TextBox14.Text = TotalFinal.ToString();
                 TextBox13.Text = porc.ToString();
+            }
+
+               
             }
             else
             {
@@ -445,11 +478,11 @@ namespace UI
             GridViewRow gd = GridView2.SelectedRow;
             TextBox7.Text = GridView2.SelectedRow.Cells[0].Text;
             TextBox8.Text = gd.Cells[2].Text;
-            TextBox9.Text = gd.Cells[11].Text;
+            TextBox9.Text = gd.Cells[9].Text;
             TextBox10.Text = "0";
             TextBox11.Text = "1";
             cantProd = Convert.ToInt32(gd.Cells[8].Text);
-            idStock = Convert.ToInt32(gd.Cells[12].Text);
+            idStock = Convert.ToInt32(gd.Cells[10].Text);
         }
 
     }

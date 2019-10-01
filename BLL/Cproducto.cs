@@ -450,6 +450,20 @@ namespace BLL
                 return "Error, datos no ingresado";
             }
         }
+
+        public string InsertarBitacoraCaja(string idEm, string idTien, string desc, int idVen)
+        {
+            try
+            {
+                PROVEEDOR.InsertBitacoraCaja(idEm, idTien, desc, idVen);
+                return "1";
+
+            }
+            catch
+            {
+                return "0";
+            }
+        }
         #endregion
     }
 }
