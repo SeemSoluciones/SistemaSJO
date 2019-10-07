@@ -147,9 +147,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="StockCeroTienda.aspx"><i class="fa fa-circle-o"></i>Stock Cero</a></li>
-                            <li><a href="ReporteStockMinimoT.aspx"><i class="fa fa-circle-o"></i>Stock Minimo </a></li>
-                           <%-- <li><a href="#"><i class="fa fa-circle-o"></i>Productos</a></li>--%>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>Realizar compras</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>Stock </a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>Productos</a></li>
                         </ul>
                     </li>
                  
@@ -193,9 +193,9 @@
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
-                <b>Tel: 57219147</b>
+                <b>Tel: 42543965 / 57219147</b>
             </div>
-            <strong>Copyright &copy; 2014-2019 <a>TecnoByte</a>.</strong> All rights
+            <strong>Copyright &copy; 2014-2019 <a>SEEM Soluciones tecnólogicas.</a>.</strong> All rights
     reserved.
         </footer>
 
