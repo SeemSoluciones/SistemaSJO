@@ -106,6 +106,7 @@
     <Content Include="CambiosEnCaja.aspx" />
     <Content Include="ClienteV.aspx" />
     <Content Include="CompraD.aspx" />
+    <Content Include="Descuentos.aspx" />
     <Content Include="DevolucionV.aspx" />
     <Content Include="EncargoC.aspx" />
     <Content Include="EncargosV.aspx" />
@@ -7213,6 +7214,7 @@
     <Content Include="ProveedorD.aspx" />
     <Content Include="RegistroV.aspx" />
     <Content Include="ReporteCompraArticulos2.aspx" />
+    <Content Include="ReporteCompras.aspx" />
     <Content Include="ReporteCredito.aspx" />
     <Content Include="BDautorepuestoDataSet.xsc">
       <DependentUpon>BDautorepuestoDataSet.xsd</DependentUpon>
@@ -7234,6 +7236,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="ReporteStockMinimoT.aspx" />
     <Content Include="ReporteVentaEmple.aspx" />
     <Content Include="ReporteVentaRubro.aspx" />
     <Content Include="ReporteVentas.aspx" />
@@ -7241,6 +7244,7 @@
     <Content Include="ReporteVentasTarjeta.aspx" />
     <Content Include="ReporteVentaTienda.aspx" />
     <Content Include="StockB.aspx" />
+    <Content Include="StockCeroTienda.aspx" />
     <Content Include="StockD.aspx" />
     <Content Include="StockM.aspx" />
     <Content Include="Vendedor.Master" />
@@ -7362,6 +7366,13 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Descuentos.aspx.cs">
+      <DependentUpon>Descuentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Descuentos.aspx.designer.cs">
+      <DependentUpon>Descuentos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Devolucion.aspx.cs">
       <DependentUpon>Devolucion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7472,12 +7483,20 @@
     <Compile Include="RegistroV.aspx.designer.cs">
       <DependentUpon>RegistroV.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ReporteCompraArticulo.aspx.designer.cs" />
     <Compile Include="ReporteCompraArticulos2.aspx.cs">
       <DependentUpon>ReporteCompraArticulos2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ReporteCompraArticulos2.aspx.designer.cs">
       <DependentUpon>ReporteCompraArticulos2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteCompras.aspx.cs">
+      <DependentUpon>ReporteCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteCompras.aspx.designer.cs">
+      <DependentUpon>ReporteCompras.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReporteCredito.aspx.cs">
       <DependentUpon>ReporteCredito.aspx</DependentUpon>
@@ -7598,6 +7617,13 @@
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ReporteStockMinimoT.aspx.cs">
+      <DependentUpon>ReporteStockMinimoT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteStockMinimoT.aspx.designer.cs">
+      <DependentUpon>ReporteStockMinimoT.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ReporteVentaEmple.aspx.cs">
       <DependentUpon>ReporteVentaEmple.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7653,6 +7679,13 @@
     </Compile>
     <Compile Include="StockB.aspx.designer.cs">
       <DependentUpon>StockB.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StockCeroTienda.aspx.cs">
+      <DependentUpon>StockCeroTienda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockCeroTienda.aspx.designer.cs">
+      <DependentUpon>StockCeroTienda.aspx</DependentUpon>
     </Compile>
     <Compile Include="StockD.aspx.cs">
       <DependentUpon>StockD.aspx</DependentUpon>
@@ -7721,6 +7754,8 @@
     <EmbeddedResource Include="Report2.rdlc" />
     <EmbeddedResource Include="ReportCompra.rdlc" />
     <EmbeddedResource Include="ReportCompraArticulo.rdlc" />
+    <EmbeddedResource Include="ReportStockCero.rdlc" />
+    <EmbeddedResource Include="ReportStockMinimoT.rdlc" />
     <EmbeddedResource Include="ReportVentaEmpleado.rdlc" />
     <EmbeddedResource Include="ReportVentaMarca.rdlc" />
     <EmbeddedResource Include="ReportVentaRubro.rdlc" />
