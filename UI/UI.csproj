@@ -106,7 +106,7 @@
     <Content Include="CambiosEnCaja.aspx" />
     <Content Include="ClienteV.aspx" />
     <Content Include="CompraD.aspx" />
-    <Content Include="Descuentos.aspx" />
+    <Content Include="Descuento8.aspx" />
     <Content Include="DevolucionV.aspx" />
     <Content Include="EncargoC.aspx" />
     <Content Include="EncargosV.aspx" />
@@ -7365,12 +7365,12 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Descuentos.aspx.cs">
-      <DependentUpon>Descuentos.aspx</DependentUpon>
+    <Compile Include="Descuento8.aspx.cs">
+      <DependentUpon>Descuento8.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Descuentos.aspx.designer.cs">
-      <DependentUpon>Descuentos.aspx</DependentUpon>
+    <Compile Include="Descuento8.aspx.designer.cs">
+      <DependentUpon>Descuento8.aspx</DependentUpon>
     </Compile>
     <Compile Include="Devolucion.aspx.cs">
       <DependentUpon>Devolucion.aspx</DependentUpon>

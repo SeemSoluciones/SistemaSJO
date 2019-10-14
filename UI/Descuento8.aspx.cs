@@ -7,9 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace UI
 {
-    public partial class Descuentos : System.Web.UI.Page
+    public partial class Descuento8 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
         {
 
         }
