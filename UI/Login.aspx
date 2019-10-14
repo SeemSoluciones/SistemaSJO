@@ -19,7 +19,7 @@
     <form id="form1" runat="server">
   <div class="wrap">
 		<div class="avatar">
-      <img src="Login/imagenes/SJ.jpg">
+      <img src="Login/imagenes/auto.jpeg">
 		</div>
 		
 <asp:TextBox ID="txtUsuario" runat="server" placeholder="Usuario"  required="Usuario"></asp:TextBox><br />
