@@ -256,6 +256,26 @@
                                    
                             </ul>
                           </li>
+
+
+                            <li class="treeview">
+                              <a href="#">
+                            <i class="fa fa-money"></i>
+                            <span>Stock</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                               <ul class="treeview-menu">
+                                 <li><a href="StockCeroTienda.aspx"><i class="fa fa-circle-o"></i>Stock 0</a></li>
+                                   <li><a href="ReporteStockMinimoT.aspx"><i class="fa fa-circle-o"></i>Stock Minimo</a></li>
+                                   
+                                   
+                                   
+                            </ul>
+                          </li>
+
+
                             </ul>
 
                     </li>
