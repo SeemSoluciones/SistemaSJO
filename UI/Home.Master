@@ -260,7 +260,7 @@
 
                             <li class="treeview">
                               <a href="#">
-                            <i class="fa fa-money"></i>
+                            <i class="fa fa-th"></i>
                             <span>Stock</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -285,6 +285,15 @@
                             <i class="fa fa-internet-explorer"></i>
                             <span>Ir a parts.com</span>
                         </a>
+                    </li>
+
+                    <li>
+                        <a href="Login.aspx">
+                            <i class="fa fa-user"></i>
+                            <span>Salir</span>
+                            
+                        </a>
+                        
                     </li>
                     
                 </ul>

@@ -169,6 +169,15 @@
                             <span>Ir a parts.com</span>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="Login.aspx">
+                            <i class="fa fa-user"></i>
+                            <span>Salir</span>
+                            
+                        </a>
+                        
+                    </li>
                     
                 </ul>
             </section>
