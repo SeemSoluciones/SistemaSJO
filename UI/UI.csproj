@@ -7230,6 +7230,7 @@
     <Content Include="Bodegero.Master" />
     <Content Include="Cobrador.Master" />
     <Content Include="Digitador.Master" />
+    <None Include="Properties\PublishProfiles\SanJuan.pubxml" />
     <None Include="Properties\PublishProfiles\SisSanJuan.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
