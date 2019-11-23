@@ -35,7 +35,7 @@ namespace UI
                 // idTienda = Application["IDtienda"].ToString();
                 msj = DatosP.InsertarProducto(codigo2.Text, Equival.Text, producto2.Text, descripcion2.Text, imag, Convert.ToInt32(DropDownList6.SelectedValue), Convert.ToInt32(DropDownList4.SelectedValue), Convert.ToInt32(DropDownList11.SelectedValue));
                 DatosP.InsertarStock(Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVenta.Text), codigo2.Text, Convert.ToInt32(DropDownList9.SelectedValue), idTtienda, Convert.ToInt32(DropDownList12.SelectedValue));
-                Response.Redirect("Productos.aspx");
+                Response.Redirect("ProductoD.aspx");
             }
             catch
             {
@@ -96,7 +96,7 @@ namespace UI
                 string msj;
                 msj = DatosP.EditarProducto(codigo.Text, Equival2.Text, producto.Text, descripcion.Text, imag, Convert.ToInt32(DropDownList8.SelectedValue), Convert.ToInt32(DropDownList2.SelectedValue), Convert.ToInt32(DropDownList10.SelectedValue));
                 //   Response.Write("<script>alert('" + msj + "')</script>");
-                Response.Redirect("Productos.aspx");
+                Response.Redirect("ProductoD.aspx");
             }
             catch
             {

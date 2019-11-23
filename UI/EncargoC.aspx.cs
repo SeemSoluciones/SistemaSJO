@@ -34,7 +34,7 @@ namespace UI
                 msj = Datos.nuevoEncargo(Convert.ToDateTime(FechaEn.Text), Convert.ToDecimal(TextBox2.Text), TextBox4.Text, Producto.Text, Convert.ToInt32(Label1.Text), imag, Convert.ToDecimal(TextBox9.Text));
                 Datos.InsertarVenta(Convert.ToDecimal(TextBox2.Text), 0, Convert.ToDecimal(TextBox2.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda));
                 Response.Write("<script>alert('" + msj + "')</script>");
-                Response.Redirect("Encargos.aspx");
+                Response.Redirect("EncargoC.aspx");
             }
             catch
             {
@@ -125,7 +125,7 @@ namespace UI
                 msj = Datos.InsertarVenta(Convert.ToDecimal(TextBox8.Text), 0, Convert.ToDecimal(TextBox8.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda));
                 //  Datos.InsertarDetalleVenta(1, subtotal, total, Convert.ToInt32(msj), IdProd,  1);
 
-                Response.Redirect("Encargos.aspx");
+                Response.Redirect("EncargosC.aspx");
             }
             catch
             {
