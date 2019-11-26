@@ -392,6 +392,25 @@ namespace UI
             }
         }
 
+        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string _estado = DataBinder.Eval(e.Row.DataItem, "Tienda").ToString();
+
+                if (_estado == Session["Tienda"].ToString())
+                {
+                   
+                }
+                else
+                {
+                   e.Row.BackColor = System.Drawing.Color.Green;
+                }
+                   
+            }
+
+    }
+
         protected void Button10_Click(object sender, EventArgs e)
         {
             Response.Redirect("Caja.aspx");

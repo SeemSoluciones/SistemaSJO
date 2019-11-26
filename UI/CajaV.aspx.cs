@@ -483,5 +483,24 @@ namespace UI
             idStock = Convert.ToInt32(gd.Cells[10].Text);
         }
 
+
+        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string _estado = DataBinder.Eval(e.Row.DataItem, "Tienda").ToString();
+
+                if (_estado == Session["Tienda"].ToString())
+                {
+
+                }
+                else
+                {
+                    e.Row.BackColor = System.Drawing.Color.Green;
+                }
+
+            }
+
+        }
     }
 }

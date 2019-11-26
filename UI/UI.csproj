@@ -109,6 +109,7 @@
     <Content Include="CompraD.aspx" />
     <Content Include="Descuento8.aspx" />
     <Content Include="DevolucionV.aspx" />
+    <Content Include="DevProPro.aspx" />
     <Content Include="EncargoC.aspx" />
     <Content Include="EncargosV.aspx" />
     <Content Include="EntregaPB.aspx" />
@@ -7396,6 +7397,13 @@
     </Compile>
     <Compile Include="DevolucionV.aspx.designer.cs">
       <DependentUpon>DevolucionV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DevProPro.aspx.cs">
+      <DependentUpon>DevProPro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DevProPro.aspx.designer.cs">
+      <DependentUpon>DevProPro.aspx</DependentUpon>
     </Compile>
     <Compile Include="Digitador.Master.cs">
       <DependentUpon>Digitador.Master</DependentUpon>

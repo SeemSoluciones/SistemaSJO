@@ -83,7 +83,7 @@
                     <div class="box-body">
                       
                             <div class="table table-responsive">
-                        <asp:GridView ID="GridView2" runat="server" CssClass="table table-responsive-lg table-hover" AutoGenerateColumns="False" DataKeyNames="Codigo" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
+                        <asp:GridView ID="GridView2" runat="server" CssClass="table table-responsive-lg table-hover" AutoGenerateColumns="False" DataKeyNames="Codigo" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" OnRowDataBound="GridView2_RowDataBound">
                             <Columns>
                                 <asp:BoundField DataField="Codigo" HeaderText="Codigo" ReadOnly="True" SortExpression="Codigo" />
                                 <asp:BoundField DataField="Codigo2" HeaderText="Equivalencia" SortExpression="Codigo2" />
@@ -99,7 +99,14 @@
                                 <asp:BoundField DataField="PrecioVenta" HeaderText="Precio V" SortExpression="PrecioVenta" DataFormatString="{0:0.00}" />
                                 <asp:BoundField DataField="ID_Existencia" HeaderText="ID Stock" SortExpression="ID_Existencia" />
                                 <asp:BoundField DataField="Medida" HeaderText="Medida" SortExpression="Medida"/>
-                                <asp:BoundField DataField="Tienda" HeaderText="Tienda" SortExpression="Tienda"/>
+                                <asp:TemplateField HeaderText="Tienda" SortExpression="Tienda">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("Tienda") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("Tienda") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                                 <asp:TemplateField ShowHeader="False">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar"></asp:LinkButton>

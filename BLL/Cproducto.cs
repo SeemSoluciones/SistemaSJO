@@ -465,5 +465,20 @@ namespace BLL
             }
         }
         #endregion
+
+
+
+        public string InsertDevProPro(string codigo, string motivo, string factura, int idproveedor, int Cantidad)
+        {
+            try
+            {
+                PROVEEDOR.InsertDevProPro(codigo, motivo, factura, idproveedor, Cantidad);
+                return "1";
+            }
+            catch
+            {
+                return "0";
+            }
+        }
     }
 }
