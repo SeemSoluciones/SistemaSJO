@@ -52,7 +52,8 @@ namespace UI
                 {
                     if (Convert.ToInt32(Totalprod) == Convert.ToInt32(TextBox2.Text))
                     {
-                        datos2.EliminarDetallV(Convert.ToInt32(IDdetalleVenta));
+                        datos2.EliminarDetallV(Convert.ToInt32(IDdetalleVenta), Convert.ToInt32(Totalprod), Convert.ToInt32(idStock));
+                       // datos2.EditarStockDevol(Convert.ToInt32(TextBox2.Text), Convert.ToInt32(idStock)); ///////////
                         SqlDataSource1.SelectCommand = "SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha, Producto.Codigo, Producto.Producto, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta FROM Producto INNER JOIN DetalleVenta ON Producto.Codigo = DetalleVenta.Codigo INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta WHERE Venta.ID_Venta =" + TextBox1.Text;
                         SqlDataSource1.DataBind();
                         Label3.Text = "Se ha devuelto: " + TextBox2.Text + " productos con exitos!";
@@ -62,7 +63,7 @@ namespace UI
                             SubtotalProd = Convert.ToInt32(Totalprod) - Convert.ToInt32(TextBox2.Text);
                             totalPrecio = Convert.ToDecimal(precio) * Convert.ToDecimal(SubtotalProd);
                             datos2.EditarDetalleVenta(SubtotalProd, totalPrecio, Convert.ToInt32(IDdetalleVenta));
-                        //datos2.EditarStockDevol(Convert.ToInt32(TextBox2.Text), Convert.ToInt32(idStock));
+                            datos2.EditarStockDevol(Convert.ToInt32(TextBox2.Text), Convert.ToInt32(idStock));
                             SqlDataSource1.SelectCommand = "SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha, Producto.Codigo, Producto.Producto, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta FROM Producto INNER JOIN DetalleVenta ON Producto.Codigo = DetalleVenta.Codigo INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta WHERE Venta.ID_Venta =" + TextBox1.Text;
                             SqlDataSource1.DataBind();
                             Label3.Text = "Se ha devuelto: " + TextBox2.Text + " productos con exitos!";

@@ -153,11 +153,18 @@
                         </ul>
                     </li>
                  
-                    <li>
-                        <a href="https://www.parts.com" target="_blank"> 
-                            <i class="fa fa-internet-explorer"></i>
-                            <span>Ir a parts.com</span>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>Adminstracion</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li><a href="CategoriaB.aspx"><i class="fa fa-circle-o"></i>Categorias</a></li>
+                            <li><a href="ProveedoresB.aspx"><i class="fa fa-circle-o"></i>Proveedores</a></li>
+                        </ul>
                     </li>
 
                   <li>

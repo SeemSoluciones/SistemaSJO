@@ -104,6 +104,7 @@
     <Content Include="CajaDatos.aspx" />
     <Content Include="CajaV.aspx" />
     <Content Include="CambiosEnCaja.aspx" />
+    <Content Include="CategoriaB.aspx" />
     <Content Include="ClienteV.aspx" />
     <Content Include="CompraD.aspx" />
     <Content Include="Descuento8.aspx" />
@@ -7212,6 +7213,7 @@
     <Content Include="bin\UI.dll.config" />
     <Content Include="ProductoD.aspx" />
     <Content Include="ProveedorD.aspx" />
+    <Content Include="ProveedoresB.aspx" />
     <Content Include="RegistroV.aspx" />
     <Content Include="ReporteCompraArticulos2.aspx" />
     <Content Include="ReporteCompras.aspx" />
@@ -7331,6 +7333,13 @@
     </Compile>
     <Compile Include="CambiosEnCaja.aspx.designer.cs">
       <DependentUpon>CambiosEnCaja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaB.aspx.cs">
+      <DependentUpon>CategoriaB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaB.aspx.designer.cs">
+      <DependentUpon>CategoriaB.aspx</DependentUpon>
     </Compile>
     <Compile Include="ClienteV.aspx.cs">
       <DependentUpon>ClienteV.aspx</DependentUpon>
@@ -7476,6 +7485,13 @@
     </Compile>
     <Compile Include="ProveedorD.aspx.designer.cs">
       <DependentUpon>ProveedorD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProveedoresB.aspx.cs">
+      <DependentUpon>ProveedoresB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProveedoresB.aspx.designer.cs">
+      <DependentUpon>ProveedoresB.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistroV.aspx.cs">
       <DependentUpon>RegistroV.aspx</DependentUpon>

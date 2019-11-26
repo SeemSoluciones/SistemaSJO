@@ -364,7 +364,7 @@ namespace UI
             else
             {
             Response.Write("<script>window.open('Factura2.aspx','Titulo', 'height=300','width=300')</script>");
-                }
+            }
         }
 
         protected void Button11_Click(object sender, EventArgs e)

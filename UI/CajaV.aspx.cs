@@ -366,10 +366,8 @@ namespace UI
             }
             else
             {
-                Response.Write("<script>window.open('Factura2.aspx','Titulo', 'height=300','width=300')</script>");
+                Response.Write("<script>window.open('FacturaC.aspx','Titulo', 'height=300','width=300')</script>");
             }
-
-
         }
         public static bool estadoAuto = false;
         protected void Button11_Click(object sender, EventArgs e)

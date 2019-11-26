@@ -35,7 +35,7 @@ namespace BLL
                 return buscarP;
             }
         }
-
+        
 
        public DataTable BuscarProducto(string codigo)
         {
@@ -325,11 +325,11 @@ namespace BLL
             }
         }
 
-        public string EliminarDetallV(int idDetalleV)
+        public string EliminarDetallV(int idDetalleV, int cantidad, int idStoc )
         {
             try
             {
-                PROVEEDOR.EliminarDetalleVenta(idDetalleV);
+                PROVEEDOR.EliminarDetalleVenta(idDetalleV, cantidad, idStoc);
                 return "Eliminado";
             }
             catch
