@@ -182,6 +182,11 @@ namespace UI
             SqlDataSource2.DataBind();
         }
 
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Compra.aspx");
+        }
+
         protected void Button9_Click(object sender, EventArgs e)
         {
             try

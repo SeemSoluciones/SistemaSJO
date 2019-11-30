@@ -162,6 +162,7 @@
         
 
         <asp:Button ID="Button3" runat="server" CssClass="btn btn-success pull-right" Text="Guardar" OnClick="Button3_Click" />
+ <asp:Button ID="Button4" runat="server" CssClass="btn btn-warning pull-right" Text="Cancelar" OnClick="Button4_Click" />
 
     </div>
 
