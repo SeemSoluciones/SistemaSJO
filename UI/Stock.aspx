@@ -13,6 +13,24 @@
             z-index:10000;
         }
     </style>
+
+    <script language="JavaScript">
+     //   document.onkeydown = function (evt) { return (evt ? evt.which : event.keyCode) != 13 };
+</script>
+    <%--<script type="text/javascript">
+        function detectar_tecla(){
+            with (event) {
+                if(keyCode==113)
+                {
+                 
+                    $('#<%=Button2.ClientID%>').click();
+                    return false;
+                
+                }
+               
+            }
+        }
+    </script>--%>
     <div class="content">
         
       <div class="row">
@@ -38,7 +56,7 @@
 
                             <div class="input-group">
                             <div class="input-group-btn">
-                              <asp:Button ID="Button3" runat="server" CssClass="btn btn-danger" Text="Buscar" OnClick="Button3_Click" />
+                              <asp:Button ID="Button3" runat="server" CssClass="btn btn-danger" Text="Buscar" OnClick="Button3_Click" TabIndex="3" />
                              </div>
                             <asp:TextBox ID="TextBox6" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
@@ -112,11 +130,12 @@
                  <span class="input-group-btn">
                      <asp:DropDownList CssClass="form-control" ID="DropDownList5" runat="server" DataSourceID="SqlDataSource6" DataTextField="Anio" DataValueField="ID_Anio" OnSelectedIndexChanged="DropDownList5_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                  </span>  <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Anio], [Anio] FROM [Anio]"></asp:SqlDataSource>
-               <span class="input-group-btn">  <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox></span>
-               
-        <span class="input-group-btn">  <asp:Button ID="Button2" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="Button2_Click" />             
+               <span class="input-group-btn">  <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" OnTextChanged="TextBox3_TextChanged" AutoPostBack="True"></asp:TextBox></span>
+               <span class="input-group-btn"><asp:CheckBox ID="CheckBox1" runat="server" />Incluir año</span>
+        <span class="input-group-btn">  <asp:Button ID="Button2" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="Button2_Click"/>             
                 </span>
               </div>
+        
         <div class="table table-responsive">
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-responsive table-hover" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1" AllowPaging="True" AllowSorting="True">
             <Columns>
