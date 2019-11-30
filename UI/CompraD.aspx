@@ -23,7 +23,7 @@
          <div class="col-md-4">
               <div class="form-group">
             <label>Fecha</label>
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" Enabled="False"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
             </div>  
         </div>
     </div>

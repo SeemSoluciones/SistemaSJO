@@ -101,7 +101,7 @@ namespace UI
             try
             {
                 string msj = "";
-                msj = datos.InsertarCompra(Convert.ToDecimal(TextBox12.Text), TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue));
+                msj = datos.InsertarCompra(Convert.ToDecimal(TextBox12.Text), TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToDateTime(TextBox2.Text));
                 foreach (GridViewRow row in GridView1.Rows)
                 {
                     datos.InsertarDetalleCompra(

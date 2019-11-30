@@ -355,14 +355,14 @@ namespace BLL
         #endregion
 
         #region COMPRA
-        public string InsertarCompra(decimal total, string Nofac, int Idprov)
+        public string InsertarCompra(decimal total, string Nofac, int Idprov, DateTime fecha)
         {
             try
             {
 
                 string msj = "";
 
-                msj = PROVEEDOR.InsertCompra(total, Nofac, Idprov).ToString();
+                msj = PROVEEDOR.InsertCompra(total, Nofac, Idprov, fecha).ToString();
                 return msj;
             }
             catch
