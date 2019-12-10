@@ -328,6 +328,24 @@ namespace UI {
         protected global::System.Web.UI.WebControls.TextBox PrecioVe;
         
         /// <summary>
+        /// Control DropDownList7.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList7;
+        
+        /// <summary>
+        /// Control SqlDataSource9.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource9;
+        
+        /// <summary>
         /// Control Button4.
         /// </summary>
         /// <remarks>

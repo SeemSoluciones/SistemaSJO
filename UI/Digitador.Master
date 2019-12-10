@@ -147,6 +147,7 @@
                             <li><a href="ProductoD.aspx"><i class="fa fa-circle-o"></i>Productos</a></li>
                             <li><a href="ProveedorD.aspx"><i class="fa fa-circle-o"></i>Proveedores</a></li>
                             <li><a href="StockM.aspx"><i class="fa fa-circle-o"></i>Productos bajos </a></li>
+                            <li><a href="DevProProD.aspx"><i class="fa fa-circle-o"></i>Devolucion producto a proveedores </a></li>
                         </ul>
                     </li>
                     
@@ -163,12 +164,7 @@
                             <li><a href="ReporteVentas.aspx"><i class="fa fa-circle-o"></i>Ventas</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="https://www.parts.com" target="_blank"> 
-                            <i class="fa fa-internet-explorer"></i>
-                            <span>Ir a parts.com</span>
-                        </a>
-                    </li>
+                   
 
                     <li>
                         <a href="Login.aspx">

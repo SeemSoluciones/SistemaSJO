@@ -110,6 +110,8 @@
     <Content Include="Descuento8.aspx" />
     <Content Include="DevolucionV.aspx" />
     <Content Include="DevProPro.aspx" />
+    <Content Include="DevProProD.aspx" />
+    <Content Include="DevProProV.aspx" />
     <Content Include="EncargoC.aspx" />
     <Content Include="EncargosV.aspx" />
     <Content Include="EntregaPB.aspx" />
@@ -7404,6 +7406,20 @@
     </Compile>
     <Compile Include="DevProPro.aspx.designer.cs">
       <DependentUpon>DevProPro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DevProProD.aspx.cs">
+      <DependentUpon>DevProProD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DevProProD.aspx.designer.cs">
+      <DependentUpon>DevProProD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DevProProV.aspx.cs">
+      <DependentUpon>DevProProV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DevProProV.aspx.designer.cs">
+      <DependentUpon>DevProProV.aspx</DependentUpon>
     </Compile>
     <Compile Include="Digitador.Master.cs">
       <DependentUpon>Digitador.Master</DependentUpon>

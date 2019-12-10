@@ -210,6 +210,13 @@
                                    <label>Precio venta</label>
                                    <asp:TextBox ID="PrecioVe" runat="server" CssClass="form-control"></asp:TextBox>
                                </div>
+                                            <div class="form-group">
+                                                <label>Año</label>
+                                                <asp:DropDownList ID="DropDownList7" runat="server" CssClass="form-control" DataSourceID="SqlDataSource9" DataTextField="Anio" DataValueField="ID_Anio">
+                                                    <asp:ListItem Value="" Text="Selecciona una opción" ></asp:ListItem>
+                                                </asp:DropDownList>
+                                                <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Anio], [Anio] FROM [Anio]"></asp:SqlDataSource>
+                                            </div>
               
 							</div>
                                	</div>

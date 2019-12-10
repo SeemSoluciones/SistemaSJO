@@ -404,11 +404,11 @@ namespace BLL
          
         }
 
-        public string EditarStock(int IDexist, int cantM, string ubic, decimal precioU, decimal preci)
+        public string EditarStock(int IDexist, int cantM, string ubic, decimal precioU, decimal preci, int idAnio)
         {
             try
             {
-                PROVEEDOR.EditarStock(IDexist, cantM, ubic, precioU, preci);
+                PROVEEDOR.EditarStock(IDexist, cantM, ubic, precioU, preci, idAnio);
                 return "Datos actualizado correctamente";
             }
             catch

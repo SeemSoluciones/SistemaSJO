@@ -142,9 +142,9 @@
                         </a>
                     </li>                  
                     <li>
-                        <a href="https://www.parts.com" target="_blank"> 
+                        <a href="#" target="_blank"> 
                             <i class="fa fa-internet-explorer"></i>
-                            <span>Ir a parts.com</span>
+                            <span>.</span>
                         </a>
                     </li>
 

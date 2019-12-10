@@ -118,20 +118,24 @@ namespace UI
 
         protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
         {
+            string miValor;
             GridViewRow r = GridView1.SelectedRow;
             IDstock.Text = r.Cells[1].Text;
             Cant.Text = r.Cells[3].Text;
             Ubi.Text = r.Cells[4].Text;
             PrecioP.Text = r.Cells[5].Text;
             PrecioVe.Text = r.Cells[6].Text;
+            miValor = r.Cells[13].Text;
+            DropDownList7.SelectedIndex = DropDownList7.Items.IndexOf(DropDownList7.Items.FindByText(miValor));
             Button6_ModalPopupExtender.Show();
+            
         }
 
         protected void Button4_Click1(object sender, EventArgs e)
         {
             try
             {
-                datosProd.EditarStock(Convert.ToInt32(IDstock.Text),Convert.ToInt32(Cant.Text) , Ubi.Text,Convert.ToDecimal(PrecioP.Text), Convert.ToDecimal(PrecioVe.Text));
+                datosProd.EditarStock(Convert.ToInt32(IDstock.Text),Convert.ToInt32(Cant.Text) , Ubi.Text,Convert.ToDecimal(PrecioP.Text), Convert.ToDecimal(PrecioVe.Text), Convert.ToInt32(DropDownList7.SelectedValue));
                 Response.Redirect("Stock.aspx");
              }
             catch

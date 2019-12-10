@@ -130,16 +130,26 @@ namespace UI
         
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            string IdRubro = "";
+            string IdRubro,ValorRubro, valorMarca, valorModelo = "";
             GridViewRow tabla = (GridViewRow)(((LinkButton)sender).Parent.Parent);
             codigo.Text = ((Label)tabla.FindControl("Label1")).Text.ToString();
             Equival2.Text = ((Label)tabla.FindControl("Label2")).Text.ToString();
             producto.Text = ((Label)tabla.FindControl("Label3")).Text.ToString();
             descripcion.Text = ((Label)tabla.FindControl("Label4")).Text.ToString();
-            IdRubro = ((Label)tabla.FindControl("Label6")).Text.ToString();
-            SqlDataSource9.SelectCommand =  "SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Rubro = "+Convert.ToInt32(IdRubro)+")";
+            IdRubro = ((Label)tabla.FindControl("Label6")).Text.ToString();     
+            valorMarca = ((Label)tabla.FindControl("Label8")).Text.ToString();
+            valorModelo = ((Label)tabla.FindControl("Label9")).Text.ToString();
+            ValorRubro = ((Label)tabla.FindControl("Label10")).Text.ToString();
+            SqlDataSource8.SelectCommand = "Select Modelo.ID_Modelo, Modelo.Modelo From Modelo inner join Marca on Modelo.ID_Marca = Marca.ID_Marca Where Marca.Marca = '"+ valorMarca+"'";
+            SqlDataSource8.DataBind();
+
+            DropDownList7.SelectedIndex = DropDownList7.Items.IndexOf(DropDownList7.Items.FindByText(valorModelo));
+            DropDownList1.SelectedIndex = DropDownList1.Items.IndexOf(DropDownList1.Items.FindByText(valorMarca));
+
+            //  DropDownList8.SelectedIndex = DropDownList8.Items.IndexOf(DropDownList8.Items.FindByText(ValorRubro));
+            SqlDataSource9.SelectCommand = "SELECT ID_Rubro, Rubro FROM Rubro WHERE ID_Rubro = " + Convert.ToInt32(IdRubro);
             SqlDataSource9.DataBind();
-          //  Label5.Text = IdRubro;
+
             Button4_ModalPopupExtender.Show();
         }
 

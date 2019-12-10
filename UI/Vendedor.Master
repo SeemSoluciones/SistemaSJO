@@ -145,6 +145,7 @@
                             <li><a href="EncargosV.aspx"><i class="fa fa-circle-o"></i>Encargo de productos</a></li>
                             <li><a href="CajaV.aspx"><i class="fa fa-circle-o"></i>Nueva venta</a></li>
                             <li><a href="DevolucionV.aspx"> <i class=" fa fa-circle-o"></i>Devoluciones</a> </li>
+                            <li><a href="DevProProV.aspx"> <i class=" fa fa-circle-o"></i>Devoluciones a proveedores</a> </li>
                         </ul>
                     </li>
                   

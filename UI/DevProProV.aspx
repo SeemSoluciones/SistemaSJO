@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="DevProPro.aspx.cs" Inherits="UI.DevProPro" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vendedor.Master" AutoEventWireup="true" CodeBehind="DevProProV.aspx.cs" Inherits="UI.DevProProV" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     
@@ -170,7 +169,7 @@
             <asp:BoundField DataField="Proveedor" HeaderText="Proveedor" SortExpression="Proveedor" />
             <asp:TemplateField ShowHeader="False">
                 <ItemTemplate>
-                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar" OnClientClick="return confirm('Esta entregando el producto al proveedor?');"></asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar" OnClientClick="return confirm('Esta entregando el producto al proveedor?');"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
@@ -181,4 +180,3 @@
         </DeleteParameters>
     </asp:SqlDataSource>
 </asp:Content>
-
