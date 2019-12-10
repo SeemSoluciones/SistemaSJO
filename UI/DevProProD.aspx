@@ -154,7 +154,9 @@
     <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
 
 
-
+    <div>
+        <h3>Listado de productos pendiente de devolver al proveedor.</h3>
+    </div>
 
 
     <asp:GridView ID="GridView3" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ID_DevProPro" DataSourceID="SqlDataSource4">
@@ -174,7 +176,7 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" DeleteCommand="DELETE FROM DevolProPro WHERE (ID_DevProPro = @ID_DevProPro)" SelectCommand="SELECT DevolProPro.ID_DevProPro, DevolProPro.Factura, DevolProPro.Motivo, DevolProPro.Cantidad, Producto.Codigo2, DevolProPro.Codigo, Producto.Producto + ':  ' + Producto.Descripcion AS Descrip, Proveedor.Proveedor FROM DevolProPro INNER JOIN Proveedor ON DevolProPro.ID_Proveedor = Proveedor.ID_Proveedor INNER JOIN Producto ON DevolProPro.Codigo = Producto.Codigo AND Proveedor.ID_Proveedor = Producto.ID_Proveedor">
+    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" DeleteCommand="DELETE FROM DevolProPro WHERE (ID_DevProPro = @ID_DevProPro)" SelectCommand="SELECT DevolProPro.ID_DevProPro, DevolProPro.Factura, DevolProPro.Motivo, DevolProPro.Cantidad, Producto.Codigo2, DevolProPro.Codigo, Producto.Producto + ':  ' + Producto.Descripcion AS Descrip, Proveedor.Proveedor FROM DevolProPro INNER JOIN Proveedor ON DevolProPro.ID_Proveedor = Proveedor.ID_Proveedor INNER JOIN Producto ON DevolProPro.Codigo = Producto.Codigo">
         <DeleteParameters>
             <asp:Parameter Name="ID_DevProPro" />
         </DeleteParameters>

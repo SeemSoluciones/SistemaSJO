@@ -37,7 +37,7 @@ namespace UI
         {
             if (TextBox7.Text == "" || TextBox8.Text == "" || TextBox9.Text == "" || TextBox11.Text == "")
             {
-                Response.Write("<script>alert('Seleccione y indique el precio')</script>");
+                Response.Write("<script>alert('Seleccione y el motivo de la devolucion)</script>");
             }
             else
             {
@@ -104,7 +104,7 @@ namespace UI
             }
             catch
             {
-                Response.Write("<script>alert('Error, Compra no registrada')</script>");
+                Response.Write("<script>alert('Error, valva a intentar')</script>");
             }
         }
 
