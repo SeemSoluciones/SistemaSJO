@@ -19,7 +19,7 @@ namespace UI
         protected void Page_Load(object sender, EventArgs e)
         {
             TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            Home.Mensaje = "Ventana compras";
+            Home.Mensaje = "Ventana devolucion de productos a proveedores";
         }
 
         protected void Button1_Click(object sender, EventArgs e)

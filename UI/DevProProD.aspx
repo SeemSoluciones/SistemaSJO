@@ -159,7 +159,7 @@
     </div>
 
 
-    <asp:GridView ID="GridView3" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ID_DevProPro" DataSourceID="SqlDataSource4">
+    <asp:GridView ID="GridView3" runat="server" CssClass="table table-responsive" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ID_DevProPro" DataSourceID="SqlDataSource4">
         <Columns>
             <asp:BoundField DataField="ID_DevProPro" HeaderText="ID_DevProPro" InsertVisible="False" ReadOnly="True" SortExpression="ID_DevProPro" />
             <asp:BoundField DataField="Factura" HeaderText="Factura" SortExpression="Factura" />
