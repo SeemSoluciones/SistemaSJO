@@ -98,12 +98,12 @@ namespace UI
         protected void Button3_Click(object sender, EventArgs e)
         {
             try
-            {
+           {
                 string msj = "";
                 msj = datos.InsertarCompra(Convert.ToDecimal(TextBox12.Text), TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToDateTime(TextBox2.Text));
                 foreach (GridViewRow row in GridView1.Rows)
                 {
-                    datos.InsertarDetalleCompra(
+                     datos.InsertarDetalleCompra(
                         Convert.ToInt32(row.Cells[3].Text),
                         Convert.ToDecimal(row.Cells[2].Text),
                         Convert.ToDecimal(row.Cells[4].Text),
@@ -116,9 +116,10 @@ namespace UI
 
                 Response.Redirect("Compra.aspx");
             }
-            catch
+            catch(Exception)
             {
-                Response.Write("<script>alert('Error, Compra no registrada')</script>");
+               
+              Response.Write("<script>alert('Error, Compra no registrada')</script>");
             }
         }
 
