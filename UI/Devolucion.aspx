@@ -32,12 +32,12 @@
             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" />
             <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
             <asp:BoundField DataField="ID_DetalleVenta" HeaderText="ID dv" InsertVisible="False" ReadOnly="True" SortExpression="ID_DetalleVenta" />
-            <asp:BoundField DataField="ID_Venta" HeaderText="ID Stock" InsertVisible="False" ReadOnly="True" SortExpression="ID_Existencia" />
+            <asp:BoundField DataField="ID_Existencia" HeaderText="ID Stock" InsertVisible="False" ReadOnly="True" SortExpression="ID_Existencia" />
             <asp:CommandField ShowSelectButton="True" />
         </Columns>
     </asp:GridView>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha, Producto.Codigo, Producto.Producto, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta, Stock.ID_Existencia FROM Producto INNER JOIN DetalleVenta ON Producto.Codigo = DetalleVenta.Codigo INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Stock ON Producto.Codigo = Stock.Codigo WHERE (Venta.ID_Venta = @ID_Venta)">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha, Producto.Codigo, Producto.Producto, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta, Stock.ID_Existencia FROM Producto INNER JOIN DetalleVenta ON Producto.Codigo = DetalleVenta.Codigo INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Stock ON Producto.Codigo = Stock.Codigo WHERE (Venta.ID_Venta = @ID_Venta) AND (Producto.Estado = 1)">
         <SelectParameters>
             <asp:ControlParameter ControlID="TextBox1" Name="ID_Venta" PropertyName="Text" />
         </SelectParameters>

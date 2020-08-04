@@ -20,7 +20,7 @@ namespace UI
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            DataTable tl = new DataTable();
+           // DataTable tl = new DataTable();
 
            // tl = datos.ListaUncliente()
         }

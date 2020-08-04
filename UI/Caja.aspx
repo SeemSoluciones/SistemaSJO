@@ -12,7 +12,7 @@
                 if(keyCode==113)
                 {
                  
-                    $('#<%=Button12.ClientID%>').click();
+                    <%--$('#<%=LinkButton12.ClientID%>').click();--%>
                     return false;
                 
                 }
@@ -41,11 +41,13 @@
                        <div class="row">
                                 <div class="col-sm-2">
                                   <asp:DropDownList ID="DropDownList2" CssClass="form-control" runat="server" DataSourceID="SqlDataSource5" DataTextField="Marca" DataValueField="ID_Marca" AutoPostBack="True"></asp:DropDownList> 
-                                  <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca]"></asp:SqlDataSource>
+                                  <asp:CheckBox ID="CheckBox3" runat="server" />Por marca
+                                    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca] ORDER BY Marca ASC"></asp:SqlDataSource>
                                 </div>
                                 <div class="col-sm-2">
                                     <asp:DropDownList ID="DropDownList5" CssClass="form-control"  runat="server" DataSourceID="SqlDataSource6" DataTextField="Modelo" DataValueField="ID_Modelo" AutoPostBack="True"></asp:DropDownList>
-                                     <asp:SqlDataSource ID="SqlDataSource6"  runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @idMarca)">
+                                    <asp:CheckBox ID="CheckBox4" runat="server" />Por modelo/linea
+                                    <asp:SqlDataSource ID="SqlDataSource6"  runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @idMarca) ORDER BY Modelo Asc">
                                      <SelectParameters>
                                      <asp:ControlParameter ControlID="DropDownList2" Name="idMarca" PropertyName="SelectedValue" />
                                      </SelectParameters>
@@ -53,7 +55,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                      <asp:DropDownList ID="DropDownList6" CssClass="form-control" runat="server" DataSourceID="SqlDataSource7" DataTextField="Rubro" DataValueField="ID_Rubro" AutoPostBack="True" OnSelectedIndexChanged="DropDownList6_SelectedIndexChanged"></asp:DropDownList>
-                                    <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @idModelo)">
+                                    <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @idModelo) ORDER BY Rubro">
                                      <SelectParameters>
                                       <asp:ControlParameter ControlID="DropDownList5" Name="idModelo" PropertyName="SelectedValue" />
                                       </SelectParameters>
@@ -62,23 +64,22 @@
                                 <div class="col-sm-1">
                                      <asp:DropDownList CssClass="form-control select2" ID="DropDownList7" runat="server" DataSourceID="SqlDataSource8" DataTextField="Anio" DataValueField="ID_Anio" OnSelectedIndexChanged="DropDownList7_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                                     <asp:CheckBox ID="CheckBox2" runat="server" /> Por año.
-                                    <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Anio], [Anio] FROM [Anio]"></asp:SqlDataSource>
+                                    <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Anio], [Anio] FROM [Anio] ORDER BY Anio ASC "></asp:SqlDataSource>
      
                                 </div>
                                 <div class="col-sm-2">
                                     <asp:TextBox ID="TextBox20" CssClass="form-control" runat="server"></asp:TextBox>
-                                    <asp:CheckBox ID="CheckBox1" runat="server" /> Buscar por Equivalencia.
                                 </div>
                                 <div class="col-sm-2">
                                     <asp:Button ID="Button9" CssClass="btn btn-default form-control" runat="server" Text="Buscar" OnClick="Button9_Click" />
                                 </div>
-                           <div class="col-sm-1">
-                         <asp:Button ID="Button12" CssClass="btn btn-warning form-control" runat="server"  data-widget="collapse" Text="EXPANDIR"/>    
-                           </div>
+                        
+                                <div class="col-sm-1">
+                               <button type="button" class="btn btn-social-icon btn-warning" runat="server" id="btnBuscar" onserverclick="btnBuscar_Click"><i class="fa fa-search"></i> </button>
+                              
+                              <button type="button" class="btn btn-social-icon btn-success" data-widget="collapse"><i class="fa fa-plus-square"></i> </button>
+                               </div>
                             </div>
-                         <!-- <div class="box-tools pull-right">
-                            <a href="Productos.aspx" target="_blank" > Nuevo producto 
-                        </div></a>-->
                     </div>
                     <div class="box-body">
                       
@@ -93,11 +94,11 @@
                                 <asp:BoundField DataField="Modelo" HeaderText="Modelo" SortExpression="Modelo" />
                                 <asp:BoundField DataField="Marca" HeaderText="Marca" SortExpression="Marca" />
                                 <asp:BoundField DataField="Anio" HeaderText="Anio" SortExpression="Anio" />
-                                <asp:BoundField DataField="Cantidad" HeaderText="Cant" SortExpression="Cantidad" />
+                                <asp:BoundField DataField="Cantidad" HeaderText="Cant" SortExpression="Cantidad" ItemStyle-Font-Bold="true" ItemStyle-BorderColor="LightGreen"/>
                                 <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
                                 <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio U" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}" />
                                 <asp:BoundField DataField="PrecioVenta" HeaderText="Precio V" SortExpression="PrecioVenta" DataFormatString="{0:0.00}" />
-                                <asp:BoundField DataField="ID_Existencia" HeaderText="ID Stock" SortExpression="ID_Existencia" />
+                                <asp:BoundField DataField="ID_Existencia"  HeaderText="ID Stock" SortExpression="ID_Existencia" />
                                 <asp:BoundField DataField="Medida" HeaderText="Medida" SortExpression="Medida"/>
                                 <asp:TemplateField HeaderText="Tienda" SortExpression="Tienda">
                         <EditItemTemplate>
@@ -109,7 +110,7 @@
                     </asp:TemplateField>
                                 <asp:TemplateField ShowHeader="False">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar"></asp:LinkButton>
+                                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-success fa fa-cart-plus" CausesValidation="False" CommandName="Select" Text=""></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -210,9 +211,14 @@
         </div>
         </div>
         <div class="table table-responsive">
+
         <asp:GridView ID="GridView1" runat="server" CssClass="table table-responsive" OnRowDataBound="GridView1_RowDataBound" OnRowDeleted="GridView1_RowDeleted" OnRowDeleting="GridView1_RowDeleting">
             <Columns>
-                <asp:CommandField HeaderText="" ShowDeleteButton="True" ShowHeader="True" ButtonType="Button" DeleteImageUrl="~/Login/imagenes/Delete_48px.png" DeleteText="X" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:LinkButton ID="Button1" runat="server" CssClass="btn btn-danger fa fa-trash-o" CausesValidation="False" CommandName="Delete"  />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             </asp:GridView>
         </div>

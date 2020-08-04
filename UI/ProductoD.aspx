@@ -24,7 +24,7 @@
      </span>
           </div>
         <div class="table table-responsive">
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Codigo" DataSourceID="SqlDataSource1"  CssClass="table table-bordered table-hover" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AllowPaging="True" AllowSorting="True" HorizontalAlign="Justify" PageSize="20">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Codigo" DataSourceID="SqlDataSource1"  CssClass="table table-bordered table-hover" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AllowPaging="True" AllowSorting="True" HorizontalAlign="Justify" PageSize="50">
                 <Columns>
                     <asp:TemplateField HeaderText="Codigo" SortExpression="Codigo">
                         <EditItemTemplate>
@@ -98,7 +98,7 @@
                             <asp:Label ID="Label10" runat="server" Text='<%# Bind("Rubro") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField> 
-                     <asp:TemplateField HeaderText="ID Rubro" SortExpression="ID_Rubro">
+                     <asp:TemplateField HeaderText="ID Rubro" SortExpression="ID_Rubro" Visible="false">
                         <EditItemTemplate>
                             <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("ID_Rubro") %>'></asp:TextBox>
                         </EditItemTemplate>
@@ -122,7 +122,7 @@
                 <PagerSettings NextPageText="Siguente" Position="TopAndBottom" PreviousPageText="Anterior" />
                 <PagerStyle CssClass="table-responsive" />
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT TOP(50) Producto.Codigo, Producto.Codigo2, Producto.Producto, MarcaProd.MarcaP, Producto.Descripcion, Proveedor.Proveedor, Rubro.ID_Rubro, Rubro.Rubro, Modelo.Modelo, Marca.Marca FROM Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca INNER JOIN Rubro ON Modelo.ID_Modelo = Rubro.ID_Modelo INNER JOIN Producto INNER JOIN Proveedor ON Producto.ID_Proveedor = Proveedor.ID_Proveedor ON Rubro.ID_Rubro = Producto.ID_Rubro INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd WHERE (Producto.Estado = 1)" DeleteCommand="EliminarProducto" DeleteCommandType="StoredProcedure">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="" DeleteCommand="EliminarProducto" DeleteCommandType="StoredProcedure">
                 <DeleteParameters>
                     <asp:Parameter Name="Codigo" Type="String" />
                 </DeleteParameters>
@@ -173,12 +173,12 @@
                      <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" DataSourceID="SqlDataSource7" DataTextField="Marca" DataValueField="ID_Marca" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1">
                          <asp:ListItem Value="0">Seleccionar...</asp:ListItem>
                         </asp:DropDownList> 
-                                  <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca]"></asp:SqlDataSource>
+                                  <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca] ORDER BY Marca ASC"></asp:SqlDataSource>
                                 </div>
                     <div class="form-group">
                      <label>Modelo</label>
                          <asp:DropDownList ID="DropDownList7" CssClass="form-control"  runat="server" DataSourceID="SqlDataSource8" DataTextField="Modelo" DataValueField="ID_Modelo" AutoPostBack="True" OnSelectedIndexChanged="DropDownList7_SelectedIndexChanged1"></asp:DropDownList>
-                                     <asp:SqlDataSource ID="SqlDataSource8"  runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @idMarca)">
+                                     <asp:SqlDataSource ID="SqlDataSource8"  runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @idMarca) ORDER BY Modelo ASC">
                                      <SelectParameters>
                                      <asp:ControlParameter ControlID="DropDownList1" Name="idMarca" PropertyName="SelectedValue" />
                                      </SelectParameters>
@@ -187,7 +187,7 @@
                        <div class="form-group">
                            <label>Rubro </label>
                           <asp:DropDownList ID="DropDownList8" CssClass="form-control" runat="server" DataSourceID="SqlDataSource9" DataTextField="Rubro" DataValueField="ID_Rubro"></asp:DropDownList>
-                               <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @idModelo)">
+                               <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @idModelo) ORDER BY Rubro ASC">
                                  <SelectParameters>
                                 <asp:ControlParameter ControlID="DropDownList7" Name="idModelo" PropertyName="SelectedValue" />
                               </SelectParameters>
@@ -202,7 +202,7 @@
                     </div>
                     <div class="form-group">
                         <asp:DropDownList ID="DropDownList2" runat="server" CssClass="form-control" DataSourceID="SqlDataSource2" DataTextField="Proveedor" DataValueField="ID_Proveedor"></asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Proveedor], [Proveedor] FROM [Proveedor]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Proveedor], [Proveedor] FROM [Proveedor] ORDER BY Proveedor ASC"></asp:SqlDataSource>
                     </div>
                     <div class="form-group">
                         <label>Imagen</label>
@@ -221,7 +221,7 @@
                     </div>
                     <div class="form-group">
                         <asp:DropDownList ID="DropDownList10" CssClass="form-control" runat="server" DataSourceID="SqlDataSource11" DataTextField="MarcaP" DataValueField="ID_MaraProd"></asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_MaraProd], [MarcaP] FROM [MarcaProd]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_MaraProd], [MarcaP] FROM [MarcaProd] ORDER BY MarcaP ASC"></asp:SqlDataSource>
                     </div>
                               
               
@@ -277,12 +277,12 @@
                      <div class="form-group">
                         <label>Marca</label>
                         <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control" DataSourceID="SqlDataSource3" DataTextField="Marca" DataValueField="ID_Marca" AutoPostBack="True" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged"></asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca] ORDER BY Marca ASC"></asp:SqlDataSource>
                     </div>
                     <div class="form-group">
                      <label>Modelo</label>
                                 <asp:DropDownList ID="DropDownList5" runat="server" CssClass="form-control" DataSourceID="SqlDataSource5" DataTextField="Modelo" DataValueField="ID_Modelo" AutoPostBack="True" OnSelectedIndexChanged="DropDownList5_SelectedIndexChanged"></asp:DropDownList>
-                         <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @ID_Marca)">
+                         <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @ID_Marca) ORDER BY Modelo ASC">
                         <SelectParameters>
                          <asp:ControlParameter ControlID="DropDownList3" Name="ID_Marca" PropertyName="SelectedValue" />
                           </SelectParameters>
@@ -291,7 +291,7 @@
                        <div class="form-group">
                            <label>Rubro </label>
                             <asp:DropDownList ID="DropDownList6" runat="server" CssClass="form-control" DataSourceID="SqlDataSource6" DataTextField="Rubro" DataValueField="ID_Rubro"></asp:DropDownList>
-                           <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @ID_Modelo)">
+                           <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @ID_Modelo) ORDER BY Rubro ASC">
                         <SelectParameters>
                           <asp:ControlParameter ControlID="DropDownList5" Name="ID_Modelo" PropertyName="SelectedValue" />
                       </SelectParameters>
@@ -301,7 +301,7 @@
                         <label>Proveedor</label>
                
                         <asp:DropDownList ID="DropDownList4" runat="server" CssClass="form-control" DataSourceID="SqlDataSource2" DataTextField="Proveedor" DataValueField="ID_Proveedor"></asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Proveedor], [Proveedor] FROM [Proveedor]"></asp:SqlDataSource>                
+                        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Proveedor], [Proveedor] FROM [Proveedor] ORDER BY Proveedor ASC"></asp:SqlDataSource>                
                     </div>
                     <div class="form-group">
                         <label>Imagen</label>
@@ -310,7 +310,7 @@
                     </div>
                      <div class="form-group">
                         <label>Descripcion</label>
-                        <asp:TextBox ID="descripcion2" runat="server" CssClass="form-control">.</asp:TextBox>
+                        <asp:TextBox ID="descripcion2" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                        
                       </div>				
@@ -319,7 +319,7 @@
                         <div class="form-group">
                               <label>Seleccione el modelo</label>
                          <asp:DropDownList ID="DropDownList9" CssClass="form-control" runat="server" DataSourceID="SqlDataSource10" DataTextField="Anio" DataValueField="ID_Anio"></asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource10" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Anio, Anio FROM Anio"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource10" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Anio, Anio FROM Anio ORDER BY Anio ASC"></asp:SqlDataSource>
                       </div>
 
                         <div class="form-group">
@@ -345,12 +345,12 @@
                          <div class="form-group">
                             <label>Marca producto</label>
                             <asp:DropDownList ID="DropDownList11" CssClass="form-control" runat="server" DataSourceID="SqlDataSource12" DataTextField="MarcaP" DataValueField="ID_MaraProd"></asp:DropDownList>
-                            <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_MaraProd], [MarcaP] FROM [MarcaProd]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_MaraProd], [MarcaP] FROM [MarcaProd] ORDER BY MarcaP ASC"></asp:SqlDataSource>
                         </div>
                         <div class="form-group">
                             <label>Tipo de medicion</label>
                             <asp:DropDownList ID="DropDownList12" CssClass="form-control" runat="server" DataSourceID="SqlDataSource13" DataTextField="Medida" DataValueField="ID_Medida"></asp:DropDownList>
-                            <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Medida], [Medida] FROM [Medida]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Medida], [Medida] FROM [Medida] ORDER BY Media ASC"></asp:SqlDataSource>
                         </div>
 						</div>
                      </div>

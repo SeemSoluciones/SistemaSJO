@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label>Linea/Modelo</label>
                             <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="Modelo" DataValueField="ID_Modelo"></asp:DropDownList>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Modelo], [Modelo] FROM [Modelo]"></asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Modelo.ID_Modelo, Modelo.Modelo + ' ' + Marca.Marca AS Modelo FROM Modelo INNER JOIN Marca ON Modelo.ID_Marca = Marca.ID_Marca"></asp:SqlDataSource>
                         </div>            
                     </div>
                     <div class="box-footer">

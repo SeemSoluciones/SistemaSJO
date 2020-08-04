@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <asp:TextBox ID="TextBox20" CssClass="form-control" runat="server"></asp:TextBox>
-                                    <asp:CheckBox ID="CheckBox1" runat="server" /> Buscar por Equivalencia.
+                                    Buscar por Equivalencia.
                                 </div>
                                 <div class="col-sm-4">
                                     <asp:Button ID="Button9" CssClass="btn btn-default form-control" runat="server" Text="Buscar" OnClick="Button9_Click" />

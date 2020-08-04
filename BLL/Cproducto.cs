@@ -357,18 +357,18 @@ namespace BLL
         #region COMPRA
         public string InsertarCompra(decimal total, string Nofac, int Idprov, DateTime fecha)
         {
-            try
-            {
+            //try
+            //{
 
                 string msj = "";
 
                 msj = PROVEEDOR.InsertCompra(total, Nofac, Idprov, fecha).ToString();
                 return msj;
-            }
-            catch
-            {
-                return "Error, datos no ingresado";
-            }
+            //}
+            //catch
+            //{
+            //    return "Error, datos no ingresado";
+            //}
         }
 
         public string InsertarDetalleCompra(int cantidad, decimal precioU, decimal total, string IDprod, int IDstock , int IDcompr)

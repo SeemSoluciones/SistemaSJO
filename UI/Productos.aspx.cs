@@ -21,6 +21,21 @@ namespace UI
             Button6_ModalPopupExtender.Show();
         }
 
+        void limpirar()
+        {
+            codigo2.Text = "";
+            Equival.Text = "";
+            Equival2.Text = "";
+            producto.Text = "";
+            producto2.Text = "";
+            descripcion.Text = "";
+            descripcion2.Text = "";
+            precioProd.Text = "";
+            precioVenta.Text = "";
+            ubicacion.Text = "";
+            cantidad.Text = "";
+            cantidadMinima.Text = "";
+        }
 
         protected void Button5_Click(object sender, EventArgs e)
         {
@@ -34,11 +49,13 @@ namespace UI
                // idTienda = Application["IDtienda"].ToString();
                 msj = DatosP.InsertarProducto(codigo2.Text,Equival.Text , producto2.Text, descripcion2.Text, imag, Convert.ToInt32(DropDownList6.SelectedValue) , Convert.ToInt32(DropDownList4.SelectedValue), Convert.ToInt32(DropDownList11.SelectedValue));            
                 DatosP.InsertarStock(Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVenta.Text), codigo2.Text, Convert.ToInt32(DropDownList9.SelectedValue), idTtienda, Convert.ToInt32(DropDownList12.SelectedValue));
-                Response.Redirect("Productos.aspx");   
+                limpirar();
+                Response.Write("<script>alert('Producto guardado exitosamente!')</script>");
             }
             catch
             {
                 Response.Write("<script>alert('Llene los campos correctamente')</script>");
+                Button6_ModalPopupExtender.Show();
             }
             
         }
@@ -94,12 +111,15 @@ namespace UI
                 byte[] imag = FileUpload1.FileBytes;
                 string msj;
                  msj = DatosP.EditarProducto(codigo.Text,Equival2.Text , producto.Text, descripcion.Text, imag,  Convert.ToInt32(DropDownList8.SelectedValue), Convert.ToInt32(DropDownList2.SelectedValue), Convert.ToInt32(DropDownList10.SelectedValue));
-             //   Response.Write("<script>alert('" + msj + "')</script>");
-                Response.Redirect("Productos.aspx");
+                limpirar();
+                Response.Write("<script>alert('" + msj + "')</script>");
            }
             catch
             {
                 Response.Write("<script>alert('Llene los campos correctamente')</script>");
+                Button4_ModalPopupExtender.Show();
+
+
             }
         }
    
@@ -130,26 +150,40 @@ namespace UI
         
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            string IdRubro,ValorRubro, valorMarca, valorModelo = "";
+            string IdRubro,ValorRubro, valorMarca, valorModelo, valormarcaprod, proveedor = "";
             GridViewRow tabla = (GridViewRow)(((LinkButton)sender).Parent.Parent);
             codigo.Text = ((Label)tabla.FindControl("Label1")).Text.ToString();
             Equival2.Text = ((Label)tabla.FindControl("Label2")).Text.ToString();
             producto.Text = ((Label)tabla.FindControl("Label3")).Text.ToString();
             descripcion.Text = ((Label)tabla.FindControl("Label4")).Text.ToString();
-            IdRubro = ((Label)tabla.FindControl("Label6")).Text.ToString();     
+            IdRubro = ((Label)tabla.FindControl("Label6")).Text.ToString();
+            valormarcaprod = ((Label)tabla.FindControl("Label18")).Text.ToString(); 
             valorMarca = ((Label)tabla.FindControl("Label8")).Text.ToString();
             valorModelo = ((Label)tabla.FindControl("Label9")).Text.ToString();
             ValorRubro = ((Label)tabla.FindControl("Label10")).Text.ToString();
-            SqlDataSource8.SelectCommand = "Select Modelo.ID_Modelo, Modelo.Modelo From Modelo inner join Marca on Modelo.ID_Marca = Marca.ID_Marca Where Marca.Marca = '"+ valorMarca+"'";
+            proveedor = ((Label)tabla.FindControl("Label7")).Text.ToString();
+            SqlDataSource8.SelectCommand = "Select Modelo.ID_Modelo, Modelo.Modelo From Modelo inner join Marca on Modelo.ID_Marca = Marca.ID_Marca Where Marca.Marca = '" + valorMarca + "'";
             SqlDataSource8.DataBind();
-
-            DropDownList7.SelectedIndex = DropDownList7.Items.IndexOf(DropDownList7.Items.FindByText(valorModelo));
-            DropDownList1.SelectedIndex = DropDownList1.Items.IndexOf(DropDownList1.Items.FindByText(valorMarca));
-
-            //  DropDownList8.SelectedIndex = DropDownList8.Items.IndexOf(DropDownList8.Items.FindByText(ValorRubro));
+            DropDownList2.SelectedIndex = DropDownList2.Items.IndexOf(DropDownList2.Items.FindByText(proveedor));
+          //  DropDownList1.SelectedIndex = DropDownList1.Items.IndexOf(DropDownList1.Items.FindByText(valorMarca));
+            DropDownList10.SelectedIndex = DropDownList10.Items.IndexOf(DropDownList10.Items.FindByText(valormarcaprod));
             SqlDataSource9.SelectCommand = "SELECT ID_Rubro, Rubro FROM Rubro WHERE ID_Rubro = " + Convert.ToInt32(IdRubro);
             SqlDataSource9.DataBind();
+            // SqlDataSource8.SelectCommand = "Select Modelo.ID_Modelo, Modelo.Modelo From Modelo inner join Marca on Modelo.ID_Marca = Marca.ID_Marca Where Marca.Marca = '"+ valorMarca+"'";
+            // SqlDataSource8.DataBind();
 
+            //DropDownList1.SelectedIndex = DropDownList1.Items.IndexOf(DropDownList1.Items.FindByText(valorMarca));
+            SqlDataSource8.SelectCommand = "SELECT Modelo.ID_Modelo, Modelo.Modelo FROM Modelo inner join Marca on Modelo.ID_Marca = Marca.ID_Marca WHERE Marca.Marca = '"+valorMarca+"'"; //WHERE ID_Rubro ="+Convert.ToInt32(IdRubro);
+            SqlDataSource8.DataBind();
+            //DropDownList7.SelectedIndex = DropDownList7.Items.IndexOf(DropDownList7.Items.FindByText(valorModelo));
+
+
+            //SqlDataSource9.SelectCommand = "SELECT Rubro.ID_Rubro, Rubro.Rubro FROM Rubro Inner join Modelo on Rubro.ID_Modelo = Modelo.ID_Modelo  WHERE Modelo.Modelo = '"+valorModelo+"'";
+            //SqlDataSource9.DataBind();
+
+            //DropDownList8.SelectedIndex = DropDownList8.Items.IndexOf(DropDownList8.Items.FindByText(ValorRubro));
+            //DropDownList2.SelectedIndex = DropDownList2.Items.IndexOf(DropDownList2.Items.FindByText(proveedor));
+            //DropDownList10.SelectedIndex = DropDownList10.Items.IndexOf(DropDownList10.Items.FindByText(valormarcaprod));
             Button4_ModalPopupExtender.Show();
         }
 

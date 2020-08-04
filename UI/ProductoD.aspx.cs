@@ -35,11 +35,12 @@ namespace UI
                 // idTienda = Application["IDtienda"].ToString();
                 msj = DatosP.InsertarProducto(codigo2.Text, Equival.Text, producto2.Text, descripcion2.Text, imag, Convert.ToInt32(DropDownList6.SelectedValue), Convert.ToInt32(DropDownList4.SelectedValue), Convert.ToInt32(DropDownList11.SelectedValue));
                 DatosP.InsertarStock(Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVenta.Text), codigo2.Text, Convert.ToInt32(DropDownList9.SelectedValue), idTtienda, Convert.ToInt32(DropDownList12.SelectedValue));
-                Response.Redirect("ProductoD.aspx");
+                Response.Write("<script>alert('Producto registrado con exito!')</script>");
             }
             catch
             {
                 Response.Write("<script>alert('Llene los campos correctamente')</script>");
+                Button6_ModalPopupExtender.Show();
             }
 
         }
@@ -95,12 +96,13 @@ namespace UI
                 byte[] imag = FileUpload1.FileBytes;
                 string msj;
                 msj = DatosP.EditarProducto(codigo.Text, Equival2.Text, producto.Text, descripcion.Text, imag, Convert.ToInt32(DropDownList8.SelectedValue), Convert.ToInt32(DropDownList2.SelectedValue), Convert.ToInt32(DropDownList10.SelectedValue));
-                //   Response.Write("<script>alert('" + msj + "')</script>");
-                Response.Redirect("ProductoD.aspx");
+                Response.Write("<script>alert('" + msj + "')</script>");
+              //  Response.Redirect("ProductoD.aspx");
             }
             catch
             {
                 Response.Write("<script>alert('Llene los campos correctamente')</script>");
+                Button4_ModalPopupExtender.Show();
             }
         }
 
@@ -131,16 +133,30 @@ namespace UI
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            string IdRubro = "";
+            string IdRubro, ValorRubro, valorMarca, valorModelo, valormarcaprod, proveedor = "";
             GridViewRow tabla = (GridViewRow)(((LinkButton)sender).Parent.Parent);
             codigo.Text = ((Label)tabla.FindControl("Label1")).Text.ToString();
             Equival2.Text = ((Label)tabla.FindControl("Label2")).Text.ToString();
             producto.Text = ((Label)tabla.FindControl("Label3")).Text.ToString();
             descripcion.Text = ((Label)tabla.FindControl("Label4")).Text.ToString();
             IdRubro = ((Label)tabla.FindControl("Label6")).Text.ToString();
-            SqlDataSource9.SelectCommand = "SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Rubro = " + Convert.ToInt32(IdRubro) + ")";
+            valormarcaprod = ((Label)tabla.FindControl("Label18")).Text.ToString();
+            valorMarca = ((Label)tabla.FindControl("Label8")).Text.ToString();
+            valorModelo = ((Label)tabla.FindControl("Label9")).Text.ToString();
+            ValorRubro = ((Label)tabla.FindControl("Label10")).Text.ToString();
+            proveedor = ((Label)tabla.FindControl("Label7")).Text.ToString();
+            SqlDataSource8.SelectCommand = "Select Modelo.ID_Modelo, Modelo.Modelo From Modelo inner join Marca on Modelo.ID_Marca = Marca.ID_Marca Where Marca.Marca = '" + valorMarca + "'";
+            SqlDataSource8.DataBind();
+
+
+
+            DropDownList2.SelectedIndex = DropDownList2.Items.IndexOf(DropDownList2.Items.FindByText(proveedor));
+            DropDownList1.SelectedIndex = DropDownList1.Items.IndexOf(DropDownList1.Items.FindByText(valorMarca));
+           // SqlDataSource8.SelectCommand = "SELECT Modelo.ID_Modelo, Modelo.Modelo FROM Modelo inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo WHERE ID_Rubro =" + Convert.ToInt32(IdRubro);
+            DropDownList10.SelectedIndex = DropDownList10.Items.IndexOf(DropDownList10.Items.FindByText(valormarcaprod));
+            SqlDataSource9.SelectCommand = "SELECT ID_Rubro, Rubro FROM Rubro WHERE ID_Rubro = " + Convert.ToInt32(IdRubro);
             SqlDataSource9.DataBind();
-            //  Label5.Text = IdRubro;
+
             Button4_ModalPopupExtender.Show();
         }
 

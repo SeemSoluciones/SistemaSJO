@@ -26,23 +26,40 @@ namespace UI
         private static int cantProd = 0, idStock = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            Home.Mensaje = "Ventana Ventas";
-            if (!IsPostBack)
+            try
             {
-                // this.Button12.Click += new System.EventHandler(this.Button12_Click);
-                //Button12_Click(sender, e);
-                TxtDescuento.Value = "";
+
+                TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                Home.Mensaje = "Ventana Ventas";
+                if (!IsPostBack)
+                {
+                    // this.Button12.Click += new System.EventHandler(this.Button12_Click);
+                    //Button12_Click(sender, e);
+                    TxtDescuento.Value = "";
+                }
+                SqlDataSource1.SelectParameters["ID_Tienda"].DefaultValue = Session["IDtienda"].ToString();
+                SqlDataSource1.DataBind();
             }
-            SqlDataSource1.SelectParameters["ID_Tienda"].DefaultValue = Session["IDtienda"].ToString();
-            SqlDataSource1.DataBind();
-          
+            catch
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
 
 
-     
+      protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2,  Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE  CONTAINS(Producto.Descripcion, '"+TextBox20.Text+"') AND Producto.Estado = 1";
+                SqlDataSource2.DataBind();
+            }
+            catch
+            {
+                Response.Write("<script>alert('Error, boton en fase de prueba. Consulte al tecnico')</script>");
+            }
+        }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
@@ -404,9 +421,9 @@ namespace UI
                 }
                 else
                 {
-                   e.Row.BackColor = System.Drawing.Color.Green;
+                   e.Row.BackColor = System.Drawing.Color.LightGreen;
                 }
-                   
+             
             }
 
     }
@@ -434,39 +451,46 @@ namespace UI
         {
             try
             {
-                int ID_Rubro, ID_Rubro2;
-                ID_Rubro = datos.ID_Rubro(TextBox20.Text);
-                ID_Rubro2 = datos.ID_Rubro2(TextBox20.Text);
+                if (TextBox20.Text != string.Empty)
+                  {
+                    int ID_Rubro, ID_Rubro2;
+                    ID_Rubro = datos.ID_Rubro(TextBox20.Text);
+                    ID_Rubro2 = datos.ID_Rubro2(TextBox20.Text);
 
-                if (CheckBox1.Checked == false && CheckBox2.Checked == false)
-                {
-                    SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2,  Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE (Producto.Estado = 1)  AND (Producto.Codigo like '%" + TextBox20.Text + "%') OR (Producto.Producto like '%"+TextBox20.Text+"%')";//  AND Rubro.ID_Rubro = " + ID_Rubro;
-                    SqlDataSource2.DataBind();
+                    if (CheckBox2.Checked == false && CheckBox3.Checked == false && CheckBox4.Checked == false)
+                    {
+                        SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2,  Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE  (Producto.Codigo like '%" + TextBox20.Text + "%' AND Producto.Estado = 1) OR (Producto.Producto like '%" + TextBox20.Text + "%' AND Producto.Estado = 1) OR (Producto.Codigo2 like '%" + TextBox20.Text + "%' AND Producto.Estado = 1)";//  AND Rubro.ID_Rubro = " + ID_Rubro;
+                        SqlDataSource2.DataBind();
+                    }
+                    else if (CheckBox2.Checked == false && CheckBox3.Checked == true && CheckBox4.Checked == false)
+                    {
+                        SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2,  Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE Producto.Estado = 1 AND (Producto.Codigo like '%" + TextBox20.Text + "%' OR Producto.Producto like '%" + TextBox20.Text + "%' OR Producto.Codigo2 like '%" + TextBox20.Text + "%') AND Marca.ID_Marca =" + DropDownList2.SelectedValue;//  AND Rubro.ID_Rubro = " + ID_Rubro;//agregado 11/07
+                        SqlDataSource2.DataBind();
+                    }
+                    else if (CheckBox2.Checked == false && CheckBox3.Checked == false && CheckBox4.Checked == true)
+                    {
+                        SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2,  Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE Producto.Estado = 1 AND (Producto.Codigo like '%" + TextBox20.Text + "%' OR Producto.Producto like '%" + TextBox20.Text + "%' OR Producto.Codigo2 like '%" + TextBox20.Text + "%') AND Modelo.ID_Modelo =" + DropDownList5.SelectedValue;//  AND Rubro.ID_Rubro = " + ID_Rubro;//agregado 11/07
+                        SqlDataSource2.DataBind();
+                    }
+                    else if (CheckBox2.Checked == true && CheckBox3.Checked == false && CheckBox4.Checked == false)
+                    {
+                        SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2, Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE Producto.Estado = 1 AND (Producto.Codigo like '%" + TextBox20.Text + "%' OR Producto.Producto like '%" + TextBox20.Text + "%' OR Producto.Codigo2 like '%" + TextBox20.Text + "%') AND  Anio.ID_Anio = " + DropDownList7.SelectedValue;
+                        SqlDataSource2.DataBind();
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Error, revise los campos. Ej: Puede ser que tanto marca como linea estan marcadas, marque solo uno')</script>");
+                    }
                 }
-                else if (CheckBox1.Checked == true && CheckBox2.Checked == false)
+                else
                 {
-                SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2, Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE (Producto.Estado = 1) AND (Producto.Codigo2 like '%" + TextBox20.Text+"%') AND Rubro.ID_Rubro = " + ID_Rubro2;
-                SqlDataSource2.DataBind();
+                    Response.Write("<script>alert('Error, ingrese un valor')</script>");
                 }
-                else if(CheckBox1.Checked == true && CheckBox2.Checked == true)
-                {
-                    SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2, Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE (Producto.Estado = 1) AND (Producto.Codigo2 like '%" + TextBox20.Text + "%') AND  Anio.ID_Anio = " + DropDownList7.SelectedValue;
-                    SqlDataSource2.DataBind();
-                }
-                else if(CheckBox2.Checked == true && CheckBox1.Checked == false)
-                {
-                    SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2, Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE (Producto.Estado = 1) AND ((Producto.Codigo like '%" + TextBox20.Text + "%') OR (Producto.Producto like '%" + TextBox20.Text + "%')) AND  Anio.ID_Anio = " + DropDownList7.SelectedValue;
-                    SqlDataSource2.DataBind();
-                }
-
                 }
             catch
             {
                 Response.Write("<script>alert('Error, revise los campos')</script>");
             }
-
-
-
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
