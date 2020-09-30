@@ -160,9 +160,9 @@
 
 
 
-    <asp:GridView ID="GridView3" runat="server" CssClass="table table-responsive" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ID_DevProPro" DataSourceID="SqlDataSource4">
+    <asp:GridView ID="GridView3" runat="server" CssClass="table table-responsive" AutoGenerateColumns="False" DataKeyNames="ID_DevProPro" DataSourceID="SqlDataSource4" >
         <Columns>
-            <asp:BoundField DataField="ID_DevProPro" HeaderText="ID_DevProPro" InsertVisible="False" ReadOnly="True" SortExpression="ID_DevProPro" />
+            <asp:BoundField DataField="ID_DevProPro" HeaderText="ID_DevProPro" ReadOnly="True" SortExpression="ID_DevProPro" InsertVisible="False" />
             <asp:BoundField DataField="Factura" HeaderText="Factura" SortExpression="Factura" />
             <asp:BoundField DataField="Motivo" HeaderText="Motivo" SortExpression="Motivo" />
             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" />
@@ -172,14 +172,16 @@
             <asp:BoundField DataField="Proveedor" HeaderText="Proveedor" SortExpression="Proveedor" />
             <asp:TemplateField ShowHeader="False">
                 <ItemTemplate>
-                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar" OnClientClick="return confirm('Esta seguro de entregar producto?')"></asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" DeleteCommand="DELETE FROM DevolProPro WHERE (ID_DevProPro = @ID_DevProPro)" SelectCommand="SELECT DevolProPro.ID_DevProPro, DevolProPro.Factura, DevolProPro.Motivo, DevolProPro.Cantidad, Producto.Codigo2, DevolProPro.Codigo, Producto.Producto + ':  ' + Producto.Descripcion AS Descrip, Proveedor.Proveedor FROM DevolProPro INNER JOIN Proveedor ON DevolProPro.ID_Proveedor = Proveedor.ID_Proveedor INNER JOIN Producto ON DevolProPro.Codigo = Producto.Codigo">
+    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" DeleteCommand="DevProPro" SelectCommand="SELECT DevolProPro.ID_DevProPro, DevolProPro.Factura, DevolProPro.Motivo, DevolProPro.Cantidad, Producto.Codigo2, DevolProPro.Codigo, Producto.Producto + ':  ' + Producto.Descripcion AS Descrip, Proveedor.Proveedor FROM DevolProPro INNER JOIN Proveedor ON DevolProPro.ID_Proveedor = Proveedor.ID_Proveedor INNER JOIN Producto ON DevolProPro.Codigo = Producto.Codigo WHERE (DevolProPro.Estado = 1)" DeleteCommandType="StoredProcedure">
         <DeleteParameters>
-            <asp:Parameter Name="ID_DevProPro" />
+            <asp:Parameter Name="Cantidad" Type="Int32" />
+            <asp:Parameter Name="ID_DevProPro" Type="Int32" />
+            <asp:Parameter Name="Codigo" Type="String" />
         </DeleteParameters>
     </asp:SqlDataSource>
 </asp:Content>

@@ -24,96 +24,68 @@
      </span>
           </div>
         <div class="table table-responsive">
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Codigo" DataSourceID="SqlDataSource1"  CssClass="table table-bordered table-hover" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AllowPaging="True" AllowSorting="True" HorizontalAlign="Justify" PageSize="50">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ID_Producto" DataSourceID="SqlDataSource1"  CssClass="table table-bordered table-hover" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AllowPaging="True" AllowSorting="True" HorizontalAlign="Justify" PageSize="50">
                 <Columns>
-                    <asp:TemplateField HeaderText="Codigo" SortExpression="Codigo">
+                    <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="ID_Producto">
                         <EditItemTemplate>
-                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("Codigo") %>'></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("ID_Producto") %>'></asp:Label>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Codigo") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Equivalencia" SortExpression="Codigo2">
-                        <EditItemTemplate>
-                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Codigo2") %>'></asp:TextBox>
-                        </EditItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Codigo2") %>'></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("ID_Producto") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Producto" SortExpression="Producto">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Producto") %>'></asp:TextBox>
+                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Producto") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("Producto") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="MarcaProd" SortExpression="MarcaP">
-                        <EditItemTemplate>
-                            <asp:TextBox ID="TextBox17" runat="server" Text='<%# Bind("MarcaP") %>'></asp:TextBox>
-                        </EditItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="Label18" runat="server" Text='<%# Bind("MarcaP") %>'></asp:Label>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Producto") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Descripcion" SortExpression="Descripcion">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Descripcion") %>'></asp:TextBox>
+                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Descripcion") %>'></asp:TextBox>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("Descripcion") %>'></asp:Label>
+                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("Descripcion") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Proveedor" SortExpression="Proveedor">
+                    <asp:TemplateField HeaderText="OEM" SortExpression="LISTAOEM">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Proveedor") %>'></asp:TextBox>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("LISTAOEM") %>'></asp:Label>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label7" runat="server" Text='<%# Bind("Proveedor") %>'></asp:Label>
+                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("LISTAOEM") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Marca" SortExpression="Marca">
+                    <asp:TemplateField HeaderText="Codigos" SortExpression="LISTACODP">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Marca") %>'></asp:TextBox>
+                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("LISTACODP") %>'></asp:Label>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label8" runat="server" Text='<%# Bind("Marca") %>'></asp:Label>
+                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("LISTACODP") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Modelo" SortExpression="Modelo">
+                    <asp:TemplateField HeaderText="Año-Rubro" SortExpression="LISTANIOP">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("Modelo") %>'></asp:TextBox>
+                            <asp:Label ID="Label4" runat="server" Text='<%# Eval("LISTANIOP") %>'></asp:Label>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label9" runat="server" Text='<%# Bind("Modelo") %>'></asp:Label>
+                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("LISTANIOP") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Rubro" SortExpression="Rubro">
+                    <asp:TemplateField HeaderText="Categoria" SortExpression="Categoria">
                         <EditItemTemplate>
-                            <asp:TextBox ID="TextBox9" runat="server" Text='<%# Bind("Rubro") %>'></asp:TextBox>
+                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("Categoria") %>'></asp:Label>
                         </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:Label ID="Label10" runat="server" Text='<%# Bind("Rubro") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField> 
-                     <asp:TemplateField HeaderText="ID Rubro" SortExpression="ID_Rubro" Visible="false">
-                        <EditItemTemplate>
-                            <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("ID_Rubro") %>'></asp:TextBox>
-                        </EditItemTemplate>
-                        <ItemTemplate>
-                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("ID_Rubro") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>        
-                    <asp:TemplateField ShowHeader="False">
-                        <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Select" Text="Editar" OnClick="LinkButton1_Click"></asp:LinkButton>
+                            <asp:Label ID="Label7" runat="server" Text='<%# Bind("Categoria") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" OnClientClick='return confirm("Desea Eliminar este Registro");' Text="Eliminar"></asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar" OnClick="LinkButton1_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar"></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -128,7 +100,7 @@
                 </DeleteParameters>
             </asp:SqlDataSource>
             </div>
-       
+
         <asp:Button ID="Button4" runat="server" Text="Button"  style="display:None" />
        
          <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -141,94 +113,258 @@
             <div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="">Editar datos de producto</h5>
+								<h5 class="modal-title" id="">Editar datos de producto  </h5>
+                                <asp:Label ID="Label8" runat="server" Text=""></asp:Label>
 								<button class="close" data-dismiss="modal" aria-label="Cerrar">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body">
 								<div class="container-fluid">
-									<div class="row">
-										<div class="col-12 col-sm-6">
-			 	                        <div class="form-group">
-                        <label>Codigo producto</label>
-                    </div>
-                    <div class="form-group">
-                        <asp:TextBox ID="codigo" runat="server" CssClass="form-control" Enabled="False"></asp:TextBox>
-                    </div>
-                     <div class="form-group">
-                        <label>Equivalencia</label>
-                    </div>
-                    <div class="form-group">
-                        <asp:TextBox ID="Equival2" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                        <label>Producto</label>
-                    </div>
-                    <div class="form-group">
-                        <asp:TextBox ID="producto" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                        <label>Marca</label>
-                     <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" DataSourceID="SqlDataSource7" DataTextField="Marca" DataValueField="ID_Marca" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1">
-                         <asp:ListItem Value="0">Seleccionar...</asp:ListItem>
-                        </asp:DropDownList> 
-                                  <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca] ORDER BY Marca ASC"></asp:SqlDataSource>
-                                </div>
-                    <div class="form-group">
-                     <label>Modelo</label>
-                         <asp:DropDownList ID="DropDownList7" CssClass="form-control"  runat="server" DataSourceID="SqlDataSource8" DataTextField="Modelo" DataValueField="ID_Modelo" AutoPostBack="True" OnSelectedIndexChanged="DropDownList7_SelectedIndexChanged1"></asp:DropDownList>
-                                     <asp:SqlDataSource ID="SqlDataSource8"  runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @idMarca) ORDER BY Modelo ASC">
-                                     <SelectParameters>
-                                     <asp:ControlParameter ControlID="DropDownList1" Name="idMarca" PropertyName="SelectedValue" />
-                                     </SelectParameters>
-                                     </asp:SqlDataSource>
-                    </div>
-                       <div class="form-group">
-                           <label>Rubro </label>
-                          <asp:DropDownList ID="DropDownList8" CssClass="form-control" runat="server" DataSourceID="SqlDataSource9" DataTextField="Rubro" DataValueField="ID_Rubro"></asp:DropDownList>
-                               <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @idModelo) ORDER BY Rubro ASC">
-                                 <SelectParameters>
-                                <asp:ControlParameter ControlID="DropDownList7" Name="idModelo" PropertyName="SelectedValue" />
-                              </SelectParameters>
-                            </asp:SqlDataSource>
+
+                                      <div class="row">
+                       <div class="col-sm-4">
+                            <label> Codigos (OEM) producto</label>
+			    	      
+                      <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
                        </div>
-                     </div>
-                      	
-									
-										<div class="col-12 col-sm-6">
-                     <div class="form-group">
-                        <label>Proveedor</label>
-                    </div>
+                        <div class="col-sm-4">
+                            <label>Marca de automovil</label>
+                            <div class="input-group">
+                                <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" DataSourceID="SqlDataSource12" DataTextField="Marca" DataValueField="ID_Marca"></asp:DropDownList>
+                                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca]"></asp:SqlDataSource>
+                                 <div class="input-group-btn">
+                                   <button type="button" class="btn btn-danger" onserverclick="Btn_AgergarOEM2" runat="server" >Action</button>
+                              </div>
+                            </div>
+                        </div>
+                       <div class="col-lg-4">
+                           <asp:GridView ID="GridView5" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource20" CellPadding="4" ForeColor="#333333" GridLines="None">
+                               <AlternatingRowStyle BackColor="White" />
+                               <Columns>
+                                   <asp:BoundField DataField="ID_OEM" HeaderText="ID_OEM" InsertVisible="False" ReadOnly="True" SortExpression="ID_OEM" />
+                                   <asp:BoundField DataField="OEM" HeaderText="OEM" SortExpression="OEM" />
+                                   <asp:BoundField DataField="ID_Marca" HeaderText="ID_Marca" InsertVisible="False" ReadOnly="True" SortExpression="ID_Marca" />
+                                   <asp:BoundField DataField="Marca" HeaderText="Marca" SortExpression="Marca" />
+                               </Columns>
+                               <EditRowStyle BackColor="#2461BF" />
+                               <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                               <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                               <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                               <RowStyle BackColor="#EFF3FB" />
+                               <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                               <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                               <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                               <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                               <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                           </asp:GridView>
+                           <asp:SqlDataSource ID="SqlDataSource20" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="">
+                           </asp:SqlDataSource>
+                           <asp:GridView ID="GridView8" CssClass="table table-responsive table-striped" Visible="False" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                               <AlternatingRowStyle BackColor="White" />
+                               <EditRowStyle BackColor="#2461BF" />
+                               <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                               <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                               <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                               <RowStyle BackColor="#EFF3FB" />
+                               <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                               <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                               <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                               <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                               <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                           </asp:GridView>
+                       </div>
+
+                   </div>
+        
+                   
+                     <br />
+
+                   
+                     
+                         <div class="row">
+                             <div class="col-sm-4">
+                                 <label>Codigos de las marcas</label>  
+                                   <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
+                             </div>
+                             <div class="col-sm-4">
+                                 <label>Marca del codigo</label>
+                                 <div class="input-group">
+                                     <asp:DropDownList ID="DropDownList2" CssClass="form-control" runat="server" DataSourceID="SqlDataSource13" DataTextField="MarcaP" DataValueField="ID_MaraProd"></asp:DropDownList>                        
+                                       <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_MaraProd], [MarcaP] FROM [MarcaProd]"></asp:SqlDataSource>
+                                       <div class="input-group-btn">
+                                     <button type="button" class="btn btn-danger" onserverclick="Btn_AgergarCodigosP" runat="server">Action</button>
+                                  </div>
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
+                                 <asp:GridView ID="GridView6" CssClass="table table-condensed table-responsive" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource21" CellPadding="4" ForeColor="#333333" GridLines="None">
+                                     <AlternatingRowStyle BackColor="White" />
+                                     <Columns>
+                                         <asp:BoundField DataField="ID_CodigoProducto" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID_CodigoProducto" />
+                                         <asp:BoundField DataField="Codigo" HeaderText="Codigo" SortExpression="Codigo" />
+                                         <asp:BoundField DataField="ID_MaraProd" HeaderText="ID Marca" InsertVisible="False" ReadOnly="True" SortExpression="ID_MaraProd" />
+                                         <asp:BoundField DataField="MarcaP" HeaderText="Marca P" SortExpression="MarcaP" />
+                                     </Columns>
+                                     <EditRowStyle BackColor="#2461BF" />
+                                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                     <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                     <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                     <RowStyle BackColor="#EFF3FB" />
+                                     <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                     <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                                     <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                                 </asp:GridView>
+                                 <asp:SqlDataSource ID="SqlDataSource21" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand=""></asp:SqlDataSource>
+                                 <asp:GridView ID="GridView9"  CssClass="table table-condensed table-responsive" Visible="False"  runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                                     <AlternatingRowStyle BackColor="White" />
+                                     <EditRowStyle BackColor="#2461BF" />
+                                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                     <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                     <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                     <RowStyle BackColor="#EFF3FB" />
+                                     <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                     <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                                     <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                                 </asp:GridView>
+                                     </div>
+                         </div>
+                      
+                     
+                                    <br />
                     <div class="form-group">
-                        <asp:DropDownList ID="DropDownList2" runat="server" CssClass="form-control" DataSourceID="SqlDataSource2" DataTextField="Proveedor" DataValueField="ID_Proveedor"></asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Proveedor], [Proveedor] FROM [Proveedor] ORDER BY Proveedor ASC"></asp:SqlDataSource>
+                        <label>Producto (formas en que lo buscaran)</label>            
+                        <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
+
+                    <div class="form-group">
+                        <label>Descripcion (Es lo que se mostrara en venta)</label>
+                        <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox>
+
+                    </div>
+                     <div>
+
+                           <div class="row">
+                <div class="col-xs-2">
+                    <h5>Marca</h5>
+                       <asp:DropDownList ID="DropDownList7" runat="server" CssClass="form-control" DataSourceID="SqlDataSource3" DataTextField="Marca" DataValueField="ID_Marca" AutoPostBack="True" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca] ORDER BY Marca ASC"></asp:SqlDataSource>
+                  
+                </div>
+                <div class="col-xs-2">
+                    <h5>Modelo</h5>
+                          <asp:DropDownList ID="DropDownList8" runat="server" CssClass="form-control" DataSourceID="SqlDataSource5" DataTextField="Modelo" DataValueField="ID_Modelo" AutoPostBack="True" OnSelectedIndexChanged="DropDownList5_SelectedIndexChanged"></asp:DropDownList>
+                         <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @ID_Marca) ORDER BY Modelo ASC">
+                        <SelectParameters>
+                         <asp:ControlParameter ControlID="DropDownList3" Name="ID_Marca" PropertyName="SelectedValue" />
+                          </SelectParameters>
+                          </asp:SqlDataSource> 
+                </div>
+                <div class="col-xs-2">
+                    <h5>Rubro</h5>
+                  <asp:DropDownList ID="DropDownList10" runat="server" CssClass="form-control" DataSourceID="SqlDataSource6" DataTextField="Rubro" DataValueField="ID_Rubro"></asp:DropDownList>
+                           <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @ID_Modelo) ORDER BY Rubro ASC">
+                        <SelectParameters>
+                          <asp:ControlParameter ControlID="DropDownList5" Name="ID_Modelo" PropertyName="SelectedValue" />
+                      </SelectParameters>
+                     </asp:SqlDataSource>
+                </div>
+                <div class="col-xs-2">
+                     <h5>Año inicial</h5>
+                     <asp:DropDownList ID="DropDownList15" CssClass="form-control" runat="server" DataSourceID="SqlDataSource10" DataTextField="Anio" DataValueField="ID_Anio"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource16" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Anio, Anio FROM Anio ORDER BY Anio ASC"></asp:SqlDataSource>
+                      
+                </div>
+                <div class="col-xs-2">
+                    <h5>Año final</h5>
+                      <asp:DropDownList ID="DropDownList16" CssClass="form-control" runat="server" DataSourceID="SqlDataSource10" DataTextField="Anio" DataValueField="ID_Anio"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource17" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Anio, Anio FROM Anio ORDER BY Anio ASC"></asp:SqlDataSource>
+                </div>
+                 <div class="col-xs-2">
+                    <h5>Agregar</h5>
+                      <div class="input-group-btn">
+                             <button type="button" runat="server" onserverclick="Btn_AgergarAnioRP"  class="btn btn-danger">Agregar</button>
+                         </div>
+                 </div>
+              </div>
+                         <asp:GridView ID="GridView7" CssClass="table table-striped table-responsive" runat="server" AutoGenerateColumns="False" DataKeyNames="ID_Rubro" DataSourceID="SqlDataSource22" CellPadding="4" ForeColor="#333333" GridLines="None">
+                             <AlternatingRowStyle BackColor="White" />
+                             <Columns>
+                                <asp:BoundField DataField="Modelo" HeaderText="Modelo" SortExpression="Modelo" />
+                                 <asp:BoundField DataField="Marca" HeaderText="Marca" SortExpression="Marca" />
+                                 <asp:BoundField DataField="Rubro" HeaderText="Rubro" SortExpression="Rubro" />
+                                <asp:BoundField DataField="ID_Rubro" HeaderText="ID_Rubro" InsertVisible="False" ReadOnly="True" SortExpression="ID_Rubro" /> 
+                                  <asp:BoundField DataField="AnioInicio" HeaderText="Anio Inicio" SortExpression="AnioInicio" />
+                                 <asp:BoundField DataField="AnioFinal" HeaderText="Anio Final" SortExpression="AnioFinal" />
+                             </Columns>
+                             <EditRowStyle BackColor="#2461BF" />
+                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                             <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                             <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                             <RowStyle BackColor="#EFF3FB" />
+                             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                             <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                             <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                             <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                             <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                           </asp:GridView>
+                           <asp:SqlDataSource ID="SqlDataSource22" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand=""></asp:SqlDataSource>
+                         <asp:GridView ID="GridView10" runat="server" Visible="False" CssClass="table table-striped table-responsive" CellPadding="4" ForeColor="#333333" GridLines="None">
+                             <AlternatingRowStyle BackColor="White" />
+                             <EditRowStyle BackColor="#2461BF" />
+                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                             <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                             <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                             <RowStyle BackColor="#EFF3FB" />
+                             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                             <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                             <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                             <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                             <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                           </asp:GridView>
+                          </div>
+                      <div class="row">
+                          <div class="form-group">
+                          <div class="col-xs-6"> 
+                              <label>Categoria</label>
+                          <asp:DropDownList ID="DropDownList17" CssClass="form-control" runat="server" DataSourceID="SqlDataSource14" DataTextField="Categoria" DataValueField="ID_Categoria"></asp:DropDownList>
+
+                              <asp:SqlDataSource ID="SqlDataSource18" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Categoria], [Categoria] FROM [Categoria]"></asp:SqlDataSource>
+
+                          </div>
+                           <div class="col-xs-6">
+                               <label>SubCategoria</label>
+                               <asp:DropDownList ID="DropDownList18" CssClass="form-control" runat="server" DataSourceID="SqlDataSource15" DataTextField="SubCategoria" DataValueField="ID_SubCategoria"></asp:DropDownList>
+
+                               <asp:SqlDataSource ID="SqlDataSource19" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_SubCategoria], [SubCategoria] FROM [SubCategoria] WHERE (([Estado] = @Estado) AND ([ID_Categoria] = @ID_Categoria))">
+                                   <SelectParameters>
+                                       <asp:Parameter DefaultValue="True" Name="Estado" Type="Boolean" />
+                                       <asp:ControlParameter ControlID="DropDownList13" Name="ID_Categoria" PropertyName="SelectedValue" Type="Int32" />
+                                   </SelectParameters>
+                               </asp:SqlDataSource>
+
+                           </div>
+                         </div>
+                          
+                      </div>
+                  
+                    
+                    
                     <div class="form-group">
                         <label>Imagen</label>
-                    </div>
-                    <div class="form-group">
+
                         <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" />
                     </div>
-                    <div class="form-group">
-                        <label>Descripcion</label>
-                    </div>
-                    <div class="form-group">
-                        <asp:TextBox ID="descripcion" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                        <label>Marca produto</label>
-                    </div>
-                    <div class="form-group">
-                        <asp:DropDownList ID="DropDownList10" CssClass="form-control" runat="server" DataSourceID="SqlDataSource11" DataTextField="MarcaP" DataValueField="ID_MaraProd"></asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource11" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_MaraProd], [MarcaP] FROM [MarcaProd] ORDER BY MarcaP ASC"></asp:SqlDataSource>
-                    </div>
-                              
-              
-							</div>
-                               	</div>
-					                </div>
-								</div>
+                   
+                        
+        
+                       
+								
+								
 							</div>
 
 							<div class="modal-footer"> 
@@ -237,6 +373,9 @@
 								<button id="Cerrar2" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 							</div>
 						</div>
+                            </div>
+                </div>
+            
 
         </asp:Panel>
         <asp:Button ID="Button6" runat="server" Text="Button"  style="display:none"/>
@@ -257,104 +396,184 @@
 
 							<div class="modal-body">
 								<div class="container-fluid">
-									<div class="row">
-										<div class="col-12 col-sm-6">
-			 	<div class="form-group">
-                        <label>Codigo producto</label>
-                        <asp:TextBox ID="codigo2" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                     <div class="form-group">
-                        <label>Equivalencia</label>
- 
-                        <asp:TextBox ID="Equival" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
+    
+                   <div class="row">
+                       <div class="col-sm-4">
+                            <label> Codigos (OEM) producto</label>
+			    	      
+                      <asp:TextBox ID="codigo2" runat="server" CssClass="form-control"></asp:TextBox>
+                       </div>
+                        <div class="col-sm-4">
+                            <label>Marca de automovil</label>
+                            <div class="input-group">
+                                <asp:DropDownList ID="DropDownList11" CssClass="form-control" runat="server" DataSourceID="SqlDataSource12" DataTextField="Marca" DataValueField="ID_Marca"></asp:DropDownList>
+                                 <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca]"></asp:SqlDataSource>
+                                 <div class="input-group-btn">
+                                   <button type="button" class="btn btn-danger" runat="server" onserverclick ="Btn_AgergarOEM">Action</button>
+                              </div>
+                            </div>
+                        </div>
+                       <div class="col-lg-4">
+                           <asp:GridView ID="GridView3" CssClass="table table-responsive table-striped" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                               <AlternatingRowStyle BackColor="White" />
+                               <EditRowStyle BackColor="#2461BF" />
+                               <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                               <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                               <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                               <RowStyle BackColor="#EFF3FB" />
+                               <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                               <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                               <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                               <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                               <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                           </asp:GridView>
+                       </div>
+
+                   </div>
+        
+                   
+                     <br />
+
+                   
+                     
+                         <div class="row">
+                             <div class="col-sm-4">
+                                 <label>Codigos de las marcas</label>  
+                                   <asp:TextBox ID="Equival" runat="server" CssClass="form-control"></asp:TextBox>
+                             </div>
+                             <div class="col-sm-4">
+                                 <label>Marca del codigo</label>
+                                 <div class="input-group">
+                                     <asp:DropDownList ID="DropDownList12" CssClass="form-control" runat="server" DataSourceID="SqlDataSource13" DataTextField="MarcaP" DataValueField="ID_MaraProd"></asp:DropDownList>                        
+                                       <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_MaraProd], [MarcaP] FROM [MarcaProd]"></asp:SqlDataSource>
+                                       <div class="input-group-btn">
+                                     <button type="button" class="btn btn-danger" runat="server" onserverclick="Btn_AgergarCodigo">Action</button>
+                                  </div>
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
+                                 <asp:GridView ID="GridView2" CssClass="table table-condensed table-responsive" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                                     <AlternatingRowStyle BackColor="White" />
+                                     <EditRowStyle BackColor="#2461BF" />
+                                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                     <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                     <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                     <RowStyle BackColor="#EFF3FB" />
+                                     <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                     <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                                     <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                                 </asp:GridView>
+                             </div>
+                         </div>
+                      
+                     
+                                    <br />
                     <div class="form-group">
-                        <label>Producto</label>
-             
+                        <label>Producto (formas en que lo buscaran)</label>            
                         <asp:TextBox ID="producto2" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
-                   
-                     <div class="form-group">
-                        <label>Marca</label>
-                        <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control" DataSourceID="SqlDataSource3" DataTextField="Marca" DataValueField="ID_Marca" AutoPostBack="True" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged"></asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca] ORDER BY Marca ASC"></asp:SqlDataSource>
-                    </div>
+
                     <div class="form-group">
-                     <label>Modelo</label>
-                                <asp:DropDownList ID="DropDownList5" runat="server" CssClass="form-control" DataSourceID="SqlDataSource5" DataTextField="Modelo" DataValueField="ID_Modelo" AutoPostBack="True" OnSelectedIndexChanged="DropDownList5_SelectedIndexChanged"></asp:DropDownList>
+                        <label>Descripcion (Es lo que se mostrara en venta)</label>
+                        <asp:TextBox ID="descripcion2" runat="server" CssClass="form-control"></asp:TextBox>
+
+                    </div>
+                     <div>
+
+                           <div class="row">
+                <div class="col-xs-2">
+                    <h5>Marca</h5>
+                       <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control" DataSourceID="SqlDataSource3" DataTextField="Marca" DataValueField="ID_Marca" AutoPostBack="True" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca] ORDER BY Marca ASC"></asp:SqlDataSource>
+                  
+                </div>
+                <div class="col-xs-2">
+                    <h5>Modelo</h5>
+                          <asp:DropDownList ID="DropDownList5" runat="server" CssClass="form-control" DataSourceID="SqlDataSource5" DataTextField="Modelo" DataValueField="ID_Modelo" AutoPostBack="True" OnSelectedIndexChanged="DropDownList5_SelectedIndexChanged"></asp:DropDownList>
                          <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @ID_Marca) ORDER BY Modelo ASC">
                         <SelectParameters>
                          <asp:ControlParameter ControlID="DropDownList3" Name="ID_Marca" PropertyName="SelectedValue" />
                           </SelectParameters>
                           </asp:SqlDataSource> 
-                    </div>
-                       <div class="form-group">
-                           <label>Rubro </label>
-                            <asp:DropDownList ID="DropDownList6" runat="server" CssClass="form-control" DataSourceID="SqlDataSource6" DataTextField="Rubro" DataValueField="ID_Rubro"></asp:DropDownList>
+                </div>
+                <div class="col-xs-2">
+                    <h5>Rubro</h5>
+                  <asp:DropDownList ID="DropDownList6" runat="server" CssClass="form-control" DataSourceID="SqlDataSource6" DataTextField="Rubro" DataValueField="ID_Rubro"></asp:DropDownList>
                            <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @ID_Modelo) ORDER BY Rubro ASC">
                         <SelectParameters>
                           <asp:ControlParameter ControlID="DropDownList5" Name="ID_Modelo" PropertyName="SelectedValue" />
                       </SelectParameters>
                      </asp:SqlDataSource>
-                       </div>
-                     <div class="form-group">
-                        <label>Proveedor</label>
-               
-                        <asp:DropDownList ID="DropDownList4" runat="server" CssClass="form-control" DataSourceID="SqlDataSource2" DataTextField="Proveedor" DataValueField="ID_Proveedor"></asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Proveedor], [Proveedor] FROM [Proveedor] ORDER BY Proveedor ASC"></asp:SqlDataSource>                
-                    </div>
+                </div>
+                <div class="col-xs-2">
+                     <h5>Año inicial</h5>
+                     <asp:DropDownList ID="DropDownList4" CssClass="form-control" runat="server" DataSourceID="SqlDataSource10" DataTextField="Anio" DataValueField="ID_Anio"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Anio, Anio FROM Anio ORDER BY Anio ASC"></asp:SqlDataSource>
+                      
+                </div>
+                <div class="col-xs-2">
+                    <h5>Año final</h5>
+                      <asp:DropDownList ID="DropDownList9" CssClass="form-control" runat="server" DataSourceID="SqlDataSource10" DataTextField="Anio" DataValueField="ID_Anio"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource10" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Anio, Anio FROM Anio ORDER BY Anio ASC"></asp:SqlDataSource>
+                </div>
+                 <div class="col-xs-2">
+                    <h5>Agregar</h5>
+                      <div class="input-group-btn">
+                             <button type="button" runat="server" onserverclick="Btn_RubroAnios" class="btn btn-danger">Agregar</button>
+                         </div>
+                 </div>
+              </div>
+                         <asp:GridView ID="GridView4" CssClass="table table-striped table-responsive" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                             <AlternatingRowStyle BackColor="White" />
+                             <EditRowStyle BackColor="#2461BF" />
+                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                             <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                             <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                             <RowStyle BackColor="#EFF3FB" />
+                             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                             <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                             <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                             <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                             <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                           </asp:GridView>
+                     </div>
+                      <div class="row">
+                          <div class="form-group">
+                          <div class="col-xs-6"> 
+                              <label>Categoria</label>
+                          <asp:DropDownList ID="DropDownList13" CssClass="form-control" runat="server" DataSourceID="SqlDataSource14" DataTextField="Categoria" DataValueField="ID_Categoria"></asp:DropDownList>
+
+                              <asp:SqlDataSource ID="SqlDataSource14" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Categoria], [Categoria] FROM [Categoria]"></asp:SqlDataSource>
+
+                          </div>
+                           <div class="col-xs-6">
+                               <label>SubCategoria</label>
+                               <asp:DropDownList ID="DropDownList14" CssClass="form-control" runat="server" DataSourceID="SqlDataSource15" DataTextField="SubCategoria" DataValueField="ID_SubCategoria"></asp:DropDownList>
+
+                               <asp:SqlDataSource ID="SqlDataSource15" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_SubCategoria], [SubCategoria] FROM [SubCategoria] WHERE (([Estado] = @Estado) AND ([ID_Categoria] = @ID_Categoria))">
+                                   <SelectParameters>
+                                       <asp:Parameter DefaultValue="True" Name="Estado" Type="Boolean" />
+                                       <asp:ControlParameter ControlID="DropDownList13" Name="ID_Categoria" PropertyName="SelectedValue" Type="Int32" />
+                                   </SelectParameters>
+                               </asp:SqlDataSource>
+
+                           </div>
+                         </div>
+                          
+                      </div>
+                  
+                    
+                    
                     <div class="form-group">
                         <label>Imagen</label>
 
                         <asp:FileUpload ID="FileUpload2" runat="server" CssClass="form-control" />
                     </div>
-                     <div class="form-group">
-                        <label>Descripcion</label>
-                        <asp:TextBox ID="descripcion2" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
+                   
                        
-                      </div>				
-				<div class="col-12 col-sm-6">
-                    <div class="description-block border-right">
-                        <div class="form-group">
-                              <label>Seleccione el modelo</label>
-                         <asp:DropDownList ID="DropDownList9" CssClass="form-control" runat="server" DataSourceID="SqlDataSource10" DataTextField="Anio" DataValueField="ID_Anio"></asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource10" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Anio, Anio FROM Anio ORDER BY Anio ASC"></asp:SqlDataSource>
-                      </div>
-
-                        <div class="form-group">
-                            <label>Precio producto </label>
-                            <asp:TextBox ID="precioProd"  CssClass="form-control" runat="server"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <label>Precio producto para venta</label>
-                            <asp:TextBox ID="precioVenta" CssClass="form-control" runat="server"></asp:TextBox>
-                        </div>
-                     <div class="form-group">
-                        <label>Stock inicial</label>
-                        <asp:TextBox ID="cantidad" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                        <label>Stock minimo</label>
-                        <asp:TextBox ID="cantidadMinima" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                   <div class="form-group">
-                        <label>Ubicación</label>
-                        <asp:TextBox ID="ubicacion" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                         <div class="form-group">
-                            <label>Marca producto</label>
-                            <asp:DropDownList ID="DropDownList11" CssClass="form-control" runat="server" DataSourceID="SqlDataSource12" DataTextField="MarcaP" DataValueField="ID_MaraProd"></asp:DropDownList>
-                            <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_MaraProd], [MarcaP] FROM [MarcaProd] ORDER BY MarcaP ASC"></asp:SqlDataSource>
-                        </div>
-                        <div class="form-group">
-                            <label>Tipo de medicion</label>
-                            <asp:DropDownList ID="DropDownList12" CssClass="form-control" runat="server" DataSourceID="SqlDataSource13" DataTextField="Medida" DataValueField="ID_Medida"></asp:DropDownList>
-                            <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Medida], [Medida] FROM [Medida] ORDER BY Media ASC"></asp:SqlDataSource>
-                        </div>
-						</div>
-                     </div>
-					                </div>
+                  
 								</div>
 							</div>
                             </div>

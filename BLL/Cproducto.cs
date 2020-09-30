@@ -58,25 +58,108 @@ namespace BLL
         }
 
         #region Producto
-        public string InsertarProducto(string codigo,string codigo2,  string NomP, string Desc, byte[] img, int idRubro ,int IDprov, int IDmarProd)
-        {
-           try
-            {
-                PROVEEDOR.InsertarProducto(codigo,codigo2 , NomP, Desc, img, idRubro , IDprov, IDmarProd);
-                return "Datos ingresados correctamente";
-
-           }
-            catch
-            {
-                return "Error, datos no ingresado";
-            }
-        }
-
-        public string EditarProducto(string codigo, string codigo2, string NomP, string Desc,  byte[] img, int idRubro, int IDprov, int IDmarProd)
+        public string InsertarProducto( string NomP, string Desc, byte[] img, int idSubcatego)
         {
             try
             {
-                PROVEEDOR.EditarProducto(codigo, codigo2, NomP, Desc, img, idRubro, IDprov, IDmarProd);
+                   string idProducto = "";
+               idProducto =  PROVEEDOR.InsertarProducto(NomP, Desc, img, idSubcatego).ToString();
+                return idProducto;
+            }
+            catch
+            {
+                return "Error, interno";
+            }
+
+          
+        }
+
+        public string insertarOEM(string OEM, int IdProducto, int idMarcaA)
+        {
+            try
+            {
+                PROVEEDOR.InsertarOEM(OEM, IdProducto, idMarcaA);
+                return "Datos guardados con exito.";
+            }
+            catch
+            {
+                return "Error, revise los campos, vuelva intentar";
+            }
+        }
+
+        public string insertarCodigoMarcaPrd(string codigoP, int IdProducto, int IdMarcaP)
+        {
+            try
+            {
+                PROVEEDOR.InsertarCodigoMarcaP(codigoP, IdProducto, IdMarcaP);
+                return "Datos guardados con exito.";
+            }
+            catch
+            {
+                return "Error, revise los campos, vuelva intentar";
+            }
+        }
+
+        public string insertarAnioProducto(int idProd, int IdRub, string anioIn, string aniofi)
+        {
+            try
+            {
+                PROVEEDOR.InsertarAnioProducto(idProd, IdRub, anioIn, aniofi);
+                return "Ingresado con exito";
+            }
+            catch
+            {
+
+                return "Error, revise de nuevo los campos";
+            }
+        }
+
+
+        public string DeleteOEM(int idProd)
+        {
+            try
+            {
+                PROVEEDOR.DeleteOEM(idProd);
+                return "Item(s) eliminado con exitos ";
+            }
+            catch
+            {
+                return "Error, no se logro eliminar item";
+            }
+        }
+
+
+        public string DeleteCodigoProd(int idProd)
+        {
+            try
+            {
+                PROVEEDOR.DeleteCodigoProducto(idProd);
+                return "Item(s) eliminado con exitos ";
+            }
+            catch
+            {
+                return "Error, no se logro eliminar item";
+            }
+        }
+
+        public string DeleteAnioProd(int idProd)
+        {
+            try
+            {
+                PROVEEDOR.DeleteAnioProducto(idProd);
+                return "Item(s) eliminado con exitos ";
+            }
+            catch
+            {
+                return "Error, no se logro eliminar item";
+            }
+        }
+
+        public string EditarProducto(int idProd, string NomP, string Desc,  byte[] img, int idSubCAt)
+        {
+            try
+            {
+                PROVEEDOR.EditarProducto(idProd, NomP, Desc, img, idSubCAt);
                 return "Datos actualizado correctamente";
 
             }

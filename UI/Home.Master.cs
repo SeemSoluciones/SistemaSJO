@@ -39,7 +39,10 @@ namespace UI
         protected void Click_Boton1(object sender, EventArgs e)
         {
             Label1.Text = "";
+            Label6.Text = "";
+            Session["Nombre"] = "";
             Response.Redirect("Login.aspx");
+            
         }
     }
 }
