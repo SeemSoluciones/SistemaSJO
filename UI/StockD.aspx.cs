@@ -71,7 +71,7 @@ namespace UI
                 {
                     int idTtienda = 0;
                     idTtienda = Convert.ToInt32(Session["IDtienda"]);
-                    datosProd.InsertarStock(Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVenta.Text), TextBox6.Text, Convert.ToInt32(DropDownList1.SelectedValue), idTtienda, Convert.ToInt32(DropDownList6.SelectedValue));
+                   // datosProd.InsertarStock(Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVenta.Text), TextBox6.Text, Convert.ToInt32(DropDownList1.SelectedValue), idTtienda, Convert.ToInt32(DropDownList6.SelectedValue));
                     Response.Redirect("Stock.aspx");
                 }
                 else if (SiExiste > 0)
@@ -134,8 +134,7 @@ namespace UI
         {
             try
             {
-                datosProd.EditarStock(Convert.ToInt32(IDstock.Text), Convert.ToInt32(Cant.Text), Ubi.Text, Convert.ToDecimal(PrecioP.Text), Convert.ToDecimal(PrecioVe.Text), Convert.ToInt32(DropDownList7
-                    .SelectedValue));
+               // datosProd.EditarStock(Convert.ToInt32(IDstock.Text), Convert.ToInt32(Cant.Text), Ubi.Text, Convert.ToDecimal(PrecioP.Text), Convert.ToDecimal(PrecioVe.Text), Convert.ToInt32(DropDownList7.SelectedValue));
                 Response.Redirect("Stock.aspx");
             }
             catch

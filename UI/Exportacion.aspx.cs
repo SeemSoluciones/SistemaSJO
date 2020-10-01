@@ -112,9 +112,9 @@ namespace UI
         {
             if (Convert.ToInt32(TextBox3.Text) <= cant)
             {
-                datos.InsertarStock(Convert.ToInt32(TextBox3.Text),Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), 
-                    Convert.ToDecimal(precioVenta.Text), codigop, Convert.ToInt32(idanio),
-                    Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(DropDownList6.SelectedValue));
+                //datos.InsertarStock(Convert.ToInt32(TextBox3.Text),Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), 
+                  //  Convert.ToDecimal(precioVenta.Text), codigop, Convert.ToInt32(idanio),
+                   // Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(DropDownList6.SelectedValue));
                 datos.exportarStock(Convert.ToInt32(TextBox3.Text), Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(idanio), codigop, Convert.ToInt32(idStock));
                 string idTienda = Session["IDtienda"].ToString();
                 

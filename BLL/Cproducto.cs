@@ -478,20 +478,20 @@ namespace BLL
         }
 
 
-        public void InsertarStock(int cant, int cantM, string ubic, decimal precioU, decimal precioV, string codProd, int idAno, int IdTienda, int IdMedid)
+        public void InsertarStock(int cant, int cantM, string ubic, decimal precioU, decimal precioV, int IdProd, int IdTienda, int idMarca, int idProve, int IdMedid)
         {
            
-                PROVEEDOR.InsertarStock(cant, cantM, ubic, precioU, precioV, codProd, idAno, IdTienda, IdMedid);
+                PROVEEDOR.InsertarStock(cant, cantM, ubic, precioU, precioV, IdProd, IdTienda, idMarca, idProve, IdMedid);
                // return  "Si se pudo";
            
          
         }
 
-        public string EditarStock(int IDexist, int cantM, string ubic, decimal precioU, decimal preci, int idAnio)
+        public string EditarStock(int IDexist, int cantM, string ubic, decimal precioU, decimal preci, int MaraProd, int idProve, int idMedida)
         {
             try
             {
-                PROVEEDOR.EditarStock(IDexist, cantM, ubic, precioU, preci, idAnio);
+                PROVEEDOR.EditarStock(IDexist, cantM, ubic, precioU, preci, MaraProd, idProve, idMedida);
                 return "Datos actualizado correctamente";
             }
             catch
@@ -513,9 +513,9 @@ namespace BLL
             }
         }
 
-        public int SiExisteStock(string idProd, int idAnio, int idTienda)
+        public int SiExisteStock(string codigos, int idTienda, int idMarcaP)
         {
-            return Convert.ToInt32(PROVEEDOR.SiExisteStock(idAnio, idTienda, idProd));
+            return Convert.ToInt32(PROVEEDOR.SiExisteStock(idTienda, codigos, idMarcaP));
         }
         #endregion
 
