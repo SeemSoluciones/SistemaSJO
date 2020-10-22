@@ -32,8 +32,8 @@ namespace UI
                 Label1.Text = tb.Rows[0][0].ToString();
                 Label2.Text = tb.Rows[0][1].ToString();
                 Label4.Text = Convert.ToDecimal( tb.Rows[0][3]).ToString("0.00");
-                SqlDataSource1.SelectCommand = "SELECT Producto.Codigo, Producto.Producto, Rubro.Rubro, Credito.Monto, Credito.SaldoPendiente, Credito.FechaCredito, ItemProdCliente.ID_ItemProdCliente, Credito.ID_Credito FROM Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN Producto ON Rubro.ID_Rubro = Producto.ID_Rubro INNER JOIN ItemProdCliente ON Producto.Codigo = ItemProdCliente.Codigo INNER JOIN Credito ON ItemProdCliente.ID_Credito = Credito.ID_Credito INNER JOIN Cliente ON Credito.ID_Cliente = Cliente.ID_Cliente WHERE ItemProdCliente.Estado = 0 AND Cliente.NIT = " + TextBox1.Text;
-                SqlDataSource1.DataBind();
+                    SqlDataSource1.SelectCommand = "SELECT Producto.ID_Producto, Producto.Descripcion, Credito.Monto, Credito.SaldoPendiente, Credito.FechaCredito, ItemProdCliente.ID_ItemProdCliente, Credito.ID_Credito FROM ItemProdCliente inner join Credito on ItemProdCliente.ID_Credito = Credito.ID_Credito inner join Producto on ItemProdCliente.ID_Producto = Producto.ID_Producto inner join Cliente on Credito.ID_Cliente = Cliente.ID_Cliente WHERE ItemProdCliente.Estado = 0 AND Cliente.NIT =" + TextBox1.Text;
+                    SqlDataSource1.DataBind();
                 }
             else
             {
@@ -74,12 +74,13 @@ namespace UI
                 CheckBox chkitem = (CheckBox)(row.FindControl("CheckItem"));
                 if (chkitem.Checked)
                 {
-                    datos.EditarCreditoXitem(Convert.ToInt32(row.Cells[6].Text));
-                    datos.InsertarAbonoCredito2(Convert.ToDecimal(row.Cells[3].Text), 0, Convert.ToInt32(row.Cells[7].Text), Convert.ToInt32(row.Cells[6].Text));
+                    datos.EditarCreditoXitem(Convert.ToInt32(row.Cells[5].Text));
+                    datos.InsertarAbonoCredito2(Convert.ToDecimal(row.Cells[2].Text), 0, Convert.ToInt32(row.Cells[6].Text), Convert.ToInt32(row.Cells[5].Text));
                 }
             }
             Label7.Text = "Items cancelado con exito!";
-            SqlDataSource1.SelectCommand = "SELECT Producto.Codigo, Producto.Producto, Rubro.Rubro, Credito.Monto, Credito.SaldoPendiente, Credito.FechaCredito, ItemProdCliente.ID_ItemProdCliente, Credito.ID_Credito FROM Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN Producto ON Rubro.ID_Rubro = Producto.ID_Rubro INNER JOIN ItemProdCliente ON Producto.Codigo = ItemProdCliente.Codigo INNER JOIN Credito ON ItemProdCliente.ID_Credito = Credito.ID_Credito INNER JOIN Cliente ON Credito.ID_Cliente = Cliente.ID_Cliente WHERE ItemProdCliente.Estado = 0 AND Cliente.NIT = " + TextBox1.Text;
+        //  SqlDataSource1.SelectCommand = "SELECT Producto.Codigo, Producto.Producto, Rubro.Rubro, Credito.Monto, Credito.SaldoPendiente, Credito.FechaCredito, ItemProdCliente.ID_ItemProdCliente, Credito.ID_Credito FROM Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN Producto ON Rubro.ID_Rubro = Producto.ID_Rubro INNER JOIN ItemProdCliente ON Producto.Codigo = ItemProdCliente.Codigo INNER JOIN Credito ON ItemProdCliente.ID_Credito = Credito.ID_Credito INNER JOIN Cliente ON Credito.ID_Cliente = Cliente.ID_Cliente WHERE ItemProdCliente.Estado = 0 AND Cliente.NIT = " + TextBox1.Text;
+            SqlDataSource1.SelectCommand = "SELECT Producto.ID_Producto, Producto.Descripcion, Credito.Monto, Credito.SaldoPendiente, Credito.FechaCredito, ItemProdCliente.ID_ItemProdCliente, Credito.ID_Credito FROM ItemProdCliente inner join Credito on ItemProdCliente.ID_Credito = Credito.ID_Credito inner join Producto on ItemProdCliente.ID_Producto = Producto.ID_Producto inner join Cliente on Credito.ID_Cliente = Cliente.ID_Cliente WHERE ItemProdCliente.Estado = 0 AND Cliente.NIT =" + TextBox1.Text;
             SqlDataSource1.DataBind();
         }
         public static int Nit;

@@ -2961,7 +2961,7 @@ WHERE        (Cliente.NIT = @nit) AND (Credito.Estado = 1)";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).CommandText = "dbo.InsertarItemProdCliente";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).CommandType = global::System.Data.CommandType.StoredProcedure;
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codigo", global::System.Data.SqlDbType.NVarChar, 12, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codigo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_Credito", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[10] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[10])).Connection = new global::System.Data.SqlClient.SqlConnection(global::DAL.Properties.Settings.Default.BDautorepuestoConnectionString);
@@ -3385,13 +3385,13 @@ GROUP BY Cliente.NIT, Cliente.Nombre, Cliente.Apellidos";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual object InsertarCreditoXitem(string codigo, global::System.Nullable<int> ID_Credito) {
+        public virtual object InsertarCreditoXitem(global::System.Nullable<int> codigo, global::System.Nullable<int> ID_Credito) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[9]));
-            if ((codigo == null)) {
-                command.Parameters[1].Value = global::System.DBNull.Value;
+            if ((codigo.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(codigo.Value));
             }
             else {
-                command.Parameters[1].Value = ((string)(codigo));
+                command.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((ID_Credito.HasValue == true)) {
                 command.Parameters[2].Value = ((int)(ID_Credito.Value));

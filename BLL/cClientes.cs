@@ -125,7 +125,7 @@ namespace BLL
             }
         }
 
-        public string InsertarCreditoPorItem(string codigo, int Id_Cre)
+        public string InsertarCreditoPorItem(int codigo, int Id_Cre)
         {
             try
             {

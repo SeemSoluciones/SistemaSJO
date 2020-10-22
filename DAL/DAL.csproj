@@ -45,9 +45,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cliente.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DsProducto.cs">
-      <DependentUpon>DsProducto.xsd</DependentUpon>
-    </Compile>
     <Compile Include="DsProducto.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,7 +88,7 @@
     <None Include="DsProducto.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DsProducto.Designer.cs</LastGenOutput>
+      <LastGenOutput>DsProducto1.Designer.cs</LastGenOutput>
     </None>
     <None Include="DsProducto.xss">
       <DependentUpon>DsProducto.xsd</DependentUpon>

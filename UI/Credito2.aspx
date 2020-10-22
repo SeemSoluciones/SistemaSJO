@@ -44,9 +44,8 @@
         </div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="table table-responsive">
             <Columns>
-                <asp:BoundField DataField="Codigo" HeaderText="Codigo" SortExpression="Codigo" />
-                <asp:BoundField DataField="Producto" HeaderText="Producto" SortExpression="Producto" />
-                <asp:BoundField DataField="Rubro" HeaderText="Rubro" SortExpression="Rubro" />
+                <asp:BoundField DataField="ID_Producto" HeaderText="ID" SortExpression="ID_Producto" />
+                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
                 <asp:BoundField DataField="Monto" HeaderText="Monto" SortExpression="Monto" DataFormatString="{0:0.00}" />
                 <asp:BoundField DataField="SaldoPendiente" HeaderText="SaldoPendiente" SortExpression="SaldoPendiente" DataFormatString="{0:0.00}" />
                 <asp:BoundField DataField="FechaCredito" HeaderText="Fecha Credito" SortExpression="FechaCredito" />

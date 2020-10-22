@@ -257,7 +257,7 @@ namespace UI
                         Convert.ToInt32(msj),
                         Convert.ToInt32(DropDownList4.SelectedValue),
                         Convert.ToInt32(row.Cells[7].Text));
-                    datos2.InsertarCreditoPorItem(row.Cells[1].Text, Convert.ToInt32(msj2));
+                    datos2.InsertarCreditoPorItem(Convert.ToInt32( row.Cells[1].Text), Convert.ToInt32(msj2));
                 }
                 nit = TextBox3.Text;
                 nombre = TextBox4.Text;
@@ -318,7 +318,7 @@ namespace UI
                         );
 
                     datos2.InsertarCreditoPorItem(
-                      row.Cells[1].Text,
+                     Convert.ToInt32( row.Cells[1].Text),
                       Convert.ToInt32(msj2));
                 }
                 nit = TextBox3.Text;
