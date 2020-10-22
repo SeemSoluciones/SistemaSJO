@@ -35,13 +35,13 @@
         
       <div class="row">
         <div class="col-md-12">
-     <div class="box box-default collapsed-box">
+     <div class="box box-default">
             <div class="box-header with-border ">
               <h3 class="box-title">Agregar producto a stock </h3>
 
               <div class="box-tools pull-right">
                   <a href="Productos.aspx" target="_blank">Nuevo producto</a>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
               <!-- /.box-tools -->
@@ -149,7 +149,7 @@
                 <asp:BoundField DataField="ID_Existencia" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID_Existencia" />
                 <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" />
                 <asp:BoundField DataField="Cantidad_Min" HeaderText="Cantidad Min" SortExpression="Cantidad_Min" />
-                 <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
+                <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
                 <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio U" SortExpression="PrecioUnitario" />
                 <asp:BoundField DataField="PrecioVenta" HeaderText="Precio V" SortExpression="PrecioVenta" />
                 <asp:BoundField DataField="LISTAOEM" HeaderText="LISTA OEM" SortExpression="LISTAOEM" ReadOnly="True" />

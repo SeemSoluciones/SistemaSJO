@@ -204,7 +204,7 @@ namespace UI
 
                     double iva = 0;
                     iva = 0.12 * Convert.ToDouble(TextBox14.Text);
-                    msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue));
+                   // msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue));
                     datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
                     datos.InsertarBitacoraCaja(Session["Nombre"].ToString(), Session["Tienda"].ToString(), "Autoriza:  " + Autorizacion.Quien, Convert.ToInt32(msj));
                     foreach (GridViewRow row in GridView1.Rows)
@@ -214,7 +214,6 @@ namespace UI
                             Convert.ToDecimal(row.Cells[3].Text),
                             Convert.ToDecimal(row.Cells[6].Text),
                             Convert.ToInt32(msj),
-                            row.Cells[1].Text,
                             Convert.ToInt32(DropDownList4.SelectedValue),
                             Convert.ToInt32(row.Cells[7].Text)
 
@@ -247,7 +246,7 @@ namespace UI
                 idCliente = tabla.Rows[0][3].ToString();
                 datos2.EditarInfoCredito(Convert.ToDecimal(TextBox6.Text), Convert.ToInt32(TextBox15.Text), Convert.ToInt32(idCliente));
                 string msj = "", msj2 = "";
-                msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda));
+             //   msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda));
                 msj2 = datos2.InsertarCredito(Convert.ToDecimal(TextBox14.Text), Convert.ToInt32(idCliente), Convert.ToInt32(msj));
                 foreach (GridViewRow row in GridView1.Rows)
                 {
@@ -256,7 +255,6 @@ namespace UI
                         Convert.ToDecimal(row.Cells[3].Text),
                         Convert.ToDecimal(row.Cells[6].Text),
                         Convert.ToInt32(msj),
-                        row.Cells[1].Text,
                         Convert.ToInt32(DropDownList4.SelectedValue),
                         Convert.ToInt32(row.Cells[7].Text));
                     datos2.InsertarCreditoPorItem(row.Cells[1].Text, Convert.ToInt32(msj2));
@@ -306,7 +304,7 @@ namespace UI
                 datos2.InsertarInfoCredito(Convert.ToDecimal(TextBox6.Text), Convert.ToInt32(TextBox15.Text), Convert.ToInt32(idCliente));
                 string msj = "", msj2 = "";
 
-                msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda));
+               // msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda));
                 msj2 = datos2.InsertarCredito(Convert.ToDecimal(TextBox14.Text), Convert.ToInt32(idCliente), Convert.ToInt32(msj));
                 foreach (GridViewRow row in GridView1.Rows)
                 {
@@ -315,7 +313,6 @@ namespace UI
                        Convert.ToDecimal(row.Cells[3].Text),
                        Convert.ToDecimal(row.Cells[6].Text),
                        Convert.ToInt32(msj),
-                       row.Cells[1].Text,
                        Convert.ToInt32(DropDownList4.SelectedValue),
                        Convert.ToInt32(row.Cells[7].Text)
                         );
@@ -437,7 +434,7 @@ namespace UI
             try
             {
                 int ID_Rubro, ID_Rubro2;
-                ID_Rubro = datos.ID_Rubro(TextBox20.Text);
+               // ID_Rubro = datos.ID_Rubro(TextBox20.Text);
                 ID_Rubro2 = datos.ID_Rubro2(TextBox20.Text);
 
                 if (CheckBox2.Checked == false && CheckBox3.Checked == false && CheckBox4.Checked == false)

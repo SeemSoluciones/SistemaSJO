@@ -14,6 +14,7 @@ namespace BLL
 
         private ProductoTableAdapter producto;
         private BuscarPTableAdapter buscarP;
+        private DataTableCotizaTableAdapter ListadoCotiza;
 
         private ProductoTableAdapter PRODUCTO
         {
@@ -25,6 +26,16 @@ namespace BLL
             }
         }
 
+        private DataTableCotizaTableAdapter LISTADOCOTI
+        {
+            get
+            {
+                if (ListadoCotiza == null)
+                    ListadoCotiza = new DataTableCotizaTableAdapter();
+                return ListadoCotiza;
+            }
+
+        }
 
         private BuscarPTableAdapter BUSCARP
         {
@@ -214,6 +225,12 @@ namespace BLL
             return Tabla;
         }
 
+        public DataTable ListadoCotiziones(int idCot)
+        {
+            DataTable table = new DataTable();
+            table = LISTADOCOTI.ListadoCotizacion(idCot);
+            return table;
+        }
 
         public string InsertaRubro(string Rubro, int idLinea)
         {
@@ -258,11 +275,11 @@ namespace BLL
         }
 
 
-        public  int ID_Rubro(string codigo)
-        {
-           int res = Convert.ToInt32(PROVEEDOR.ID_RubroXcodigo(codigo));
-            return res;
-        }
+        //public  int ID_Rubro(string codigo)
+        //{
+        //   int res = Convert.ToInt32(PROVEEDOR.ID_RubroXcodigo(codigo));
+        //    return res;
+        //}
 
         public int ID_Rubro2(string codigo2)
         {
@@ -365,14 +382,14 @@ namespace BLL
         #endregion
 
         #region VENTA
-        public string InsertarVenta(decimal subtotal, decimal descuento, decimal total, decimal iva, int idEmp, int idCaja)
+        public string InsertarVenta(decimal subtotal, decimal descuento, decimal total, decimal iva, int idEmp, int idCaja, int idcliente)
         {
             try
             {
 
                 string msj = "";
 
-               msj = PROVEEDOR.InsertVenta(subtotal, descuento, total, iva, idEmp, idCaja).ToString();
+               msj = PROVEEDOR.InsertVenta(subtotal, descuento, total, iva, idEmp, idCaja, idcliente).ToString();
                 return msj;
             }
             catch
@@ -381,11 +398,40 @@ namespace BLL
             }
         }
 
-        public string InsertarDetalleVenta(int cantidad, decimal preVenta, decimal total, int IDVenta, string IDprod, int Tpago, int idStock)
+        public string InsertarCotizacion(decimal subtotal, decimal total,  string cliente, int idEmp)
         {
             try
             {
-                PROVEEDOR.InsertDetalleVenta(cantidad, preVenta, total, IDVenta, IDprod, Tpago, idStock);
+
+                string msj = "";
+
+                msj = PROVEEDOR.insertarCotizacion(subtotal,  total, cliente, idEmp).ToString();
+                return msj;
+            }
+            catch
+            {
+                return "Error, datos no ingresado";
+            }
+        }
+        public string InsertarDetalleVenta(int cantidad, decimal preVenta, decimal total, int IDVenta, int Tpago, int idStock)
+        {
+            try
+            {
+                PROVEEDOR.InsertDetalleVenta(cantidad, preVenta, total, IDVenta,  Tpago, idStock);
+                return "Datos ingresados correctamente";
+
+            }
+            catch
+            {
+                return "Error, datos no ingresado";
+            }
+        }
+
+        public string InsertarDetalleCotizacion(int cantidad, decimal preVenta, decimal total, int IDVenta,  int idStock)
+        {
+            try
+            {
+                PROVEEDOR.insertarDetalleCoti(cantidad, preVenta, total, IDVenta, idStock);
                 return "Datos ingresados correctamente";
 
             }
@@ -454,11 +500,11 @@ namespace BLL
             //}
         }
 
-        public string InsertarDetalleCompra(int cantidad, decimal precioU, decimal total, string IDprod, int IDstock , int IDcompr)
+        public string InsertarDetalleCompra(int cantidad, decimal preciov, decimal total, int IDprod, int IDstock , int IDcompr, decimal precioCompra)
         {
             try
             {
-                PROVEEDOR.InsertDetalleCompra(cantidad, precioU, total, IDprod, IDstock, IDcompr);
+                PROVEEDOR.InsertDetalleCompra(cantidad, preciov, total, IDprod, IDstock, IDcompr, precioCompra);
                 return "Datos ingresados correctamente";
 
             }
@@ -551,7 +597,7 @@ namespace BLL
 
 
 
-        public string InsertDevProPro(string codigo, string motivo, string factura, int idproveedor, int Cantidad)
+        public string InsertDevProPro(int codigo, string motivo, string factura, int idproveedor, int Cantidad)
         {
             try
             {
@@ -562,6 +608,13 @@ namespace BLL
             {
                 return "0";
             }
+        }
+
+        public void EliminarCoti(int idCoti)
+        {
+            
+         Convert.ToString(PROVEEDOR.EliminarCotizacion(idCoti));
+            
         }
     }
 }

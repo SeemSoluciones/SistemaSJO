@@ -105,14 +105,15 @@ namespace UI
                 foreach (GridViewRow row in GridView1.Rows)
                 {
                     datos.InsertarDetalleCompra(
-                        Convert.ToInt32(row.Cells[3].Text),
-                        Convert.ToDecimal(row.Cells[2].Text),
-                        Convert.ToDecimal(row.Cells[4].Text),
-                        row.Cells[0].Text,
-                        Convert.ToInt32(row.Cells[5].Text),
-                        Convert.ToInt32(msj)
+                       Convert.ToInt32(row.Cells[4].Text),
+                       Convert.ToDecimal(row.Cells[3].Text),
+                       Convert.ToDecimal(row.Cells[5].Text),
+                      Convert.ToInt32(row.Cells[0].Text),
+                       Convert.ToInt32(row.Cells[6].Text),
+                       Convert.ToInt32(msj),
+                       Convert.ToDecimal(row.Cells[2].Text)
 
-                        );
+                       );
                 }
 
                 Response.Redirect("Compra.aspx");
@@ -196,7 +197,7 @@ namespace UI
                     int idTtienda = 0;
                     idTtienda = Convert.ToInt32(Session["IDtienda"]);
                     int ID_Rubro, ID_Rubro2;
-                    ID_Rubro = datos.ID_Rubro(TextBox20.Text);
+                  //  ID_Rubro = datos.ID_Rubro(TextBox20.Text);
                     ID_Rubro2 = datos.ID_Rubro2(TextBox20.Text);
 
                     if (CheckBox2.Checked == false && CheckBox3.Checked == false && CheckBox4.Checked == false)

@@ -20,15 +20,27 @@ namespace UI
             nit.Text = Caja.nit;
             Dire.Text = Caja.ciudad;
             Label7.Text = Caja.Pago;
-            SqlDataSource1.SelectCommand = "Select DetalleVenta.Cantidad, DetalleVenta.Codigo, Producto.Codigo2, Producto.Producto + ' ' + Producto.Descripcion as Producto, DetalleVenta.PrecioUnitario , DetalleVenta.Total from venta inner join DetalleVenta on Venta.ID_Venta = DetalleVenta.ID_Venta inner join Producto on DetalleVenta.Codigo = Producto.Codigo Where Venta.ID_Venta =" + Caja.msj;
-            SqlDataSource1.DataBind();
+            if (Caja.TipoFactura == 1)
+            {
+                GridView1.Visible = true;
+                GridView2.Visible = false;
+                SqlDataSource1.SelectCommand = "Select DetalleVenta.Cantidad, STUFF((Select ', ' + CodigoProducto.Codigo From CodigoProducto Where CodigoProducto.ID_Producto = Producto.ID_Producto for XML Path('')) , 1, 2 ,'') AS Codigos, Producto.Descripcion, DetalleVenta.PrecioUnitario , DetalleVenta.Total from DetalleVenta inner join Venta on DetalleVenta.ID_Venta = Venta.ID_Venta inner join Stock on DetalleVenta.ID_Existencia = Stock.ID_Existencia inner join Producto on Stock.ID_Producto = Producto.ID_Producto Where Venta.ID_Venta =" + Caja.msj;
+                SqlDataSource1.DataBind();
+            }
+            else if (Caja.TipoFactura == 2)
+            {
+                GridView2.Visible = true;
+                GridView1.Visible = false;
+                SqlDataSource2.SelectCommand = "Select DetalleCotizacion.Cantidad, STUFF((Select ', ' + CodigoProducto.Codigo From CodigoProducto Where CodigoProducto.ID_Producto = Producto.ID_Producto for XML Path('')) , 1, 2 ,'') AS Codigos, Producto.Descripcion, DetalleCotizacion.Precio, DetalleCotizacion.Total from DetalleCotizacion inner join CotizacionVenta on DetalleCotizacion.ID_Cotizacion = CotizacionVenta.ID_Cotizacion inner join Stock on DetalleCotizacion.ID_Existencia = Stock.ID_Existencia inner join Producto on Stock.ID_Producto = Producto.ID_Producto Where CotizacionVenta.ID_Cotizacion =" + Caja.msj;
+                SqlDataSource2.DataBind();
+            }
         }
         decimal subtotal, descuento, total;
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                subtotal = subtotal + Convert.ToDecimal(e.Row.Cells[5].Text);
+                subtotal = subtotal + Convert.ToDecimal(e.Row.Cells[4].Text);
                 //descuento = descuento + Convert.ToDecimal(e.Row.Cells[4].Text);
                 //total = subtotal - descuento;
             }

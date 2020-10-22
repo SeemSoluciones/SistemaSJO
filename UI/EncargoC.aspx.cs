@@ -32,7 +32,7 @@ namespace UI
                 string idEmpleado = Session["IdEmpleado"].ToString();
                 string msj = "";
                 msj = Datos.nuevoEncargo(Convert.ToDateTime(FechaEn.Text), Convert.ToDecimal(TextBox2.Text), TextBox4.Text, Producto.Text, Convert.ToInt32(Label1.Text), imag, Convert.ToDecimal(TextBox9.Text));
-                Datos.InsertarVenta(Convert.ToDecimal(TextBox2.Text), 0, Convert.ToDecimal(TextBox2.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda));
+             //   Datos.InsertarVenta(Convert.ToDecimal(TextBox2.Text), 0, Convert.ToDecimal(TextBox2.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda));
                 Response.Write("<script>alert('" + msj + "')</script>");
                 Response.Redirect("EncargoC.aspx");
             }
@@ -122,7 +122,7 @@ namespace UI
                 total = Resto + Convert.ToDecimal(anticipo); ;
                 Response.Write("<script>window.open('ImpCompro.aspx','Titulo', 'height=300','width=300')</script>");
                 Datos.EliminarEncargo(Convert.ToInt32(ID_E));
-                msj = Datos.InsertarVenta(Convert.ToDecimal(TextBox8.Text), 0, Convert.ToDecimal(TextBox8.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda));
+              //  msj = Datos.InsertarVenta(Convert.ToDecimal(TextBox8.Text), 0, Convert.ToDecimal(TextBox8.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda));
                 //  Datos.InsertarDetalleVenta(1, subtotal, total, Convert.ToInt32(msj), IdProd,  1);
 
                 Response.Redirect("EncargosC.aspx");

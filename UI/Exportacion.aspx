@@ -35,50 +35,90 @@
             </div>
                 </div>
             </div>
-           <div class="row">
-                            <div class="col-sm-4">
-                                <asp:DropDownList CssClass="form-control select2" style="width: 100%;" ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="Anio" DataValueField="ID_Anio" AutoPostBack="True"></asp:DropDownList>
-                                <asp:CheckBox ID="CheckBox2" runat="server" /> Por año.
-                                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Anio], [Anio] FROM [Anio]"></asp:SqlDataSource>
+            <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info collapsed-box">
+                    <div class="box-header with-border">
+                       <div class="row">
+                                <div class="col-sm-2">
+                                  <asp:DropDownList ID="DropDownList2" CssClass="form-control" runat="server" DataSourceID="SqlDataSource5" DataTextField="Marca" DataValueField="ID_Marca" AutoPostBack="True"></asp:DropDownList> 
+                                 <%--  <asp:CheckBox ID="CheckBox3" runat="server" />Por marca--%>
+                                    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca] ORDER BY Marca ASC"></asp:SqlDataSource>
+                                </div>
+                                <div class="col-sm-2">
+                                    <asp:DropDownList ID="DropDownList5" CssClass="form-control"  runat="server" DataSourceID="SqlDataSource6" DataTextField="Modelo" DataValueField="ID_Modelo" AutoPostBack="True"></asp:DropDownList>
+                                 <%-- <asp:CheckBox ID="CheckBox4" runat="server" />Por modelo/linea --%>
+                                    <asp:SqlDataSource ID="SqlDataSource6"  runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @idMarca) ORDER BY Modelo Asc">
+                                     <SelectParameters>
+                                     <asp:ControlParameter ControlID="DropDownList2" Name="idMarca" PropertyName="SelectedValue" />
+                                     </SelectParameters>
+                                     </asp:SqlDataSource>
+                                </div>
+                                <div class="col-sm-1">
+                                     <asp:DropDownList ID="DropDownList3" CssClass="form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="Rubro" DataValueField="ID_Rubro"></asp:DropDownList>
+                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @idModelo) ORDER BY Rubro">
+                                     <SelectParameters>
+                                      <asp:ControlParameter ControlID="DropDownList5" Name="idModelo" PropertyName="SelectedValue" />
+                                      </SelectParameters>
+                                      </asp:SqlDataSource>
+                                </div>
+                                <div class="col-sm-1">
+                                     <asp:DropDownList CssClass="form-control select2" ID="DropDownList7" runat="server" DataSourceID="SqlDataSource8" DataTextField="Anio" DataValueField="ID_Anio"></asp:DropDownList>
+                                    <asp:CheckBox ID="CheckBox2" runat="server" /> Por año.
+                                    <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Anio], [Anio] FROM [Anio] ORDER BY Anio ASC "></asp:SqlDataSource>
      
                                 </div>
-                                <div class="col-sm-4">
+                           <div class="col-xs-2">
+                               <asp:DropDownList ID="DropDownList4" CssClass="form-control select2" runat="server" DataSourceID="SqlDataSource2" DataTextField="Categoria" DataValueField="ID_SubCategoria" AutoPostBack="true" OnSelectedIndexChanged="DropDownList4_SelectedIndexChanged"></asp:DropDownList>
+                               <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT SubCategoria.ID_SubCategoria, Categoria.Categoria + '  ' + SubCategoria.SubCategoria AS Categoria FROM Categoria INNER JOIN SubCategoria ON Categoria.ID_Categoria = SubCategoria.ID_Categoria"></asp:SqlDataSource>
+                           </div>
+                                <div class="col-sm-2">
                                     <asp:TextBox ID="TextBox20" CssClass="form-control" runat="server"></asp:TextBox>
-                                    Buscar por Equivalencia.
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-1">
                                     <asp:Button ID="Button9" CssClass="btn btn-default form-control" runat="server" Text="Buscar" OnClick="Button9_Click" />
                                 </div>
-              
-           </div>
-           <div class="table table-bordered">
-               <asp:GridView ID="GridView1" runat="server" CssClass="table table-responsive" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-                   <Columns>
-                       <asp:BoundField DataField="Codigo" HeaderText="Codigo" SortExpression="Codigo" />
-                       <asp:BoundField DataField="Codigo2" HeaderText="Codigo2" SortExpression="Codigo2" />
-                       <asp:BoundField DataField="Producto" HeaderText="Producto" SortExpression="Producto" />
-                       <asp:BoundField DataField="MarcaP" HeaderText="MarcaP" SortExpression="MarcaP" />
-                       <asp:BoundField DataField="Rubro" HeaderText="Rubro" SortExpression="Rubro" />
-                       <asp:BoundField DataField="Modelo" HeaderText="Modelo" SortExpression="Modelo" />
-                       <asp:BoundField DataField="Marca" HeaderText="Marca" SortExpression="Marca" />
-                       <asp:BoundField DataField="Anio" HeaderText="Anio" SortExpression="Anio" />
-                       <asp:BoundField DataField="Cantidad" HeaderText="Cant" SortExpression="Cantidad" />
-                       <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
-                       <asp:BoundField DataField="Medida" HeaderText="Medida" SortExpression="Medida" />
-                       <asp:BoundField DataField="ID_Anio" HeaderText="ID_anio" SortExpression="ID_Anio" />
-                       <asp:BoundField DataField="ID_Existencia" HeaderText="IDStock" InsertVisible="False" ReadOnly="True" SortExpression="ID_Existencia" />
-                       
-                       <asp:TemplateField ShowHeader="False">
-                           <ItemTemplate>
-                               <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar"></asp:LinkButton>
-                           </ItemTemplate>
-                       </asp:TemplateField>
-                       
-                   </Columns>
-               </asp:GridView>
-           </div>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand=""></asp:SqlDataSource>
-          
+                        
+                                <div class="col-sm-1">
+                              
+                              <button type="button" class="btn btn-social-icon btn-success" data-widget="collapse"><i class="fa fa-plus-square"></i> </button>
+                               </div>
+                            </div>
+                    </div>
+                    <div class="box-body">
+                      
+                            <div class="table table-responsive">
+                                <asp:GridView ID="GridView2" runat="server" CssClass="table table-responsive-lg table-hover" AutoGenerateColumns="False" DataSourceID="SqlDataSource4" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
+                                    <Columns>
+                                        
+                                      
+                                        <asp:BoundField DataField="LISTAOEM" HeaderText="LISTA OEM" SortExpression="LISTAOEM" ReadOnly="True" />
+                                        <asp:BoundField DataField="LISTACODP" HeaderText="LISTA CODP" SortExpression="LISTACODP" ReadOnly="True" />
+                                        <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
+                                        <asp:BoundField DataField="LISTANIOP" HeaderText="Rubro-Año" SortExpression="LISTANIOP" ReadOnly="True" />
+                                        <asp:BoundField DataField="MarcaP" HeaderText="Marca Prod" SortExpression="MarcaP" />
+                                        <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio C" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}"  />
+                                        <asp:BoundField DataField="PrecioVenta" HeaderText="Precio V" SortExpression="PrecioVenta" DataFormatString="{0:0.00}"  />
+                                        <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" ItemStyle-Font-Bold="true" ItemStyle-BorderColor="LightGreen" />
+                                         <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
+                                        <asp:BoundField DataField="Medida" HeaderText="Medida" SortExpression="Medida" />
+                                        <asp:BoundField DataField="Tienda" HeaderText="Tienda" SortExpression="Tienda" />
+                                        <asp:BoundField DataField="ID_Existencia" HeaderText="ID2" SortExpression="ID_Existencia" InsertVisible="False" ReadOnly="True" />
+                                        <asp:TemplateField ShowHeader="False">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" Text="" CssClass="fa fa-cart-plus" CommandName="Select" CausesValidation="False" ID="LinkButton1"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                    </Columns>
+                        </asp:GridView>
+                    </div>
+                        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand=""></asp:SqlDataSource>
+                    </div>
+                </div>
+                 
+            </div>
+        </div>
            
             <br />
            <asp:Label ID="Label5" runat="server" Text="" CssClass="label label-success" Font-Size="Larger"></asp:Label>

@@ -97,7 +97,7 @@ namespace UI
                 // msj = datos.InsertarCompra(Convert.ToDecimal(TextBox12.Text), TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue));
                 foreach (GridViewRow row in GridView1.Rows)
                 {
-                    datos.InsertDevProPro(row.Cells[0].Text, row.Cells[2].Text, TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(row.Cells[3].Text));
+                    datos.InsertDevProPro(Convert.ToInt32(row.Cells[0].Text), row.Cells[2].Text, TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(row.Cells[3].Text));
                 }
 
                 Response.Redirect("DevProPro.aspx");
@@ -166,7 +166,7 @@ namespace UI
                 int idTtienda = 0;
                 idTtienda = Convert.ToInt32(Session["IDtienda"]);
                 int ID_Rubro, ID_Rubro2;
-                ID_Rubro = datos.ID_Rubro(TextBox20.Text);
+               // ID_Rubro = datos.ID_Rubro(TextBox20.Text);
                 ID_Rubro2 = datos.ID_Rubro2(TextBox20.Text);
 
                 if (CheckBox1.Checked == false && CheckBox2.Checked == false)

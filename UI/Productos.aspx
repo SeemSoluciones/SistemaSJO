@@ -85,8 +85,8 @@
                     </asp:TemplateField>
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar" OnClick="LinkButton1_Click"></asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar"></asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server"  CssClass="fa fa-edit"  CausesValidation="False" CommandName="Select" Text="" OnClick="LinkButton1_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton2" runat="server" CssClass="fa fa-trash-o" CausesValidation="False" CommandName="Delete" Text=""></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -97,7 +97,7 @@
             </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="" DeleteCommand="EliminarProducto" DeleteCommandType="StoredProcedure">
                 <DeleteParameters>
-                    <asp:Parameter Name="Codigo" Type="String" />
+                    <asp:Parameter Name="ID_Producto" Type="Int32" />
                 </DeleteParameters>
             </asp:SqlDataSource>
             </div>
@@ -111,7 +111,7 @@
         </cc1:ModalPopupExtender>
         
         <asp:Panel ID="Panel1" runat="server">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-lg" style="height:700px; width:800px; overflow:auto;overflow-x:hidden;">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title" id="">Editar datos de producto  </h5>
@@ -135,7 +135,7 @@
                                 <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" DataSourceID="SqlDataSource12" DataTextField="Marca" DataValueField="ID_Marca"></asp:DropDownList>
                                  <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Marca], [Marca] FROM [Marca]"></asp:SqlDataSource>
                                  <div class="input-group-btn">
-                                   <button type="button" class="btn btn-danger" onserverclick="Btn_AgergarOEM2" runat="server" >Action</button>
+                                   <button type="button" class="btn btn-danger" onserverclick="Btn_AgergarOEM2" runat="server" >Agregar</button>
                               </div>
                             </div>
                         </div>
@@ -161,7 +161,14 @@
                            </asp:GridView>
                            <asp:SqlDataSource ID="SqlDataSource20" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="">
                            </asp:SqlDataSource>
-                           <asp:GridView ID="GridView8" CssClass="table table-responsive table-striped" Visible="False" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                           <asp:GridView ID="GridView8" CssClass="table table-responsive table-striped" Visible="False" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="GridView8_RowDeleting">
+                               <%-- <Columns>
+                                      <asp:TemplateField>
+                                       <ItemTemplate>
+                                     <asp:LinkButton ID="Button1" runat="server" CssClass="btn btn-danger fa fa-trash-o" CausesValidation="False" CommandName="Delete"  />
+                                       </ItemTemplate>
+                                   </asp:TemplateField>
+                                  </Columns>--%>
                                <AlternatingRowStyle BackColor="White" />
                                <EditRowStyle BackColor="#2461BF" />
                                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -194,7 +201,7 @@
                                      <asp:DropDownList ID="DropDownList2" CssClass="form-control" runat="server" DataSourceID="SqlDataSource13" DataTextField="MarcaP" DataValueField="ID_MaraProd"></asp:DropDownList>                        
                                        <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_MaraProd], [MarcaP] FROM [MarcaProd]"></asp:SqlDataSource>
                                        <div class="input-group-btn">
-                                     <button type="button" class="btn btn-danger" onserverclick="Btn_AgergarCodigosP" runat="server">Action</button>
+                                     <button type="button" class="btn btn-danger" onserverclick="Btn_AgergarCodigosP" runat="server">Agregar</button>
                                   </div>
                                  </div>
                              </div>
@@ -332,7 +339,7 @@
                           <div class="form-group">
                           <div class="col-xs-6"> 
                               <label>Categoria</label>
-                          <asp:DropDownList ID="DropDownList17" CssClass="form-control" runat="server" DataSourceID="SqlDataSource14" DataTextField="Categoria" DataValueField="ID_Categoria"></asp:DropDownList>
+                          <asp:DropDownList ID="DropDownList17" CssClass="form-control" runat="server" DataSourceID="SqlDataSource14" DataTextField="Categoria" DataValueField="ID_Categoria" AutoPostBack="true" OnSelectedIndexChanged="DropDownList17_SelectedIndexChanged"></asp:DropDownList>
 
                               <asp:SqlDataSource ID="SqlDataSource18" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Categoria], [Categoria] FROM [Categoria]"></asp:SqlDataSource>
 
@@ -344,7 +351,7 @@
                                <asp:SqlDataSource ID="SqlDataSource19" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_SubCategoria], [SubCategoria] FROM [SubCategoria] WHERE (([Estado] = @Estado) AND ([ID_Categoria] = @ID_Categoria))">
                                    <SelectParameters>
                                        <asp:Parameter DefaultValue="True" Name="Estado" Type="Boolean" />
-                                       <asp:ControlParameter ControlID="DropDownList13" Name="ID_Categoria" PropertyName="SelectedValue" Type="Int32" />
+                                       <asp:ControlParameter ControlID="DropDownList18" Name="ID_Categoria" PropertyName="SelectedValue" Type="Int32" />
                                    </SelectParameters>
                                </asp:SqlDataSource>
 
@@ -386,7 +393,7 @@
         </cc1:ModalPopupExtender>
 
         <asp:Panel ID="Panel2" runat="server">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-lg" style="height:700px; width:800px; overflow:auto;overflow-x:hidden;">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title" id="">Nuevo producto</h5>
@@ -500,7 +507,7 @@
                           </asp:SqlDataSource> 
                 </div>
                 <div class="col-xs-2">
-                    <h5>Rubro</h5>
+                    <h5>Cilindraje/Serie Motor</h5>
                   <asp:DropDownList ID="DropDownList6" runat="server" CssClass="form-control" DataSourceID="SqlDataSource6" DataTextField="Rubro" DataValueField="ID_Rubro"></asp:DropDownList>
                            <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Rubro, Rubro FROM Rubro WHERE (ID_Modelo = @ID_Modelo) ORDER BY Rubro ASC">
                         <SelectParameters>
@@ -544,7 +551,7 @@
                           <div class="form-group">
                           <div class="col-xs-6"> 
                               <label>Categoria</label>
-                          <asp:DropDownList ID="DropDownList13" CssClass="form-control" runat="server" DataSourceID="SqlDataSource14" DataTextField="Categoria" DataValueField="ID_Categoria"></asp:DropDownList>
+                          <asp:DropDownList ID="DropDownList13" CssClass="form-control" runat="server" DataSourceID="SqlDataSource14" DataTextField="Categoria" DataValueField="ID_Categoria" AutoPostBack="true" OnSelectedIndexChanged="DropDownList13_SelectedIndexChanged"></asp:DropDownList>
 
                               <asp:SqlDataSource ID="SqlDataSource14" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Categoria], [Categoria] FROM [Categoria]"></asp:SqlDataSource>
 

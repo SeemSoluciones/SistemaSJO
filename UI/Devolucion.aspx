@@ -21,13 +21,13 @@
     </div>
     <br />
     <br />
-    <asp:GridView ID="GridView1"  CssClass ="table table-responsive table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataKeyNames="ID_Venta,Codigo,ID_DetalleVenta">
+    <asp:GridView ID="GridView1"  CssClass ="table table-responsive table-hover" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" DataKeyNames="ID_Venta,ID_Producto,ID_DetalleVenta">
         <Columns>
             <asp:BoundField DataField="ID_Venta" HeaderText="ID Venta" InsertVisible="False" ReadOnly="True" SortExpression="ID_Venta" />
             <asp:BoundField DataField="NoFac_Pref" HeaderText="No Preforma" SortExpression="NoFac_Pref" />
             <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
-            <asp:BoundField DataField="Codigo" HeaderText="Codigo" SortExpression="Codigo" ReadOnly="True" />
-            <asp:BoundField DataField="Producto" HeaderText="Producto" SortExpression="Producto" />
+             <asp:BoundField DataField="ID_Producto" HeaderText="ID_Producto" SortExpression="ID_Producto" />
+            <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
             <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}" />
             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" />
             <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
@@ -37,7 +37,7 @@
         </Columns>
     </asp:GridView>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha, Producto.Codigo, Producto.Producto, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta, Stock.ID_Existencia FROM Producto INNER JOIN DetalleVenta ON Producto.Codigo = DetalleVenta.Codigo INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Stock ON Producto.Codigo = Stock.Codigo WHERE (Venta.ID_Venta = @ID_Venta) AND (Producto.Estado = 1)">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha,Producto.ID_Producto, Producto.Descripcion, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta, Stock.ID_Existencia FROM Producto INNER JOIN DetalleVenta ON Producto.ID_Producto= DetalleVenta.ID_Producto INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Stock ON Producto.ID_Producto = Stock.ID_Producto WHERE (Venta.ID_Venta = @ID_Venta) AND (Producto.Estado = 1)">
         <SelectParameters>
             <asp:ControlParameter ControlID="TextBox1" Name="ID_Venta" PropertyName="Text" />
         </SelectParameters>

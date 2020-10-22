@@ -72,7 +72,7 @@
         <b>Datos generales</b><br>
         <b>Order ID:</b> 
             <asp:Label ID="Label5" runat="server" Text=""></asp:Label> <br>
-        <b>Fecha compra:</b>
+        <b>Fecha:</b>
             <asp:Label ID="Label6" runat="server" Text=""></asp:Label> <br>
           <b>Forma de pago:</b>
             <asp:Label ID="Label7" runat="server" Text=""></asp:Label>
@@ -89,9 +89,8 @@
             <asp:GridView ID="GridView1" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowDataBound="GridView1_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" >
                 <Columns>
                                 <asp:BoundField DataField="Cantidad" HeaderText="Cant" ReadOnly="True" SortExpression="Codigo" />
-                                <asp:BoundField DataField="Codigo" HeaderText="Codigo" SortExpression="Codigo" />
-                                <asp:BoundField DataField="Codigo2" HeaderText="Equiv" SortExpression="Codigow" />    
-                                <asp:BoundField DataField="Producto" HeaderText="Producto" SortExpression="Producto" />
+                                <asp:BoundField DataField="Codigos" HeaderText="Codigos" SortExpression="Codigos" />   
+                                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
                                 <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}"/>
                                 <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
                 </Columns>
@@ -105,6 +104,26 @@
                 <SortedDescendingHeaderStyle BackColor="#242121" />
             </asp:GridView>
        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand=""></asp:SqlDataSource>
+       </table>
+            <table class="table table-striped">
+            <asp:GridView ID="GridView2" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" OnRowDataBound="GridView1_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" >
+                <Columns>
+                                <asp:BoundField DataField="Cantidad" HeaderText="Cant" ReadOnly="True" SortExpression="Codigo" />
+                                <asp:BoundField DataField="Codigos" HeaderText="Codigos" SortExpression="Codigos" />   
+                                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
+                                <asp:BoundField DataField="Precio" HeaderText="Precio" SortExpression="Precio" DataFormatString="{0:0.00}"/>
+                                <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
+                </Columns>
+                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                <SortedDescendingHeaderStyle BackColor="#242121" />
+            </asp:GridView>
+       <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand=""></asp:SqlDataSource>
        </table>
       </div>
       <!-- /.col -->

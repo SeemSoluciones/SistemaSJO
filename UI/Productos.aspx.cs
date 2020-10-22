@@ -120,7 +120,7 @@ namespace UI
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlDataSource1.SelectCommand = "SELECT Producto.ID_Producto, Producto.Producto, Producto.Descripcion, stuff((Select ', ' + OEM.OEM + ' ~ ' + Marca.Marca From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM, stuff((Select ', ' + CodigoProducto.Codigo + ' ~ ' + MarcaProd.MarcaP From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP, stuff((Select '| ' + AnioInicio + '-' + AnioFinal + ' ~ ' + Rubro + ', ' + Modelo + ', ' + Marca From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP, SubCategoria.SubCategoria + ', ' + Categoria.Categoria AS Categoria FROM Producto INNER JOIN SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria INNER JOIN Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria left join OEM on Producto.ID_Producto = OEM.ID_Producto left join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto WHERE (Producto.Estado = 1) AND (Producto.Producto like '%" + TextBox11.Text+ "%' OR OEM.OEM like '%"+TextBox11.Text+ "%' OR CodigoProducto.Codigo like '%"+TextBox11.Text+"%')";
+            SqlDataSource1.SelectCommand = "SELECT DISTINCT Producto.ID_Producto, Producto.Producto, Producto.Descripcion, stuff((Select ', ' + OEM.OEM + ' ~ ' + Marca.Marca From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM, stuff((Select ', ' + CodigoProducto.Codigo + ' ~ ' + MarcaProd.MarcaP From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP, stuff((Select '| ' + AnioInicio + '-' + AnioFinal + ' ~ ' + Rubro + ', ' + Modelo + ', ' + Marca From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP, SubCategoria.SubCategoria + ', ' + Categoria.Categoria AS Categoria FROM Producto INNER JOIN SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria INNER JOIN Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria left join OEM on Producto.ID_Producto = OEM.ID_Producto left join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto WHERE (Producto.Estado = 1) AND (Producto.Producto like '%" + TextBox11.Text+ "%' OR OEM.OEM like '%"+TextBox11.Text+ "%' OR CodigoProducto.Codigo like '%"+TextBox11.Text+"%')";
             SqlDataSource1.DataBind();
         }
 /*
@@ -587,7 +587,24 @@ namespace UI
             Button4_ModalPopupExtender.Show();
         }
 
+        protected void GridView8_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //int index = Convert.ToInt32(e.RowIndex);
+            //dt = (DataTable)ViewState["Detalles"];
+            //dt.Rows[index].Delete();
+            //GridView1.DataSource = dt;
+            //GridView1.DataBind();
+        }
 
+        protected void DropDownList13_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Button6_ModalPopupExtender.Show();
+        }
+
+        protected void DropDownList17_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Button4_ModalPopupExtender.Show();
+        }
     }
 
 

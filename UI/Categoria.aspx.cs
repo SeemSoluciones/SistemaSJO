@@ -31,10 +31,19 @@ namespace UI
         {
             try
             {
-                string ms = "";
-                ms = Datos.InsertaRubro(TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue));
-                Response.Write("<script>alert('" + ms + "')</script>");
-                Response.Redirect("Categoria.aspx");
+                if (TextBox1.Text != "")
+                {
+
+
+                    string ms = "";
+                    ms = Datos.InsertaRubro(TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue));
+                    Response.Write("<script>alert('" + ms + "')</script>");
+                    Response.Redirect("Categoria.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Ingrese un dato')</script>");
+                }
             }
             catch
             {
@@ -47,11 +56,22 @@ namespace UI
         {
             try
             {
-                string ms = "";
-                ms = Datos.InsertaModelo(TextBox2.Text, Convert.ToInt32(DropDownList2.SelectedValue));
-                Response.Write("<script>alert('" + ms + "')</script>");
-                Response.Redirect("Categoria.aspx");
+                if (TextBox2.Text != "")
+                {
+
+
+                    string ms = "";
+                    ms = Datos.InsertaModelo(TextBox2.Text, Convert.ToInt32(DropDownList2.SelectedValue));
+                    Response.Write("<script>alert('" + ms + "')</script>");
+                    Response.Redirect("Categoria.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error, resive los datos')</script>");
+                }
+
             }
+
             catch
             {
                 Response.Write("<script>alert('Error, resive los datos')</script>");
@@ -63,10 +83,17 @@ namespace UI
         {
             try
             {
-                string ms = "";
-                ms = Datos.InsertaMarca(TextBox5.Text);
-                Response.Write("<script>alert('" + ms + "')</script>");
-                Response.Redirect("Categoria.aspx");
+                if (TextBox5.Text != "")
+                {
+                    string ms = "";
+                    ms = Datos.InsertaMarca(TextBox5.Text);
+                    Response.Write("<script>alert('" + ms + "')</script>");
+                    Response.Redirect("Categoria.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error, resive los datos')</script>");
+                }
             }
             catch
             {
@@ -79,8 +106,15 @@ namespace UI
         {
             try
             {
-                Datos.InsertarMarcaProd(TextBox3.Text);
-                Response.Redirect("Categoria.aspx");
+                if (TextBox1.Text != "")
+                {
+                    Datos.InsertarMarcaProd(TextBox3.Text);
+                    Response.Redirect("Categoria.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error, resive los datos')</script>");
+                }
             }
             catch
             {
@@ -92,8 +126,16 @@ namespace UI
         {
             try
             {
-                Datos.InsertarMedida(TextBox4.Text);
-                Response.Redirect("Categoria.aspx");
+                if (TextBox4.Text != "")
+                {
+                    Datos.InsertarMedida(TextBox4.Text);
+                    Response.Redirect("Categoria.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error, resive los datos')</script>");
+                }
+
             }
             catch
             {
@@ -104,13 +146,67 @@ namespace UI
         protected void Button4_Click(object sender, EventArgs e)
         {
             int estado = 0;
-            SqlDataSource8.InsertParameters["Anio"].DefaultValue = TextBox6.Text;
-            estado = SqlDataSource8.Insert();
-            if(estado == 1)
+            if (TextBox6.Text != "")
             {
-                Response.Write("<script>alert('Año agregado correctamente.')</script>");
+                SqlDataSource8.InsertParameters["Anio"].DefaultValue = TextBox6.Text;
+                estado = SqlDataSource8.Insert();
+                if (estado == 1)
+                {
+                    Response.Write("<script>alert('Año agregado correctamente.')</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error, resive los datos')</script>");
+                }
             }
             else
+            {
+                Response.Write("<script>alert('Error, resive los datos')</script>");
+            }
+        }
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TextBox7.Text != "")
+                {
+
+
+                    SqlDataSource9.InsertParameters["Categoria"].DefaultValue = TextBox7.Text;
+                    SqlDataSource9.Insert();
+                    SqlDataSource9.SelectCommand = "SELECT ID_Categoria, Categoria FROM Categoria WHERE (Estado = 1)";
+                    SqlDataSource9.DataBind();
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error, resive los datos')</script>");
+                }
+            }
+            catch
+            {
+                Response.Write("<script>alert('Error, resive los datos')</script>");
+            }
+        }
+
+        protected void Button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TextBox8.Text != "")
+                {
+                    SqlDataSource10.InsertParameters["SubCategoria"].DefaultValue = TextBox7.Text;
+                    SqlDataSource10.InsertParameters["ID_Categoria"].DefaultValue = DropDownList3.SelectedValue;
+                    SqlDataSource10.Insert();
+                    SqlDataSource10.SelectCommand = "SELECT SubCategoria.ID_SubCategoria, SubCategoria.SubCategoria, Categoria.Categoria FROM Categoria INNER JOIN SubCategoria ON Categoria.ID_Categoria = SubCategoria.ID_Categoria WHERE(Categoria.Estado = 1)";
+                    SqlDataSource10.DataBind();
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error, resive los datos')</script>");
+                }
+            }
+            catch
             {
                 Response.Write("<script>alert('Error, resive los datos')</script>");
             }

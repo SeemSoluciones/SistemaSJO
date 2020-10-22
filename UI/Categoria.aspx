@@ -22,11 +22,11 @@
                 <div class="box box-primary">
                     <div class="box-body">
                         <div class="form-group">
-                            <label>Rubro</label>
+                            <label>Cilindraje / Serie motor</label>
                             <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>  
                         <div class="form-group">
-                            <label>Linea/Modelo</label>
+                            <label>Linea / Modelo</label>
                             <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="Modelo" DataValueField="ID_Modelo"></asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Modelo.ID_Modelo, Modelo.Modelo + ' ' + Marca.Marca AS Modelo FROM Modelo INNER JOIN Marca ON Modelo.ID_Marca = Marca.ID_Marca"></asp:SqlDataSource>
                         </div>            
@@ -78,7 +78,34 @@
                             </asp:SqlDataSource>
                         </div>
                     </div>
-                </div>     
+                </div>   
+                <div class="box box-primary">
+                    <div class="box-body">
+                       <div class="form-group">
+                           <label>Categoria</label>
+                           <asp:TextBox ID="TextBox7" runat="server" CssClass="form-control"></asp:TextBox>
+                       </div>
+                        <asp:Button ID="Button7" CssClass="btn btn-primary" runat="server"  Width="200"  Text="Aceptar" OnClick="Button7_Click" />
+                        <div class="table">
+                            <asp:GridView ID="GridView7" CssClass="table table-responsive"  runat="server" AutoGenerateColumns="False" DataKeyNames="ID_Categoria" DataSourceID="SqlDataSource9">
+                                <Columns>
+                                    <asp:CommandField ShowEditButton="True" />
+                                    <asp:BoundField DataField="ID_Categoria" HeaderText="ID_Categoria" ReadOnly="True" InsertVisible="False" SortExpression="ID_Categoria"></asp:BoundField>
+                                    <asp:BoundField DataField="Categoria" HeaderText="Categoria" SortExpression="Categoria"></asp:BoundField>
+                                </Columns>
+                            </asp:GridView>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource9" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' InsertCommand="INSERT INTO Categoria(Categoria, Estado) VALUES (@Categoria, 1)" SelectCommand="SELECT ID_Categoria, Categoria FROM Categoria WHERE (Estado = 1)" UpdateCommand="UPDATE Categoria SET Categoria = @Categoria WHERE (ID_Categoria = @ID_Categoria)">
+                                <InsertParameters>
+                                    <asp:Parameter Name="Categoria"></asp:Parameter>
+                                </InsertParameters>
+                                <UpdateParameters>
+                                    <asp:Parameter Name="Categoria"></asp:Parameter>
+                                    <asp:Parameter Name="ID_Categoria"></asp:Parameter>
+                                </UpdateParameters>
+                            </asp:SqlDataSource>
+                        </div>
+                    </div>
+                </div>  
         </div>
              <div class="col-md-4">
                 <div class="box box-primary">
@@ -137,6 +164,39 @@
                                  <asp:Parameter Name="medida" Type="String" />
                              </UpdateParameters>
                          </asp:SqlDataSource>
+                     </div>
+                 </div>
+                 <div class="box box-primary">
+                     <div class="box-body">
+                         <div class="form-group">
+                             <label>Subcateoria</label>
+                             <asp:TextBox ID="TextBox8" CssClass="form-control" runat="server"></asp:TextBox>
+                         </div>
+                         <div class="form-group">
+                             <label>Categoria</label>
+                             <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control select2-selection" DataSourceID="SqlDataSource9" DataTextField="Categoria" DataValueField="ID_Categoria"></asp:DropDownList>
+                         </div>
+                         <asp:Button ID="Button8" runat="server" CssClass="btn btn-primary" Width="200px" Text="Aceptar" OnClick="Button8_Click" />
+                         <div class="table">
+                             <asp:GridView ID="GridView8" CssClass="table table-responsive" runat="server" DataSourceID="SqlDataSource10" AutoGenerateColumns="False" DataKeyNames="ID_SubCategoria">
+                                 <Columns>
+                                     <asp:CommandField ShowEditButton="True"></asp:CommandField>
+                                     <asp:BoundField DataField="ID_SubCategoria" HeaderText="ID_SubCategoria" ReadOnly="True" InsertVisible="False" SortExpression="ID_SubCategoria"></asp:BoundField>
+                                     <asp:BoundField DataField="SubCategoria" HeaderText="SubCategoria" SortExpression="SubCategoria"></asp:BoundField>
+                                     <asp:BoundField DataField="Categoria" HeaderText="Categoria" SortExpression="Categoria"></asp:BoundField>
+                                 </Columns>
+                             </asp:GridView>
+                             <asp:SqlDataSource runat="server" ID="SqlDataSource10" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' InsertCommand="INSERT INTO SubCategoria(SubCategoria, Estado, ID_Categoria) VALUES (@SubCategoria, 1, @ID_Categoria)" SelectCommand="SELECT SubCategoria.ID_SubCategoria, SubCategoria.SubCategoria, Categoria.Categoria FROM Categoria INNER JOIN SubCategoria ON Categoria.ID_Categoria = SubCategoria.ID_Categoria WHERE (Categoria.Estado = 1)" UpdateCommand="UPDATE SubCategoria SET SubCategoria = @SubCategoria WHERE (ID_SubCategoria = @ID_SubCategoria)">
+                                 <InsertParameters>
+                                     <asp:Parameter Name="SubCategoria"></asp:Parameter>
+                                     <asp:Parameter Name="ID_Categoria"></asp:Parameter>
+                                 </InsertParameters>
+                                 <UpdateParameters>
+                                     <asp:Parameter Name="SubCategoria"></asp:Parameter>
+                                     <asp:Parameter Name="ID_SubCategoria"></asp:Parameter>
+                                 </UpdateParameters>
+                             </asp:SqlDataSource>
+                         </div>
                      </div>
                  </div>
             </div> 
