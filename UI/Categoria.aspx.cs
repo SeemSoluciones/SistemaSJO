@@ -39,6 +39,7 @@ namespace UI
                     ms = Datos.InsertaRubro(TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue));
                     Response.Write("<script>alert('" + ms + "')</script>");
                     Response.Redirect("Categoria.aspx");
+                    borrar();
                 }
                 else
                 {
@@ -64,6 +65,7 @@ namespace UI
                     ms = Datos.InsertaModelo(TextBox2.Text, Convert.ToInt32(DropDownList2.SelectedValue));
                     Response.Write("<script>alert('" + ms + "')</script>");
                     Response.Redirect("Categoria.aspx");
+                    borrar();
                 }
                 else
                 {
@@ -89,6 +91,7 @@ namespace UI
                     ms = Datos.InsertaMarca(TextBox5.Text);
                     Response.Write("<script>alert('" + ms + "')</script>");
                     Response.Redirect("Categoria.aspx");
+                    borrar();
                 }
                 else
                 {
@@ -106,10 +109,11 @@ namespace UI
         {
             try
             {
-                if (TextBox1.Text != "")
+                if (TextBox3.Text != "")
                 {
                     Datos.InsertarMarcaProd(TextBox3.Text);
                     Response.Redirect("Categoria.aspx");
+                    borrar();
                 }
                 else
                 {
@@ -130,6 +134,7 @@ namespace UI
                 {
                     Datos.InsertarMedida(TextBox4.Text);
                     Response.Redirect("Categoria.aspx");
+                    borrar();
                 }
                 else
                 {
@@ -153,6 +158,7 @@ namespace UI
                 if (estado == 1)
                 {
                     Response.Write("<script>alert('Año agregado correctamente.')</script>");
+                    borrar();
                 }
                 else
                 {
@@ -177,6 +183,7 @@ namespace UI
                     SqlDataSource9.Insert();
                     SqlDataSource9.SelectCommand = "SELECT ID_Categoria, Categoria FROM Categoria WHERE (Estado = 1)";
                     SqlDataSource9.DataBind();
+                    borrar();
                 }
                 else
                 {
@@ -195,11 +202,12 @@ namespace UI
             {
                 if (TextBox8.Text != "")
                 {
-                    SqlDataSource10.InsertParameters["SubCategoria"].DefaultValue = TextBox7.Text;
+                    SqlDataSource10.InsertParameters["SubCategoria"].DefaultValue = TextBox8.Text;
                     SqlDataSource10.InsertParameters["ID_Categoria"].DefaultValue = DropDownList3.SelectedValue;
                     SqlDataSource10.Insert();
                     SqlDataSource10.SelectCommand = "SELECT SubCategoria.ID_SubCategoria, SubCategoria.SubCategoria, Categoria.Categoria FROM Categoria INNER JOIN SubCategoria ON Categoria.ID_Categoria = SubCategoria.ID_Categoria WHERE(Categoria.Estado = 1)";
                     SqlDataSource10.DataBind();
+                    borrar();
                 }
                 else
                 {
@@ -211,5 +219,22 @@ namespace UI
                 Response.Write("<script>alert('Error, resive los datos')</script>");
             }
         }
+
+
+        void borrar ()
+        {
+            TextBox1.Text = "";
+            TextBox2.Text = "";
+            TextBox3.Text = "";
+            TextBox4.Text = "";
+            TextBox5.Text = "";
+            TextBox6.Text = "";
+            TextBox7.Text = "";
+            TextBox8.Text = "";
+
+
+        }
+
+       
     }
 }

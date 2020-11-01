@@ -1,17 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Categoria.aspx.cs" Inherits="UI.Categoria" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            min-height: .01%;
-            overflow-x: auto;
-            overflow-y: hidden;
-            -ms-overflow-style: -ms-autohiding-scrollbar;
-            overflow: auto;
-            border: 1px solid #ddd;
-            margin-bottom: 15px;
-        }
-    </style>
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="content-header">
         <h1 align="center">Categorias de los productos</h1>
@@ -239,8 +228,8 @@
                         </div> 
                     </div>
                     <div class="box-footer">
-                           <asp:Button ID="Button4" runat="server" Text="Aceptar"  CssClass="btn btn-primary" Width="200" OnClick="Button4_Click"/>
-                    </div>
+                        <asp:Button ID="Button4" runat="server" CssClass="btn btn-primary" Width="200px"  Text="Aceptar" OnClick="Button4_Click" />
+                       </div>
                     <asp:GridView ID="GridView6" CssClass="table table-responsive" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ID_Anio" DataSourceID="SqlDataSource8">
                         <Columns>
                             <asp:CommandField ShowEditButton="True" />
