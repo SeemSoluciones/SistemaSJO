@@ -71,7 +71,7 @@
                                      <asp:DropDownList CssClass="form-control select2" ID="DropDownList7" runat="server" DataSourceID="SqlDataSource8" DataTextField="Anio" DataValueField="ID_Anio" AppendDataBoundItems="true">
                                          <asp:ListItem Value="0">Seleccione uno...</asp:ListItem>
                                      </asp:DropDownList>
-                                    <asp:CheckBox ID="CheckBox2" runat="server" /> Por año.
+                                   
                                     <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Anio], [Anio] FROM [Anio] ORDER BY Anio ASC "></asp:SqlDataSource>
      
                                 </div>

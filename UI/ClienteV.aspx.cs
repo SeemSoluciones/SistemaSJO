@@ -22,7 +22,7 @@ namespace UI
             try
             {
                 string msj;
-                msj = Datos.InsertarCliente(Convert.ToInt32(TextBox1.Text), TextBox2.Text, TextBox4.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text));
+                msj = Datos.InsertarCliente(Convert.ToInt32(TextBox1.Text), TextBox2.Text, TextBox4.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text) , 0, "", "");
 
                 Response.Redirect("Cliente.aspx");
             }

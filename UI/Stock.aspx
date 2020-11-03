@@ -145,13 +145,18 @@
         <div class="table table-responsive">
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CssClass="table table-responsive table-hover" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1" AllowPaging="True" AllowSorting="True">
             <Columns>
-                <asp:CommandField ShowSelectButton="True" />
+                <asp:TemplateField ShowHeader="False">
+                    <ItemTemplate>
+                        <asp:LinkButton runat="server" Text="" CssClass="fa fa-edit" CommandName="Select" CausesValidation="False" ID="LinkButton1"></asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
                 <asp:BoundField DataField="ID_Existencia" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID_Existencia" />
                 <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" />
                 <asp:BoundField DataField="Cantidad_Min" HeaderText="Cantidad Min" SortExpression="Cantidad_Min" />
                 <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
-                <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio U" SortExpression="PrecioUnitario" />
-                <asp:BoundField DataField="PrecioVenta" HeaderText="Precio V" SortExpression="PrecioVenta" />
+                <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio U" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}" />
+                <asp:BoundField DataField="PrecioVenta" HeaderText="Precio V" SortExpression="PrecioVenta" DataFormatString="{0:0.00}" />
                 <asp:BoundField DataField="LISTAOEM" HeaderText="LISTA OEM" SortExpression="LISTAOEM" ReadOnly="True" />
                 <asp:BoundField DataField="LISTACODP" HeaderText="LISTA COD-PROD" SortExpression="LISTACODP" ReadOnly="True" />
                 <asp:BoundField DataField="LISTANIOP" HeaderText="LISTA AÑO-PROD" SortExpression="LISTANIOP" ReadOnly="True" />

@@ -21,7 +21,7 @@
                 </span>
               </div>
             <div class="table">
-             <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False"  CssClass="table table-responsive" DataKeyNames="ID_Proveedor" DataSourceID="SqlDataSource1">
+             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"  CssClass="table table-responsive" DataKeyNames="ID_Proveedor" DataSourceID="SqlDataSource1">
                  <Columns>
                      
                      <asp:BoundField DataField="ID_Proveedor" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID_Proveedor" />
@@ -30,10 +30,13 @@
                      <asp:BoundField DataField="Direccion" HeaderText="Direccion" SortExpression="Direccion" />
                      <asp:BoundField DataField="Telefono" HeaderText="Telefono" SortExpression="Telefono" />
                      <asp:BoundField DataField="NIT" HeaderText="NIT" SortExpression="NIT" />
+                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
+                     <asp:BoundField DataField="Celular" HeaderText="Celular" SortExpression="Celular" />
+                     <asp:BoundField DataField="Correo" HeaderText="Correo" SortExpression="Correo" />
                      <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                  </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Proveedor, Codigo,  Proveedor, Direccion, Telefono, NIT FROM Proveedor WHERE (Estado = 1)" UpdateCommand="EditarProveedor" UpdateCommandType="StoredProcedure" DeleteCommand="EliminarProveedor" DeleteCommandType="StoredProcedure">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Proveedor, Codigo, Proveedor, Direccion, Telefono, NIT, Nombre, Celular, Correo FROM Proveedor WHERE (Estado = 1)" UpdateCommand="EditarProveedor" UpdateCommandType="StoredProcedure" DeleteCommand="EliminarProveedor" DeleteCommandType="StoredProcedure">
                     <DeleteParameters>
                         <asp:Parameter Name="ID_Proveedor" Type="Int32" />
                     </DeleteParameters>
@@ -44,6 +47,9 @@
                         <asp:Parameter Name="Direccion" Type="String" />
                         <asp:Parameter Name="Telefono" Type="Int32" />
                         <asp:Parameter Name="nit" Type="Int32" />
+                        <asp:Parameter Name="Nombre" Type="String" />
+                        <asp:Parameter Name="Celular" Type="Int32" />
+                        <asp:Parameter Name="Correo" Type="String" />
                     </UpdateParameters>
                 </asp:SqlDataSource>
         </div>
@@ -79,20 +85,38 @@
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
+                        </div> <div class="form-group">
                             <label >Direccion</label>
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                   
                         <div class="form-group">
                             <label>Telefono</label>
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="TextBox5" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                        </div>
+                                      <div class="form-group">
+                            <label>Nombre</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="TextBox7" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                        </div>
+                                    <div class="form-group">
+                            <label>celular</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="TextBox8" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                        </div>
+                                    <div class="form-group">
+                            <label>Correo proveedor</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="TextBox9" runat="server" Text="" CssClass="form-control"></asp:TextBox>
                         </div>
                                 </div>
                             </div>

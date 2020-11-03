@@ -45,6 +45,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cliente.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DsProducto.cs">
+      <DependentUpon>DsProducto.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DsProducto.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

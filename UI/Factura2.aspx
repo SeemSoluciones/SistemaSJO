@@ -134,7 +134,7 @@
       <!-- accepted payments column -->
       <div class="col-xs-6">
         <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-         Cualquier cambio o devolucion sera realizado dentro de 15 dias habiles.
+         Cualquier cambio o devolucion sera realizado dentro de 5 dias habiles.
         </p>
       </div>
       <!-- /.col -->

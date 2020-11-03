@@ -334,11 +334,11 @@ namespace BLL
             return Convert.ToInt32(PROVEEDOR.SiExisteproveedor(codigo));
             
         }
-        public string nuevoProvedor(string codigo, string prove, string direc, int tel, int nit)
+        public string nuevoProvedor(string codigo, string prove, string direc, int tel, int nit, string nombre, int cel, string correo)
         {
             try
             {
-                PROVEEDOR.InsertarProveedor(codigo, prove, direc, tel, nit);
+                PROVEEDOR.InsertarProveedor(codigo, prove, direc, tel, nit, nombre, cel, correo);
                 return "Datos ingresados correctamente";
 
             }

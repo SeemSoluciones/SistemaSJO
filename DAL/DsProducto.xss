@@ -9,8 +9,8 @@
     <Shape ID="DesignTable:Producto" ZOrder="4" X="7" Y="522" Height="381" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="235" />
     <Shape ID="DesignTable:Categoria" ZOrder="5" X="356" Y="327" Height="210" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
     <Shape ID="DesignTable:BuscarProducto" ZOrder="3" X="304" Y="27" Height="206" Width="375" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="116" />
-    <Shape ID="DesignTable:DataTableCotiza" ZOrder="1" X="16" Y="-58" Height="370" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="287" />
-    <Shape ID="DesignSources:ProveedorTableAdapter" ZOrder="2" X="708" Y="-175" Height="1026" Width="432" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="1022" />
+    <Shape ID="DesignTable:DataTableCotiza" ZOrder="2" X="16" Y="-58" Height="370" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="287" />
+    <Shape ID="DesignSources:ProveedorTableAdapter" ZOrder="1" X="708" Y="-175" Height="1026" Width="432" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="1022" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK__Producto__ID_Cat__4E88ABD4" ZOrder="6" LineWidth="11">
