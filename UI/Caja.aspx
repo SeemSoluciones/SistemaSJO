@@ -138,7 +138,12 @@
                         
                     </asp:DropDownList>
                     <asp:SqlDataSource runat="server" ID="SqlDataSource9" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT ID_Cotizacion, CAST(ID_Cotizacion AS char) + ' ~ ' + Nombre AS Nombre FROM CotizacionVenta WHERE (Estado = 1)"></asp:SqlDataSource>
-                </div>
+                    <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT Empleado.ID_Empleado, Empleado.Nombre + ' ' + Empleado.Apellidos AS Nombre FROM Empleado INNER JOIN CotizacionVenta ON Empleado.ID_Empleado = CotizacionVenta.ID_Empleado WHERE (CotizacionVenta.ID_Cotizacion = @ID_Cotizacion)">
+                        <SelectParameters>
+                            <asp:Parameter Name="ID_Cotizacion"></asp:Parameter>
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                      </div>
             </div>
                 <div class="col-xs-4">
                     <div class="form-group">

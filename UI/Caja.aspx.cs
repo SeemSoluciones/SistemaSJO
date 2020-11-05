@@ -102,7 +102,7 @@ namespace UI
                     TipoFactura = 2;
 
 
-                    Response.Redirect("Caja.aspx");
+                  //  Response.Redirect("Caja.aspx");
                 }
                 else
                 {
@@ -421,16 +421,16 @@ namespace UI
                 tabla =  datos2.ListaUncliente(Convert.ToInt32(TextBox3.Text));
                 nom = tabla.Rows[0][2].ToString();
                 ape = tabla.Rows[0][3].ToString();
-                TextBox4.Text = nom + "  "+ ape;
-                Label6.Text = "El cliente fue guardado. Por favor vuelva a pulsar el boton 'Guardar'";
-            }
+                TextBox4.Text = TextBox17.Text  + "  "+ TextBox18.Text;
+                Label6.Text = "El cliente fue guardado. Por favor vuelva a pulsar el boton 'Guardar O Cotizacion'";
+        }
             catch
             {
                 TextBox4.BackColor = System.Drawing.Color.Red;
                 TextBox4.Text = "Error, revise los campos";
                 Label6.Text = "Error! revise los campos";
             }
-        }
+}
 
         protected void Button8_Click(object sender, EventArgs e)
         {
@@ -561,7 +561,39 @@ namespace UI
 
         protected void DropDownList8_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
+
+
+            SqlDataSource12.SelectParameters["ID_Cotizacion"].DefaultValue = DropDownList8.SelectedValue;
+            SqlDataSource12.DataSourceMode = SqlDataSourceMode.DataReader;
+            SqlDataReader listaemp;
+            listaemp = (SqlDataReader)SqlDataSource12.Select(DataSourceSelectArguments.Empty);
+            if (listaemp.Read()) {
+                var datosem = listaemp["ID_Empleado"];
+                if (Convert.ToInt16(listaemp["ID_Empleado"].ToString()) != 0)
+                {
+                    DropDownList9.Enabled = true;
+                    CheckBox1.Checked = true;
+                    DropDownList9.SelectedIndex = DropDownList9.Items.IndexOf(DropDownList9.Items.FindByValue(listaemp["ID_Empleado"].ToString()));
+
+                }
+                else if (listaemp.IsDBNull(0) || datosem   == DBNull.Value || listaemp.IsDBNull(listaemp .GetOrdinal("ID_Empleado")))
+                {
+                    DropDownList9.Enabled = false;
+                    CheckBox1.Checked = false;
+                    DropDownList9.SelectedIndex = DropDownList9.Items.IndexOf(DropDownList9.Items.FindByValue("0"));
+                    Response.Write("<script>alert('"+ listaemp["ID_Empleado"].ToString().Length + "')</script>");
+                }
+                else
+                {
+                    DropDownList9.Enabled = false;
+                    CheckBox1.Checked = false;
+                    DropDownList9.SelectedIndex = DropDownList9.Items.IndexOf(DropDownList9.Items.FindByValue("0"));
+                    Response.Write("<script>alert('" + listaemp["ID_Empleado"].ToString().Length + "')</script>");
+                }
+                
+            }
+
             GridView1.DataSource = datos.ListadoCotiziones(Convert.ToInt32(DropDownList8.SelectedValue));
             GridView1.DataBind();
             dt.Columns.Add("ID");
@@ -574,6 +606,8 @@ namespace UI
             dt = (DataTable)GridView1.DataSource;
             ViewState["Detalles"] = dt;
             IDcoti = Convert.ToInt32(DropDownList8.SelectedValue);
+
+          
 
         }
 
@@ -592,9 +626,9 @@ namespace UI
                 if (SiExiste == 0)
                 {
                     Button6_ModalPopupExtender.Show();
-                    TextBox3.Text = TextBox16.Text;
-                    TextBox4.Text = TextBox17.Text+ " "+TextBox18.Text;
-                    TextBox5.Text = txtEdad.Text;
+                    TextBox16.Text = TextBox3.Text;
+                   // TextBox4.Text = TextBox17.Text+ " "+TextBox18.Text;
+                    //TextBox5.Text = txtEdad.Text;
                 }
                 else
                 {
@@ -602,6 +636,7 @@ namespace UI
                     Nit = Convert.ToInt32(tabla.Rows[0][0]);
                     TextBox4.Text = tabla.Rows[0][7].ToString();
                 }
+
             }
         }
 
@@ -610,6 +645,11 @@ namespace UI
             if(CheckBox1.Checked == true)
             {
                 DropDownList9.Enabled = true;
+            }
+            else if (CheckBox1.Checked == false)
+            {
+                DropDownList9.Enabled = false;
+                DropDownList9.SelectedIndex = DropDownList9.Items.IndexOf(DropDownList9.Items.FindByValue("0"));
             }
         }
 
