@@ -50,7 +50,7 @@
                                     <asp:DropDownList ID="DropDownList5" CssClass="form-control"  runat="server" DataSourceID="SqlDataSource6" DataTextField="Modelo" DataValueField="ID_Modelo" AutoPostBack="True">
                                         <asp:ListItem Value="0">Seleccione uno...</asp:ListItem>
                                     </asp:DropDownList>
-                                 <%-- <asp:CheckBox ID="CheckBox4" runat="server" />Por modelo/linea --%>
+                               
                                     <asp:SqlDataSource ID="SqlDataSource6"  runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Modelo, Modelo FROM Modelo WHERE (ID_Marca = @idMarca) ORDER BY Modelo Asc">
                                      <SelectParameters>
                                      <asp:ControlParameter ControlID="DropDownList2" Name="idMarca" PropertyName="SelectedValue" />
@@ -83,6 +83,7 @@
                            </div>
                                 <div class="col-sm-2">
                                     <asp:TextBox ID="TextBox20" CssClass="form-control" runat="server"></asp:TextBox>
+                                      <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />Desmarcar para solo codigo
                                 </div>
                                 <div class="col-sm-1">
                                     <asp:Button ID="Button9" CssClass="btn btn-default form-control" runat="server" Text="Buscar" OnClick="Button9_Click" />

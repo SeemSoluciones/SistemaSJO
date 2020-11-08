@@ -10,23 +10,35 @@
   </div>
     <div class="content">
           <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
             <label>No factura/preforma</label>
                 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
             </div>  
+        </div> 
+          <div class="col-md-3">
+              <div class="form-group">
+            <label>Tipo de pago</label>
+                  <asp:DropDownList ID="DropDownList3" CssClass="select2-dropdown form-control" runat="server" DataSourceID="SqlDataSource4" DataTextField="Tipo" DataValueField="ID_TPago" AppendDataBoundItems="true">
+                      <asp:ListItem Value="0">Seleccionar...</asp:ListItem>
+                  </asp:DropDownList>
+                  <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT [ID_TPago], [Tipo] FROM [TipoPago]"></asp:SqlDataSource>
+              </div>  
         </div>
-         <div class="col-md-4">
+         <div class="col-md-3">
                  <label>Proveedor</label>
-                 <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="Proveedor" DataValueField="ID_Proveedor"></asp:DropDownList>
+                 <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="Proveedor" DataValueField="ID_Proveedor" AppendDataBoundItems="true">
+                     <asp:ListItem Value="0">Seleccionar...</asp:ListItem>
+                 </asp:DropDownList>
                  <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Proveedor, Proveedor FROM Proveedor WHERE (Estado = 1)"></asp:SqlDataSource>
         </div>
-         <div class="col-md-4">
+         <div class="col-md-3">
               <div class="form-group">
             <label>Fecha</label>
             <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
             </div>  
         </div>
+        
     </div>
          <div class="row">
             <div class="col-md-12">
@@ -56,13 +68,17 @@
                                       </asp:SqlDataSource>
                                 </div>
                                 <div class="col-sm-1">
-                                     <asp:DropDownList CssClass="form-control select2" ID="DropDownList7" runat="server" DataSourceID="SqlDataSource8" DataTextField="Anio" DataValueField="ID_Anio"></asp:DropDownList>
+                                     <asp:DropDownList CssClass="form-control select2" ID="DropDownList7" runat="server" DataSourceID="SqlDataSource8" DataTextField="Anio" DataValueField="ID_Anio" AppendDataBoundItems="true">
+                                         <asp:ListItem Value="0">Seleccionar...</asp:ListItem>
+                                     </asp:DropDownList>
                                     <asp:CheckBox ID="CheckBox2" runat="server" /> Por año.
                                     <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Anio], [Anio] FROM [Anio] ORDER BY Anio ASC "></asp:SqlDataSource>
      
                                 </div>
                            <div class="col-xs-2">
-                               <asp:DropDownList ID="DropDownListCat" CssClass="form-control select2" runat="server" DataSourceID="SqlDataSource3" DataTextField="Categoria" DataValueField="ID_SubCategoria" AutoPostBack="true" OnSelectedIndexChanged="DropDownListCat_SelectedIndexChanged"></asp:DropDownList>
+                               <asp:DropDownList ID="DropDownListCat" CssClass="form-control select2" runat="server" DataSourceID="SqlDataSource3" DataTextField="Categoria" DataValueField="ID_SubCategoria" AutoPostBack="true" OnSelectedIndexChanged="DropDownListCat_SelectedIndexChanged" AppendDataBoundItems="true">
+                                   <asp:ListItem Value="0">Seleccionar...</asp:ListItem>
+                               </asp:DropDownList>
                                <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT SubCategoria.ID_SubCategoria, Categoria.Categoria + '  ' + SubCategoria.SubCategoria AS Categoria FROM Categoria INNER JOIN SubCategoria ON Categoria.ID_Categoria = SubCategoria.ID_Categoria"></asp:SqlDataSource>
                            </div>
                                 <div class="col-sm-2">

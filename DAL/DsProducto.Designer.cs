@@ -5170,6 +5170,7 @@ WHERE (CotizacionVenta.ID_Cotizacion = @ID_Cotizacion) AND (CotizacionVenta.Esta
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[10])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@noFac", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[10])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idProv", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[10])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[11])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idTipoPago", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[11] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[11])).Connection = new global::System.Data.SqlClient.SqlConnection(global::DAL.Properties.Settings.Default.BDautorepuestoConnectionString);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[11])).CommandText = "dbo.InsertDetalleCompra";
@@ -6174,7 +6175,7 @@ WHERE (CotizacionVenta.ID_Cotizacion = @ID_Cotizacion) AND (CotizacionVenta.Esta
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual object InsertCompra(global::System.Nullable<decimal> total, string noFac, global::System.Nullable<int> idProv, global::System.Nullable<global::System.DateTime> Fecha)
+        public virtual object InsertCompra(global::System.Nullable<decimal> total, string noFac, global::System.Nullable<int> idProv, global::System.Nullable<global::System.DateTime> Fecha, global::System.Nullable<int> idTipoPago)
         {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[10]));
             if ((total.HasValue == true))
@@ -6209,6 +6210,17 @@ WHERE (CotizacionVenta.ID_Cotizacion = @ID_Cotizacion) AND (CotizacionVenta.Esta
             {
                 command.Parameters[4].Value = global::System.DBNull.Value;
             }
+            if ((idTipoPago.HasValue == true))
+            {
+                command.Parameters[5].Value = ((int)(idTipoPago.Value));
+            }
+            else
+            {
+                command.Parameters[5].Value = global::System.DBNull.Value;
+            }
+
+
+
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open)
                         != global::System.Data.ConnectionState.Open))

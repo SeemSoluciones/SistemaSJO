@@ -8,24 +8,32 @@
 
   </div>
     <div class="content">
-          <div class="row">
-        <div class="col-md-4">
+         <div class="row">
+        <div class="col-md-3">
             <div class="form-group">
             <label>No factura/preforma</label>
                 <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
             </div>  
+        </div> 
+          <div class="col-md-3">
+              <div class="form-group">
+            <label>Tipo de pago</label>
+                  <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource4" DataTextField="Tipo" DataValueField="ID_TPago" ></asp:DropDownList>
+                  <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT [ID_TPago], [Tipo] FROM [TipoPago]"></asp:SqlDataSource>
+              </div>  
         </div>
-         <div class="col-md-4">
+         <div class="col-md-3">
                  <label>Proveedor</label>
                  <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="Proveedor" DataValueField="ID_Proveedor"></asp:DropDownList>
                  <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Proveedor, Proveedor FROM Proveedor WHERE (Estado = 1)"></asp:SqlDataSource>
         </div>
-         <div class="col-md-4">
+         <div class="col-md-3">
               <div class="form-group">
             <label>Fecha</label>
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
             </div>  
         </div>
+        
     </div>
         <!------------------------------- -->
           <div class="row">
