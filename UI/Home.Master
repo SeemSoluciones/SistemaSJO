@@ -226,14 +226,14 @@
                             </span>
                         </a>
                                <ul class="treeview-menu">
-                                 <li><a href="ReporteVentas.aspx"><i class="fa fa-circle-o"></i>Venta General</a></li>
+                                 <li><a href="ReporteVentaTienda.aspx"><i class="fa fa-circle-o"></i>Venta General</a></li>
                                    <li><a href="ReporteVentaEmple.aspx"><i class="fa fa-circle-o"></i>Venta Por Empleado</a></li>
-                                   <li><a href="ReporteVentasTarjeta.aspx"><i class="fa fa-circle-o"></i>Venta Tarjeta</a></li>
+                                   <li><a href="ReporteVentasTarjeta.aspx"><i class="fa fa-circle-o"></i>Venta Tipo Pago</a></li>
                                   <%-- <li><a href="#"><i class="fa fa-circle-o"></i>Venta Por Articulo</a></li>--%>
-                                   <li><a href="ReporteVentaTienda.aspx"><i class="fa fa-circle-o"></i>Venta Por Tienda</a></li>
+                                   <%--<li><a href="ReporteVentaTienda.aspx"><i class="fa fa-circle-o"></i>Venta Por Tienda</a></li>--%>
                                    <li><a href="ReporteVentasMarca.aspx"><i class="fa fa-circle-o"></i>Venta Por Marca</a></li>
-                                   <li><a href="ReporteVentaRubro.aspx"><i class="fa fa-circle-o"></i>Venta Por Rubro</a></li>
-                                   <li><a href="Descuento8.aspx"><i class="fa fa-circle-o"></i>Descueto 8%</a></li>
+                                  <%-- <li><a href="ReporteVentaRubro.aspx"><i class="fa fa-circle-o"></i>Venta Por Rubro</a></li>--%>
+                                  <%-- <li><a href="Descuento8.aspx"><i class="fa fa-circle-o"></i>Descueto 8%</a></li>--%>
                                    
                             </ul>
                           </li> 

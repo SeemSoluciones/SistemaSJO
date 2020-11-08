@@ -2708,12 +2708,6 @@ namespace UI {
             
             private global::System.Data.DataColumn columnMarcaP;
             
-            private global::System.Data.DataColumn columnRubro;
-            
-            private global::System.Data.DataColumn columnModelo;
-            
-            private global::System.Data.DataColumn columnMarca;
-            
             private global::System.Data.DataColumn columnCantidad;
             
             private global::System.Data.DataColumn columnPrecioUnitario;
@@ -2722,9 +2716,15 @@ namespace UI {
             
             private global::System.Data.DataColumn columnTotal;
             
-            private global::System.Data.DataColumn columnTipo;
-            
             private global::System.Data.DataColumn columnTienda;
+            
+            private global::System.Data.DataColumn columnID_Venta;
+            
+            private global::System.Data.DataColumn columnMedida;
+            
+            private global::System.Data.DataColumn columnNombre;
+            
+            private global::System.Data.DataColumn columnPago;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2777,30 +2777,6 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RubroColumn {
-                get {
-                    return this.columnRubro;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ModeloColumn {
-                get {
-                    return this.columnModelo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MarcaColumn {
-                get {
-                    return this.columnMarca;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn CantidadColumn {
                 get {
                     return this.columnCantidad;
@@ -2833,17 +2809,41 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TipoColumn {
+            public global::System.Data.DataColumn TiendaColumn {
                 get {
-                    return this.columnTipo;
+                    return this.columnTienda;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TiendaColumn {
+            public global::System.Data.DataColumn ID_VentaColumn {
                 get {
-                    return this.columnTienda;
+                    return this.columnID_Venta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MedidaColumn {
+                get {
+                    return this.columnMedida;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreColumn {
+                get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PagoColumn {
+                get {
+                    return this.columnPago;
                 }
             }
             
@@ -2884,23 +2884,30 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public VentasTarjetaRow AddVentasTarjetaRow(string Producto, string MarcaP, string Rubro, string Modelo, string Marca, int Cantidad, decimal PrecioUnitario, decimal Descuento, decimal Total, string Tipo, string Tienda) {
+            public VentasTarjetaRow AddVentasTarjetaRow(string Producto, string MarcaP, int Cantidad, decimal PrecioUnitario, decimal Descuento, decimal Total, string Tienda, string Medida, string Nombre, string Pago) {
                 VentasTarjetaRow rowVentasTarjetaRow = ((VentasTarjetaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Producto,
                         MarcaP,
-                        Rubro,
-                        Modelo,
-                        Marca,
                         Cantidad,
                         PrecioUnitario,
                         Descuento,
                         Total,
-                        Tipo,
-                        Tienda};
+                        Tienda,
+                        null,
+                        Medida,
+                        Nombre,
+                        Pago};
                 rowVentasTarjetaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVentasTarjetaRow);
                 return rowVentasTarjetaRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public VentasTarjetaRow FindByID_Venta(int ID_Venta) {
+                return ((VentasTarjetaRow)(this.Rows.Find(new object[] {
+                            ID_Venta})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2922,15 +2929,15 @@ namespace UI {
             internal void InitVars() {
                 this.columnProducto = base.Columns["Producto"];
                 this.columnMarcaP = base.Columns["MarcaP"];
-                this.columnRubro = base.Columns["Rubro"];
-                this.columnModelo = base.Columns["Modelo"];
-                this.columnMarca = base.Columns["Marca"];
                 this.columnCantidad = base.Columns["Cantidad"];
                 this.columnPrecioUnitario = base.Columns["PrecioUnitario"];
                 this.columnDescuento = base.Columns["Descuento"];
                 this.columnTotal = base.Columns["Total"];
-                this.columnTipo = base.Columns["Tipo"];
                 this.columnTienda = base.Columns["Tienda"];
+                this.columnID_Venta = base.Columns["ID_Venta"];
+                this.columnMedida = base.Columns["Medida"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnPago = base.Columns["Pago"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2940,12 +2947,6 @@ namespace UI {
                 base.Columns.Add(this.columnProducto);
                 this.columnMarcaP = new global::System.Data.DataColumn("MarcaP", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMarcaP);
-                this.columnRubro = new global::System.Data.DataColumn("Rubro", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRubro);
-                this.columnModelo = new global::System.Data.DataColumn("Modelo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnModelo);
-                this.columnMarca = new global::System.Data.DataColumn("Marca", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMarca);
                 this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCantidad);
                 this.columnPrecioUnitario = new global::System.Data.DataColumn("PrecioUnitario", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -2954,20 +2955,34 @@ namespace UI {
                 base.Columns.Add(this.columnDescuento);
                 this.columnTotal = new global::System.Data.DataColumn("Total", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal);
-                this.columnTipo = new global::System.Data.DataColumn("Tipo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTipo);
                 this.columnTienda = new global::System.Data.DataColumn("Tienda", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTienda);
+                this.columnID_Venta = new global::System.Data.DataColumn("ID_Venta", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID_Venta);
+                this.columnMedida = new global::System.Data.DataColumn("Medida", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMedida);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnPago = new global::System.Data.DataColumn("Pago", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPago);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID_Venta}, true));
                 this.columnProducto.MaxLength = 50;
                 this.columnMarcaP.MaxLength = 40;
-                this.columnRubro.MaxLength = 50;
-                this.columnModelo.MaxLength = 50;
-                this.columnMarca.MaxLength = 25;
                 this.columnPrecioUnitario.ReadOnly = true;
                 this.columnDescuento.ReadOnly = true;
                 this.columnTotal.ReadOnly = true;
-                this.columnTipo.MaxLength = 50;
                 this.columnTienda.MaxLength = 40;
+                this.columnID_Venta.AutoIncrement = true;
+                this.columnID_Venta.AutoIncrementSeed = -1;
+                this.columnID_Venta.AutoIncrementStep = -1;
+                this.columnID_Venta.AllowDBNull = false;
+                this.columnID_Venta.ReadOnly = true;
+                this.columnID_Venta.Unique = true;
+                this.columnMedida.MaxLength = 20;
+                this.columnNombre.ReadOnly = true;
+                this.columnNombre.MaxLength = 101;
+                this.columnPago.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3103,12 +3118,6 @@ namespace UI {
             
             private global::System.Data.DataColumn columnProducto;
             
-            private global::System.Data.DataColumn columnRubro;
-            
-            private global::System.Data.DataColumn columnMarca;
-            
-            private global::System.Data.DataColumn columnModelo;
-            
             private global::System.Data.DataColumn columnCantidad;
             
             private global::System.Data.DataColumn columnPrecioUnitario;
@@ -3117,9 +3126,23 @@ namespace UI {
             
             private global::System.Data.DataColumn columnTotal;
             
+            private global::System.Data.DataColumn columnNombre;
+            
+            private global::System.Data.DataColumn columnID_Venta;
+            
+            private global::System.Data.DataColumn columnMarcaP;
+            
+            private global::System.Data.DataColumn columnMedida;
+            
+            private global::System.Data.DataColumn columnTienda;
+            
             private global::System.Data.DataColumn columnCaja;
             
-            private global::System.Data.DataColumn columnNombre;
+            private global::System.Data.DataColumn columnTotal1;
+            
+            private global::System.Data.DataColumn columnDescuento1;
+            
+            private global::System.Data.DataColumn columnSubtotal;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3164,30 +3187,6 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RubroColumn {
-                get {
-                    return this.columnRubro;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MarcaColumn {
-                get {
-                    return this.columnMarca;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ModeloColumn {
-                get {
-                    return this.columnModelo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn CantidadColumn {
                 get {
                     return this.columnCantidad;
@@ -3220,6 +3219,46 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreColumn {
+                get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ID_VentaColumn {
+                get {
+                    return this.columnID_Venta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MarcaPColumn {
+                get {
+                    return this.columnMarcaP;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MedidaColumn {
+                get {
+                    return this.columnMedida;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TiendaColumn {
+                get {
+                    return this.columnTienda;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn CajaColumn {
                 get {
                     return this.columnCaja;
@@ -3228,9 +3267,25 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NombreColumn {
+            public global::System.Data.DataColumn Total1Column {
                 get {
-                    return this.columnNombre;
+                    return this.columnTotal1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Descuento1Column {
+                get {
+                    return this.columnDescuento1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SubtotalColumn {
+                get {
+                    return this.columnSubtotal;
                 }
             }
             
@@ -3271,22 +3326,33 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public VentaEmpleado2Row AddVentaEmpleado2Row(string Producto, string Rubro, string Marca, string Modelo, int Cantidad, decimal PrecioUnitario, decimal Descuento, decimal Total, string Caja, string Nombre) {
+            public VentaEmpleado2Row AddVentaEmpleado2Row(string Producto, int Cantidad, decimal PrecioUnitario, decimal Descuento, decimal Total, string Nombre, string MarcaP, string Medida, string Tienda, string Caja, decimal Total1, decimal Descuento1, decimal Subtotal) {
                 VentaEmpleado2Row rowVentaEmpleado2Row = ((VentaEmpleado2Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Producto,
-                        Rubro,
-                        Marca,
-                        Modelo,
                         Cantidad,
                         PrecioUnitario,
                         Descuento,
                         Total,
+                        Nombre,
+                        null,
+                        MarcaP,
+                        Medida,
+                        Tienda,
                         Caja,
-                        Nombre};
+                        Total1,
+                        Descuento1,
+                        Subtotal};
                 rowVentaEmpleado2Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVentaEmpleado2Row);
                 return rowVentaEmpleado2Row;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public VentaEmpleado2Row FindByID_Venta(int ID_Venta) {
+                return ((VentaEmpleado2Row)(this.Rows.Find(new object[] {
+                            ID_Venta})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3307,15 +3373,19 @@ namespace UI {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnProducto = base.Columns["Producto"];
-                this.columnRubro = base.Columns["Rubro"];
-                this.columnMarca = base.Columns["Marca"];
-                this.columnModelo = base.Columns["Modelo"];
                 this.columnCantidad = base.Columns["Cantidad"];
                 this.columnPrecioUnitario = base.Columns["PrecioUnitario"];
                 this.columnDescuento = base.Columns["Descuento"];
                 this.columnTotal = base.Columns["Total"];
-                this.columnCaja = base.Columns["Caja"];
                 this.columnNombre = base.Columns["Nombre"];
+                this.columnID_Venta = base.Columns["ID_Venta"];
+                this.columnMarcaP = base.Columns["MarcaP"];
+                this.columnMedida = base.Columns["Medida"];
+                this.columnTienda = base.Columns["Tienda"];
+                this.columnCaja = base.Columns["Caja"];
+                this.columnTotal1 = base.Columns["Total1"];
+                this.columnDescuento1 = base.Columns["Descuento1"];
+                this.columnSubtotal = base.Columns["Subtotal"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3323,12 +3393,6 @@ namespace UI {
             private void InitClass() {
                 this.columnProducto = new global::System.Data.DataColumn("Producto", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProducto);
-                this.columnRubro = new global::System.Data.DataColumn("Rubro", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRubro);
-                this.columnMarca = new global::System.Data.DataColumn("Marca", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMarca);
-                this.columnModelo = new global::System.Data.DataColumn("Modelo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnModelo);
                 this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCantidad);
                 this.columnPrecioUnitario = new global::System.Data.DataColumn("PrecioUnitario", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -3337,18 +3401,40 @@ namespace UI {
                 base.Columns.Add(this.columnDescuento);
                 this.columnTotal = new global::System.Data.DataColumn("Total", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal);
-                this.columnCaja = new global::System.Data.DataColumn("Caja", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCaja);
                 this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNombre);
+                this.columnID_Venta = new global::System.Data.DataColumn("ID_Venta", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID_Venta);
+                this.columnMarcaP = new global::System.Data.DataColumn("MarcaP", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMarcaP);
+                this.columnMedida = new global::System.Data.DataColumn("Medida", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMedida);
+                this.columnTienda = new global::System.Data.DataColumn("Tienda", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTienda);
+                this.columnCaja = new global::System.Data.DataColumn("Caja", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCaja);
+                this.columnTotal1 = new global::System.Data.DataColumn("Total1", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotal1);
+                this.columnDescuento1 = new global::System.Data.DataColumn("Descuento1", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescuento1);
+                this.columnSubtotal = new global::System.Data.DataColumn("Subtotal", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSubtotal);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID_Venta}, true));
                 this.columnProducto.MaxLength = 200;
-                this.columnRubro.MaxLength = 50;
-                this.columnMarca.MaxLength = 25;
-                this.columnModelo.MaxLength = 50;
                 this.columnPrecioUnitario.ReadOnly = true;
                 this.columnTotal.ReadOnly = true;
-                this.columnCaja.MaxLength = 50;
                 this.columnNombre.MaxLength = 50;
+                this.columnID_Venta.AutoIncrement = true;
+                this.columnID_Venta.AutoIncrementSeed = -1;
+                this.columnID_Venta.AutoIncrementStep = -1;
+                this.columnID_Venta.AllowDBNull = false;
+                this.columnID_Venta.ReadOnly = true;
+                this.columnID_Venta.Unique = true;
+                this.columnMarcaP.MaxLength = 40;
+                this.columnMedida.MaxLength = 20;
+                this.columnTienda.MaxLength = 40;
+                this.columnCaja.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3486,12 +3572,6 @@ namespace UI {
             
             private global::System.Data.DataColumn columnMarcaP;
             
-            private global::System.Data.DataColumn columnRubro;
-            
-            private global::System.Data.DataColumn columnModelo;
-            
-            private global::System.Data.DataColumn columnMarca;
-            
             private global::System.Data.DataColumn columnCantidad;
             
             private global::System.Data.DataColumn columnPrecioUnitario;
@@ -3500,9 +3580,11 @@ namespace UI {
             
             private global::System.Data.DataColumn columnTotal;
             
-            private global::System.Data.DataColumn columnTipo;
-            
             private global::System.Data.DataColumn columnTienda;
+            
+            private global::System.Data.DataColumn columnID_Venta;
+            
+            private global::System.Data.DataColumn columnMedida;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3555,30 +3637,6 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RubroColumn {
-                get {
-                    return this.columnRubro;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ModeloColumn {
-                get {
-                    return this.columnModelo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MarcaColumn {
-                get {
-                    return this.columnMarca;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn CantidadColumn {
                 get {
                     return this.columnCantidad;
@@ -3611,17 +3669,25 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TipoColumn {
+            public global::System.Data.DataColumn TiendaColumn {
                 get {
-                    return this.columnTipo;
+                    return this.columnTienda;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TiendaColumn {
+            public global::System.Data.DataColumn ID_VentaColumn {
                 get {
-                    return this.columnTienda;
+                    return this.columnID_Venta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MedidaColumn {
+                get {
+                    return this.columnMedida;
                 }
             }
             
@@ -3662,23 +3728,28 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public VentaTiendaRow AddVentaTiendaRow(string Producto, string MarcaP, string Rubro, string Modelo, string Marca, int Cantidad, decimal PrecioUnitario, decimal Descuento, decimal Total, string Tipo, string Tienda) {
+            public VentaTiendaRow AddVentaTiendaRow(string Producto, string MarcaP, int Cantidad, decimal PrecioUnitario, decimal Descuento, decimal Total, string Tienda, string Medida) {
                 VentaTiendaRow rowVentaTiendaRow = ((VentaTiendaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Producto,
                         MarcaP,
-                        Rubro,
-                        Modelo,
-                        Marca,
                         Cantidad,
                         PrecioUnitario,
                         Descuento,
                         Total,
-                        Tipo,
-                        Tienda};
+                        Tienda,
+                        null,
+                        Medida};
                 rowVentaTiendaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVentaTiendaRow);
                 return rowVentaTiendaRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public VentaTiendaRow FindByID_Venta(int ID_Venta) {
+                return ((VentaTiendaRow)(this.Rows.Find(new object[] {
+                            ID_Venta})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3700,15 +3771,13 @@ namespace UI {
             internal void InitVars() {
                 this.columnProducto = base.Columns["Producto"];
                 this.columnMarcaP = base.Columns["MarcaP"];
-                this.columnRubro = base.Columns["Rubro"];
-                this.columnModelo = base.Columns["Modelo"];
-                this.columnMarca = base.Columns["Marca"];
                 this.columnCantidad = base.Columns["Cantidad"];
                 this.columnPrecioUnitario = base.Columns["PrecioUnitario"];
                 this.columnDescuento = base.Columns["Descuento"];
                 this.columnTotal = base.Columns["Total"];
-                this.columnTipo = base.Columns["Tipo"];
                 this.columnTienda = base.Columns["Tienda"];
+                this.columnID_Venta = base.Columns["ID_Venta"];
+                this.columnMedida = base.Columns["Medida"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3718,12 +3787,6 @@ namespace UI {
                 base.Columns.Add(this.columnProducto);
                 this.columnMarcaP = new global::System.Data.DataColumn("MarcaP", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMarcaP);
-                this.columnRubro = new global::System.Data.DataColumn("Rubro", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRubro);
-                this.columnModelo = new global::System.Data.DataColumn("Modelo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnModelo);
-                this.columnMarca = new global::System.Data.DataColumn("Marca", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMarca);
                 this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCantidad);
                 this.columnPrecioUnitario = new global::System.Data.DataColumn("PrecioUnitario", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -3732,20 +3795,27 @@ namespace UI {
                 base.Columns.Add(this.columnDescuento);
                 this.columnTotal = new global::System.Data.DataColumn("Total", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal);
-                this.columnTipo = new global::System.Data.DataColumn("Tipo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTipo);
                 this.columnTienda = new global::System.Data.DataColumn("Tienda", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTienda);
+                this.columnID_Venta = new global::System.Data.DataColumn("ID_Venta", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID_Venta);
+                this.columnMedida = new global::System.Data.DataColumn("Medida", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMedida);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID_Venta}, true));
                 this.columnProducto.MaxLength = 50;
                 this.columnMarcaP.MaxLength = 40;
-                this.columnRubro.MaxLength = 50;
-                this.columnModelo.MaxLength = 50;
-                this.columnMarca.MaxLength = 25;
                 this.columnPrecioUnitario.ReadOnly = true;
                 this.columnDescuento.ReadOnly = true;
                 this.columnTotal.ReadOnly = true;
-                this.columnTipo.MaxLength = 50;
                 this.columnTienda.MaxLength = 40;
+                this.columnID_Venta.AutoIncrement = true;
+                this.columnID_Venta.AutoIncrementSeed = -1;
+                this.columnID_Venta.AutoIncrementStep = -1;
+                this.columnID_Venta.AllowDBNull = false;
+                this.columnID_Venta.ReadOnly = true;
+                this.columnID_Venta.Unique = true;
+                this.columnMedida.MaxLength = 20;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3883,10 +3953,6 @@ namespace UI {
             
             private global::System.Data.DataColumn columnMarcaP;
             
-            private global::System.Data.DataColumn columnRubro;
-            
-            private global::System.Data.DataColumn columnModelo;
-            
             private global::System.Data.DataColumn columnMarca;
             
             private global::System.Data.DataColumn columnCantidad;
@@ -3900,6 +3966,12 @@ namespace UI {
             private global::System.Data.DataColumn columnTipo;
             
             private global::System.Data.DataColumn columnTienda;
+            
+            private global::System.Data.DataColumn columnID_Venta;
+            
+            private global::System.Data.DataColumn columnMedida;
+            
+            private global::System.Data.DataColumn columnEmpleado;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3947,22 +4019,6 @@ namespace UI {
             public global::System.Data.DataColumn MarcaPColumn {
                 get {
                     return this.columnMarcaP;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RubroColumn {
-                get {
-                    return this.columnRubro;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ModeloColumn {
-                get {
-                    return this.columnModelo;
                 }
             }
             
@@ -4024,6 +4080,30 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ID_VentaColumn {
+                get {
+                    return this.columnID_Venta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MedidaColumn {
+                get {
+                    return this.columnMedida;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EmpleadoColumn {
+                get {
+                    return this.columnEmpleado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4059,23 +4139,31 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public VentaMarcaRow AddVentaMarcaRow(string Producto, string MarcaP, string Rubro, string Modelo, string Marca, int Cantidad, decimal PrecioUnitario, decimal Descuento, decimal Total, string Tipo, string Tienda) {
+            public VentaMarcaRow AddVentaMarcaRow(string Producto, string MarcaP, string Marca, int Cantidad, decimal PrecioUnitario, decimal Descuento, decimal Total, string Tipo, string Tienda, string Medida, string Empleado) {
                 VentaMarcaRow rowVentaMarcaRow = ((VentaMarcaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Producto,
                         MarcaP,
-                        Rubro,
-                        Modelo,
                         Marca,
                         Cantidad,
                         PrecioUnitario,
                         Descuento,
                         Total,
                         Tipo,
-                        Tienda};
+                        Tienda,
+                        null,
+                        Medida,
+                        Empleado};
                 rowVentaMarcaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVentaMarcaRow);
                 return rowVentaMarcaRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public VentaMarcaRow FindByID_Venta(int ID_Venta) {
+                return ((VentaMarcaRow)(this.Rows.Find(new object[] {
+                            ID_Venta})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4097,8 +4185,6 @@ namespace UI {
             internal void InitVars() {
                 this.columnProducto = base.Columns["Producto"];
                 this.columnMarcaP = base.Columns["MarcaP"];
-                this.columnRubro = base.Columns["Rubro"];
-                this.columnModelo = base.Columns["Modelo"];
                 this.columnMarca = base.Columns["Marca"];
                 this.columnCantidad = base.Columns["Cantidad"];
                 this.columnPrecioUnitario = base.Columns["PrecioUnitario"];
@@ -4106,6 +4192,9 @@ namespace UI {
                 this.columnTotal = base.Columns["Total"];
                 this.columnTipo = base.Columns["Tipo"];
                 this.columnTienda = base.Columns["Tienda"];
+                this.columnID_Venta = base.Columns["ID_Venta"];
+                this.columnMedida = base.Columns["Medida"];
+                this.columnEmpleado = base.Columns["Empleado"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4115,10 +4204,6 @@ namespace UI {
                 base.Columns.Add(this.columnProducto);
                 this.columnMarcaP = new global::System.Data.DataColumn("MarcaP", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMarcaP);
-                this.columnRubro = new global::System.Data.DataColumn("Rubro", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRubro);
-                this.columnModelo = new global::System.Data.DataColumn("Modelo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnModelo);
                 this.columnMarca = new global::System.Data.DataColumn("Marca", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMarca);
                 this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(int), null, global::System.Data.MappingType.Element);
@@ -4133,16 +4218,31 @@ namespace UI {
                 base.Columns.Add(this.columnTipo);
                 this.columnTienda = new global::System.Data.DataColumn("Tienda", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTienda);
+                this.columnID_Venta = new global::System.Data.DataColumn("ID_Venta", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID_Venta);
+                this.columnMedida = new global::System.Data.DataColumn("Medida", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMedida);
+                this.columnEmpleado = new global::System.Data.DataColumn("Empleado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmpleado);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID_Venta}, true));
                 this.columnProducto.MaxLength = 50;
                 this.columnMarcaP.MaxLength = 40;
-                this.columnRubro.MaxLength = 50;
-                this.columnModelo.MaxLength = 50;
                 this.columnMarca.MaxLength = 25;
                 this.columnPrecioUnitario.ReadOnly = true;
                 this.columnDescuento.ReadOnly = true;
                 this.columnTotal.ReadOnly = true;
                 this.columnTipo.MaxLength = 50;
                 this.columnTienda.MaxLength = 40;
+                this.columnID_Venta.AutoIncrement = true;
+                this.columnID_Venta.AutoIncrementSeed = -1;
+                this.columnID_Venta.AutoIncrementStep = -1;
+                this.columnID_Venta.AllowDBNull = false;
+                this.columnID_Venta.ReadOnly = true;
+                this.columnID_Venta.Unique = true;
+                this.columnMedida.MaxLength = 20;
+                this.columnEmpleado.ReadOnly = true;
+                this.columnEmpleado.MaxLength = 101;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7266,54 +7366,6 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Rubro {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentasTarjeta.RubroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Rubro\' de la tabla \'VentasTarjeta\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentasTarjeta.RubroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Modelo {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentasTarjeta.ModeloColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Modelo\' de la tabla \'VentasTarjeta\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentasTarjeta.ModeloColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Marca {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentasTarjeta.MarcaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Marca\' de la tabla \'VentasTarjeta\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentasTarjeta.MarcaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Cantidad {
                 get {
                     try {
@@ -7378,22 +7430,6 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Tipo {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentasTarjeta.TipoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Tipo\' de la tabla \'VentasTarjeta\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentasTarjeta.TipoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Tienda {
                 get {
                     try {
@@ -7405,6 +7441,65 @@ namespace UI {
                 }
                 set {
                     this[this.tableVentasTarjeta.TiendaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID_Venta {
+                get {
+                    return ((int)(this[this.tableVentasTarjeta.ID_VentaColumn]));
+                }
+                set {
+                    this[this.tableVentasTarjeta.ID_VentaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Medida {
+                get {
+                    try {
+                        return ((string)(this[this.tableVentasTarjeta.MedidaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Medida\' de la tabla \'VentasTarjeta\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentasTarjeta.MedidaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombre {
+                get {
+                    try {
+                        return ((string)(this[this.tableVentasTarjeta.NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nombre\' de la tabla \'VentasTarjeta\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentasTarjeta.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Pago {
+                get {
+                    try {
+                        return ((string)(this[this.tableVentasTarjeta.PagoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Pago\' de la tabla \'VentasTarjeta\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentasTarjeta.PagoColumn] = value;
                 }
             }
             
@@ -7430,42 +7525,6 @@ namespace UI {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMarcaPNull() {
                 this[this.tableVentasTarjeta.MarcaPColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRubroNull() {
-                return this.IsNull(this.tableVentasTarjeta.RubroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRubroNull() {
-                this[this.tableVentasTarjeta.RubroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsModeloNull() {
-                return this.IsNull(this.tableVentasTarjeta.ModeloColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetModeloNull() {
-                this[this.tableVentasTarjeta.ModeloColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMarcaNull() {
-                return this.IsNull(this.tableVentasTarjeta.MarcaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMarcaNull() {
-                this[this.tableVentasTarjeta.MarcaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7518,18 +7577,6 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTipoNull() {
-                return this.IsNull(this.tableVentasTarjeta.TipoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTipoNull() {
-                this[this.tableVentasTarjeta.TipoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTiendaNull() {
                 return this.IsNull(this.tableVentasTarjeta.TiendaColumn);
             }
@@ -7538,6 +7585,42 @@ namespace UI {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTiendaNull() {
                 this[this.tableVentasTarjeta.TiendaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMedidaNull() {
+                return this.IsNull(this.tableVentasTarjeta.MedidaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMedidaNull() {
+                this[this.tableVentasTarjeta.MedidaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreNull() {
+                return this.IsNull(this.tableVentasTarjeta.NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreNull() {
+                this[this.tableVentasTarjeta.NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPagoNull() {
+                return this.IsNull(this.tableVentasTarjeta.PagoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPagoNull() {
+                this[this.tableVentasTarjeta.PagoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7568,54 +7651,6 @@ namespace UI {
                 }
                 set {
                     this[this.tableVentaEmpleado2.ProductoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Rubro {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentaEmpleado2.RubroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Rubro\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentaEmpleado2.RubroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Marca {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentaEmpleado2.MarcaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Marca\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentaEmpleado2.MarcaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Modelo {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentaEmpleado2.ModeloColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Modelo\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentaEmpleado2.ModeloColumn] = value;
                 }
             }
             
@@ -7685,22 +7720,6 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Caja {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentaEmpleado2.CajaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Caja\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentaEmpleado2.CajaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Nombre {
                 get {
                     try {
@@ -7717,6 +7736,129 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID_Venta {
+                get {
+                    return ((int)(this[this.tableVentaEmpleado2.ID_VentaColumn]));
+                }
+                set {
+                    this[this.tableVentaEmpleado2.ID_VentaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string MarcaP {
+                get {
+                    try {
+                        return ((string)(this[this.tableVentaEmpleado2.MarcaPColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'MarcaP\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentaEmpleado2.MarcaPColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Medida {
+                get {
+                    try {
+                        return ((string)(this[this.tableVentaEmpleado2.MedidaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Medida\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentaEmpleado2.MedidaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Tienda {
+                get {
+                    try {
+                        return ((string)(this[this.tableVentaEmpleado2.TiendaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Tienda\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentaEmpleado2.TiendaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Caja {
+                get {
+                    try {
+                        return ((string)(this[this.tableVentaEmpleado2.CajaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Caja\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentaEmpleado2.CajaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Total1 {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableVentaEmpleado2.Total1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Total1\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentaEmpleado2.Total1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Descuento1 {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableVentaEmpleado2.Descuento1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Descuento1\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentaEmpleado2.Descuento1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Subtotal {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableVentaEmpleado2.SubtotalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Subtotal\' de la tabla \'VentaEmpleado2\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentaEmpleado2.SubtotalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsProductoNull() {
                 return this.IsNull(this.tableVentaEmpleado2.ProductoColumn);
             }
@@ -7725,42 +7867,6 @@ namespace UI {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetProductoNull() {
                 this[this.tableVentaEmpleado2.ProductoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRubroNull() {
-                return this.IsNull(this.tableVentaEmpleado2.RubroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRubroNull() {
-                this[this.tableVentaEmpleado2.RubroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMarcaNull() {
-                return this.IsNull(this.tableVentaEmpleado2.MarcaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMarcaNull() {
-                this[this.tableVentaEmpleado2.MarcaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsModeloNull() {
-                return this.IsNull(this.tableVentaEmpleado2.ModeloColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetModeloNull() {
-                this[this.tableVentaEmpleado2.ModeloColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7813,6 +7919,54 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreNull() {
+                return this.IsNull(this.tableVentaEmpleado2.NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreNull() {
+                this[this.tableVentaEmpleado2.NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMarcaPNull() {
+                return this.IsNull(this.tableVentaEmpleado2.MarcaPColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMarcaPNull() {
+                this[this.tableVentaEmpleado2.MarcaPColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMedidaNull() {
+                return this.IsNull(this.tableVentaEmpleado2.MedidaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMedidaNull() {
+                this[this.tableVentaEmpleado2.MedidaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTiendaNull() {
+                return this.IsNull(this.tableVentaEmpleado2.TiendaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTiendaNull() {
+                this[this.tableVentaEmpleado2.TiendaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCajaNull() {
                 return this.IsNull(this.tableVentaEmpleado2.CajaColumn);
             }
@@ -7825,14 +7979,38 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNombreNull() {
-                return this.IsNull(this.tableVentaEmpleado2.NombreColumn);
+            public bool IsTotal1Null() {
+                return this.IsNull(this.tableVentaEmpleado2.Total1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNombreNull() {
-                this[this.tableVentaEmpleado2.NombreColumn] = global::System.Convert.DBNull;
+            public void SetTotal1Null() {
+                this[this.tableVentaEmpleado2.Total1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescuento1Null() {
+                return this.IsNull(this.tableVentaEmpleado2.Descuento1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescuento1Null() {
+                this[this.tableVentaEmpleado2.Descuento1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSubtotalNull() {
+                return this.IsNull(this.tableVentaEmpleado2.SubtotalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSubtotalNull() {
+                this[this.tableVentaEmpleado2.SubtotalColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7879,54 +8057,6 @@ namespace UI {
                 }
                 set {
                     this[this.tableVentaTienda.MarcaPColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Rubro {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentaTienda.RubroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Rubro\' de la tabla \'VentaTienda\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentaTienda.RubroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Modelo {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentaTienda.ModeloColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Modelo\' de la tabla \'VentaTienda\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentaTienda.ModeloColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Marca {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentaTienda.MarcaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Marca\' de la tabla \'VentaTienda\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentaTienda.MarcaColumn] = value;
                 }
             }
             
@@ -7996,22 +8126,6 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Tipo {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentaTienda.TipoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Tipo\' de la tabla \'VentaTienda\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentaTienda.TipoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Tienda {
                 get {
                     try {
@@ -8023,6 +8137,33 @@ namespace UI {
                 }
                 set {
                     this[this.tableVentaTienda.TiendaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID_Venta {
+                get {
+                    return ((int)(this[this.tableVentaTienda.ID_VentaColumn]));
+                }
+                set {
+                    this[this.tableVentaTienda.ID_VentaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Medida {
+                get {
+                    try {
+                        return ((string)(this[this.tableVentaTienda.MedidaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Medida\' de la tabla \'VentaTienda\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentaTienda.MedidaColumn] = value;
                 }
             }
             
@@ -8048,42 +8189,6 @@ namespace UI {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMarcaPNull() {
                 this[this.tableVentaTienda.MarcaPColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRubroNull() {
-                return this.IsNull(this.tableVentaTienda.RubroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRubroNull() {
-                this[this.tableVentaTienda.RubroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsModeloNull() {
-                return this.IsNull(this.tableVentaTienda.ModeloColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetModeloNull() {
-                this[this.tableVentaTienda.ModeloColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMarcaNull() {
-                return this.IsNull(this.tableVentaTienda.MarcaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMarcaNull() {
-                this[this.tableVentaTienda.MarcaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8136,18 +8241,6 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTipoNull() {
-                return this.IsNull(this.tableVentaTienda.TipoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTipoNull() {
-                this[this.tableVentaTienda.TipoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTiendaNull() {
                 return this.IsNull(this.tableVentaTienda.TiendaColumn);
             }
@@ -8156,6 +8249,18 @@ namespace UI {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTiendaNull() {
                 this[this.tableVentaTienda.TiendaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMedidaNull() {
+                return this.IsNull(this.tableVentaTienda.MedidaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMedidaNull() {
+                this[this.tableVentaTienda.MedidaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8202,38 +8307,6 @@ namespace UI {
                 }
                 set {
                     this[this.tableVentaMarca.MarcaPColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Rubro {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentaMarca.RubroColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Rubro\' de la tabla \'VentaMarca\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentaMarca.RubroColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Modelo {
-                get {
-                    try {
-                        return ((string)(this[this.tableVentaMarca.ModeloColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Modelo\' de la tabla \'VentaMarca\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableVentaMarca.ModeloColumn] = value;
                 }
             }
             
@@ -8351,6 +8424,49 @@ namespace UI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ID_Venta {
+                get {
+                    return ((int)(this[this.tableVentaMarca.ID_VentaColumn]));
+                }
+                set {
+                    this[this.tableVentaMarca.ID_VentaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Medida {
+                get {
+                    try {
+                        return ((string)(this[this.tableVentaMarca.MedidaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Medida\' de la tabla \'VentaMarca\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentaMarca.MedidaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Empleado {
+                get {
+                    try {
+                        return ((string)(this[this.tableVentaMarca.EmpleadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Empleado\' de la tabla \'VentaMarca\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVentaMarca.EmpleadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsProductoNull() {
                 return this.IsNull(this.tableVentaMarca.ProductoColumn);
             }
@@ -8371,30 +8487,6 @@ namespace UI {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMarcaPNull() {
                 this[this.tableVentaMarca.MarcaPColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRubroNull() {
-                return this.IsNull(this.tableVentaMarca.RubroColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRubroNull() {
-                this[this.tableVentaMarca.RubroColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsModeloNull() {
-                return this.IsNull(this.tableVentaMarca.ModeloColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetModeloNull() {
-                this[this.tableVentaMarca.ModeloColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8479,6 +8571,30 @@ namespace UI {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTiendaNull() {
                 this[this.tableVentaMarca.TiendaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMedidaNull() {
+                return this.IsNull(this.tableVentaMarca.MedidaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMedidaNull() {
+                this[this.tableVentaMarca.MedidaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEmpleadoNull() {
+                return this.IsNull(this.tableVentaMarca.EmpleadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEmpleadoNull() {
+                this[this.tableVentaMarca.EmpleadoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11703,15 +11819,15 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             tableMapping.DataSetTable = "VentasTarjeta";
             tableMapping.ColumnMappings.Add("Producto", "Producto");
             tableMapping.ColumnMappings.Add("MarcaP", "MarcaP");
-            tableMapping.ColumnMappings.Add("Rubro", "Rubro");
-            tableMapping.ColumnMappings.Add("Modelo", "Modelo");
-            tableMapping.ColumnMappings.Add("Marca", "Marca");
             tableMapping.ColumnMappings.Add("Cantidad", "Cantidad");
             tableMapping.ColumnMappings.Add("PrecioUnitario", "PrecioUnitario");
             tableMapping.ColumnMappings.Add("Descuento", "Descuento");
             tableMapping.ColumnMappings.Add("Total", "Total");
-            tableMapping.ColumnMappings.Add("Tipo", "Tipo");
             tableMapping.ColumnMappings.Add("Tienda", "Tienda");
+            tableMapping.ColumnMappings.Add("ID_Venta", "ID_Venta");
+            tableMapping.ColumnMappings.Add("Medida", "Medida");
+            tableMapping.ColumnMappings.Add("Nombre", "Nombre");
+            tableMapping.ColumnMappings.Add("Pago", "Pago");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -11728,19 +11844,19 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.VentasTarjeta";
+            this._commandCollection[0].CommandText = "dbo.ReportesVentasPago";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicio", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFinal", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Tipo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Pago", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BDautorepuestoDataSet.VentasTarjetaDataTable dataTable, global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFinal, global::System.Nullable<int> Tipo) {
+        public virtual int Fill(BDautorepuestoDataSet.VentasTarjetaDataTable dataTable, global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFinal, global::System.Nullable<int> Pago) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((FechaInicio.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaInicio.Value));
@@ -11754,8 +11870,8 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Tipo.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Tipo.Value));
+            if ((Pago.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Pago.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
@@ -11771,7 +11887,7 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BDautorepuestoDataSet.VentasTarjetaDataTable GetData(global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFinal, global::System.Nullable<int> Tipo) {
+        public virtual BDautorepuestoDataSet.VentasTarjetaDataTable GetData(global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFinal, global::System.Nullable<int> Pago) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((FechaInicio.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaInicio.Value));
@@ -11785,8 +11901,8 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Tipo.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Tipo.Value));
+            if ((Pago.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Pago.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
@@ -11919,15 +12035,19 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "VentaEmpleado2";
             tableMapping.ColumnMappings.Add("Producto", "Producto");
-            tableMapping.ColumnMappings.Add("Rubro", "Rubro");
-            tableMapping.ColumnMappings.Add("Marca", "Marca");
-            tableMapping.ColumnMappings.Add("Modelo", "Modelo");
             tableMapping.ColumnMappings.Add("Cantidad", "Cantidad");
             tableMapping.ColumnMappings.Add("PrecioUnitario", "PrecioUnitario");
             tableMapping.ColumnMappings.Add("Descuento", "Descuento");
             tableMapping.ColumnMappings.Add("Total", "Total");
-            tableMapping.ColumnMappings.Add("Caja", "Caja");
             tableMapping.ColumnMappings.Add("Nombre", "Nombre");
+            tableMapping.ColumnMappings.Add("ID_Venta", "ID_Venta");
+            tableMapping.ColumnMappings.Add("MarcaP", "MarcaP");
+            tableMapping.ColumnMappings.Add("Medida", "Medida");
+            tableMapping.ColumnMappings.Add("Tienda", "Tienda");
+            tableMapping.ColumnMappings.Add("Caja", "Caja");
+            tableMapping.ColumnMappings.Add("Total1", "Total1");
+            tableMapping.ColumnMappings.Add("Descuento1", "Descuento1");
+            tableMapping.ColumnMappings.Add("Subtotal", "Subtotal");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -11944,7 +12064,7 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.VentaEmpleado2";
+            this._commandCollection[0].CommandText = "dbo.ReportesVentasEmpleado";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicio", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12136,15 +12256,13 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             tableMapping.DataSetTable = "VentaTienda";
             tableMapping.ColumnMappings.Add("Producto", "Producto");
             tableMapping.ColumnMappings.Add("MarcaP", "MarcaP");
-            tableMapping.ColumnMappings.Add("Rubro", "Rubro");
-            tableMapping.ColumnMappings.Add("Modelo", "Modelo");
-            tableMapping.ColumnMappings.Add("Marca", "Marca");
             tableMapping.ColumnMappings.Add("Cantidad", "Cantidad");
             tableMapping.ColumnMappings.Add("PrecioUnitario", "PrecioUnitario");
             tableMapping.ColumnMappings.Add("Descuento", "Descuento");
             tableMapping.ColumnMappings.Add("Total", "Total");
-            tableMapping.ColumnMappings.Add("Tipo", "Tipo");
             tableMapping.ColumnMappings.Add("Tienda", "Tienda");
+            tableMapping.ColumnMappings.Add("ID_Venta", "ID_Venta");
+            tableMapping.ColumnMappings.Add("Medida", "Medida");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -12161,7 +12279,7 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.VentaTienda";
+            this._commandCollection[0].CommandText = "dbo.ReportesVentas";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicio", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12353,8 +12471,6 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             tableMapping.DataSetTable = "VentaMarca";
             tableMapping.ColumnMappings.Add("Producto", "Producto");
             tableMapping.ColumnMappings.Add("MarcaP", "MarcaP");
-            tableMapping.ColumnMappings.Add("Rubro", "Rubro");
-            tableMapping.ColumnMappings.Add("Modelo", "Modelo");
             tableMapping.ColumnMappings.Add("Marca", "Marca");
             tableMapping.ColumnMappings.Add("Cantidad", "Cantidad");
             tableMapping.ColumnMappings.Add("PrecioUnitario", "PrecioUnitario");
@@ -12362,6 +12478,9 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Total", "Total");
             tableMapping.ColumnMappings.Add("Tipo", "Tipo");
             tableMapping.ColumnMappings.Add("Tienda", "Tienda");
+            tableMapping.ColumnMappings.Add("ID_Venta", "ID_Venta");
+            tableMapping.ColumnMappings.Add("Medida", "Medida");
+            tableMapping.ColumnMappings.Add("Empleado", "Empleado");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -12378,7 +12497,7 @@ namespace UI.BDautorepuestoDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.VentaMarca";
+            this._commandCollection[0].CommandText = "dbo.ReportesVentasModelo";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicio", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

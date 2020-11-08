@@ -49,7 +49,7 @@ namespace UI
             string conexion = System.Configuration.ConfigurationManager.ConnectionStrings["BDautorepuestoConnectionString1"].ConnectionString;
             using (SqlConnection cn = new SqlConnection(conexion))
             {
-                SqlCommand cmd = new SqlCommand("VentaMarca", cn);
+                SqlCommand cmd = new SqlCommand("ReportesVentasModelo", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@FechaInicio", SqlDbType.DateTime).Value = inicio;
                 cmd.Parameters.Add("@FechaFinal", SqlDbType.DateTime).Value = final;

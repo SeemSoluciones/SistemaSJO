@@ -31,7 +31,7 @@ namespace UI
 
             ReportViewer1.LocalReport.DataSources.Add(rds);
 
-            ReportViewer1.LocalReport.ReportPath = "ReportVentaTienda.rdlc";
+            ReportViewer1.LocalReport.ReportPath = "ReportVentas.rdlc";
 
             ReportParameter[] rptpara = new ReportParameter[]
             {
@@ -50,7 +50,7 @@ namespace UI
             string conexion = System.Configuration.ConfigurationManager.ConnectionStrings["BDautorepuestoConnectionString1"].ConnectionString;
             using (SqlConnection cn = new SqlConnection(conexion))
             {
-                SqlCommand cmd = new SqlCommand("VentaTienda", cn);
+                SqlCommand cmd = new SqlCommand("ReportesVentas", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@FechaInicio", SqlDbType.DateTime).Value = inicio;
                 cmd.Parameters.Add("@FechaFinal", SqlDbType.DateTime).Value = final;

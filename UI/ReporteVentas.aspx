@@ -6,16 +6,24 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
     <div class="form-group">
     <label>Fecha Inicial</label>
     <asp:TextBox ID="FechaInicio" runat="server" Cssclass="form-control" TextMode="Date"></asp:TextBox>
     </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
     <div class="form-group">
     <label>Fecha Final</label>
     <asp:TextBox ID="FechaFinal" runat="server" Cssclass="form-control" TextMode="Date"></asp:TextBox>
+    </div>
+        </div>
+
+          <div class="col-md-4">
+    <div class="form-group">
+    <label>Tienda</label>
+        <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="Tienda" DataValueField="ID_Tienda"></asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Tienda], [Tienda] FROM [Tienda]"></asp:SqlDataSource>
     </div>
         </div>
     </div>
@@ -33,8 +41,4 @@
     </rsweb:ReportViewer>
       
 
-    <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="GetData" TypeName="UI.BDautorepuestoDataSetTableAdapters.ReportesVentasTableAdapter"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetData" TypeName="UI.BDautorepuestoDataSetTableAdapters.inventarioStockTableAdapter"></asp:ObjectDataSource>
-      
-
-</asp:Content>
+    </asp:Content>

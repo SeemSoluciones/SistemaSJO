@@ -37,7 +37,7 @@ namespace UI
             {
                 new ReportParameter("FeInicio",FechaInicio.Text),
                 new ReportParameter("FeFinal",FechaFinal.Text),
-                new ReportParameter("Tipo",DropDownList1.SelectedValue)
+                new ReportParameter("Pago",DropDownList1.SelectedValue)
 
             };
             ReportViewer1.LocalReport.SetParameters(rptpara);
@@ -50,11 +50,11 @@ namespace UI
             string conexion = System.Configuration.ConfigurationManager.ConnectionStrings["BDautorepuestoConnectionString1"].ConnectionString;
             using (SqlConnection cn = new SqlConnection(conexion))
             {
-                SqlCommand cmd = new SqlCommand("VentasTarjeta", cn);
+                SqlCommand cmd = new SqlCommand("ReportesVentasPago", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@FechaInicio", SqlDbType.DateTime).Value = inicio;
                 cmd.Parameters.Add("@FechaFinal", SqlDbType.DateTime).Value = final;
-                cmd.Parameters.Add("@Tipo", SqlDbType.Int).Value = idTipo;
+                cmd.Parameters.Add("@Pago", SqlDbType.Int).Value = idTipo;
 
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(dt);
