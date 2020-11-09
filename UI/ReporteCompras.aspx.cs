@@ -26,7 +26,7 @@ namespace UI
         {
             ReportViewer1.Reset();
 
-            DataTable dt = GenerarReporte(DateTime.Parse(FechaInicio.Text), DateTime.Parse(FechaFinal.Text));
+            DataTable dt = GenerarReporte(DateTime.Parse(FechaInicio.Text), DateTime.Parse(FechaFinal.Text), int.Parse(DropDownList1.SelectedValue));
             ReportDataSource rds = new ReportDataSource("DataSet1", dt);
 
             ReportViewer1.LocalReport.DataSources.Add(rds);
@@ -36,14 +36,14 @@ namespace UI
             ReportParameter[] rptpara = new ReportParameter[]
             {
                 new ReportParameter("FeInicio",FechaInicio.Text),
-                new ReportParameter("FeFinal",FechaFinal.Text)
-
+                new ReportParameter("FeFinal",FechaFinal.Text),
+                new ReportParameter("Tienda",DropDownList1.SelectedValue)
             };
             ReportViewer1.LocalReport.SetParameters(rptpara);
             ReportViewer1.LocalReport.Refresh();
         }
 
-        private DataTable GenerarReporte(DateTime inicio, DateTime final)
+        private DataTable GenerarReporte(DateTime inicio, DateTime final, int idTienda)
         {
             DataTable dt = new DataTable();
             string conexion = System.Configuration.ConfigurationManager.ConnectionStrings["BDautorepuestoConnectionString1"].ConnectionString;
@@ -53,6 +53,7 @@ namespace UI
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@FechaInicio", SqlDbType.DateTime).Value = inicio;
                 cmd.Parameters.Add("@FechaFinal", SqlDbType.DateTime).Value = final;
+                cmd.Parameters.Add("@Tienda", SqlDbType.Int).Value = idTienda;
 
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(dt);

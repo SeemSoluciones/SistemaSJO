@@ -1,25 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="ReporteCompras.aspx.cs" Inherits="UI.ReporteCompras" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="ReporteStockTienda.aspx.cs" Inherits="UI.ReporteStockTienda" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <div class="row">
-        <div class="col-md-4">
-    <div class="form-group">
-    <label>Fecha Inicial</label>
-    <asp:TextBox ID="FechaInicio" runat="server" Cssclass="form-control" TextMode="Date"></asp:TextBox>
-    </div>
-        </div>
-        <div class="col-md-4">
-    <div class="form-group">
-    <label>Fecha Final</label>
-    <asp:TextBox ID="FechaFinal" runat="server" Cssclass="form-control" TextMode="Date"></asp:TextBox>
-    </div>
-        </div>
-
-              <div class="col-md-4">
+       <div class="col-md-4">
     <div class="form-group">
     <label>Tienda</label>
         <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="Tienda" DataValueField="ID_Tienda"></asp:DropDownList>
@@ -27,9 +13,6 @@
     </div>
 
         </div>
-
-
-    </div>
      
      <asp:Button ID="Button4" runat="server" Text="Generar Reporte" CssClass="btn btn-success pull-right" Width="200"  OnClick="Button4_Click"> </asp:Button>
                <br />                        
@@ -44,3 +27,4 @@
       
 
 </asp:Content>
+

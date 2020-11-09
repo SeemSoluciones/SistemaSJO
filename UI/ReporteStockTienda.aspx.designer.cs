@@ -10,25 +10,7 @@
 namespace UI {
     
     
-    public partial class ReporteCompras {
-        
-        /// <summary>
-        /// Control FechaInicio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FechaInicio;
-        
-        /// <summary>
-        /// Control FechaFinal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FechaFinal;
+    public partial class ReporteStockTienda {
         
         /// <summary>
         /// Control DropDownList1.
