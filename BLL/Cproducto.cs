@@ -546,12 +546,12 @@ namespace BLL
             }
         }
 
-        public string exportarStock(int cantidad, int idTiend, int idanio, string codio, int idStock)
+        public string exportarStock(int cantidad, int idTiend,  int codio, int idMarca,  int idStock)
         {
             string ms;
             try
             {
-                return ms = PROVEEDOR.ExportarStock(cantidad, idTiend, idanio, codio, idStock).ToString();
+                return ms = PROVEEDOR.ExportarStock(cantidad, idTiend, codio, idMarca, idStock).ToString();
             }
             catch
             {
