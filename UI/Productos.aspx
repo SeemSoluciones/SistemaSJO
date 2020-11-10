@@ -77,7 +77,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Categoria" SortExpression="Categoria">
                         <EditItemTemplate>
-                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("Categoria") %>'></asp:Label>
+                            <asp:Label ID="Label7" runat="server" Text='<%# Eval("Categoria") %>'></asp:Label>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="Label7" runat="server" Text='<%# Bind("Categoria") %>'></asp:Label>
@@ -356,7 +356,7 @@
                           <div class="form-group">
                           <div class="col-xs-6"> 
                               <label>Categoria</label>
-                          <asp:DropDownList ID="DropDownList17" CssClass="form-control" runat="server" DataSourceID="SqlDataSource14" DataTextField="Categoria" DataValueField="ID_Categoria" AutoPostBack="true" OnSelectedIndexChanged="DropDownList17_SelectedIndexChanged"></asp:DropDownList>
+                          <asp:DropDownList ID="DropDownList17" CssClass="form-control" runat="server" DataSourceID="SqlDataSource18" DataTextField="Categoria" DataValueField="ID_Categoria" AutoPostBack="true" OnSelectedIndexChanged="DropDownList17_SelectedIndexChanged"></asp:DropDownList>
 
                               <asp:SqlDataSource ID="SqlDataSource18" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT [ID_Categoria], [Categoria] FROM [Categoria]"></asp:SqlDataSource>
 
