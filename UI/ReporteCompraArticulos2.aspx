@@ -21,9 +21,9 @@
 
          <div class="col-md-4">
     <div class="form-group">
-    <label>Marca</label>
-        <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="Marca" DataValueField="ID_Marca"></asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT * FROM [Marca] ORDER BY [Marca]"></asp:SqlDataSource>
+    <label>Proveedor</label>
+        <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control" DataSourceID="SqlDataSource1" DataTextField="Proveedor" DataValueField="ID_Proveedor"></asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT * FROM [Proveedor]"></asp:SqlDataSource>
     </div>
 
         </div>

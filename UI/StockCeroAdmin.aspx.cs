@@ -10,7 +10,7 @@ using Microsoft.Reporting.WebForms;
 
 namespace UI
 {
-    public partial class ReporteCompraArticulos2 : System.Web.UI.Page
+    public partial class StockCeroAdmin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,40 +21,38 @@ namespace UI
         {
             MostrarReporte();
         }
-
         private void MostrarReporte()
         {
             ReportViewer1.Reset();
 
-            DataTable dt = GenerarReporte(DateTime.Parse(FechaInicio.Text), DateTime.Parse(FechaFinal.Text), Convert.ToInt32(DropDownList1.SelectedValue));
+            DataTable dt = GenerarReporte(int.Parse(DropDownList1.SelectedValue));
             ReportDataSource rds = new ReportDataSource("DataSet1", dt);
 
             ReportViewer1.LocalReport.DataSources.Add(rds);
 
-            ReportViewer1.LocalReport.ReportPath = "ReportCompraArticulo.rdlc";
+            ReportViewer1.LocalReport.ReportPath = "ReportStockCero.rdlc";
 
             ReportParameter[] rptpara = new ReportParameter[]
             {
-                new ReportParameter("FeInicio",FechaInicio.Text),
-                new ReportParameter("FeFinal",FechaFinal.Text),
-                new ReportParameter("Proveedor",DropDownList1.SelectedValue)
+
+
+                new ReportParameter("Tienda",DropDownList1.SelectedValue)
 
             };
             ReportViewer1.LocalReport.SetParameters(rptpara);
             ReportViewer1.LocalReport.Refresh();
         }
 
-        private DataTable GenerarReporte(DateTime inicio, DateTime final, int producto)
+        private DataTable GenerarReporte(int idTienda)
         {
             DataTable dt = new DataTable();
             string conexion = System.Configuration.ConfigurationManager.ConnectionStrings["BDautorepuestoConnectionString1"].ConnectionString;
             using (SqlConnection cn = new SqlConnection(conexion))
             {
-                SqlCommand cmd = new SqlCommand("ReporteCompraProveedor", cn);
+                SqlCommand cmd = new SqlCommand("StockCero", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@FechaInicio", SqlDbType.DateTime).Value = inicio;
-                cmd.Parameters.Add("@FechaFinal", SqlDbType.DateTime).Value = final;
-                cmd.Parameters.Add("@Proveedor", SqlDbType.Int).Value = producto;
+
+                cmd.Parameters.Add("@Tienda", SqlDbType.Int).Value = idTienda;
 
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(dt);
@@ -62,6 +60,5 @@ namespace UI
             }
             return dt;
         }
-
     }
 }
