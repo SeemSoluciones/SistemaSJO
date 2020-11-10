@@ -140,7 +140,7 @@ namespace UI
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlDataSource1.SelectCommand = "SELECT DISTINCT Producto.ID_Producto, Producto.Producto, Producto.Descripcion, stuff((Select ', ' + OEM.OEM + ' ~ ' + Marca.Marca From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM, stuff((Select ', ' + CodigoProducto.Codigo + ' ~ ' + MarcaProd.MarcaP From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP, stuff((Select '| ' + AnioInicio + '-' + AnioFinal + ' ~ ' + Rubro + ', ' + Modelo + ', ' + Marca From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP, SubCategoria.SubCategoria + ', ' + Categoria.Categoria AS Categoria FROM Producto INNER JOIN SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria INNER JOIN Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria left join OEM on Producto.ID_Producto = OEM.ID_Producto left join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto WHERE (Producto.Estado = 1) AND (Producto.Producto like '%" + TextBox11.Text+ "%' OR OEM.OEM like '%"+TextBox11.Text+ "%' OR CodigoProducto.Codigo like '%"+TextBox11.Text+"%')";
+            SqlDataSource1.SelectCommand = "SELECT DISTINCT Producto.ID_Producto, Producto.Producto, Producto.Descripcion, stuff((Select ', ' + OEM.OEM + ' ~ ' + Marca.Marca From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM, stuff((Select ', ' + CodigoProducto.Codigo + ' ~ ' + MarcaProd.MarcaP From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP, stuff((Select '| ' + AnioInicio + '-' + AnioFinal + ' ~ ' + Rubro + ', ' + Modelo + ', ' + Marca From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP, SubCategoria.SubCategoria + ',' + Categoria.Categoria AS Categoria FROM Producto INNER JOIN SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria INNER JOIN Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria left join OEM on Producto.ID_Producto = OEM.ID_Producto left join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto WHERE (Producto.Estado = 1) AND (Producto.Producto like '%" + TextBox11.Text+ "%' OR OEM.OEM like '%"+TextBox11.Text+ "%' OR CodigoProducto.Codigo like '%"+TextBox11.Text+"%')";
             SqlDataSource1.DataBind();
         }
 /*
@@ -382,7 +382,7 @@ namespace UI
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
            // ViewState["Detalles5"] = GridView5;
-            string Subcat, IdProducto = "";
+            string Subcat, Subcat2, IdProducto = "";
             GridViewRow tabla = (GridViewRow)(((LinkButton)sender).Parent.Parent);
             IdProducto = ((Label)tabla.FindControl("Label1")).Text.ToString();
             Label8.Text = IdProducto;
@@ -397,9 +397,18 @@ namespace UI
             Subcat = ((Label)tabla.FindControl("Label7")).Text.ToString();
             string[] separar;
             separar = Subcat.Split(',');
+            //for(int i = 0; i < separar.Length; i++)
+            //{
+            //   
+            //}
 
-            DropDownList18.SelectedIndex = DropDownList18.Items.IndexOf(DropDownList18.Items.FindByText(separar[0]));
-
+            // separar = Subcat2.Split(',');
+            string categoria = separar[1];
+            //   Response.Write("<script>alert('"+ categoria +"')</script>");
+            DropDownList17.SelectedIndex = DropDownList17.Items.IndexOf(DropDownList17.Items.FindByText(categoria));
+            // ddlsample.SelectedIndex =      ddlsample.Items.IndexOf(     ddlsample.Items.FindByText("x"));
+            SqlDataSource19.SelectCommand = "SELECT ID_SubCategoria, SubCategoria FROM SubCategoria WHERE SubCategoria like '%"+separar[0]+"%'";
+            SqlDataSource19.DataBind();
 
             Button4_ModalPopupExtender.Show();
         }

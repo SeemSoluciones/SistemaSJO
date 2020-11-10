@@ -79,7 +79,7 @@
                                <asp:DropDownList ID="DropDownList3" CssClass="form-control select2" runat="server" DataSourceID="SqlDataSource3" DataTextField="Categoria" DataValueField="ID_SubCategoria" AutoPostBack="true" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged" AppendDataBoundItems="true">
                                    <asp:ListItem Value="0">Seleccione uno...</asp:ListItem>
                                </asp:DropDownList>
-                               <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT SubCategoria.ID_SubCategoria, Categoria.Categoria + '  ' + SubCategoria.SubCategoria AS Categoria FROM Categoria INNER JOIN SubCategoria ON Categoria.ID_Categoria = SubCategoria.ID_Categoria"></asp:SqlDataSource>
+                               <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT SubCategoria.ID_SubCategoria, Categoria.Categoria + '  ' + SubCategoria.SubCategoria AS Categoria FROM Categoria INNER JOIN SubCategoria ON Categoria.ID_Categoria = SubCategoria.ID_Categoria ORDER BY Categoria.Categoria"></asp:SqlDataSource>
                            </div>
                                 <div class="col-sm-2">
                                     <asp:TextBox ID="TextBox20" CssClass="form-control" runat="server"></asp:TextBox>
