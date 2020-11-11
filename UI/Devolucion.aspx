@@ -37,7 +37,7 @@
         </Columns>
     </asp:GridView>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha,Producto.ID_Producto, Producto.Descripcion, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta, Stock.ID_Existencia FROM Producto INNER JOIN DetalleVenta ON Producto.ID_Producto= DetalleVenta.ID_Producto INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Stock ON Producto.ID_Producto = Stock.ID_Producto WHERE (Venta.ID_Venta = @ID_Venta) AND (Producto.Estado = 1)">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha, Producto.ID_Producto,  Producto.Descripcion, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta, Stock.ID_Existencia FROM Stock INNER JOIN DetalleVenta ON Stock.ID_Existencia = DetalleVenta.ID_Existencia INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Producto ON Producto.ID_Producto = Stock.ID_Producto  WHERE (Venta.ID_Venta = @ID_Venta) AND (Producto.Estado = 1)">
         <SelectParameters>
             <asp:ControlParameter ControlID="TextBox1" Name="ID_Venta" PropertyName="Text" />
         </SelectParameters>
