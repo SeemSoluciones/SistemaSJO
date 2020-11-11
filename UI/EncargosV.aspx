@@ -3,6 +3,7 @@
 </asp:Content>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <style type="text/css">
         .fondo{
             background-color:black;
@@ -119,7 +120,7 @@
                        
                         <asp:BoundField DataField="NIT" HeaderText="NIT" SortExpression="NIT" />
                         <asp:BoundField DataField="Nom" HeaderText="Nombre" ReadOnly="True" SortExpression="Nom" />
-                        <asp:BoundField DataField="Codigo" HeaderText="Producto" SortExpression="Codigo" />
+                        <asp:BoundField DataField="Producto" HeaderText="Producto" SortExpression="Producto" />
                         <asp:BoundField DataField="FechaPedido" HeaderText="FechaPedido" SortExpression="FechaPedido" DataFormatString="{0:dd/MM/yyyy}" />
                         <asp:BoundField DataField="FechaEntrega" HeaderText="FechaEntrega" SortExpression="FechaEntrega" DataFormatString="{0:dd/MMyyyy}" />
                         <asp:BoundField DataField="Anticipo" HeaderText="Anticipo" SortExpression="Anticipo" DataFormatString="{0:0.00}" />
@@ -129,7 +130,7 @@
                         <asp:CommandField ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="ListaEncargos" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Cliente.NIT, Cliente.Nombre + '  ' + Cliente.Apellidos AS Nom, ProductoXencargo.Codigo,  ProductoXencargo.FechaPedido, ProductoXencargo.FechaEntrega, ProductoXencargo.Anticipo, ProductoXencargo.PrecioReal, ProductoXencargo.Descripcion, ProductoXencargo.Fotografia, ProductoXencargo.Estado, ProductoXencargo.ID_ProdXen FROM ProductoXencargo  INNER JOIN Cliente ON ProductoXencargo.ID_Cliente = Cliente.ID_Cliente WHERE (ProductoXencargo.Estado = 0)"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="ListaEncargos" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Cliente.NIT, Cliente.Nombre + '  ' + Cliente.Apellidos AS Nom, ProductoXencargo.Producto,  ProductoXencargo.FechaPedido, ProductoXencargo.FechaEntrega, ProductoXencargo.Anticipo, ProductoXencargo.PrecioReal, ProductoXencargo.Descripcion, ProductoXencargo.Fotografia, ProductoXencargo.Estado, ProductoXencargo.ID_ProdXen FROM ProductoXencargo  INNER JOIN Cliente ON ProductoXencargo.ID_Cliente = Cliente.ID_Cliente WHERE (ProductoXencargo.Estado = 0)"></asp:SqlDataSource>
             </div>
         </div>
     
@@ -225,5 +226,6 @@
             </div>
     </asp:Panel>
 </section>
+
 
 </asp:Content>

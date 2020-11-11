@@ -192,7 +192,7 @@ namespace UI
         {
             GridViewRow gd = GridView2.SelectedRow;
             TextBox7.Text = GridView2.SelectedRow.Cells[0].Text;
-            TextBox8.Text = gd.Cells[3].Text;
+            TextBox8.Text = gd.Cells[3].Text + " Marca:"+gd.Cells[6].Text; ;
             TextBox9.Text = gd.Cells[8].Text;
             TextBox3.Text = gd.Cells[7].Text;
             TextBox11.Text = "1";
