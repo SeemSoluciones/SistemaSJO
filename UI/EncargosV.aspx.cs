@@ -30,7 +30,7 @@ namespace UI
                 string idTienda = Session["IDtienda"].ToString();
                 string idEmpleado = Session["IdEmpleado"].ToString();
                 string msj = "";
-                msj = Datos.nuevoEncargo(Convert.ToDateTime(FechaEn.Text), Convert.ToDecimal(TextBox2.Text), TextBox4.Text, Producto.Text, Convert.ToInt32(Label1.Text), imag, Convert.ToDecimal(TextBox9.Text));
+                msj = Datos.nuevoEncargo(Convert.ToDateTime(FechaEn.Text), Convert.ToDecimal(TextBox2.Text), TextBox4.Text, Producto.Text, Convert.ToInt32(Label1.Text), imag, Convert.ToDecimal(TextBox9.Text), Convert.ToInt32(idEmpleado), TextBox11.Text);
                 Datos.InsertarVenta(Convert.ToDecimal(TextBox2.Text), 0, Convert.ToDecimal(TextBox2.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda), Convert.ToInt32(Label1.Text));
                 Response.Write("<script>alert('" + msj + "')</script>");
                 Response.Redirect("Encargos.aspx");

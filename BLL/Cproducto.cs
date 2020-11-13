@@ -350,14 +350,14 @@ namespace BLL
         #endregion
 
         #region Productos por encargo
-        public string nuevoEncargo(DateTime fechaE, decimal money, string descrip, string idProd, int idCl, byte[] ubicacion, decimal precioreal)
+        public string nuevoEncargo(DateTime fechaE, decimal money, string descrip, string idProd, int idCl, byte[] ubicacion, decimal precioreal, int empleado, string proveedor)
         {
             try
             {
                
 
 
-                PROVEEDOR.InsertarProdXencargo(fechaE, money, descrip, ubicacion,idProd, idCl, precioreal);
+                PROVEEDOR.InsertarProdXencargo(fechaE, money, descrip, ubicacion,idProd, idCl, precioreal,empleado, proveedor);
                 return "Producto por pedidos ingreado correctamente";
 
             }

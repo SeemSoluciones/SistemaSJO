@@ -90,7 +90,10 @@
                         <div class="form-group">
                             <asp:FileUpload ID="FileUpload1" runat="server" placeholder="subir" CssClass="form-control"/>
                     </div>   
-
+                      <div class="form-group">
+                        <label>Proveedor</label>
+                        <asp:TextBox ID="TextBox11" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                    </div>
                 </div>
             </div>
         </div>
