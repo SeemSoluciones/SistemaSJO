@@ -19,7 +19,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     
-    <rsweb:ReportViewer ID="ReportViewer1" runat="server" SizeToReportContent="true"></rsweb:ReportViewer>
+    <rsweb:ReportViewer ID="ReportViewer1" runat="server" SizeToReportContent="true" CssClass="table table-responsive"></rsweb:ReportViewer>
       
 
     <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="GetData" TypeName="UI.BDautorepuestoDataSetTableAdapters.ReportesVentasTableAdapter"></asp:ObjectDataSource>

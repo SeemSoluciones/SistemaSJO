@@ -19,7 +19,16 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     
-    <rsweb:ReportViewer ID="ReportViewer1" runat="server" SizeToReportContent="true"></rsweb:ReportViewer>
+    <rsweb:ReportViewer ID="ReportViewer1" runat="server" SizeToReportContent="True" CssClass="table table-responsive" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt">
+        <LocalReport ReportPath="ReportStockMinimoT.rdlc">
+            <DataSources>
+                <rsweb:ReportDataSource DataSourceId="ObjectDataSource3" Name="DataSet1" />
+            </DataSources>
+        </LocalReport>
+       </rsweb:ReportViewer>
+      
+
+       <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="GetData" TypeName="UI.BDautorepuestoDataSetTableAdapters.StockMinimoTiendaTableAdapter"></asp:ObjectDataSource>
       
 
     <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="GetData" TypeName="UI.BDautorepuestoDataSetTableAdapters.ReportesVentasTableAdapter"></asp:ObjectDataSource>
