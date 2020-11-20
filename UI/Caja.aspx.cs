@@ -102,8 +102,9 @@ namespace UI
                     DropDownList9.Enabled = false;
                     TipoFactura = 2;
 
-
-                  //  Response.Redirect("Caja.aspx");
+                    Button3.Enabled = false;
+                    botonCot.EnableViewState = false;
+                    //  Response.Redirect("Caja.aspx");
                 }
                 else
                 {
@@ -126,8 +127,14 @@ namespace UI
             {
                 double descuento = 0;
                 double totalDesc = 0.0;
-                totalDesc = Convert.ToDouble(TextBox10.Text) * 0.01;
-                descuento = Convert.ToDouble(TextBox9.Text) * totalDesc * Convert.ToDouble(TextBox11.Text);
+                //totalDesc = Convert.ToDouble(TextBox10.Text) * 0.01;
+                //descuento = Convert.ToDouble(TextBox9.Text) * totalDesc * Convert.ToDouble(TextBox11.Text);
+
+                totalDesc = Convert.ToDouble(TextBox9.Text) * 0.7;
+                precioProductoSinGanancia = Convert.ToDouble(TextBox9.Text) - totalDesc;
+                descuento = precioProductoSinGanancia * ((Convert.ToDouble(TextBox10.Text) * 0.01) + 0.4);
+
+
                 string idTienda = Session["IDtienda"].ToString();
                 if (cantProd >= Convert.ToInt32(TextBox11.Text))
                 {
@@ -149,7 +156,8 @@ namespace UI
                             dt = (DataTable)ViewState["Detalles"];
                             if (dt.Rows.Count > 0)
                             {
-                                subtotal = Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox9.Text);
+                                subtotal = (Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox9.Text)) - (Convert.ToDecimal(descuento) * Convert.ToDecimal(TextBox11.Text)) ;
+
                                 dr = dt.NewRow();
                               //  dr["ID"] = Label1.Text;
                                 dr["ID"] = TextBox7.Text;
@@ -169,7 +177,7 @@ namespace UI
                     }
                     else
                     {
-                        subtotal = Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox9.Text);
+                        subtotal = (Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox9.Text)) - (Convert.ToDecimal(descuento) * Convert.ToDecimal(TextBox11.Text));
                         dr = dt.NewRow();
                        // dr["ID"] = Label1.Text;
                         dr["ID"] = TextBox7.Text;
@@ -230,7 +238,7 @@ namespace UI
 
                 if (DropDownList4.SelectedItem.Text.Trim() == "Credito")
                 {
-                    if(TextBox3.Text == "1")
+                    if(TextBox3.Text == "1" || TextBox3.Text == "")
                     {
                         Response.Write("<script>alert('Error, Este Nit y cliente no es valido!')</script>");
                     }
@@ -278,87 +286,188 @@ namespace UI
                 }
                 else
                 {
-                    if(TextBox3.Text != "")
-                    {
-                         int siexiste = 0;
 
-                    siexiste = datos2.SiExisteCliente(Convert.ToInt32(TextBox3.Text));
-
-                    if(siexiste == 1)
+                    if (DropDownList4.SelectedItem.ToString() == "Cheque")
                     {
-                        if(TextBox3.Text == "" && Nit == 1)
+                        if (TextBox100.Text.Equals(String.Empty))
                         {
-                            string idTienda = Session["IDtienda"].ToString();
-                            string idEmpleado = Session["IdEmpleado"].ToString();
-
-                            double iva = 0;
-                            iva = 0.12 * Convert.ToDouble(TextBox14.Text);
-                             msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
-                            datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
-                            foreach (GridViewRow row in GridView1.Rows)
-                            {
-                                datos.InsertarDetalleVenta(
-                                    Convert.ToInt32(row.Cells[5].Text),
-                                    Convert.ToDecimal(row.Cells[3].Text),
-                                    Convert.ToDecimal(row.Cells[6].Text),
-                                    Convert.ToInt32(msj),
-                                    Convert.ToInt32(DropDownList4.SelectedValue),
-                                    Convert.ToInt32(row.Cells[7].Text)
-
-                                    );
-                            }
-                             TipoFactura = 1;
-                            nit = TextBox3.Text;
-                            nombre = TextBox4.Text;
-                            ciudad = TextBox5.Text;
-
-                            Pago = DropDownList4.SelectedItem.ToString();
-                            Label6.Text = "La venta ya fue guardada!!!";
+                            Response.Write("<script>alert('Favor de ingresar el correlativo del cheque (No.)')</script>");
                         }
                         else
                         {
-                            string idTienda = Session["IDtienda"].ToString();
-                            string idEmpleado = Session["IdEmpleado"].ToString();
-
-                            double iva = 0;
-                            iva = 0.12 * Convert.ToDouble(TextBox14.Text);
-                            msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
-                            datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
-                            foreach (GridViewRow row in GridView1.Rows)
+                            if (TextBox3.Text != "")
                             {
-                                datos.InsertarDetalleVenta(
-                                    Convert.ToInt32(row.Cells[5].Text),
-                                    Convert.ToDecimal(row.Cells[3].Text),
-                                    Convert.ToDecimal(row.Cells[6].Text),
-                                    Convert.ToInt32(msj),
-                                    Convert.ToInt32(DropDownList4.SelectedValue),
-                                    Convert.ToInt32(row.Cells[7].Text)
+                                int siexiste = 0;
 
-                                    );
+                                siexiste = datos2.SiExisteCliente(Convert.ToInt32(TextBox3.Text));
+
+                                if (siexiste == 1)
+                                {
+                                    if (TextBox3.Text == "" && Nit == 1)
+                                    {
+                                        string idTienda = Session["IDtienda"].ToString();
+                                        string idEmpleado = Session["IdEmpleado"].ToString();
+
+                                        double iva = 0;
+                                        iva = 0.12 * Convert.ToDouble(TextBox14.Text);
+                                        msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
+                                        datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                        SqlDataSource13.InsertParameters["NoCheque"].DefaultValue = TextBox100.Text;
+                                        SqlDataSource13.InsertParameters["ID_Venta"].DefaultValue = msj;
+                                        SqlDataSource13.InsertParameters["Cantidad"].DefaultValue = TextBox14.Text;
+                                        SqlDataSource13.Insert();
+                                        foreach (GridViewRow row in GridView1.Rows)
+                                        {
+                                            datos.InsertarDetalleVenta(
+                                                Convert.ToInt32(row.Cells[5].Text),
+                                                Convert.ToDecimal(row.Cells[3].Text),
+                                                Convert.ToDecimal(row.Cells[6].Text),
+                                                Convert.ToInt32(msj),
+                                                Convert.ToInt32(DropDownList4.SelectedValue),
+                                                Convert.ToInt32(row.Cells[7].Text)
+
+                                                );
+                                        }
+                                        TipoFactura = 1;
+                                        nit = TextBox3.Text;
+                                        nombre = TextBox4.Text;
+                                        ciudad = TextBox5.Text;
+
+                                        Pago = DropDownList4.SelectedItem.ToString();
+                                        Label6.Text = "La venta ya fue guardada!!!";
+                                    }
+                                    else
+                                    {
+                                        string idTienda = Session["IDtienda"].ToString();
+                                        string idEmpleado = Session["IdEmpleado"].ToString();
+
+                                        double iva = 0;
+                                        iva = 0.12 * Convert.ToDouble(TextBox14.Text);
+                                        msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
+                                        datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                        SqlDataSource13.InsertParameters["NoCheque"].DefaultValue = TextBox100.Text;
+                                        SqlDataSource13.InsertParameters["ID_Venta"].DefaultValue = msj;
+                                        SqlDataSource13.InsertParameters["Cantidad"].DefaultValue = TextBox14.Text;
+                                        SqlDataSource13.Insert();
+                                        foreach (GridViewRow row in GridView1.Rows)
+                                        {
+                                            datos.InsertarDetalleVenta(
+                                                Convert.ToInt32(row.Cells[5].Text),
+                                                Convert.ToDecimal(row.Cells[3].Text),
+                                                Convert.ToDecimal(row.Cells[6].Text),
+                                                Convert.ToInt32(msj),
+                                                Convert.ToInt32(DropDownList4.SelectedValue),
+                                                Convert.ToInt32(row.Cells[7].Text)
+
+                                                );
+                                        }
+                                        TipoFactura = 1;
+                                        nit = TextBox3.Text;
+                                        nombre = TextBox4.Text;
+                                        ciudad = TextBox5.Text;
+
+                                        Pago = DropDownList4.SelectedItem.ToString();
+                                        Label6.Text = "La venta ya fue guardada!!!";
+                                        Nit = 1;
+                                    }
+
+
+                                }
+                                else if (siexiste == 0)
+                                {
+                                    Button6_ModalPopupExtender.Show();
+                                }
                             }
-                                TipoFactura = 1;
-                            nit = TextBox3.Text;
-                            nombre = TextBox4.Text;
-                            ciudad = TextBox5.Text;
+                            else
+                            {
+                                Response.Write("<script>alert('Error, Ingrese un NIT valido!')</script>");
+                            }
 
-                            Pago = DropDownList4.SelectedItem.ToString();
-                            Label6.Text = "La venta ya fue guardada!!!";
-                            Nit = 1;
                         }
-
-                       
-                    }
-                    else if (siexiste == 0)
-                    {
-                        Button6_ModalPopupExtender.Show();
-                    }
                     }
                     else
                     {
-                        Response.Write("<script>alert('Error, Ingrese un NIT valido!')</script>");
+                        if (TextBox3.Text != "")
+                        {
+                            int siexiste = 0;
+
+                            siexiste = datos2.SiExisteCliente(Convert.ToInt32(TextBox3.Text));
+
+                            if (siexiste == 1)
+                            {
+                                if (TextBox3.Text == "" && Nit == 1)
+                                {
+                                    string idTienda = Session["IDtienda"].ToString();
+                                    string idEmpleado = Session["IdEmpleado"].ToString();
+
+                                    double iva = 0;
+                                    iva = 0.12 * Convert.ToDouble(TextBox14.Text);
+                                    msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
+                                    datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                    foreach (GridViewRow row in GridView1.Rows)
+                                    {
+                                        datos.InsertarDetalleVenta(
+                                            Convert.ToInt32(row.Cells[5].Text),
+                                            Convert.ToDecimal(row.Cells[3].Text),
+                                            Convert.ToDecimal(row.Cells[6].Text),
+                                            Convert.ToInt32(msj),
+                                            Convert.ToInt32(DropDownList4.SelectedValue),
+                                            Convert.ToInt32(row.Cells[7].Text)
+
+                                            );
+                                    }
+                                    TipoFactura = 1;
+                                    nit = TextBox3.Text;
+                                    nombre = TextBox4.Text;
+                                    ciudad = TextBox5.Text;
+
+                                    Pago = DropDownList4.SelectedItem.ToString();
+                                    Label6.Text = "La venta ya fue guardada!!!";
+                                }
+                                else
+                                {
+                                    string idTienda = Session["IDtienda"].ToString();
+                                    string idEmpleado = Session["IdEmpleado"].ToString();
+
+                                    double iva = 0;
+                                    iva = 0.12 * Convert.ToDouble(TextBox14.Text);
+                                    msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
+                                    datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                    foreach (GridViewRow row in GridView1.Rows)
+                                    {
+                                        datos.InsertarDetalleVenta(
+                                            Convert.ToInt32(row.Cells[5].Text),
+                                            Convert.ToDecimal(row.Cells[3].Text),
+                                            Convert.ToDecimal(row.Cells[6].Text),
+                                            Convert.ToInt32(msj),
+                                            Convert.ToInt32(DropDownList4.SelectedValue),
+                                            Convert.ToInt32(row.Cells[7].Text)
+
+                                            );
+                                    }
+                                    TipoFactura = 1;
+                                    nit = TextBox3.Text;
+                                    nombre = TextBox4.Text;
+                                    ciudad = TextBox5.Text;
+
+                                    Pago = DropDownList4.SelectedItem.ToString();
+                                    Label6.Text = "La venta ya fue guardada!!!";
+                                    Nit = 1;
+                                }
+
+
+                            }
+                            else if (siexiste == 0)
+                            {
+                                Button6_ModalPopupExtender.Show();
+                            }
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Error, Ingrese un NIT valido!')</script>");
+                        }
+
                     }
-                   
-                    
                 }
                 Nit = 1;
 
@@ -368,6 +477,8 @@ namespace UI
                     datos.EliminarCoti(IDcoti);
                     IDcoti = 0;
                 }
+                Button3.Enabled = false;
+                botonCot.EnableViewState = false;
             }
             catch
             {
@@ -652,6 +763,29 @@ namespace UI
                 DropDownList9.Enabled = false;
                 DropDownList9.SelectedIndex = DropDownList9.Items.IndexOf(DropDownList9.Items.FindByValue("0"));
             }
+        }
+
+        protected void DropDownList4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(DropDownList4.SelectedItem.ToString() == "Cheque")
+            {
+                TextBox100.Visible = true;
+                labelcheque.Visible = true; 
+            }
+        }
+
+        private static double margenganancia, precioProductoSinGanancia, precioSinDescuento, PrecioProductoConDescuento = 0;
+        protected void TextBox10_TextChanged(object sender, EventArgs e)
+        {
+            //margenganancia = Convert.ToDouble(TextBox9.Text) * 0.7;
+            //precioProductoSinGanancia = Convert.ToDouble(TextBox9.Text) - margenganancia;
+            //precioSinDescuento = precioProductoSinGanancia * ((Convert.ToDouble(TextBox10.Text)*0.01) + 0.4);
+            if(Convert.ToDouble(TextBox10.Text) > 30)
+            {
+                Response.Write("<script>alert('Descuento excede mayor a 30%')</script>");
+                TextBox10.Text = "30";
+            }
+     
         }
 
         protected void Button10_Click(object sender, EventArgs e)

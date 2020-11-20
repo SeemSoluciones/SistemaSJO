@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Factura2.aspx.cs" Inherits="UI.Factura2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ComprobanteEncargo.aspx.cs" Inherits="UI.ComprobanteEncargo" %>
+
 
 <!DOCTYPE html>
 
@@ -74,8 +75,9 @@
             <asp:Label ID="Label5" runat="server" Text=""></asp:Label> <br>
         <b>Fecha:</b>
             <asp:Label ID="Label6" runat="server" Text=""></asp:Label> <br>
-          <b>Forma de pago:</b>
-            <asp:Label ID="Label7" runat="server" Text=""></asp:Label>
+       
+           <b>Atendio:</b>
+            <asp:Label ID="Label8" runat="server" Text=""></asp:Label>
           <br/>
       </div>
       <!-- /.col -->
@@ -86,14 +88,17 @@
     <div class="row">
       <div class="col-xs-12 table-responsive">
       <table class="table table-striped">
-            <asp:GridView ID="GridView1" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowDataBound="GridView1_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" >
-                <Columns>
-                                <asp:BoundField DataField="Cantidad" HeaderText="Cant" ReadOnly="True" SortExpression="Codigo" />
-                                <asp:BoundField DataField="Codigos" HeaderText="Codigos" SortExpression="Codigos" />   
-                                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
-                                <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}"/>
-                                <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
-                </Columns>
+          <asp:GridView ID="GridView1" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" DataKeyNames="ID_ProdXen">
+              <Columns>
+                  <asp:BoundField DataField="NIT" HeaderText="NIT" SortExpression="NIT" />
+                  <asp:BoundField DataField="Nom" HeaderText="Nom" SortExpression="Nom" ReadOnly="True" />
+                  <asp:BoundField DataField="Producto" HeaderText="Producto" SortExpression="Producto" />
+                  <asp:BoundField DataField="FechaPedido" HeaderText="FechaPedido" SortExpression="FechaPedido" />
+                  <asp:BoundField DataField="FechaEntrega" HeaderText="FechaEntrega" SortExpression="FechaEntrega" />
+                  <asp:BoundField DataField="Anticipo" HeaderText="Anticipo" SortExpression="Anticipo"></asp:BoundField>
+                  <asp:BoundField DataField="PrecioReal" HeaderText="PrecioReal" SortExpression="PrecioReal"></asp:BoundField>
+                  <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion"></asp:BoundField>
+              </Columns>
                 <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                 <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
@@ -103,27 +108,12 @@
                 <SortedDescendingCellStyle BackColor="#E5E5E5" />
                 <SortedDescendingHeaderStyle BackColor="#242121" />
             </asp:GridView>
-       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand=""></asp:SqlDataSource>
-       </table>
-            <table class="table table-striped">
-            <asp:GridView ID="GridView2" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" OnRowDataBound="GridView1_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" >
-                <Columns>
-                                <asp:BoundField DataField="Cantidad" HeaderText="Cant" ReadOnly="True" SortExpression="Codigo" />
-                                <asp:BoundField DataField="Codigos" HeaderText="Codigos" SortExpression="Codigos" />   
-                                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
-                                <asp:BoundField DataField="Precio" HeaderText="Precio" SortExpression="Precio" DataFormatString="{0:0.00}"/>
-                                <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
-                </Columns>
-                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                <SortedAscendingCellStyle BackColor="#F7F7F7" />
-                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-                <SortedDescendingCellStyle BackColor="#E5E5E5" />
-                <SortedDescendingHeaderStyle BackColor="#242121" />
-            </asp:GridView>
-       <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand=""></asp:SqlDataSource>
+          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Cliente.NIT, Cliente.Nombre + '  ' + Cliente.Apellidos AS Nom, ProductoXencargo.Producto, ProductoXencargo.FechaPedido, ProductoXencargo.FechaEntrega, ProductoXencargo.Anticipo, ProductoXencargo.PrecioReal, ProductoXencargo.Descripcion, ProductoXencargo.Fotografia, ProductoXencargo.Estado, ProductoXencargo.ID_ProdXen, Empleado.Nombre + ' ' + Empleado.Apellidos AS Nombre, Tienda.Tienda, ProductoXencargo.Proveedor FROM ProductoXencargo INNER JOIN Cliente ON ProductoXencargo.ID_Cliente = Cliente.ID_Cliente INNER JOIN Empleado ON ProductoXencargo.ID_Empleado = Empleado.ID_Empleado INNER JOIN Tienda ON Empleado.ID_Tienda = Tienda.ID_Tienda WHERE
+ProductoXencargo.ID_ProdXen = @ID_ProdXen ">
+              <SelectParameters>
+                  <asp:Parameter Name="ID_ProdXen"></asp:Parameter>
+              </SelectParameters>
+          </asp:SqlDataSource>
        </table>
       </div>
       <!-- /.col -->
@@ -147,12 +137,12 @@
               <td>  <asp:Label ID="Label1" runat="server" Text="0.0"></asp:Label> </td>
             </tr>
             <tr>
-              <th>Descuento</th>
+              <th>Abonado</th>
               <td>  <asp:Label ID="Label2" runat="server" Text="0.0"></asp:Label> </td>
               <td></td>
             </tr>
             <tr>
-              <th>Total:</th>
+              <th>Pendiente:</th>
               <td>  <asp:Label ID="Label3" runat="server" Text="0.0"></asp:Label> </td>
               <td></td>
             </tr>
@@ -167,4 +157,4 @@
 </div>
     </form>
 </body>
-</html>
+</html>s

@@ -218,6 +218,14 @@ namespace UI
             Response.Redirect("Compra.aspx");
         }
 
+        protected void DropDownListCat_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            int idTtienda = 0;
+            idTtienda = Convert.ToInt32(Session["IDtienda"]);
+            SqlDataSource2.SelectCommand = "SELECT  Producto.Codigo, Producto.Codigo2, Producto.Descripcion AS Producto,MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda  Where (Stock.ID_Tienda = " + idTtienda+") AND (Producto.Estado = 1) AND Rubro.ID_Rubro = " + DropDownListCat.SelectedValue; 
+            SqlDataSource2.DataBind();
+        }
+
         protected void Button9_Click(object sender, EventArgs e)
         {
             try

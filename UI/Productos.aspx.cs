@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 using BLL;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+
 namespace UI
 {
     public partial class Productos : System.Web.UI.Page
@@ -65,11 +68,24 @@ namespace UI
             try
             {
 
-                byte[] imag = FileUpload1.FileBytes;
-                string msj;
+              string msj;
                 int idTtienda = 0;
+
                 idTtienda = Convert.ToInt32(Session["IDtienda"]);
-               msj = DatosP.InsertarProducto(producto2.Text, descripcion2.Text, imag, Convert.ToInt32(DropDownList14.SelectedValue));
+                //int tamanio = FileUpload1.PostedFile.ContentLength;
+                //byte[] ImagenOriginal = new byte[tamanio];
+
+                //FileUpload1.PostedFile.InputStream.Read(ImagenOriginal, 0, tamanio);
+
+                using (BinaryReader reader = new BinaryReader(FileUpload1.PostedFile.InputStream))
+                {
+
+                    byte[] image = reader.ReadBytes(FileUpload1.PostedFile.ContentLength);
+
+                  //  ImagenesDAL.GuardarImagen(FileUpload1.FileName, FileUpload1.PostedFile.ContentLength, image);
+                        msj = DatosP.InsertarProducto(producto2.Text, descripcion2.Text, image, Convert.ToInt32(DropDownList14.SelectedValue));
+                }       
+           
            
             foreach(GridViewRow row in GridView3.Rows)
             {
@@ -87,7 +103,7 @@ namespace UI
             }
                 Response.Write("<script>alert('Datos guardado correctamente!')</script>");
                 limpirar();
-            }
+        }
             catch
             {
                 Response.Write("<script>alert('Llene los campos correctamente')</script>");
@@ -95,7 +111,7 @@ namespace UI
             }
 
 
-        }
+}
 
         protected void Button3_Click(object sender, EventArgs e)
         {

@@ -107,6 +107,7 @@
     <Content Include="CategoriaB.aspx" />
     <Content Include="ClienteV.aspx" />
     <Content Include="CompraD.aspx" />
+    <Content Include="ComprobanteEncargo.aspx" />
     <Content Include="Descuento8.aspx" />
     <Content Include="DevolucionV.aspx" />
     <Content Include="DevProPro.aspx" />
@@ -7368,6 +7369,13 @@
     </Compile>
     <Compile Include="CompraD.aspx.designer.cs">
       <DependentUpon>CompraD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ComprobanteEncargo.aspx.cs">
+      <DependentUpon>ComprobanteEncargo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComprobanteEncargo.aspx.designer.cs">
+      <DependentUpon>ComprobanteEncargo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Credito2.aspx.cs">
       <DependentUpon>Credito2.aspx</DependentUpon>

@@ -4,5 +4,8 @@
 
     partial class DsProducto
     {
+        partial class DataTableCotizaDataTable
+        {
+        }
     }
 }

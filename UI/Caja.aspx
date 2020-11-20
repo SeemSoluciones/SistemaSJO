@@ -12,7 +12,7 @@
                 if(keyCode==113)
                 {
                  
-                    <%--$('#<%=LinkButton12.ClientID%>').click();--%>
+          <%--        //  $('#<%=LinkButton12.ClientID%>').click();--%>
                     return false;
                 
                 }
@@ -170,7 +170,7 @@
         <div class="col-md-4">            
             <div class="form-group">
             <label>Forma de pago</label>
-                <asp:DropDownList ID="DropDownList4"  CssClass="form-control" runat="server" DataSourceID="SqlDataSource4" DataTextField="Tipo" DataValueField="ID_TPago"></asp:DropDownList>
+                <asp:DropDownList ID="DropDownList4"  CssClass="form-control" runat="server" DataSourceID="SqlDataSource4" DataTextField="Tipo" DataValueField="ID_TPago" OnSelectedIndexChanged="DropDownList4_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                 <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_TPago, Tipo FROM TipoPago WHERE (Estado = 1)"></asp:SqlDataSource>
             </div>
         </div>
@@ -232,13 +232,13 @@
          <div class="col-sm-2">
              <div class="form-group">
             <label>Precio Venta</label>
-            <asp:TextBox ID="TextBox9" CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox9" CssClass="form-control" runat="server" ></asp:TextBox>
             </div> 
         </div>
               <div class="col-sm-2">
              <div class="form-group">
             <label>Descuento</label>
-            <asp:TextBox ID="TextBox10" CssClass="form-control" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox10" CssClass="form-control" runat="server" OnTextChanged="TextBox10_TextChanged" AutoPostBack="True"></asp:TextBox>
             </div> 
         </div>
               <div class="col-sm-2">
@@ -330,7 +330,22 @@
                  <asp:TextBox ID="TextBox14" runat="server" CssClass="form-control" Font-Bold="True" Enabled="False"></asp:TextBox>
         </div>
           </div>
-            <asp:Label ID="Label6" runat="server" CssClass="label label-danger pull-right" Font-Size="Large"></asp:Label>
+           
+        </div>
+        <div class="row">
+         <div class="col-md-6">
+        </div>
+         <div class="col-md-3">
+            <div class="form-group">
+            <label runat="server" id="labelcheque" class="pull-right" visible="false">Cheque No.</label>
+            </div>  
+        </div>
+         <div class="col-md-3">
+             <div class="form-group">
+                 <asp:TextBox ID="TextBox100" runat="server" CssClass="form-control" Font-Bold="True" Visible="false"></asp:TextBox>
+        </div>
+          </div>
+             <asp:Label ID="Label6" runat="server" CssClass="label label-danger pull-right" Font-Size="Large"></asp:Label>
         </div>
         <div>
             <br />
@@ -458,6 +473,13 @@ Where CotizacionVenta.ID_Cotizacion = @IDcotizacion AND CotizacionVenta.Estado =
             <SelectParameters>
                 <asp:Parameter Name="IDcotizacion"></asp:Parameter>
             </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource13" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" InsertCommand="INSERT INTO Cheque(NoCheque, Cantidad, ID_Venta, SiCobrado) VALUES (@NoCheque, @Cantidad, @ID_Venta, 0)" SelectCommand="SELECT ID_Cheque, NoCheque, SiCobrado, Cantidad, Banco, ID_Venta FROM Cheque">
+            <InsertParameters>
+                <asp:Parameter Name="NoCheque" />
+                <asp:Parameter Name="Cantidad" />
+                <asp:Parameter Name="ID_Venta" />
+            </InsertParameters>
         </asp:SqlDataSource>
     </asp:Panel>
     <script type="text/javascript">

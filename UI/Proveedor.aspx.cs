@@ -41,8 +41,17 @@ namespace UI
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-          SqlDataSource1.SelectCommand = "SELECT ID_Proveedor, Proveedor, Direccion, Telefono, NIT FROM Proveedor WHERE (Estado = 1)  AND (Proveedor LIke '%" + TextBox4.Text + "%')";
-            SqlDataSource1.DataBind();
+            try
+            {
+
+
+                SqlDataSource1.SelectCommand = "SELECT ID_Proveedor, Codigo, Proveedor, Direccion, Telefono, NIT, Nombre, Celular, Correo FROM Proveedor WHERE (Estado = 1)  AND (Proveedor LIke '%" + TextBox4.Text + "%')";
+                SqlDataSource1.DataBind();
+            }
+            catch
+            {
+                Response.Write("<script>alert('Error, revise los campos')</script>");
+            }
         }
     }
 }

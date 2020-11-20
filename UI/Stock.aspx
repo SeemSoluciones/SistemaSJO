@@ -73,7 +73,7 @@
                         </div>
                         <div class="form-group">
                             <label>Precio producto para venta</label>
-                            <asp:TextBox ID="precioVenta" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="precioVenta" CssClass="form-control" runat="server" Text="0"></asp:TextBox>
                         </div> 
                         <div class="form-group">
                             <label>Marca del producto</label>

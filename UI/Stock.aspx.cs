@@ -55,10 +55,24 @@ namespace UI
                 int SiExiste = datosProd.SiExisteStock(TextBox6.Text, Convert.ToInt32(Session["IDtienda"].ToString()), Convert.ToInt32(DropDownList1.SelectedValue));
                 if(SiExiste == 0)
                 {
-                    int idTtienda = 0;
+                    if(Convert.ToInt16(precioVenta.Text) == 0)
+                    {
+                        double precioGan = Convert.ToDouble(precioProd.Text) * 0.7;
+                        double precioVentaP = precioGan + Convert.ToDouble(precioProd.Text);
+                        int idTtienda = 0;
                     idTtienda = Convert.ToInt32(Session["IDtienda"]);
-                    datosProd.InsertarStock (Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVenta.Text), Convert.ToInt32(Label1.Text),idTtienda, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(DropDownList8.SelectedValue), Convert.ToInt32(DropDownList6.SelectedValue));
+                    datosProd.InsertarStock (Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVentaP), Convert.ToInt32(Label1.Text),idTtienda, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(DropDownList8.SelectedValue), Convert.ToInt32(DropDownList6.SelectedValue));
                     Response.Redirect("Stock.aspx");
+                    }
+                    else{
+                        double precioGan = Convert.ToDouble(precioProd.Text) * 0.7;
+                        double precioVentaP = precioGan + Convert.ToDouble(precioVenta.Text);
+                        int idTtienda = 0;
+                        idTtienda = Convert.ToInt32(Session["IDtienda"]);
+                        datosProd.InsertarStock(Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVentaP), Convert.ToInt32(Label1.Text), idTtienda, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(DropDownList8.SelectedValue), Convert.ToInt32(DropDownList6.SelectedValue));
+                        Response.Redirect("Stock.aspx");
+                    }
+                    
                 }
                 else if(SiExiste  > 0)
                 {

@@ -82,7 +82,7 @@
      
                                 </div>
                            <div class="col-xs-2">
-                               <asp:DropDownList ID="DropDownListCat" CssClass="form-control select2" runat="server" DataSourceID="SqlDataSource3" DataTextField="Categoria" DataValueField="ID_SubCategoria" AutoPostBack="true" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged" AppendDataBoundItems="true">
+                               <asp:DropDownList ID="DropDownListCat" CssClass="form-control select2" runat="server" DataSourceID="SqlDataSource3" DataTextField="Categoria" DataValueField="ID_SubCategoria" AutoPostBack="true" OnSelectedIndexChanged="DropDownListCat_SelectedIndexChanged1" AppendDataBoundItems="true">
                                    <asp:ListItem Value="0">Seleccione uno...</asp:ListItem>
                                </asp:DropDownList>
                                <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT SubCategoria.ID_SubCategoria, Categoria.Categoria + '  ' + SubCategoria.SubCategoria AS Categoria FROM Categoria INNER JOIN SubCategoria ON Categoria.ID_Categoria = SubCategoria.ID_Categoria ORDER BY Categoria.Categoria"></asp:SqlDataSource>
@@ -98,6 +98,8 @@
                                 <div class="col-sm-1">
                               
                               <button type="button" class="btn btn-social-icon btn-success" data-widget="collapse"><i class="fa fa-plus-square"></i> </button>
+                                        <button type="button" class="btn btn-social-icon btn-warning"><a href="Productos.aspx" target="_blank"><i class="fa fa-product-hunt"></i></a> </button>
+                                     <button type="button" class="btn btn-social-icon btn-warning"><a href="Stock.aspx" target="_blank"><i class="fa fa-archive"></i></a> </button>
                                </div>
                         
                               

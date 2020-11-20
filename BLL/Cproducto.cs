@@ -69,11 +69,11 @@ namespace BLL
         }
 
         #region Producto
-        public string InsertarProducto( string NomP, string Desc, byte[] img, int idSubcatego)
+        public string InsertarProducto( string NomP, string Desc, Byte[] img, int idSubcatego)
         {
             try
             {
-                   string idProducto = "";
+                string idProducto = "";
                idProducto =  PROVEEDOR.InsertarProducto(NomP, Desc, img, idSubcatego).ToString();
                 return idProducto;
             }
@@ -354,11 +354,11 @@ namespace BLL
         {
             try
             {
-               
 
+                string idEncargo = "";
 
-                PROVEEDOR.InsertarProdXencargo(fechaE, money, descrip, ubicacion,idProd, idCl, precioreal,empleado, proveedor);
-                return "Producto por pedidos ingreado correctamente";
+               idEncargo =  Convert.ToString( PROVEEDOR.InsertarProdXencargo(fechaE, money, descrip, ubicacion,idProd, idCl, precioreal,empleado, proveedor));
+                return idEncargo;
 
             }
             catch

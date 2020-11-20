@@ -34,8 +34,15 @@ namespace UI
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            ListaClientes.SelectCommand = "SELECT ID_Cliente, NIT, Nombre, Apellidos, Direccion, Telefono FROM Cliente WHERE (Estado = 1) AND (Nombre LIke '%" + TextBox3.Text+"%') OR (NIT like '%"+TextBox3.Text+"%')";
-            ListaClientes.DataBind();
+            try
+            {
+                ListaClientes.SelectCommand = "SELECT ID_Cliente, NIT, Nombre, Apellidos, Direccion, Telefono, Celular, Empresa, Correo FROM Cliente WHERE (Estado = 1) AND (Nombre LIke '%" + TextBox3.Text + "%' OR NIT like '%" + TextBox3.Text + "%')";
+                ListaClientes.DataBind();
+            }
+            catch
+            {
+                Response.Write("<script>alert('Ingrese algun dato valido!')</script>");
+            }
         }
     }
 }

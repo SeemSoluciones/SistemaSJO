@@ -4988,13 +4988,7 @@ SELECT ID_Categoria, Categoria, Categoria2, Estado FROM Categoria WHERE (ID_Cate
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT Producto.ID_Producto AS ID, Producto.Descripcion + ' ~ Marca:' + MarcaProd.MarcaP AS Descripcion, CONVERT(DECIMAL(10, 2), DetalleCotizacion.Precio) AS Precio, 0 AS Descuento, DetalleCotizacion.Cantidad, CONVERT(DECIMAL(10, 2), DetalleCotizacion.Total) AS Total, Stock.ID_Existencia AS IDstock
-FROM  CotizacionVenta INNER JOIN
-         DetalleCotizacion ON CotizacionVenta.ID_Cotizacion = DetalleCotizacion.ID_Cotizacion INNER JOIN
-         Stock ON DetalleCotizacion.ID_Existencia = Stock.ID_Existencia INNER JOIN
-         Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN
-         MarcaProd ON MarcaProd.ID_MaraProd = Stock.ID_MaraProd
-WHERE (CotizacionVenta.ID_Cotizacion = @ID_Cotizacion) AND (CotizacionVenta.Estado = 1)";
+            this._commandCollection[0].CommandText = @"SELECT Producto.ID_Producto AS ID, Producto.Descripcion + ' ~ Marca:' + MarcaProd.MarcaP AS Descripcion, CONVERT (DECIMAL(10 , 2), DetalleCotizacion.Precio) AS Precio, 0 AS Descuento, DetalleCotizacion.Cantidad, CONVERT (DECIMAL(10 , 2), DetalleCotizacion.Total) AS Total, Stock.ID_Existencia AS IDstock FROM CotizacionVenta INNER JOIN DetalleCotizacion ON CotizacionVenta.ID_Cotizacion = DetalleCotizacion.ID_Cotizacion INNER JOIN Stock ON DetalleCotizacion.ID_Existencia = Stock.ID_Existencia INNER JOIN Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN MarcaProd ON MarcaProd.ID_MaraProd = Stock.ID_MaraProd WHERE (CotizacionVenta.ID_Cotizacion = @ID_Cotizacion) AND (CotizacionVenta.Estado = 1)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_Cotizacion", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_Cotizacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
