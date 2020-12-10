@@ -23,14 +23,25 @@
         <div class="col-md-4">
             <asp:GridView ID="GridView1" runat="server" CssClass="table table-responsive" AutoGenerateColumns="False" DataKeyNames="ID_Caja" DataSourceID="SqlDataSource1">
                 <Columns>
-                    <asp:CommandField ShowEditButton="True" />
+                    <asp:TemplateField ShowHeader="False">
+                        <EditItemTemplate>
+                            <asp:LinkButton runat="server" Text="Actualizar" CommandName="Update" CausesValidation="True" ID="LinkButton1"></asp:LinkButton>&nbsp;<asp:LinkButton runat="server" Text="Cancelar" CommandName="Cancel" CausesValidation="False" ID="LinkButton2"></asp:LinkButton>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:LinkButton runat="server" Text="Editar" CommandName="Edit" CausesValidation="False" ID="LinkButton1"></asp:LinkButton>&nbsp;<asp:LinkButton runat="server" Text="Eliminar" CommandName="Delete" CausesValidation="False" ID="LinkButton2" OnClientClick="return confirm('Desea eliminar la caja?');"></asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                     <asp:BoundField DataField="ID_Caja" HeaderText="ID_Caja" InsertVisible="False" ReadOnly="True" SortExpression="ID_Caja" />
                     <asp:BoundField DataField="Caja" HeaderText="Caja" SortExpression="Caja" />
                     <asp:BoundField DataField="Tienda" HeaderText="Tienda" SortExpression="Tienda" />
                 </Columns>
             </asp:GridView>
 
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" InsertCommand="INSERT INTO Caja(Caja, ID_Tienda) VALUES (@Caja, @ID_Tienda)" SelectCommand="SELECT Caja.ID_Caja, Caja.Caja, Tienda.Tienda FROM Caja INNER JOIN Tienda ON Caja.ID_Tienda = Tienda.ID_Tienda WHERE (Tienda.Estado = 1)" UpdateCommand="UPDATE Caja SET Caja = @Caja WHERE (ID_Caja = @ID_Caja)">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" InsertCommand="INSERT INTO Caja(Caja, ID_Tienda) VALUES (@Caja, @ID_Tienda)" SelectCommand="SELECT Caja.ID_Caja, Caja.Caja, Tienda.Tienda FROM Caja INNER JOIN Tienda ON Caja.ID_Tienda = Tienda.ID_Tienda WHERE (Tienda.Estado = 1)" UpdateCommand="UPDATE Caja SET Caja = @Caja WHERE (ID_Caja = @ID_Caja)" DeleteCommand="DELETE FROM Caja WHERE ID_Caja = @ID_Caja">
+                <DeleteParameters>
+                    <asp:Parameter Name="ID_Caja"></asp:Parameter>
+                </DeleteParameters>
                 <InsertParameters>
                     <asp:Parameter Name="Caja" />
                     <asp:Parameter Name="ID_Tienda" />

@@ -20,9 +20,10 @@ namespace UI
             tb = datos.ListaClienteCredito(Convert.ToInt32(Credito2.Nit));
             Label1.Text = tb.Rows[0][0].ToString();
             Label2.Text = tb.Rows[0][1].ToString();
-            Label4.Text = Convert.ToDecimal(tb.Rows[0][3]).ToString("0.00");
-            SqlDataSource1.SelectCommand = "SELECT Producto.ID_Producto, Producto.Descripcion, Credito.Monto, Credito.SaldoPendiente, Credito.FechaCredito, ItemProdCliente.ID_ItemProdCliente, Credito.ID_Credito FROM ItemProdCliente inner join Credito on ItemProdCliente.ID_Credito = Credito.ID_Credito inner join Producto on ItemProdCliente.ID_Producto = Producto.ID_Producto inner join Cliente on Credito.ID_Cliente = Cliente.ID_Cliente WHERE ItemProdCliente.Estado = 0 AND Cliente.NIT =" + Credito2.Nit;
+            Label4.Text = Convert.ToDecimal(tb.Rows[0][2]).ToString("0.00");
+            SqlDataSource1.SelectParameters["NIT"].DefaultValue = Credito2.Nit.ToString();
             SqlDataSource1.DataBind();
+            TextBox2.Text = Credito2.pendiente;
 
         }
     }

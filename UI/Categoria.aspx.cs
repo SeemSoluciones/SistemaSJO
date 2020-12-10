@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
+using System.Data.SqlClient;
 
 namespace UI
 {
@@ -34,12 +35,32 @@ namespace UI
                 if (TextBox1.Text != "")
                 {
 
-
-                    string ms = "";
+                    SqlDataSource11.SelectParameters["Rubro"].DefaultValue = TextBox1.Text;
+                    SqlDataSource11.SelectParameters["ID_Modelo"].DefaultValue = DropDownList1.SelectedValue;
+                    SqlDataSource11.DataSourceMode = SqlDataSourceMode.DataReader;
+                    SqlDataReader total;
+                    total = (SqlDataReader)SqlDataSource11.Select(DataSourceSelectArguments.Empty);
+                    if(total.Read())
+                    {
+                        if(Convert.ToInt32(total["Total"]) > 0)
+                        {
+                            Response.Write("<script>alert('El cilindraje/ Serie motor y el Modelo ya se encuentra registrado')</script>");
+                        }
+                        else
+                        {
+                         string ms = "";
                     ms = Datos.InsertaRubro(TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue));
                     Response.Write("<script>alert('" + ms + "')</script>");
                     Response.Redirect("Categoria.aspx");
                     borrar();
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Error!, no se pudo leer datos. Consulte a su adminstrador tecnico')</script>");
+
+                    }
+
                 }
                 else
                 {
@@ -59,13 +80,33 @@ namespace UI
             {
                 if (TextBox2.Text != "")
                 {
-
-
-                    string ms = "";
+                    SqlDataSource12.SelectParameters["Modelo"].DefaultValue = TextBox2.Text;
+                    SqlDataSource12.SelectParameters["ID_Marca"].DefaultValue = DropDownList2.SelectedValue;
+                    SqlDataSource12.DataSourceMode = SqlDataSourceMode.DataReader;
+                    SqlDataReader total;
+                    total = (SqlDataReader)SqlDataSource12.Select(DataSourceSelectArguments.Empty);
+                    if (total.Read())
+                    {
+                        if(Convert.ToInt32(total["Total"]) > 0)
+                        {
+                            Response.Write("<script>alert('El modelo y la marca del auto ya se encuentra registrado')</script>");
+                        }
+                        else
+                        {
+                     string ms = "";
                     ms = Datos.InsertaModelo(TextBox2.Text, Convert.ToInt32(DropDownList2.SelectedValue));
                     Response.Write("<script>alert('" + ms + "')</script>");
                     Response.Redirect("Categoria.aspx");
                     borrar();
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Error!, no se pudo leer datos. Consulte a su adminstrador tecnico')</script>");
+
+                    }
+
+
                 }
                 else
                 {
@@ -235,6 +276,22 @@ namespace UI
 
         }
 
-       
+        protected void Button9_Click(object sender, EventArgs e)
+        {
+            SqlDataSource3.SelectCommand = "SELECT Rubro.ID_Rubro, Rubro.Rubro, Rubro.ID_Modelo, Modelo.Modelo FROM Rubro INNER JOIN Modelo ON Rubro.ID_Modelo = Modelo.ID_Modelo WHERE Rubro like '%"+TextBox1.Text+"%' ORDER BY [Rubro]";
+            SqlDataSource3.DataBind();
+        }
+
+        protected void Button10_Click1(object sender, EventArgs e)
+        {
+            SqlDataSource6.SelectCommand = "SELECT [ID_MaraProd], [MarcaP] FROM [MarcaProd] WHERE MarcaP like '%"+TextBox3.Text+"%'";
+            SqlDataSource6.DataBind();
+        }
+
+        protected void Button11_Click(object sender, EventArgs e)
+        {
+            SqlDataSource4.SelectCommand = "SELECT Modelo.ID_Modelo, Modelo.Modelo, Modelo.ID_Marca, Marca.Marca FROM Modelo INNER JOIN Marca ON Modelo.ID_Marca = Marca.ID_Marca WHERE Modelo like '%"+TextBox2.Text+"%'";
+            SqlDataSource4.DataBind();
+        }
     }
 }

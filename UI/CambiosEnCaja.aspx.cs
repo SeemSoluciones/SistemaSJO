@@ -54,17 +54,18 @@ namespace UI
                 SqlDataSource4.InsertParameters["Fecha"].DefaultValue = TextBox4.Text;
                 SqlDataSource4.InsertParameters["ID_Concepto"].DefaultValue = DropDownList3.SelectedValue;
                 SqlDataSource4.InsertParameters["ID_Caja"].DefaultValue = DropDownList2.SelectedValue;
+                SqlDataSource4.InsertParameters["Informacion"].DefaultValue = TextBox5.Text;
                 msj = SqlDataSource4.Insert();
                 if (msj == 1)
                 {
                     Response.Write("<script>alert('Datos ingresados correctatmente')</script>");
                     TextBox3.Text = "";
-                    Label1.Text = "Se ingreso a la caja: " + TextBox4.Text;
+                    Label2.Text = "Se retiro de la caja: " + TextBox3.Text;
                 }
                 else
                 {
                     Response.Write("<script>alert('Error, No se guardaron los datos')</script>");
-                    Label1.Text = "Error.";
+                    Label2.Text = "Error.";
                 }
             }
             else

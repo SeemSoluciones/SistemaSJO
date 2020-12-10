@@ -218,7 +218,7 @@
 								</button>
 							</div>
         <div class="modal-body">
-            <h3>Cancelar producto para ingreso en caja?</h3>
+            <h3>Realizar entrega de producto al cliente?</h3>
             <div class="form-group">
                 <label>Cliente</label>
                 <asp:TextBox ID="TextBox10" runat="server" CssClass="form-control"></asp:TextBox>

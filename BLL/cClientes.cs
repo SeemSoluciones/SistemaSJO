@@ -195,12 +195,21 @@ namespace BLL
         }
 
 
-        public DataTable SaldoPendiente(int nit)
+        public DataTable SaldoPendienteFecha(int nit)
         {
             DataTable tabla = new DataTable();
             tabla = CREDTIO.SaldoPendienteFecha(nit);
             return tabla;
             
+        }
+
+        public decimal SaldoPendiente(int nit)
+        {
+            decimal resutlado;
+
+           resutlado =   Convert.ToDecimal(CREDTIO.SaldoPendientes(nit));
+            return resutlado;
+
         }
         public string AbonarCredito(decimal montoAbonado, bool estado, int idCliente, int idventa)
         {

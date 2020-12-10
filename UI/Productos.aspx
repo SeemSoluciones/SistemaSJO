@@ -1,4 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Productos.aspx.cs" Inherits="UI.Productos" %>
+﻿
+
+
+<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="Productos.aspx.cs" Inherits="UI.Productos" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -83,12 +86,14 @@
                             <asp:Label ID="Label7" runat="server" Text='<%# Bind("Categoria") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+                       <asp:HyperLinkField DataNavigateUrlFields="ID_Producto" DataNavigateUrlFormatString="EditarFoto.aspx?id={0}" Text="Foto" HeaderText="Editar Foto"></asp:HyperLinkField>
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
                             <asp:LinkButton ID="LinkButton1" runat="server"  CssClass="fa fa-edit"  CausesValidation="False" CommandName="Select" Text="" OnClick="LinkButton1_Click"></asp:LinkButton>
                             <asp:LinkButton ID="LinkButton2" runat="server" CssClass="fa fa-trash-o" CausesValidation="False" CommandName="Delete" Text="" OnClientClick='return confirm("Desea eliminar el producto?");'></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
+                 
                 </Columns>
                 <FooterStyle BorderStyle="Ridge" Font-Bold="True" Font-Size="XX-Large" />
                 <HeaderStyle CssClass="danger" />
@@ -312,8 +317,8 @@
                          <asp:GridView ID="GridView7" CssClass="table table-striped table-responsive" runat="server" AutoGenerateColumns="False" DataKeyNames="ID_Rubro" DataSourceID="SqlDataSource22" CellPadding="4" ForeColor="#333333" GridLines="None">
                              <AlternatingRowStyle BackColor="White" />
                              <Columns>
+                                  <asp:BoundField DataField="Marca" HeaderText="Marca" SortExpression="Marca" />
                                 <asp:BoundField DataField="Modelo" HeaderText="Modelo" SortExpression="Modelo" />
-                                 <asp:BoundField DataField="Marca" HeaderText="Marca" SortExpression="Marca" />
                                  <asp:BoundField DataField="Rubro" HeaderText="Rubro" SortExpression="Rubro" />
                                 <asp:BoundField DataField="ID_Rubro" HeaderText="ID_Rubro" InsertVisible="False" ReadOnly="True" SortExpression="ID_Rubro" /> 
                                   <asp:BoundField DataField="AnioInicio" HeaderText="Anio Inicio" SortExpression="AnioInicio" />
@@ -382,7 +387,7 @@
                     <div class="form-group">
                         <label>Imagen</label>
 
-                        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="form-control" />
+                        <label>Para editar / cambiar imagen seleccionar en la columna "editar foto"</label>
                     </div>
                    
                         

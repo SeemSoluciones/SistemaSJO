@@ -15,7 +15,7 @@
     <section class="content">
     <div class="row col-lg-6">
         <div class="input-group custom-search-form">
-        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" AutoPostBack="True" placeholder="Ingrese el numero de venta"></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" AutoPostBack="True" placeholder="Ingrese el numero de venta" ></asp:TextBox>
         <span class="input-group-btn">  <asp:Button ID="Button1" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="Button1_Click"/>            
         </span></div>
     </div>

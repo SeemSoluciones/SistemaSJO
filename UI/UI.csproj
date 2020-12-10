@@ -109,14 +109,18 @@
     <Content Include="CompraD.aspx" />
     <Content Include="ComprobanteEncargo.aspx" />
     <Content Include="Descuento8.aspx" />
+    <Content Include="Details.aspx" />
+    <Content Include="DevolucionEntrega.aspx" />
     <Content Include="DevolucionV.aspx" />
     <Content Include="DevProPro.aspx" />
     <Content Include="DevProProD.aspx" />
     <Content Include="DevProProV.aspx" />
+    <Content Include="EditarFoto.aspx" />
     <Content Include="EncargoC.aspx" />
     <Content Include="EncargosV.aspx" />
     <Content Include="EntregaPB.aspx" />
     <Content Include="FacturaC.aspx" />
+    <Content Include="ImpresionCreditoPagos.aspx" />
     <Content Include="mycustompage..html" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="assets\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
@@ -7398,12 +7402,26 @@
     <Compile Include="Descuento8.aspx.designer.cs">
       <DependentUpon>Descuento8.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Details.aspx.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Details.aspx.designer.cs">
+      <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Devolucion.aspx.cs">
       <DependentUpon>Devolucion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Devolucion.aspx.designer.cs">
       <DependentUpon>Devolucion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DevolucionEntrega.aspx.cs">
+      <DependentUpon>DevolucionEntrega.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DevolucionEntrega.aspx.designer.cs">
+      <DependentUpon>DevolucionEntrega.aspx</DependentUpon>
     </Compile>
     <Compile Include="DevolucionV.aspx.cs">
       <DependentUpon>DevolucionV.aspx</DependentUpon>
@@ -7439,6 +7457,13 @@
     </Compile>
     <Compile Include="Digitador.Master.designer.cs">
       <DependentUpon>Digitador.Master</DependentUpon>
+    </Compile>
+    <Compile Include="EditarFoto.aspx.cs">
+      <DependentUpon>EditarFoto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarFoto.aspx.designer.cs">
+      <DependentUpon>EditarFoto.aspx</DependentUpon>
     </Compile>
     <Compile Include="EncargoC.aspx.cs">
       <DependentUpon>EncargoC.aspx</DependentUpon>
@@ -7495,6 +7520,13 @@
     </Compile>
     <Compile Include="ImpCompro.aspx.designer.cs">
       <DependentUpon>ImpCompro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImpresionCreditoPagos.aspx.cs">
+      <DependentUpon>ImpresionCreditoPagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImpresionCreditoPagos.aspx.designer.cs">
+      <DependentUpon>ImpresionCreditoPagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ImpresionCredito.aspx.cs">
       <DependentUpon>ImpresionCredito.aspx</DependentUpon>

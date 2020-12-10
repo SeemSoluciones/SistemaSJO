@@ -53,7 +53,7 @@
           <strong>Autorepuesto SanJuan, Inc.</strong><br>
           Direccion: Entrada a San Juan <br>
           Ostuncalco, Quetzaltenango.<br>
-          Phone: (502) 4067 8250<br>
+          Telefono: (502) 4067 8250 / 5560 5310<br>
         </address>
       </div>
       <!-- /.col -->

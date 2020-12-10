@@ -72,19 +72,13 @@ namespace UI
                 int idTtienda = 0;
 
                 idTtienda = Convert.ToInt32(Session["IDtienda"]);
-                //int tamanio = FileUpload1.PostedFile.ContentLength;
-                //byte[] ImagenOriginal = new byte[tamanio];
+                Stream imgStream = FileUpload2 .PostedFile.InputStream;
+                int imgLen = FileUpload2.PostedFile.ContentLength;
+                byte[] imgBinaryData = new byte[imgLen];
+                int n = imgStream.Read(imgBinaryData, 0, imgLen);
 
-                //FileUpload1.PostedFile.InputStream.Read(ImagenOriginal, 0, tamanio);
-
-                using (BinaryReader reader = new BinaryReader(FileUpload1.PostedFile.InputStream))
-                {
-
-                    byte[] image = reader.ReadBytes(FileUpload1.PostedFile.ContentLength);
-
-                  //  ImagenesDAL.GuardarImagen(FileUpload1.FileName, FileUpload1.PostedFile.ContentLength, image);
-                        msj = DatosP.InsertarProducto(producto2.Text, descripcion2.Text, image, Convert.ToInt32(DropDownList14.SelectedValue));
-                }       
+          
+                     msj = DatosP.InsertarProducto(producto2.Text, descripcion2.Text, imgBinaryData, Convert.ToInt32(DropDownList14.SelectedValue));  
            
            
             foreach(GridViewRow row in GridView3.Rows)
@@ -118,7 +112,7 @@ namespace UI
             try
             {
 
-                byte[] imag = FileUpload1.FileBytes;
+                byte[] imag = FileUpload2.FileBytes;
                 //string msj;
 
                 DatosP.EditarProducto(Convert.ToInt32(Label8.Text), TextBox3.Text, TextBox4.Text, imag, Convert.ToInt32(DropDownList18.SelectedValue));

@@ -166,7 +166,8 @@
                             <li><a href="Proveedor.aspx"><i class="fa fa-circle-o"></i>Proveedores</a></li>
                             <li><a href="Categoria.aspx"><i class="fa fa-circle-o"></i>Categoria</a></li>
                             <li><a href="StockMinimo.aspx"><i class="fa fa-circle-o"></i>Productos bajos </a></li>
-                            <li><a href="DevProPro.aspx"><i class="fa fa-circle-o"></i>Devolucion de productos a proveedores</a> </li>
+                            <li><a href="DevProPro.aspx"><i class="fa fa-circle-o"></i>Devolucion a proveedor</a> </li>
+                             <li><a href="DevolucionEntrega.aspx"><i class="fa fa-circle-o"></i>Cambio por devolucion</a> </li>
                         </ul>
                     </li>
                     <li class="treeview">

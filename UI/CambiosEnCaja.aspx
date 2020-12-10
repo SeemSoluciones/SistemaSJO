@@ -113,17 +113,22 @@
                      </asp:SqlDataSource>
                 </div>
                 <div class="form-group">
+                    <label>No. Factura/ Recibo</label>
+                    <asp:TextBox ID="TextBox5" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+                <div class="form-group">
                     <asp:Label ID="Label2" runat="server" Text="Mensaje" CssClass="label label-warning"></asp:Label>
                 </div>
             </div>
             <div class="box-footer clearfix">
              <asp:Button ID="Button2" runat="server"  Text="Aceptar" CssClass="btn btn-warning pull-right" Width="200" OnClick="Button2_Click" />
-                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" InsertCommand="INSERT INTO CajaSalidas(MontoSalida, ID_Concepto, Fecha, ID_Caja) VALUES (@MontoSalida, @ID_Concepto, @Fecha, @ID_Caja)" SelectCommand="SELECT CajaSalidas.ID_CSalida, CajaSalidas.MontoSalida, CajaSalidas.Fecha, Conceptos.Concepto, Caja.Caja FROM CajaSalidas INNER JOIN Conceptos ON CajaSalidas.ID_Concepto = Conceptos.ID_Conceptos INNER JOIN Caja ON CajaSalidas.ID_Caja = Caja.ID_Caja WHERE (CajaSalidas.Fecha &gt;= DATEADD(day, - 30, GETDATE()))">
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" InsertCommand="INSERT INTO CajaSalidas(MontoSalida, ID_Concepto, Fecha, ID_Caja, Informacion) VALUES (@MontoSalida, @ID_Concepto, @Fecha, @ID_Caja, @Informacion)" SelectCommand="SELECT CajaSalidas.ID_CSalida, CajaSalidas.MontoSalida, CajaSalidas.Fecha, Conceptos.Concepto, CajaSalidas.Informacion ,Caja.Caja FROM CajaSalidas INNER JOIN Conceptos ON CajaSalidas.ID_Concepto = Conceptos.ID_Conceptos INNER JOIN Caja ON CajaSalidas.ID_Caja = Caja.ID_Caja WHERE (CajaSalidas.Fecha &gt;= DATEADD(day, - 30, GETDATE()))">
                     <InsertParameters>
                         <asp:Parameter Name="MontoSalida" />
                         <asp:Parameter Name="ID_Concepto" />
                         <asp:Parameter Name="Fecha" />
                         <asp:Parameter Name="ID_Caja" />
+                        <asp:Parameter Name="Informacion" />
                     </InsertParameters>
                 </asp:SqlDataSource>
             </div>
@@ -132,10 +137,11 @@
                  <asp:GridView ID="GridView2" runat="server" CssClass="table table-responsive" AutoGenerateColumns="False" DataKeyNames="ID_CSalida" DataSourceID="SqlDataSource4" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None">
                      <AlternatingRowStyle BackColor="PaleGoldenrod" />
                      <Columns>
-                         <asp:BoundField DataField="ID_CSalida" HeaderText="ID_CSalida" InsertVisible="False" ReadOnly="True" SortExpression="ID_CSalida" />
-                         <asp:BoundField DataField="MontoSalida" HeaderText="MontoSalida" SortExpression="MontoSalida" DataFormatString="{0:0.00}" />
+                         <asp:BoundField DataField="ID_CSalida" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="ID_CSalida" />
+                         <asp:BoundField DataField="MontoSalida" HeaderText="MontoSalida" SortExpression="MontoSalida"  DataFormatString="{0:0.00}"/>
                          <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha"/>
                          <asp:BoundField DataField="Concepto" HeaderText="Concepto" SortExpression="Concepto" />
+                         <asp:BoundField DataField="Informacion" HeaderText="Informacion" SortExpression="Informacion" />
                          <asp:BoundField DataField="Caja" HeaderText="Caja" SortExpression="Caja" />
                      </Columns>
                      <FooterStyle BackColor="Tan" />

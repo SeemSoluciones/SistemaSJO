@@ -65,7 +65,7 @@ namespace UI
                     Response.Redirect("Stock.aspx");
                     }
                     else{
-                        double precioGan = Convert.ToDouble(precioProd.Text) * 0.7;
+                        double precioGan = Convert.ToDouble(precioVenta.Text) * 0.35;
                         double precioVentaP = precioGan + Convert.ToDouble(precioVenta.Text);
                         int idTtienda = 0;
                         idTtienda = Convert.ToInt32(Session["IDtienda"]);

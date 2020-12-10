@@ -46,7 +46,7 @@
           <strong>Autorepuesto SanJuan, Inc.</strong><br/>
           Direccion: Entrada a San Juan <br/>
           Ostuncalco, Quetzaltenango.<br/>
-          Phone: (502) 4067 8250<br>
+           Telefono: (502) 4067 8250 / 5560 5310<br>
         </address>
       </div>
             </div>
@@ -56,12 +56,11 @@
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="table table-responsive" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
             <AlternatingRowStyle BackColor="#F7F7F7" />
             <Columns>
-                <asp:BoundField DataField="ID_Producto" HeaderText="ID" SortExpression="ID_Producto" />
+                <asp:BoundField DataField="ID_Producto" HeaderText="ID_Producto" SortExpression="ID_Producto" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
-                <asp:BoundField DataField="Monto" HeaderText="Monto" SortExpression="Monto" DataFormatString="{0:0.00}" />
-                <asp:BoundField DataField="SaldoPendiente" HeaderText="SaldoPendiente" SortExpression="SaldoPendiente" DataFormatString="{0:0.00}" />
-                <asp:BoundField DataField="FechaCredito" HeaderText="Fecha Credito" SortExpression="FechaCredito" />
-                <asp:BoundField DataField="ID_Credito" HeaderText="Credito" SortExpression="ID_Credito" />
+                <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio p" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}"/>
+                <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
+                <asp:BoundField DataField="FechaCredito" HeaderText="FechaCredito" SortExpression="FechaCredito"  />
             </Columns>
                <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
             <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
@@ -73,11 +72,33 @@
             <SortedDescendingCellStyle BackColor="#D8D8F0" />
             <SortedDescendingHeaderStyle BackColor="#3E3277" />
                </asp:GridView>
-               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="">
-               </asp:SqlDataSource>
+          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="select  Producto.ID_Producto, Producto.Descripcion, DetalleVenta.PrecioUnitario, DetalleVenta.Total
+, Credito.FechaCredito, ItemProdCliente.ID_ItemProdCliente, Credito.ID_Credito
+from Venta inner join DetalleVenta on Venta.ID_Venta = DetalleVenta.ID_Venta 
+inner join Stock on  DetalleVenta.ID_Existencia = Stock.ID_Existencia
+inner join Cliente on Venta.ID_Cliente = Cliente.ID_Cliente
+inner join Credito on Venta.ID_Venta = Credito.ID_Venta 
+inner join ItemProdCliente on Credito.ID_Credito = ItemProdCliente.ID_Credito
+inner join Producto on Stock.ID_Producto = Producto.ID_Producto and ItemProdCliente.ID_Existencia = Stock.ID_Existencia
+where Cliente.NIT = @NIT AND ItemProdCliente.Estado = 0">
+              <SelectParameters>
+                  <asp:Parameter Name="NIT"></asp:Parameter>
+              </SelectParameters>
+          </asp:SqlDataSource>
           </table>
           </div>
            </div>
+                       <div class="row">
+            <div class="col-sm-3"></div>
+             <div class="col-sm-3"></div>
+             <div class="col-sm-3">
+                 <div class="form-group">Saldo total pendiente</div>
+             </div>
+             <div class="col-sm-3">
+                 <div class="form-group">
+                     <asp:TextBox ID="TextBox2"  CssClass="form-control" Enabled="false" runat="server"></asp:TextBox></div>
+             </div>
+        </div>
            </section>
         </div>
     </form>

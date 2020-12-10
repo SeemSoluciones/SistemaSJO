@@ -220,6 +220,7 @@ namespace UI
         }
         public static string msj = "", Pago = "";
         public static string nombre, nit, ciudad;
+        decimal saldoPendiente;
         protected void Button3_Click(object sender, EventArgs e)
         {
 
@@ -246,12 +247,14 @@ namespace UI
                                 if (siexistecredito == 1)
                                 {
                                     DataTable tablaMonto = new DataTable();
-                                    tablaMonto = datos2.SaldoPendiente(Convert.ToInt32(TextBox3.Text));
+                                    saldoPendiente =  datos2.SaldoPendiente(Convert.ToInt32(TextBox3.Text));
+
+                                    tablaMonto = datos2.SaldoPendienteFecha(Convert.ToInt32(TextBox3.Text));
                                     tabla = datos2.ListaCreditoMax(Convert.ToInt32(TextBox3.Text));
                                     TextBox6.Text = tabla.Rows[0][1].ToString();
                                     TextBox15.Text = tabla.Rows[0][2].ToString();
-                                    Label4.Text = "Saldo pendiente: " + tablaMonto.Rows[0][5].ToString() + "    ";
-                                    Label5.Text = "Fecha máximo de pago: " + tablaMonto.Rows[0][4].ToString();
+                                    Label4.Text = "Saldo pendiente: " + saldoPendiente.ToString("0.00");
+                                    Label5.Text = "Fecha máximo de pago: " + tablaMonto.Rows[0][5].ToString();
                                     Button8.Visible = false;
                                     Button4_ModalPopupExtender.Show();
 

@@ -1598,15 +1598,15 @@ namespace DAL
 
             private global::System.Data.DataColumn columnDescripcion;
 
+            private global::System.Data.DataColumn columnPrecio;
+
             private global::System.Data.DataColumn columnDescuento;
 
             private global::System.Data.DataColumn columnCantidad;
 
-            private global::System.Data.DataColumn columnIDstock;
-
-            private global::System.Data.DataColumn columnPrecio;
-
             private global::System.Data.DataColumn columnTotal;
+
+            private global::System.Data.DataColumn columnIDstock;
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1669,6 +1669,16 @@ namespace DAL
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PrecioColumn
+            {
+                get
+                {
+                    return this.columnPrecio;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn DescuentoColumn
             {
                 get
@@ -1689,31 +1699,21 @@ namespace DAL
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IDstockColumn
-            {
-                get
-                {
-                    return this.columnIDstock;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PrecioColumn
-            {
-                get
-                {
-                    return this.columnPrecio;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn TotalColumn
             {
                 get
                 {
                     return this.columnTotal;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDstockColumn
+            {
+                get
+                {
+                    return this.columnIDstock;
                 }
             }
 
@@ -1759,17 +1759,17 @@ namespace DAL
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTableCotizaRow AddDataTableCotizaRow(string Descripcion, int Descuento, int Cantidad, decimal Precio, decimal Total)
+            public DataTableCotizaRow AddDataTableCotizaRow(string Descripcion, decimal Precio, decimal Descuento, int Cantidad, decimal Total)
             {
                 DataTableCotizaRow rowDataTableCotizaRow = ((DataTableCotizaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Descripcion,
+                        Precio,
                         Descuento,
                         Cantidad,
-                        null,
-                        Precio,
-                        Total};
+                        Total,
+                        null};
                 rowDataTableCotizaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTableCotizaRow);
                 return rowDataTableCotizaRow;
@@ -1797,11 +1797,11 @@ namespace DAL
             {
                 this.columnID = base.Columns["ID"];
                 this.columnDescripcion = base.Columns["Descripcion"];
+                this.columnPrecio = base.Columns["Precio"];
                 this.columnDescuento = base.Columns["Descuento"];
                 this.columnCantidad = base.Columns["Cantidad"];
-                this.columnIDstock = base.Columns["IDstock"];
-                this.columnPrecio = base.Columns["Precio"];
                 this.columnTotal = base.Columns["Total"];
+                this.columnIDstock = base.Columns["IDstock"];
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1812,16 +1812,16 @@ namespace DAL
                 base.Columns.Add(this.columnID);
                 this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcion);
-                this.columnDescuento = new global::System.Data.DataColumn("Descuento", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnPrecio = new global::System.Data.DataColumn("Precio", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrecio);
+                this.columnDescuento = new global::System.Data.DataColumn("Descuento", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescuento);
                 this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCantidad);
-                this.columnIDstock = new global::System.Data.DataColumn("IDstock", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIDstock);
-                this.columnPrecio = new global::System.Data.DataColumn("Precio", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPrecio);
                 this.columnTotal = new global::System.Data.DataColumn("Total", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal);
+                this.columnIDstock = new global::System.Data.DataColumn("IDstock", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDstock);
                 this.columnID.AutoIncrement = true;
                 this.columnID.AutoIncrementSeed = -1;
                 this.columnID.AutoIncrementStep = -1;
@@ -1829,14 +1829,14 @@ namespace DAL
                 this.columnID.ReadOnly = true;
                 this.columnDescripcion.ReadOnly = true;
                 this.columnDescripcion.MaxLength = 299;
+                this.columnPrecio.ReadOnly = true;
                 this.columnDescuento.ReadOnly = true;
+                this.columnTotal.ReadOnly = true;
                 this.columnIDstock.AutoIncrement = true;
                 this.columnIDstock.AutoIncrementSeed = -1;
                 this.columnIDstock.AutoIncrementStep = -1;
                 this.columnIDstock.AllowDBNull = false;
                 this.columnIDstock.ReadOnly = true;
-                this.columnPrecio.ReadOnly = true;
-                this.columnTotal.ReadOnly = true;
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2607,13 +2607,34 @@ namespace DAL
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Descuento
+            public decimal Precio
             {
                 get
                 {
                     try
                     {
-                        return ((int)(this[this.tableDataTableCotiza.DescuentoColumn]));
+                        return ((decimal)(this[this.tableDataTableCotiza.PrecioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e)
+                    {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Precio\' de la tabla \'DataTableCotiza\' es DBNull.", e);
+                    }
+                }
+                set
+                {
+                    this[this.tableDataTableCotiza.PrecioColumn] = value;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Descuento
+            {
+                get
+                {
+                    try
+                    {
+                        return ((decimal)(this[this.tableDataTableCotiza.DescuentoColumn]));
                     }
                     catch (global::System.InvalidCastException e)
                     {
@@ -2649,41 +2670,6 @@ namespace DAL
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int IDstock
-            {
-                get
-                {
-                    return ((int)(this[this.tableDataTableCotiza.IDstockColumn]));
-                }
-                set
-                {
-                    this[this.tableDataTableCotiza.IDstockColumn] = value;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal Precio
-            {
-                get
-                {
-                    try
-                    {
-                        return ((decimal)(this[this.tableDataTableCotiza.PrecioColumn]));
-                    }
-                    catch (global::System.InvalidCastException e)
-                    {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Precio\' de la tabla \'DataTableCotiza\' es DBNull.", e);
-                    }
-                }
-                set
-                {
-                    this[this.tableDataTableCotiza.PrecioColumn] = value;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal Total
             {
                 get
@@ -2705,6 +2691,20 @@ namespace DAL
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IDstock
+            {
+                get
+                {
+                    return ((int)(this[this.tableDataTableCotiza.IDstockColumn]));
+                }
+                set
+                {
+                    this[this.tableDataTableCotiza.IDstockColumn] = value;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsDescripcionNull()
             {
                 return this.IsNull(this.tableDataTableCotiza.DescripcionColumn);
@@ -2715,6 +2715,20 @@ namespace DAL
             public void SetDescripcionNull()
             {
                 this[this.tableDataTableCotiza.DescripcionColumn] = global::System.Convert.DBNull;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPrecioNull()
+            {
+                return this.IsNull(this.tableDataTableCotiza.PrecioColumn);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPrecioNull()
+            {
+                this[this.tableDataTableCotiza.PrecioColumn] = global::System.Convert.DBNull;
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2743,20 +2757,6 @@ namespace DAL
             public void SetCantidadNull()
             {
                 this[this.tableDataTableCotiza.CantidadColumn] = global::System.Convert.DBNull;
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPrecioNull()
-            {
-                return this.IsNull(this.tableDataTableCotiza.PrecioColumn);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPrecioNull()
-            {
-                this[this.tableDataTableCotiza.PrecioColumn] = global::System.Convert.DBNull;
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4965,11 +4965,11 @@ SELECT ID_Categoria, Categoria, Categoria2, Estado FROM Categoria WHERE (ID_Cate
             tableMapping.DataSetTable = "DataTableCotiza";
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
+            tableMapping.ColumnMappings.Add("Precio", "Precio");
             tableMapping.ColumnMappings.Add("Descuento", "Descuento");
             tableMapping.ColumnMappings.Add("Cantidad", "Cantidad");
-            tableMapping.ColumnMappings.Add("IDstock", "IDstock");
-            tableMapping.ColumnMappings.Add("Precio", "Precio");
             tableMapping.ColumnMappings.Add("Total", "Total");
+            tableMapping.ColumnMappings.Add("IDstock", "IDstock");
             this._adapter.TableMappings.Add(tableMapping);
         }
 
@@ -4988,25 +4988,14 @@ SELECT ID_Categoria, Categoria, Categoria2, Estado FROM Categoria WHERE (ID_Cate
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT Producto.ID_Producto AS ID, Producto.Descripcion + ' ~ Marca:' + MarcaProd.MarcaP AS Descripcion, CONVERT (DECIMAL(10 , 2), DetalleCotizacion.Precio) AS Precio, 0 AS Descuento, DetalleCotizacion.Cantidad, CONVERT (DECIMAL(10 , 2), DetalleCotizacion.Total) AS Total, Stock.ID_Existencia AS IDstock FROM CotizacionVenta INNER JOIN DetalleCotizacion ON CotizacionVenta.ID_Cotizacion = DetalleCotizacion.ID_Cotizacion INNER JOIN Stock ON DetalleCotizacion.ID_Existencia = Stock.ID_Existencia INNER JOIN Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN MarcaProd ON MarcaProd.ID_MaraProd = Stock.ID_MaraProd WHERE (CotizacionVenta.ID_Cotizacion = @ID_Cotizacion) AND (CotizacionVenta.Estado = 1)";
+            this._commandCollection[0].CommandText = @"SELECT Producto.ID_Producto AS ID, Producto.Descripcion + ' ~ Marca:' + MarcaProd.MarcaP AS Descripcion, CONVERT (DECIMAL(10 , 2), DetalleCotizacion.Precio) AS Precio,
+ (CONVERT (DECIMAL(10 , 2), DetalleCotizacion.Precio) * DetalleCotizacion.Cantidad) - CONVERT (DECIMAL(10 , 2), DetalleCotizacion.Total) AS Descuento, DetalleCotizacion.Cantidad, CONVERT (DECIMAL(10 , 2), DetalleCotizacion.Total) AS Total,
+  Stock.ID_Existencia AS IDstock 
+FROM CotizacionVenta INNER JOIN DetalleCotizacion ON CotizacionVenta.ID_Cotizacion = DetalleCotizacion.ID_Cotizacion 
+INNER JOIN Stock ON DetalleCotizacion.ID_Existencia = Stock.ID_Existencia INNER JOIN Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN MarcaProd ON MarcaProd.ID_MaraProd = Stock.ID_MaraProd
+WHERE (CotizacionVenta.ID_Cotizacion = @ID_Cotizacion) AND (CotizacionVenta.Estado = 1)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_Cotizacion", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_Cotizacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DsProducto.DataTableCotizaDataTable dataTable, int ID_Cotizacion)
-        {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(ID_Cotizacion));
-            if ((this.ClearBeforeFill == true))
-            {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5055,7 +5044,7 @@ SELECT ID_Categoria, Categoria, Categoria2, Estado FROM Categoria WHERE (ID_Cate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection()
         {
-            this._commandCollection = new global::System.Data.IDbCommand[45];
+            this._commandCollection = new global::System.Data.IDbCommand[46];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::DAL.Properties.Settings.Default.BDautorepuestoConnectionString);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandText = "dbo.InsertarProveedor";
@@ -5431,6 +5420,12 @@ SELECT ID_Categoria, Categoria, Categoria2, Estado FROM Categoria WHERE (ID_Cate
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[44])).CommandText = "UPDATE CotizacionVenta SET Estado = 0 WHERE (ID_Cotizacion = @ID_Cotizacion)";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[44])).CommandType = global::System.Data.CommandType.Text;
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[44])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_Cotizacion", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_Cotizacion", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[45] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[45])).Connection = new global::System.Data.SqlClient.SqlConnection(global::DAL.Properties.Settings.Default.BDautorepuestoConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[45])).CommandText = "INSERT INTO Motoristas(ID_Venta, ID_Empleado) VALUES (@IDventa, @Idmotor)";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[45])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[45])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDventa", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_Venta", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[45])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Idmotor", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_Empleado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7182,7 +7177,7 @@ SELECT ID_Categoria, Categoria, Categoria2, Estado FROM Categoria WHERE (ID_Cate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int EliminarDetalleVenta(global::System.Nullable<int> IDdetalleV, global::System.Nullable<int> cantidad, global::System.Nullable<int> IDStock)
+        public virtual object EliminarDetalleVenta(global::System.Nullable<int> IDdetalleV, global::System.Nullable<int> cantidad, global::System.Nullable<int> IDStock)
         {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[29]));
             if ((IDdetalleV.HasValue == true))
@@ -7215,10 +7210,10 @@ SELECT ID_Categoria, Categoria, Categoria2, Estado FROM Categoria WHERE (ID_Cate
             {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try
             {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally
             {
@@ -7227,7 +7222,15 @@ SELECT ID_Categoria, Categoria, Categoria2, Estado FROM Categoria WHERE (ID_Cate
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null)
+                        || (returnValue.GetType() == typeof(global::System.DBNull))))
+            {
+                return null;
+            }
+            else
+            {
+                return ((object)(returnValue));
+            }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8010,6 +8013,50 @@ SELECT ID_Categoria, Categoria, Categoria2, Estado FROM Categoria WHERE (ID_Cate
         {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[44]));
             command.Parameters[0].Value = ((int)(ID_Cotizacion));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open)
+                        != global::System.Data.ConnectionState.Open))
+            {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try
+            {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally
+            {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed))
+                {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertarMotorista(global::System.Nullable<int> IDventa, global::System.Nullable<int> Idmotor)
+        {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[45]));
+            if ((IDventa.HasValue == true))
+            {
+                command.Parameters[0].Value = ((int)(IDventa.Value));
+            }
+            else
+            {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((Idmotor.HasValue == true))
+            {
+                command.Parameters[1].Value = ((int)(Idmotor.Value));
+            }
+            else
+            {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open)
                         != global::System.Data.ConnectionState.Open))

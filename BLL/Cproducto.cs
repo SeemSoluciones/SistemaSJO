@@ -7,6 +7,7 @@ using DAL.DsProductoTableAdapters;
 using System.Data;
 using System.IO;
 using System.Data.SqlClient;
+using System.Data.SqlClient;
 namespace BLL
 {
      public class Cproducto
@@ -69,7 +70,7 @@ namespace BLL
         }
 
         #region Producto
-        public string InsertarProducto( string NomP, string Desc, Byte[] img, int idSubcatego)
+        public string InsertarProducto( string NomP, string Desc, byte[] img, int idSubcatego)
         {
             try
             {
@@ -83,6 +84,19 @@ namespace BLL
             }
 
           
+        }
+
+        public string InsertarMOtorista(int idVenta, int idMotorista)
+        {
+            try
+            {
+                PROVEEDOR.InsertarMotorista(idVenta, idMotorista);
+                return "1";
+            }
+            catch
+            {
+                return "0";
+            }
         }
 
         public string insertarOEM(string OEM, int IdProducto, int idMarcaA)

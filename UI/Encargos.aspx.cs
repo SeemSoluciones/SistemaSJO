@@ -38,7 +38,7 @@ namespace UI
                 nit2 = TextBox1.Text;
                 nombre = TextBox3.Text;
                idEncargo = Datos.nuevoEncargo(Convert.ToDateTime(FechaEn.Text), Convert.ToDecimal(TextBox2.Text), TextBox4.Text, Producto.Text, Convert.ToInt32(Label1.Text), imag, Convert.ToDecimal(TextBox9.Text), Convert.ToInt32(idEmpleado), TextBox11.Text);
-                Datos.InsertarVenta(Convert.ToDecimal(TextBox2.Text), 0, Convert.ToDecimal(TextBox2.Text), 0,Convert.ToInt32(idEmpleado) ,Convert.ToInt32(idTienda), Convert.ToInt32(Label1.Text));
+               // Datos.InsertarVenta(Convert.ToDecimal(TextBox2.Text), 0, Convert.ToDecimal(TextBox2.Text), 0,Convert.ToInt32(idEmpleado) ,Convert.ToInt32(idTienda), Convert.ToInt32(Label1.Text));
               //  Response.Write("<script>alert('" + msj + "')</script>");
                 Response.Write("<script>window.open('ComprobanteEncargo.aspx','Titulo', 'height=300','width=300')</script>");
                 ListaEncargos.SelectCommand = "SELECT Cliente.NIT, Cliente.Nombre + '  ' + Cliente.Apellidos AS Nom, ProductoXencargo.Producto, ProductoXencargo.FechaPedido, ProductoXencargo.FechaEntrega, ProductoXencargo.Anticipo, ProductoXencargo.PrecioReal, ProductoXencargo.Descripcion, ProductoXencargo.Fotografia, ProductoXencargo.Estado, ProductoXencargo.ID_ProdXen, Empleado.Nombre + ' ' + Empleado.Apellidos AS Nombre, Tienda.Tienda, ProductoXencargo.Proveedor FROM ProductoXencargo INNER JOIN Cliente ON ProductoXencargo.ID_Cliente = Cliente.ID_Cliente INNER JOIN Empleado ON ProductoXencargo.ID_Empleado = Empleado.ID_Empleado INNER JOIN Tienda ON Empleado.ID_Tienda = Tienda.ID_Tienda WHERE (ProductoXencargo.Estado = 0)";
@@ -131,8 +131,6 @@ namespace UI
                 total = Resto + Convert.ToDecimal(anticipo); ;
                
                 Datos.EliminarEncargo(Convert.ToInt32(ID_E));
-                msj =  Datos.InsertarVenta(Convert.ToDecimal(TextBox8.Text), 0, Convert.ToDecimal(TextBox8.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda), Convert.ToInt32(Label1.Text));
-                //  Datos.InsertarDetalleVenta(1, subtotal, total, Convert.ToInt32(msj), IdProd,  1);
           
                 Response.Write("<script>alert('Se ha realizado el pago pendiente de: "+total+"')</script>");
                 Response.Write("<script>window.open('ImpCompro.aspx','Titulo', 'height=300','width=300')</script>");

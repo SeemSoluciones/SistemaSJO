@@ -9,3 +9,10 @@
         }
     }
 }
+
+namespace DAL.DsProductoTableAdapters {
+    
+    
+    public partial class DataTableCotizaTableAdapter {
+    }
+}
