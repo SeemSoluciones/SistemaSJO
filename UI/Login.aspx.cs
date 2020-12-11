@@ -48,7 +48,7 @@ namespace UI
                 {
                     Response.Redirect("EntregaPB.aspx");
                 }
-                else if(tabla.Rows[0][4].ToString()  == "Caja" || tabla.Rows[0][4].ToString() == "Cajero")
+                else if(tabla.Rows[0][4].ToString().Trim()  == "Caja" || tabla.Rows[0][4].ToString() == "Cajero")
                 {
                 Response.Redirect("CajaCobrador.aspx");
                 }

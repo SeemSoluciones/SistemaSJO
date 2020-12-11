@@ -2,7 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <section class="content-header">
+    
+   
+      <section class="content-header">
         <h1 align="center" >Cliente</h1>
     </section>
     <section class="content">
@@ -23,10 +25,13 @@
                       <asp:BoundField DataField="Apellidos" HeaderText="Apellidos" SortExpression="Apellidos" />
                       <asp:BoundField DataField="Direccion" HeaderText="Direccion" SortExpression="Direccion" />
                       <asp:BoundField DataField="Telefono" HeaderText="Telefono" SortExpression="Telefono" />
+                      <asp:BoundField DataField="Celular" HeaderText="Celular" SortExpression="Celular" />
+                      <asp:BoundField DataField="Empresa" HeaderText="Empresa" SortExpression="Empresa" />
+                      <asp:BoundField DataField="Correo" HeaderText="Correo" SortExpression="Correo" />
                       <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                   </Columns>
               </asp:GridView>
-              <asp:SqlDataSource ID="ListaClientes" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Cliente, NIT, Nombre, Apellidos, Direccion, Telefono FROM Cliente WHERE (Estado = 1)" UpdateCommand="EditarCliente" UpdateCommandType="StoredProcedure" DeleteCommand="EliminarCliente" DeleteCommandType="StoredProcedure">
+              <asp:SqlDataSource ID="ListaClientes" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Cliente, NIT, Nombre, Apellidos, Direccion, Telefono, Celular, Empresa, Correo FROM Cliente WHERE (Estado = 1)" UpdateCommand="EditarCliente" UpdateCommandType="StoredProcedure" DeleteCommand="EliminarCliente" DeleteCommandType="StoredProcedure">
                   <DeleteParameters>
                       <asp:Parameter Name="ID_Cliente" Type="Int32" />
                   </DeleteParameters>
@@ -37,6 +42,9 @@
                       <asp:Parameter Name="Direccion" Type="String" />
                       <asp:Parameter Name="Telefono" Type="Int32" />
                       <asp:Parameter Name="ID_Cliente" Type="Int32" />
+                      <asp:Parameter Name="Celular" Type="Int32" />
+                      <asp:Parameter Name="Empresa" Type="String" />
+                      <asp:Parameter Name="Correo" Type="String" />
                   </UpdateParameters>
               </asp:SqlDataSource>
 
@@ -75,6 +83,12 @@
                         <div class="form-group">
                             <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
+                                    <div class="form-group">
+                            <label >Celular</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
                               </div>
                            <div class="col-12 col-sm-6">
                                     
@@ -89,6 +103,18 @@
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="txtTelefono" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                        </div>
+                               <div class="form-group">
+                            <label >Empresa</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="TextBox6" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                               <div class="form-group">
+                            <label >Correo</label>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox ID="TextBox7" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                             </div>
                         </div>

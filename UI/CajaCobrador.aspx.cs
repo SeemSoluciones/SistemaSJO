@@ -12,6 +12,7 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Cobrador.Mensaje = "Ventana de cobro";
             SqlDataSource3.SelectParameters["IdTienda"].DefaultValue = Session["IdTienda"].ToString();
             SqlDataSource3.DataSourceMode = SqlDataSourceMode.DataReader;
             SqlDataReader totalP;
@@ -22,9 +23,5 @@ namespace UI
             }
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

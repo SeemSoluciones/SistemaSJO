@@ -13,7 +13,8 @@ namespace UI
         Cproducto Datos = new Cproducto();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Home.Mensaje = "Ventana Proveedores";
+
+            Bodegero.Mensaje = "Ventana Proveedores";
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -30,7 +31,7 @@ namespace UI
                 {
                     msj = Datos.nuevoProvedor(TextBox6.Text, TextBox2.Text, TextBox3.Text, Convert.ToInt32(TextBox5.Text), Convert.ToInt32(TextBox1.Text), TextBox7.Text, Convert.ToInt32(TextBox8.Text), TextBox9.Text);
                     // Response.Close();
-                    Response.Redirect("ProveedoresB.aspx");
+                    Response.Redirect("Proveedor.aspx");
                 }
             }
             catch
@@ -41,8 +42,17 @@ namespace UI
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlDataSource1.SelectCommand = "SELECT ID_Proveedor, Proveedor, Direccion, Telefono, NIT FROM Proveedor WHERE (Estado = 1)  AND (Proveedor LIke '%" + TextBox4.Text + "%')";
-            SqlDataSource1.DataBind();
+            try
+            {
+
+
+                SqlDataSource1.SelectCommand = "SELECT ID_Proveedor, Codigo, Proveedor, Direccion, Telefono, NIT, Nombre, Celular, Correo FROM Proveedor WHERE (Estado = 1)  AND (Proveedor LIke '%" + TextBox4.Text + "%')";
+                SqlDataSource1.DataBind();
+            }
+            catch
+            {
+                Response.Write("<script>alert('Error, revise los campos')</script>");
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vendedor.Master" AutoEventWireup="true" CodeBehind="DevolucionV.aspx.cs" Inherits="UI.DevolucionV" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
 
     <style type="text/css">
         .fondo{
@@ -15,7 +16,7 @@
     <section class="content">
     <div class="row col-lg-6">
         <div class="input-group custom-search-form">
-        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" AutoPostBack="True" placeholder="Ingrese el numero de venta"></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" AutoPostBack="True" placeholder="Ingrese el numero de venta" ></asp:TextBox>
         <span class="input-group-btn">  <asp:Button ID="Button1" runat="server" Text="Buscar" CssClass="btn btn-default" OnClick="Button1_Click"/>            
         </span></div>
     </div>
@@ -85,4 +86,6 @@
 
 
 </section>
+
+
 </asp:Content>

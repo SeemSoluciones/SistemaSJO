@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BLL;
 using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 
 namespace UI
 {
@@ -14,7 +17,7 @@ namespace UI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Home.Mensaje = "Ventana productos";
+            Digitador.Mensaje = "Ventana productos";
             tbOEM.Columns.Add("ID_OEM");
             tbOEM.Columns.Add("OEM");
             tbOEM.Columns.Add("ID_Marca");
@@ -33,14 +36,31 @@ namespace UI
 
         void limpirar()
         {
-            //codigo2.Text = "";
-            //codigo.Text = "";
-            //Equival.Text = "";
-            //Equival2.Text = "";
-            //producto.Text = "";
-            //producto2.Text = "";
-            //descripcion.Text = "";
-            //descripcion2.Text = "";
+            codigo2.Text = "";
+
+            Equival.Text = "";
+
+            TextBox3.Text = "";
+            producto2.Text = "";
+            TextBox4.Text = "";
+            descripcion2.Text = "";
+            dt.Clear();
+            dt.Reset();
+            ViewState["Detalles2"] = null;
+            ViewState["Detalles3"] = null;
+            ViewState["Detalles"] = null;
+            dt2.Clear();
+            dt3.Clear();
+            dtOEM.Clear();
+
+            GridView2.DataSource = null;
+            GridView2.DataBind();
+            GridView3.DataSource = null;
+            GridView3.DataBind();
+            GridView4.DataSource = null;
+            GridView4.DataBind();
+
+
 
         }
 
@@ -49,26 +69,34 @@ namespace UI
             try
             {
 
-                byte[] imag = FileUpload1.FileBytes;
                 string msj;
                 int idTtienda = 0;
+
                 idTtienda = Convert.ToInt32(Session["IDtienda"]);
-                msj = DatosP.InsertarProducto(producto2.Text, descripcion2.Text, imag, Convert.ToInt32(DropDownList14.SelectedValue));
+                Stream imgStream = FileUpload2.PostedFile.InputStream;
+                int imgLen = FileUpload2.PostedFile.ContentLength;
+                byte[] imgBinaryData = new byte[imgLen];
+                int n = imgStream.Read(imgBinaryData, 0, imgLen);
+
+
+                msj = DatosP.InsertarProducto(producto2.Text, descripcion2.Text, imgBinaryData, Convert.ToInt32(DropDownList14.SelectedValue));
+
 
                 foreach (GridViewRow row in GridView3.Rows)
                 {
-                    DatosP.insertarOEM(row.Cells[0].Text, Convert.ToInt32(msj), Convert.ToInt32(row.Cells[2].Text));
+                    DatosP.insertarOEM(row.Cells[1].Text, Convert.ToInt32(msj), Convert.ToInt32(row.Cells[3].Text));
                 }
 
                 foreach (GridViewRow row in GridView2.Rows)
                 {
-                    DatosP.insertarCodigoMarcaPrd(row.Cells[0].Text, Convert.ToInt32(msj), Convert.ToInt32(row.Cells[2].Text));
+                    DatosP.insertarCodigoMarcaPrd(row.Cells[1].Text, Convert.ToInt32(msj), Convert.ToInt32(row.Cells[3].Text));
                 }
 
                 foreach (GridViewRow row in GridView4.Rows)
                 {
-                    DatosP.insertarAnioProducto(Convert.ToInt32(msj), Convert.ToInt32(row.Cells[2].Text), row.Cells[4].Text, row.Cells[5].Text);
+                    DatosP.insertarAnioProducto(Convert.ToInt32(msj), Convert.ToInt32(row.Cells[3].Text), row.Cells[5].Text, row.Cells[6].Text);
                 }
+                Response.Write("<script>alert('Datos guardado correctamente!')</script>");
                 limpirar();
             }
             catch
@@ -85,29 +113,30 @@ namespace UI
             try
             {
 
-                byte[] imag = FileUpload1.FileBytes;
+                byte[] imag = FileUpload2.FileBytes;
                 //string msj;
 
                 DatosP.EditarProducto(Convert.ToInt32(Label8.Text), TextBox3.Text, TextBox4.Text, imag, Convert.ToInt32(DropDownList18.SelectedValue));
 
                 foreach (GridViewRow row in GridView8.Rows)
                 {
-                    DatosP.insertarOEM(row.Cells[1].Text, Convert.ToInt32(Label8.Text), Convert.ToInt32(row.Cells[2].Text));
+                    DatosP.insertarOEM(row.Cells[2].Text, Convert.ToInt32(Label8.Text), Convert.ToInt32(row.Cells[3].Text));
                 }
 
                 foreach (GridViewRow row in GridView9.Rows)
                 {
-                    DatosP.insertarCodigoMarcaPrd(row.Cells[1].Text, Convert.ToInt32(Label8.Text), Convert.ToInt32(row.Cells[2].Text));
+                    DatosP.insertarCodigoMarcaPrd(row.Cells[2].Text, Convert.ToInt32(Label8.Text), Convert.ToInt32(row.Cells[3].Text));
                 }
 
                 foreach (GridViewRow row in GridView10.Rows)
                 {
-                    DatosP.insertarAnioProducto(Convert.ToInt32(Label8.Text), Convert.ToInt32(row.Cells[3].Text), row.Cells[4].Text, row.Cells[5].Text);
+                    DatosP.insertarAnioProducto(Convert.ToInt32(Label8.Text), Convert.ToInt32(row.Cells[4].Text), row.Cells[5].Text, row.Cells[6].Text);
                 }
 
 
-                //limpirar();
-                Response.Write("<script>alert('Datos actualizados con exitos')</script>");
+
+                Response.Write("<script>alert('Datos actualizados con exitos, actualiza la pagina!')</script>");
+                limpirar();
             }
             catch
             {
@@ -122,7 +151,7 @@ namespace UI
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SqlDataSource1.SelectCommand = "SELECT Producto.ID_Producto, Producto.Producto, Producto.Descripcion, stuff((Select ', ' + OEM.OEM + ' ~ ' + Marca.Marca From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM, stuff((Select ', ' + CodigoProducto.Codigo + ' ~ ' + MarcaProd.MarcaP From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP, stuff((Select '| ' + AnioInicio + '-' + AnioFinal + ' ~ ' + Rubro + ', ' + Modelo + ', ' + Marca From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP, SubCategoria.SubCategoria + ', ' + Categoria.Categoria AS Categoria FROM Producto INNER JOIN SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria INNER JOIN Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria left join OEM on Producto.ID_Producto = OEM.ID_Producto left join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto WHERE (Producto.Estado = 1) AND (Producto.Producto like '%" + TextBox11.Text + "%' OR OEM.OEM like '%" + TextBox11.Text + "%' OR CodigoProducto.Codigo like '%" + TextBox11.Text + "%')";
+            SqlDataSource1.SelectCommand = "SELECT DISTINCT Producto.ID_Producto, Producto.Producto, Producto.Descripcion, stuff((Select ', ' + OEM.OEM + ' ~ ' + Marca.Marca From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM, stuff((Select ', ' + CodigoProducto.Codigo + ' ~ ' + MarcaProd.MarcaP From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP, stuff((Select '| ' + AnioInicio + '-' + AnioFinal + ' ~ ' + Rubro + ', ' + Modelo + ', ' + Marca From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP, SubCategoria.SubCategoria + ',' + Categoria.Categoria AS Categoria FROM Producto INNER JOIN SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria INNER JOIN Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria left join OEM on Producto.ID_Producto = OEM.ID_Producto left join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto WHERE (Producto.Estado = 1) AND (Producto.Producto like '%" + TextBox11.Text + "%' OR OEM.OEM like '%" + TextBox11.Text + "%' OR CodigoProducto.Codigo like '%" + TextBox11.Text + "%')";
             SqlDataSource1.DataBind();
         }
         /*
@@ -141,57 +170,78 @@ namespace UI
         {
 
         }
-
+        DataTable dt = new DataTable();
 
         protected void Btn_AgergarOEM(object sender, EventArgs e)
         {
 
-            DataTable dt = new DataTable();
+
 
             if (codigo2.Text != "")
             {
-                dt.Columns.Add("Codigo");
-                dt.Columns.Add("Marca");
-                dt.Columns.Add("ID_Marca");
 
-                DataRow dr = null;
-                if (ViewState["Detalles2"] != null)
+                SqlDataSource23.SelectParameters["Codigo"].DefaultValue = codigo2.Text;
+                SqlDataSource23.DataSourceMode = SqlDataSourceMode.DataReader;
+                SqlDataReader total;
+                total = (SqlDataReader)SqlDataSource23.Select(DataSourceSelectArguments.Empty);
+                if (total.Read())
                 {
-
-
-                    for (int i = 0; i < 1; i++)
+                    if (Convert.ToInt32(total["Total"]) == 0)
                     {
-                        dt = (DataTable)ViewState["Detalles2"];
-                        if (dt.Rows.Count > 0)
+
+                        dt.Columns.Add("Codigo");
+                        dt.Columns.Add("Marca");
+                        dt.Columns.Add("ID_Marca");
+
+                        DataRow dr = null;
+                        if (ViewState["Detalles2"] != null)
+                        {
+
+
+                            for (int i = 0; i < 1; i++)
+                            {
+                                dt = (DataTable)ViewState["Detalles2"];
+                                if (dt.Rows.Count > 0)
+                                {
+                                    dr = dt.NewRow();
+                                    //  dr["ID"] = Label1.Text;
+                                    dr["Codigo"] = codigo2.Text;
+                                    dr["Marca"] = DropDownList11.SelectedItem.ToString();
+                                    dr["ID_Marca"] = DropDownList11.SelectedValue.ToString();
+                                    dt.Rows.Add(dr);
+                                    GridView3.DataSource = dt;
+                                    GridView3.DataBind();
+
+                                }
+                            }
+
+                        }
+                        else
                         {
                             dr = dt.NewRow();
-                            //  dr["ID"] = Label1.Text;
+                            // dr["ID"] = Label1.Text;
                             dr["Codigo"] = codigo2.Text;
                             dr["Marca"] = DropDownList11.SelectedItem.ToString();
                             dr["ID_Marca"] = DropDownList11.SelectedValue.ToString();
                             dt.Rows.Add(dr);
                             GridView3.DataSource = dt;
                             GridView3.DataBind();
-
                         }
+                        ViewState["Detalles2"] = dt;
+
+
+                        codigo2.Text = "";
+
                     }
-
+                    else
+                    {
+                        Response.Write("<script>alert('El codigo aparece en la base de datos, revise si ya esta registrado!')</script>");
+                    }
                 }
-                else
-                {
-                    dr = dt.NewRow();
-                    // dr["ID"] = Label1.Text;
-                    dr["Codigo"] = codigo2.Text;
-                    dr["Marca"] = DropDownList11.SelectedItem.ToString();
-                    dr["ID_Marca"] = DropDownList11.SelectedValue.ToString();
-                    dt.Rows.Add(dr);
-                    GridView3.DataSource = dt;
-                    GridView3.DataBind();
-                }
-                ViewState["Detalles2"] = dt;
 
 
-                codigo2.Text = "";
+
+                ////////////////////
             }
             else
             {
@@ -199,53 +249,73 @@ namespace UI
             }
             Button6_ModalPopupExtender.Show();
         }
-
+        DataTable dt2 = new DataTable();
         protected void Btn_AgergarCodigo(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
+
+
 
             if (Equival.Text != "")
             {
-                dt.Columns.Add("Codigo");
-                dt.Columns.Add("Marca_Prod");
-                dt.Columns.Add("ID_Marca_P");
 
-                DataRow dr = null;
-                if (ViewState["Detalles"] != null)
+
+                SqlDataSource23.SelectParameters["Codigo"].DefaultValue = Equival.Text;
+                SqlDataSource23.DataSourceMode = SqlDataSourceMode.DataReader;
+                SqlDataReader total;
+                total = (SqlDataReader)SqlDataSource23.Select(DataSourceSelectArguments.Empty);
+                if (total.Read())
                 {
-
-
-                    for (int i = 0; i < 1; i++)
+                    if (Convert.ToInt32(total["Total"]) == 0)
                     {
-                        dt = (DataTable)ViewState["Detalles"];
-                        if (dt.Rows.Count > 0)
+
+
+                        dt2.Columns.Add("Codigo");
+                        dt2.Columns.Add("Marca_Prod");
+                        dt2.Columns.Add("ID_Marca_P");
+
+                        DataRow dr = null;
+                        if (ViewState["Detalles"] != null)
                         {
-                            dr = dt.NewRow();
-                            //  dr["ID"] = Label1.Text;
+
+
+                            for (int i = 0; i < 1; i++)
+                            {
+                                dt2 = (DataTable)ViewState["Detalles"];
+                                if (dt2.Rows.Count > 0)
+                                {
+                                    dr = dt2.NewRow();
+                                    //  dr["ID"] = Label1.Text;
+                                    dr["Codigo"] = Equival.Text;
+                                    dr["Marca_Prod"] = DropDownList12.SelectedItem.ToString();
+                                    dr["ID_Marca_P"] = DropDownList12.SelectedValue.ToString();
+                                    dt2.Rows.Add(dr);
+                                    GridView2.DataSource = dt2;
+                                    GridView2.DataBind();
+
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            dr = dt2.NewRow();
+                            // dr["ID"] = Label1.Text;
                             dr["Codigo"] = Equival.Text;
                             dr["Marca_Prod"] = DropDownList12.SelectedItem.ToString();
                             dr["ID_Marca_P"] = DropDownList12.SelectedValue.ToString();
-                            dt.Rows.Add(dr);
-                            GridView2.DataSource = dt;
+                            dt2.Rows.Add(dr);
+                            GridView2.DataSource = dt2;
                             GridView2.DataBind();
-
                         }
+                        ViewState["Detalles"] = dt2;
+                        Equival.Text = "";
                     }
-
+                    else
+                    {
+                        Response.Write("<script>alert('El codigo aparece en la base de datos, revise si ya esta registrado!')</script>");
+                    }
                 }
-                else
-                {
-                    dr = dt.NewRow();
-                    // dr["ID"] = Label1.Text;
-                    dr["Codigo"] = Equival.Text;
-                    dr["Marca_Prod"] = DropDownList12.SelectedItem.ToString();
-                    dr["ID_Marca_P"] = DropDownList12.SelectedValue.ToString();
-                    dt.Rows.Add(dr);
-                    GridView2.DataSource = dt;
-                    GridView2.DataBind();
-                }
-                ViewState["Detalles"] = dt;
-                Equival.Text = "";
+                //////////////////
             }
             else
             {
@@ -253,19 +323,19 @@ namespace UI
             }
             Button6_ModalPopupExtender.Show();
         }
-
+        DataTable dt3 = new DataTable();
         protected void Btn_RubroAnios(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
+
 
             if (DropDownList6.SelectedItem.ToString() != "")
             {
-                dt.Columns.Add("Marca");
-                dt.Columns.Add("Linea");
-                dt.Columns.Add("ID_Rubro");
-                dt.Columns.Add("Rubro");
-                dt.Columns.Add("Anio_Inicial");
-                dt.Columns.Add("Anio_Final");
+                dt3.Columns.Add("Marca");
+                dt3.Columns.Add("Linea");
+                dt3.Columns.Add("ID_Rubro");
+                dt3.Columns.Add("Rubro");
+                dt3.Columns.Add("Anio_Inicial");
+                dt3.Columns.Add("Anio_Final");
 
                 DataRow dr = null;
                 if (ViewState["Detalles3"] != null)
@@ -274,10 +344,10 @@ namespace UI
 
                     for (int i = 0; i < 1; i++)
                     {
-                        dt = (DataTable)ViewState["Detalles3"];
-                        if (dt.Rows.Count > 0)
+                        dt3 = (DataTable)ViewState["Detalles3"];
+                        if (dt3.Rows.Count > 0)
                         {
-                            dr = dt.NewRow();
+                            dr = dt3.NewRow();
                             //  dr["ID"] = Label1.Text;
                             dr["Marca"] = DropDownList3.SelectedItem.ToString();
                             dr["Linea"] = DropDownList5.SelectedItem.ToString();
@@ -285,8 +355,8 @@ namespace UI
                             dr["Rubro"] = DropDownList6.SelectedItem.ToString();
                             dr["Anio_Inicial"] = DropDownList4.SelectedItem.ToString();
                             dr["Anio_Final"] = DropDownList9.SelectedItem.ToString();
-                            dt.Rows.Add(dr);
-                            GridView4.DataSource = dt;
+                            dt3.Rows.Add(dr);
+                            GridView4.DataSource = dt3;
                             GridView4.DataBind();
 
                         }
@@ -295,7 +365,7 @@ namespace UI
                 }
                 else
                 {
-                    dr = dt.NewRow();
+                    dr = dt3.NewRow();
                     // dr["ID"] = Label1.Text;
                     dr["Marca"] = DropDownList3.SelectedItem.ToString();
                     dr["Linea"] = DropDownList5.SelectedItem.ToString();
@@ -303,11 +373,11 @@ namespace UI
                     dr["Rubro"] = DropDownList6.SelectedItem.ToString();
                     dr["Anio_Inicial"] = DropDownList4.SelectedItem.ToString();
                     dr["Anio_Final"] = DropDownList9.SelectedItem.ToString();
-                    dt.Rows.Add(dr);
-                    GridView4.DataSource = dt;
+                    dt3.Rows.Add(dr);
+                    GridView4.DataSource = dt3;
                     GridView4.DataBind();
                 }
-                ViewState["Detalles3"] = dt;
+                ViewState["Detalles3"] = dt3;
 
             }
             else
@@ -323,7 +393,7 @@ namespace UI
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
             // ViewState["Detalles5"] = GridView5;
-            string Subcat, IdProducto = "";
+            string Subcat, Subcat2, IdProducto = "";
             GridViewRow tabla = (GridViewRow)(((LinkButton)sender).Parent.Parent);
             IdProducto = ((Label)tabla.FindControl("Label1")).Text.ToString();
             Label8.Text = IdProducto;
@@ -338,9 +408,18 @@ namespace UI
             Subcat = ((Label)tabla.FindControl("Label7")).Text.ToString();
             string[] separar;
             separar = Subcat.Split(',');
+            //for(int i = 0; i < separar.Length; i++)
+            //{
+            //   
+            //}
 
-            DropDownList18.SelectedIndex = DropDownList18.Items.IndexOf(DropDownList18.Items.FindByText(separar[0]));
-
+            // separar = Subcat2.Split(',');
+            string categoria = separar[1];
+            //   Response.Write("<script>alert('"+ categoria +"')</script>");
+            DropDownList17.SelectedIndex = DropDownList17.Items.IndexOf(DropDownList17.Items.FindByText(categoria));
+            // ddlsample.SelectedIndex =      ddlsample.Items.IndexOf(     ddlsample.Items.FindByText("x"));
+            SqlDataSource19.SelectCommand = "SELECT ID_SubCategoria, SubCategoria FROM SubCategoria WHERE SubCategoria like '%" + separar[0] + "%'";
+            SqlDataSource19.DataBind();
 
             Button4_ModalPopupExtender.Show();
         }
@@ -365,6 +444,8 @@ namespace UI
         }
         protected void Btn_AgergarOEM2(object sender, EventArgs e)
         {
+
+
 
             foreach (GridViewRow drow in GridView5.Rows)
             {
@@ -432,10 +513,10 @@ namespace UI
             Button4_ModalPopupExtender.Show();
         }
 
-
+        DataTable tb = new DataTable();
         protected void Btn_AgergarCodigosP(object sender, EventArgs e)
         {
-            DataTable tb = new DataTable();
+
             tb.Columns.Add("ID");
             tb.Columns.Add("Codigo");
             tb.Columns.Add("ID_Marca");
@@ -507,26 +588,26 @@ namespace UI
         }
 
 
-
+        DataTable tba = new DataTable();
         protected void Btn_AgergarAnioRP(object sender, EventArgs e)
         {
-            DataTable tb = new DataTable();
-            tb.Columns.Add("Marca");
-            tb.Columns.Add("Modelo");
-            tb.Columns.Add("Rubro");
-            tb.Columns.Add("ID_Rubro");
-            tb.Columns.Add("AnioInicio");
-            tb.Columns.Add("AnioFinal");
+
+            tba.Columns.Add("Marca");
+            tba.Columns.Add("Modelo");
+            tba.Columns.Add("Rubro");
+            tba.Columns.Add("ID_Rubro");
+            tba.Columns.Add("AnioInicio");
+            tba.Columns.Add("AnioFinal");
             foreach (GridViewRow drow in GridView7.Rows)
             {
-                DataRow dr = tb.NewRow();
+                DataRow dr = tba.NewRow();
                 dr["Marca"] = drow.Cells[0].Text.ToString();
                 dr["Modelo"] = drow.Cells[1].Text.ToString();
                 dr["Rubro"] = drow.Cells[2].Text.ToString();
                 dr["ID_Rubro"] = drow.Cells[3].Text.ToString();
                 dr["AnioInicio"] = drow.Cells[4].Text.ToString();
                 dr["AnioFinal"] = drow.Cells[5].Text.ToString();
-                tb.Rows.Add(dr);
+                tba.Rows.Add(dr);
 
             }
 
@@ -540,10 +621,10 @@ namespace UI
 
                     for (int i = 0; i < 1; i++)
                     {
-                        tb = (DataTable)ViewState["Detalles11"];
-                        if (tb.Rows.Count > 0)
+                        tba = (DataTable)ViewState["Detalles11"];
+                        if (tba.Rows.Count > 0)
                         {
-                            dr = tb.NewRow();
+                            dr = tba.NewRow();
                             //  dr["ID"] = Label1.Text;
                             dr["Marca"] = DropDownList7.SelectedItem.ToString();
                             dr["Modelo"] = DropDownList8.SelectedItem.ToString();
@@ -552,8 +633,8 @@ namespace UI
                             dr["AnioInicio"] = DropDownList15.SelectedItem.ToString();
                             dr["AnioFinal"] = DropDownList16.SelectedItem.ToString();
 
-                            tb.Rows.Add(dr);
-                            GridView10.DataSource = tb;
+                            tba.Rows.Add(dr);
+                            GridView10.DataSource = tba;
                             GridView10.DataBind();
                         }
                     }
@@ -561,7 +642,7 @@ namespace UI
                 }
                 else
                 {
-                    dr = tb.NewRow();
+                    dr = tba.NewRow();
                     // dr["ID"] = Label1.Text;
                     dr["Marca"] = DropDownList7.SelectedItem.ToString();
                     dr["Modelo"] = DropDownList8.SelectedItem.ToString();
@@ -570,11 +651,11 @@ namespace UI
                     dr["AnioInicio"] = DropDownList15.SelectedItem.ToString();
                     dr["AnioFinal"] = DropDownList16.SelectedItem.ToString();
 
-                    tb.Rows.Add(dr);
-                    GridView10.DataSource = tb;
+                    tba.Rows.Add(dr);
+                    GridView10.DataSource = tba;
                     GridView10.DataBind();
                 }
-                ViewState["Detalles11"] = tb;
+                ViewState["Detalles11"] = tba;
 
 
 
@@ -589,6 +670,88 @@ namespace UI
             Button4_ModalPopupExtender.Show();
         }
 
+        protected void GridView8_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int index = Convert.ToInt32(e.RowIndex);
+            tbOEM = (DataTable)ViewState["Detalles5"];
+            tbOEM.Rows[index].Delete();
+            GridView8.DataSource = tbOEM;
+            GridView8.DataBind();
+            Button4_ModalPopupExtender.Show();
+        }
 
+        protected void DropDownList13_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Button6_ModalPopupExtender.Show();
+        }
+
+        protected void DropDownList17_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Button4_ModalPopupExtender.Show();
+        }
+
+        protected void DropDownList7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Button4_ModalPopupExtender.Show();
+        }
+
+        protected void DropDownList8_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Button4_ModalPopupExtender.Show();
+        }
+
+        protected void GridView9_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int index = Convert.ToInt32(e.RowIndex);
+            tb = (DataTable)ViewState["Detalles9"];
+            tb.Rows[index].Delete();
+            GridView9.DataSource = tb;
+            GridView9.DataBind();
+            Button4_ModalPopupExtender.Show();
+        }
+
+
+        protected void GridView10_RowDeleting1(object sender, GridViewDeleteEventArgs e)
+        {
+            int index = Convert.ToInt32(e.RowIndex);
+            tba = (DataTable)ViewState["Detalles11"];
+            tba.Rows[index].Delete();
+            GridView10.DataSource = tba;
+            GridView10.DataBind();
+            Button4_ModalPopupExtender.Show();
+
+        }
+
+        protected void GridView3_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int index = Convert.ToInt32(e.RowIndex);
+            dt = (DataTable)ViewState["Detalles2"];
+            dt.Rows[index].Delete();
+            GridView3.DataSource = dt;
+            GridView3.DataBind();
+            Button6_ModalPopupExtender.Show();
+        }
+
+        protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int index = Convert.ToInt32(e.RowIndex);
+            dt2 = (DataTable)ViewState["Detalles"];
+            dt2.Rows[index].Delete();
+            GridView2.DataSource = dt2;
+            GridView2.DataBind();
+            Button6_ModalPopupExtender.Show();
+        }
+
+        protected void GridView4_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int index = Convert.ToInt32(e.RowIndex);
+            dt3 = (DataTable)ViewState["Detalles3"];
+            dt3.Rows[index].Delete();
+            GridView4.DataSource = dt3;
+            GridView4.DataBind();
+            Button6_ModalPopupExtender.Show();
+        }
     }
+
+
 }

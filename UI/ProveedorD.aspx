@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
       <section class="content-header">
         <h1 align="center" >Proveedores</h1>        
         </section>
@@ -85,7 +86,8 @@
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div> <div class="form-group">
+                        </div> 
+                                    <div class="form-group">
                             <label >Direccion</label>
                         </div>
                         <div class="form-group">
@@ -100,7 +102,7 @@
                         <div class="form-group">
                             <asp:TextBox ID="TextBox5" runat="server" Text="" CssClass="form-control"></asp:TextBox>
                         </div>
-                                      <div class="form-group">
+                                    <div class="form-group">
                             <label>Nombre</label>
                         </div>
                         <div class="form-group">
@@ -132,3 +134,4 @@
 
     </section>
 </asp:Content>
+

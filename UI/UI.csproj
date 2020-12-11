@@ -111,6 +111,8 @@
     <Content Include="Descuento8.aspx" />
     <Content Include="Details.aspx" />
     <Content Include="DevolucionEntrega.aspx" />
+    <Content Include="DevolucionEntregaD.aspx" />
+    <Content Include="DevolucionEntregaV.aspx" />
     <Content Include="DevolucionV.aspx" />
     <Content Include="DevProPro.aspx" />
     <Content Include="DevProProD.aspx" />
@@ -7422,6 +7424,20 @@
     </Compile>
     <Compile Include="DevolucionEntrega.aspx.designer.cs">
       <DependentUpon>DevolucionEntrega.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DevolucionEntregaD.aspx.cs">
+      <DependentUpon>DevolucionEntregaD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DevolucionEntregaD.aspx.designer.cs">
+      <DependentUpon>DevolucionEntregaD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DevolucionEntregaV.aspx.cs">
+      <DependentUpon>DevolucionEntregaV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DevolucionEntregaV.aspx.designer.cs">
+      <DependentUpon>DevolucionEntregaV.aspx</DependentUpon>
     </Compile>
     <Compile Include="DevolucionV.aspx.cs">
       <DependentUpon>DevolucionV.aspx</DependentUpon>

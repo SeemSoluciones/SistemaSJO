@@ -11,10 +11,11 @@ namespace UI
 {
     public partial class ClienteV : System.Web.UI.Page
     {
+
         cClientes Datos = new cClientes();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Home.Mensaje = "Ventana Clientes";
+            Vendedor.Mensaje = "Ventana Clientes";
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -22,7 +23,7 @@ namespace UI
             try
             {
                 string msj;
-                msj = Datos.InsertarCliente(Convert.ToInt32(TextBox1.Text), TextBox2.Text, TextBox4.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text) , 0, "", "");
+                msj = Datos.InsertarCliente(Convert.ToInt32(TextBox1.Text), TextBox2.Text, TextBox4.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text), Convert.ToInt32(TextBox5.Text), TextBox6.Text, TextBox7.Text);
 
                 Response.Redirect("Cliente.aspx");
             }
@@ -35,8 +36,15 @@ namespace UI
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            ListaClientes.SelectCommand = "SELECT ID_Cliente, NIT, Nombre, Apellidos, Direccion, Telefono FROM Cliente WHERE (Estado = 1) AND (Nombre LIke '%" + TextBox3.Text + "%') OR (NIT like '%" + TextBox3.Text + "%')";
-            ListaClientes.DataBind();
+            try
+            {
+                ListaClientes.SelectCommand = "SELECT ID_Cliente, NIT, Nombre, Apellidos, Direccion, Telefono, Celular, Empresa, Correo FROM Cliente WHERE (Estado = 1) AND (Nombre LIke '%" + TextBox3.Text + "%' OR NIT like '%" + TextBox3.Text + "%')";
+                ListaClientes.DataBind();
+            }
+            catch
+            {
+                Response.Write("<script>alert('Ingrese algun dato valido!')</script>");
+            }
         }
     }
 }

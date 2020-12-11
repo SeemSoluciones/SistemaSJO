@@ -9,9 +9,10 @@ namespace UI
 {
     public partial class StockM : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            Home.Mensaje = "Ventana Stock Minimo";
+            Digitador.Mensaje = "Ventana Stock Minimo";
         }
 
         protected void Button2_Click(object sender, EventArgs e)

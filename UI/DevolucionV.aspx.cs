@@ -11,11 +11,12 @@ namespace UI
 {
     public partial class DevolucionV : System.Web.UI.Page
     {
+
         cClientes datos = new cClientes();
         Cproducto datos2 = new Cproducto();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Home.Mensaje = "Ventana devolucion de productos";
+            Vendedor.Mensaje = "Ventana devolucion de productos";
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -25,6 +26,8 @@ namespace UI
             // tl = datos.ListaUncliente()
         }
         private static string Totalprod, IDdetalleVenta, precio, idStock;
+
+
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow fila = GridView1.SelectedRow;
@@ -53,8 +56,7 @@ namespace UI
                     if (Convert.ToInt32(Totalprod) == Convert.ToInt32(TextBox2.Text))
                     {
                         datos2.EliminarDetallV(Convert.ToInt32(IDdetalleVenta), Convert.ToInt32(Totalprod), Convert.ToInt32(idStock));
-                        // datos2.EditarStockDevol(Convert.ToInt32(TextBox2.Text), Convert.ToInt32(idStock)); ///////////
-                        SqlDataSource1.SelectCommand = "Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha,Producto.ID_Producto, Producto.Descripcion, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta, Stock.ID_Existencia FROM Producto INNER JOIN DetalleVenta ON Producto.ID_Producto = DetalleVenta.ID_Producto INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Stock ON Producto.ID_Producto = Stock.ID_Producto WHERE (Producto.Estado = 1) and Venta.ID_Venta =" + TextBox1.Text;
+                        SqlDataSource1.SelectParameters["ID_Venta"].DefaultValue = TextBox1.Text;
                         SqlDataSource1.DataBind();
                         Label3.Text = "Se ha devuelto: " + TextBox2.Text + " productos con exitos!";
                     }
@@ -64,7 +66,7 @@ namespace UI
                         totalPrecio = Convert.ToDecimal(precio) * Convert.ToDecimal(SubtotalProd);
                         datos2.EditarDetalleVenta(SubtotalProd, totalPrecio, Convert.ToInt32(IDdetalleVenta));
                         datos2.EditarStockDevol(Convert.ToInt32(TextBox2.Text), Convert.ToInt32(idStock));
-                        SqlDataSource1.SelectCommand = "Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha,Producto.ID_Producto, Producto.Descripcion, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta, Stock.ID_Existencia FROM Producto INNER JOIN DetalleVenta ON Producto.ID_Producto = DetalleVenta.ID_Producto INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Stock ON Producto.ID_Producto = Stock.ID_Producto WHERE (Producto.Estado = 1) and Venta.ID_Venta =" + TextBox1.Text;
+                        SqlDataSource1.SelectParameters["ID_Venta"].DefaultValue = TextBox1.Text;
                         SqlDataSource1.DataBind();
                         Label3.Text = "Se ha devuelto: " + TextBox2.Text + " productos con exitos!";
 

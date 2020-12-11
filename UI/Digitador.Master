@@ -42,8 +42,8 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-   
+
+   <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
     <div class="wrapper">
 
         <header class="main-header">
@@ -147,7 +147,8 @@
                             <li><a href="ProductoD.aspx"><i class="fa fa-circle-o"></i>Productos</a></li>
                             <li><a href="ProveedorD.aspx"><i class="fa fa-circle-o"></i>Proveedores</a></li>
                             <li><a href="StockM.aspx"><i class="fa fa-circle-o"></i>Productos bajos </a></li>
-                            <li><a href="DevProProD.aspx"><i class="fa fa-circle-o"></i>Devolucion producto a proveedores </a></li>
+                            <li><a href="DevProProD.aspx"><i class="fa fa-circle-o"></i>Devolucion a proveedores </a></li>
+                             <li><a href="DevolucionEntregaD.aspx"><i class="fa fa-circle-o"></i>Cambios por devolucion </a></li>
                         </ul>
                     </li>
                     

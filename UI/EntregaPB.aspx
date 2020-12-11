@@ -6,11 +6,15 @@
     <div class="row col-md-4">
 <div class="form-group">
         <label>Lista de clientes</label>
-        <asp:DropDownList ID="DropDownList1" runat="server" CssClass ="form-control select2" multiple="multiple" data-placeholder="Select a State"
-                        style="width: 100%;" DataSourceID="SqlDataSource2" DataTextField="ID_Venta" DataValueField="ID_Venta"  AutoPostBack="True"></asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta FROM Venta INNER JOIN Estados ON Venta.ID_Venta = Estados.ID_Venta WHERE (Estados.ID_Tienda = @IDtienda) AND Estados.EstadoBodega = 1">
+        <asp:DropDownList ID="DropDownList1" runat="server" CssClass ="form-control select2" multiple="multiple" data-placeholder="Select a State" AppendDataBoundItems="true" AutoPostBack="true"
+                        style="width: 100%;" DataSourceID="SqlDataSource2" DataTextField="Cliente" DataValueField="ID_Venta"  >
+            <asp:ListItem Value="0">Seleccionar...</asp:ListItem>
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT DISTINCT Venta.ID_Venta, 'ID Venta' + ': '+ CAST(Venta.ID_Venta AS nvarchar) +' - '+ Cliente.Nombre + ' ' + Cliente.Apellidos AS Cliente FROM Venta INNER JOIN Estados ON Venta.ID_Venta = Estados.ID_Venta inner join Cliente on Venta.ID_Cliente = Cliente.ID_Cliente WHERE (Estados.ID_Tienda = @IDtienda) AND Estados.EstadoBodega = 1">
             <SelectParameters>
-                <asp:SessionParameter Name="IDtienda" SessionField="IDtienda" />
+                <asp:SessionParameter SessionField="IdTienda" Name="IDtienda"></asp:SessionParameter>
+
+
             </SelectParameters>
         </asp:SqlDataSource>
     </div>
@@ -46,20 +50,17 @@
     <div class="form-group">
         <label>Listado de productos</label>
         </div>
-    <asp:gridview runat="server" AutoGenerateColumns="False" DataKeyNames="Codigo" DataSourceID="SqlDataSource1" CssClass="table table-responsive" OnRowDataBound="Unnamed1_RowDataBound">
+    <asp:GridView runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1" CssClass="table table-responsive" OnRowDataBound="Unnamed1_RowDataBound">
         <Columns>
-            <asp:BoundField DataField="ID_Venta" HeaderText="ID_Venta" SortExpression="ID_Venta"/>
-            <asp:BoundField DataField="NoFac_Pref" HeaderText="NoFac_Pref" SortExpression="NoFac_Pref" />
-            <asp:BoundField DataField="Codigo" HeaderText="Codigo" ReadOnly="True" SortExpression="Codigo" />
-            <asp:BoundField DataField="Product" HeaderText="Product" ReadOnly="True" SortExpression="Product" />
-            <asp:BoundField DataField="Rubro" HeaderText="Rubro" SortExpression="Rubro" />
-            <asp:BoundField DataField="Modelo" HeaderText="Modelo" SortExpression="Modelo" />
-            <asp:BoundField DataField="Marca" HeaderText="Marca" SortExpression="Marca" />
+            <asp:BoundField DataField="ID" HeaderText="Stock" SortExpression="ID" InsertVisible="False" ReadOnly="True" />
+             <asp:BoundField DataField="ID_Venta" HeaderText="Venta" SortExpression="ID_Venta" InsertVisible="False" ReadOnly="True" />
+            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" />
+            <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
+            <asp:BoundField DataField="Medida" HeaderText="Medida" SortExpression="Medida" />
             <asp:BoundField DataField="MarcaP" HeaderText="MarcaP" SortExpression="MarcaP" />
-            <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" ItemStyle-BackColor="Red" >
-            </asp:BoundField>
-            <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion"  ItemStyle-BackColor ="YellowGreen">
-            </asp:BoundField>
+            <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
+            <asp:BoundField DataField="LISTANIOP" HeaderText="LISTANIOP" SortExpression="LISTANIOP" ReadOnly="True" />
+            <asp:BoundField DataField="Categoria" HeaderText="Categoria" SortExpression="Categoria" ReadOnly="True" />
         </Columns>
     </asp:gridview>
 
@@ -67,9 +68,24 @@
         <asp:Button ID="Button1" runat="server" Text="Realizar entrega del (de los) producto(s)." CssClass="btn btn-danger btn-flat"  OnClientClick='return confirm("Esta seguro de entregar producto?");' OnClick="Button1_Click"/>
     </div>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>"  SelectCommand="SELECT Bitacora.ID_Venta, Venta.NoFac_Pref, Producto.Codigo, Producto.Producto + '  ' + Producto.Descripcion AS Product, Rubro.Rubro, Modelo.Modelo, Marca.Marca, MarcaProd.MarcaP, DetalleVenta.Cantidad, Stock.Ubicacion FROM DetalleVenta INNER JOIN Producto ON DetalleVenta.Codigo = Producto.Codigo INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Stock ON Producto.Codigo = Stock.Codigo INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Bitacora ON Venta.ID_Venta = Bitacora.ID_Venta INNER JOIN Estados ON Venta.ID_Venta = Estados.ID_Venta INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Modelo ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN Marca ON Modelo.ID_Marca = Marca.ID_Marca WHERE (Estados.EstadoBodega = 1) AND (Bitacora.ID_Venta = @ID_Venta)" UpdateCommand="UPDATE Estados SET EstadoBodega = 0 WHERE (ID_Venta = @ID_Venta)">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT DISTINCT Venta.ID_Venta, Stock.ID_Existencia AS ID,  Stock.Cantidad, Stock.Ubicacion, Medida.Medida,  MarcaProd.MarcaP,Producto.Descripcion, 
+stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,
+SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria
+FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN        
+  SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN
+            MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN         
+			 Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join 
+			 OEM on Producto.ID_Producto = OEM.ID_Producto inner join 
+			 CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto inner join
+			 DetalleVenta on DetalleVenta.ID_Existencia =  Stock.ID_Existencia inner join
+			 Venta on Venta.ID_Venta = DetalleVenta.ID_Venta inner join 
+			 Estados on Estados.ID_Venta = Venta.ID_Venta
+ Where Estados.EstadoBodega = 1 AND Venta.ID_Venta = @ID_Venta"
+        UpdateCommand="UPDATE Estados SET EstadoBodega = 0 WHERE (ID_Venta = @ID_Venta)">
         <SelectParameters>
-            <asp:ControlParameter ControlID="DropDownList1" Name="ID_Venta" PropertyName="SelectedValue" />
+            <asp:ControlParameter ControlID="DropDownList1" PropertyName="SelectedValue" Name="ID_Venta"></asp:ControlParameter>
+
+
         </SelectParameters>
         <UpdateParameters>
             <asp:Parameter Name="ID_Venta" />

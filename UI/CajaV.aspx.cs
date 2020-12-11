@@ -12,6 +12,7 @@ namespace UI
 {
     public partial class CajaV : System.Web.UI.Page
     {
+
         Cproducto datos = new Cproducto();
         DataTable tabla = new DataTable();
         cClientes datos2 = new cClientes();
@@ -25,6 +26,7 @@ namespace UI
         decimal total;
         private static int cantProd = 0, idStock = 0;
         public static int TipoFactura = 0;
+        public static bool estadoAuto = false;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -33,7 +35,7 @@ namespace UI
                 TipoFactura = 0;
 
                 TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                Home.Mensaje = "Ventana Ventas";
+                Vendedor.Mensaje = "Ventana Ventas";
                 if (!IsPostBack)
                 {
                     // this.Button12.Click += new System.EventHandler(this.Button12_Click);
@@ -57,7 +59,7 @@ namespace UI
         {
             try
             {
-                SqlDataSource2.SelectCommand = "SELECT DISTINCT Producto.ID_Producto,stuff((Select ', ' + OEM.OEM From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM , stuff((Select ', ' + CodigoProducto.Codigo From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP,Producto.Descripcion, stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal  From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria, MarcaProd.MarcaP, Stock.PrecioVenta, Stock.Cantidad, Stock.PrecioUnitario, Stock.Ubicacion, Medida.Medida,           Tienda.Tienda, Stock.ID_Existencia FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN          SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN          MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN          Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join OEM on Producto.ID_Producto = OEM.ID_Producto inner join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto  Where (Producto.Estado = 1) AND  (Producto.ID_Producto = " + TextBox20.Text.Trim() + ")";
+                SqlDataSource2.SelectCommand = "SELECT DISTINCT Producto.ID_Producto,stuff((Select ', ' + OEM.OEM From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM , stuff((Select ', ' + CodigoProducto.Codigo From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP,Producto.Descripcion, stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal  From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria, MarcaProd.MarcaP, Stock.PrecioVenta, Stock.Cantidad, Stock.PrecioUnitario, Stock.Ubicacion, Medida.Medida,           Tienda.Tienda, Stock.ID_Existencia, 0 AS Pendiente FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN          SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN          MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN          Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join OEM on Producto.ID_Producto = OEM.ID_Producto inner join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto  Where (Producto.Estado = 1) AND  (Stock.ID_Existencia = " + TextBox20.Text.Trim() + ")";
                 SqlDataSource2.DataBind();
                 //SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2,  Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE  CONTAINS(Producto.Descripcion, '"+TextBox20.Text.Trim()+"') AND Producto.Estado = 1";
                 //SqlDataSource2.DataBind();
@@ -68,6 +70,7 @@ namespace UI
             }
         }
 
+        public static string idCoti = "";
 
         protected void btnCot_Click(object sender, EventArgs e)
         {
@@ -78,7 +81,7 @@ namespace UI
 
                     string idTienda = Session["IDtienda"].ToString();
 
-                    msj = datos.InsertarCotizacion(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), TextBox4.Text, Convert.ToInt32(DropDownList9.SelectedValue));
+                    idCoti = datos.InsertarCotizacion(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), TextBox4.Text, Convert.ToInt32(DropDownList9.SelectedValue));
                     // datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
                     foreach (GridViewRow row in GridView1.Rows)
                     {
@@ -86,7 +89,7 @@ namespace UI
                             Convert.ToInt32(row.Cells[5].Text),
                             Convert.ToDecimal(row.Cells[3].Text),
                             Convert.ToDecimal(row.Cells[6].Text),
-                            Convert.ToInt32(msj),
+                            Convert.ToInt32(idCoti),
                             Convert.ToInt32(row.Cells[7].Text)
 
                             );
@@ -95,13 +98,14 @@ namespace UI
                     nombre = TextBox4.Text;
                     ciudad = TextBox5.Text;
                     Pago = "COTIZACION";
+                    motorista = DropDownList9.SelectedItem.ToString();
+                    TipoFactura = 2;
                     Response.Write("<script>window.open('Factura2.aspx','Titulo', 'height=300','width=300')</script>");
                     Label6.Text = "Cotizacion guardada!";
                     DropDownList9.Enabled = false;
-                    TipoFactura = 2;
 
-
-                    //  Response.Redirect("Caja.aspx");
+                    Button3.Enabled = false;
+                    botonCot.Disabled = true;
                 }
                 else
                 {
@@ -122,10 +126,8 @@ namespace UI
             }
             else
             {
-                double descuento = 0;
-                double totalDesc = 0.0;
-                totalDesc = Convert.ToDouble(TextBox10.Text) * 0.01;
-                descuento = Convert.ToDouble(TextBox9.Text) * totalDesc * Convert.ToDouble(TextBox11.Text);
+                decimal descuentos = 0;
+
                 string idTienda = Session["IDtienda"].ToString();
                 if (cantProd >= Convert.ToInt32(TextBox11.Text))
                 {
@@ -147,15 +149,21 @@ namespace UI
                             dt = (DataTable)ViewState["Detalles"];
                             if (dt.Rows.Count > 0)
                             {
-                                subtotal = Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox9.Text);
+                                decimal valorVenta, valorsindescuento, descuento;
+                                valorVenta = Convert.ToDecimal(TextBox9.Text);
+                                valorsindescuento = (valorVenta * 100) / 135;
+                                descuento = (valorsindescuento * (Convert.ToDecimal(TextBox10.Text) / 100));
+                                Label8.Text = descuento.ToString("0.00");
+                                subtotal = (Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox9.Text)) - Convert.ToDecimal(Label8.Text);
+                                descuento = Convert.ToDecimal(Label8.Text) * Convert.ToDecimal(TextBox11.Text);
                                 dr = dt.NewRow();
                                 //  dr["ID"] = Label1.Text;
                                 dr["ID"] = TextBox7.Text;
                                 dr["Descripcion"] = TextBox8.Text;
                                 dr["Precio"] = TextBox9.Text;
-                                dr["Descuento"] = descuento.ToString();
+                                dr["Descuento"] = descuento.ToString(); ;
                                 dr["Cantidad"] = TextBox11.Text;
-                                dr["Total"] = subtotal;
+                                dr["Total"] = Convert.ToDecimal(subtotal).ToString("0.00");
                                 dr["IDstock"] = idStock;
                                 dt.Rows.Add(dr);
                                 GridView1.DataSource = dt;
@@ -167,15 +175,21 @@ namespace UI
                     }
                     else
                     {
-                        subtotal = Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox9.Text);
+                        decimal valorVenta, valorsindescuento, descuento;
+                        valorVenta = Convert.ToDecimal(TextBox9.Text);
+                        valorsindescuento = (valorVenta * 100) / 135;
+                        descuento = (valorsindescuento * (Convert.ToDecimal(TextBox10.Text) / 100));
+                        Label8.Text = descuento.ToString("0.00");
+                        subtotal = (Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox9.Text)) - Convert.ToDecimal(Label8.Text);
+                        descuentos = Convert.ToDecimal(Label8.Text) * Convert.ToDecimal(TextBox11.Text);
                         dr = dt.NewRow();
                         // dr["ID"] = Label1.Text;
                         dr["ID"] = TextBox7.Text;
                         dr["Descripcion"] = TextBox8.Text;
                         dr["Precio"] = TextBox9.Text;
-                        dr["Descuento"] = descuento.ToString();
+                        dr["Descuento"] = descuentos.ToString();
                         dr["Cantidad"] = TextBox11.Text;
-                        dr["Total"] = subtotal;
+                        dr["Total"] = Convert.ToDecimal(subtotal).ToString("0.00");
                         dr["IDstock"] = idStock;
                         dt.Rows.Add(dr);
                         GridView1.DataSource = dt;
@@ -183,6 +197,7 @@ namespace UI
                     }
                     ViewState["Detalles"] = dt;
                     limpiar();
+                    Label8.Text = "0.00";
                 }
                 else
                 {
@@ -196,7 +211,7 @@ namespace UI
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                subtotal2 = subtotal2 + Convert.ToDecimal(e.Row.Cells[6].Text);
+                subtotal2 = subtotal2 + (Convert.ToDecimal(e.Row.Cells[3].Text) * Convert.ToDecimal(e.Row.Cells[5].Text));
                 descuento = descuento + Convert.ToDecimal(e.Row.Cells[4].Text);
                 total = subtotal2 - descuento;
             }
@@ -219,8 +234,8 @@ namespace UI
 
         }
         public static string msj = "", Pago = "";
-        public static string nombre, nit, ciudad;
-        decimal saldoPendiente;
+        public static string nombre, nit, ciudad, motorista;
+        decimal saldopendiente = 0;
         protected void Button3_Click(object sender, EventArgs e)
         {
 
@@ -229,7 +244,7 @@ namespace UI
 
                 if (DropDownList4.SelectedItem.Text.Trim() == "Credito")
                 {
-                    if (TextBox3.Text == "1")
+                    if (TextBox3.Text == "1" || TextBox3.Text == "")
                     {
                         Response.Write("<script>alert('Error, Este Nit y cliente no es valido!')</script>");
                     }
@@ -247,14 +262,16 @@ namespace UI
                                 if (siexistecredito == 1)
                                 {
                                     DataTable tablaMonto = new DataTable();
-                                    saldoPendiente =  datos2.SaldoPendiente(Convert.ToInt32(TextBox3.Text));
+                                    saldopendiente = Convert.ToDecimal(datos2.SaldoPendiente(Convert.ToInt32(TextBox3.Text)));
 
+                                    decimal creditoma = 0;
                                     tablaMonto = datos2.SaldoPendienteFecha(Convert.ToInt32(TextBox3.Text));
                                     tabla = datos2.ListaCreditoMax(Convert.ToInt32(TextBox3.Text));
-                                    TextBox6.Text = tabla.Rows[0][1].ToString();
+                                    creditoma = Convert.ToDecimal(tabla.Rows[0][1]);
+                                    TextBox6.Text = creditoma.ToString("0.00");
                                     TextBox15.Text = tabla.Rows[0][2].ToString();
-                                    Label4.Text = "Saldo pendiente: " + saldoPendiente.ToString("0.00");
-                                    Label5.Text = "Fecha máximo de pago: " + tablaMonto.Rows[0][5].ToString();
+                                    Label4.Text = "Saldo pendiente: " + saldopendiente.ToString("0.00");
+                                    Label5.Text = "Fecha máximo de pago: " + tablaMonto.Rows[0][4].ToString();
                                     Button8.Visible = false;
                                     Button4_ModalPopupExtender.Show();
 
@@ -279,87 +296,214 @@ namespace UI
                 }
                 else
                 {
-                    if (TextBox3.Text != "")
+
+                    if (DropDownList4.SelectedItem.ToString() == "Cheque")
                     {
-                        int siexiste = 0;
-
-                        siexiste = datos2.SiExisteCliente(Convert.ToInt32(TextBox3.Text));
-
-                        if (siexiste == 1)
+                        if (TextBox100.Text.Equals(String.Empty))
                         {
-                            if (TextBox3.Text == "" && Nit == 1)
+                            Response.Write("<script>alert('Favor de ingresar el correlativo del cheque (No.)')</script>");
+                        }
+                        else
+                        {
+                            if (TextBox3.Text != "")
                             {
-                                string idTienda = Session["IDtienda"].ToString();
-                                string idEmpleado = Session["IdEmpleado"].ToString();
+                                int siexiste = 0;
 
-                                double iva = 0;
-                                iva = 0.12 * Convert.ToDouble(TextBox14.Text);
-                                msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
-                                datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
-                                foreach (GridViewRow row in GridView1.Rows)
+                                siexiste = datos2.SiExisteCliente(Convert.ToInt32(TextBox3.Text));
+
+                                if (siexiste == 1)
                                 {
-                                    datos.InsertarDetalleVenta(
-                                        Convert.ToInt32(row.Cells[5].Text),
-                                        Convert.ToDecimal(row.Cells[3].Text),
-                                        Convert.ToDecimal(row.Cells[6].Text),
-                                        Convert.ToInt32(msj),
-                                        Convert.ToInt32(DropDownList4.SelectedValue),
-                                        Convert.ToInt32(row.Cells[7].Text)
+                                    if (TextBox3.Text == "" && Nit == 1)
+                                    {
+                                        string idTienda = Session["IDtienda"].ToString();
+                                        string idEmpleado = Session["IdEmpleado"].ToString();
 
-                                        );
+                                        double iva = 0;
+                                        iva = 0.12 * Convert.ToDouble(TextBox14.Text);
+                                        msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
+                                        datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                        SqlDataSource13.InsertParameters["NoCheque"].DefaultValue = TextBox100.Text;
+                                        SqlDataSource13.InsertParameters["ID_Venta"].DefaultValue = msj;
+                                        SqlDataSource13.InsertParameters["Cantidad"].DefaultValue = TextBox14.Text;
+                                        SqlDataSource13.Insert();
+                                        foreach (GridViewRow row in GridView1.Rows)
+                                        {
+                                            datos.InsertarDetalleVenta(
+                                                Convert.ToInt32(row.Cells[5].Text),
+                                                Convert.ToDecimal(row.Cells[3].Text),
+                                                Convert.ToDecimal(row.Cells[6].Text),
+                                                Convert.ToInt32(msj),
+                                                Convert.ToInt32(DropDownList4.SelectedValue),
+                                                Convert.ToInt32(row.Cells[7].Text)
+
+                                                );
+                                        }
+                                        if (CheckBox1.Checked == true)
+                                        {
+                                            datos.InsertarMOtorista(Convert.ToInt32(msj), Convert.ToInt32(DropDownList9.SelectedValue));
+                                        }
+                                        TipoFactura = 1;
+                                        nit = TextBox3.Text;
+                                        nombre = TextBox4.Text;
+                                        ciudad = TextBox5.Text;
+                                        motorista = DropDownList9.SelectedItem.ToString();
+                                        Pago = DropDownList4.SelectedItem.ToString();
+
+                                        Label6.Text = "La venta ya fue guardada!!!";
+                                        Button3.Enabled = false;
+                                        botonCot.Disabled = true;
+                                    }
+                                    else
+                                    {
+                                        string idTienda = Session["IDtienda"].ToString();
+                                        string idEmpleado = Session["IdEmpleado"].ToString();
+
+                                        double iva = 0;
+                                        iva = 0.12 * Convert.ToDouble(TextBox14.Text);
+                                        msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
+                                        datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                        SqlDataSource13.InsertParameters["NoCheque"].DefaultValue = TextBox100.Text;
+                                        SqlDataSource13.InsertParameters["ID_Venta"].DefaultValue = msj;
+                                        SqlDataSource13.InsertParameters["Cantidad"].DefaultValue = TextBox14.Text;
+                                        SqlDataSource13.Insert();
+                                        foreach (GridViewRow row in GridView1.Rows)
+                                        {
+                                            datos.InsertarDetalleVenta(
+                                                Convert.ToInt32(row.Cells[5].Text),
+                                                Convert.ToDecimal(row.Cells[3].Text),
+                                                Convert.ToDecimal(row.Cells[6].Text),
+                                                Convert.ToInt32(msj),
+                                                Convert.ToInt32(DropDownList4.SelectedValue),
+                                                Convert.ToInt32(row.Cells[7].Text)
+
+                                                );
+                                        }
+                                        if (CheckBox1.Checked == true)
+                                        {
+                                            datos.InsertarMOtorista(Convert.ToInt32(msj), Convert.ToInt32(DropDownList9.SelectedValue));
+                                        }
+                                        TipoFactura = 1;
+                                        nit = TextBox3.Text;
+                                        nombre = TextBox4.Text;
+                                        ciudad = TextBox5.Text;
+                                        motorista = DropDownList9.SelectedItem.ToString();
+                                        Pago = DropDownList4.SelectedItem.ToString();
+                                        Label6.Text = "La venta ya fue guardada!!!";
+                                        Nit = 1;
+                                        Button3.Enabled = false;
+                                        botonCot.Disabled = true;
+                                    }
+
+
                                 }
-                                TipoFactura = 1;
-                                nit = TextBox3.Text;
-                                nombre = TextBox4.Text;
-                                ciudad = TextBox5.Text;
-
-                                Pago = DropDownList4.SelectedItem.ToString();
-                                Label6.Text = "La venta ya fue guardada!!!";
+                                else if (siexiste == 0)
+                                {
+                                    Button6_ModalPopupExtender.Show();
+                                }
                             }
                             else
                             {
-                                string idTienda = Session["IDtienda"].ToString();
-                                string idEmpleado = Session["IdEmpleado"].ToString();
-
-                                double iva = 0;
-                                iva = 0.12 * Convert.ToDouble(TextBox14.Text);
-                                msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
-                                datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
-                                foreach (GridViewRow row in GridView1.Rows)
-                                {
-                                    datos.InsertarDetalleVenta(
-                                        Convert.ToInt32(row.Cells[5].Text),
-                                        Convert.ToDecimal(row.Cells[3].Text),
-                                        Convert.ToDecimal(row.Cells[6].Text),
-                                        Convert.ToInt32(msj),
-                                        Convert.ToInt32(DropDownList4.SelectedValue),
-                                        Convert.ToInt32(row.Cells[7].Text)
-
-                                        );
-                                }
-                                TipoFactura = 1;
-                                nit = TextBox3.Text;
-                                nombre = TextBox4.Text;
-                                ciudad = TextBox5.Text;
-
-                                Pago = DropDownList4.SelectedItem.ToString();
-                                Label6.Text = "La venta ya fue guardada!!!";
-                                Nit = 1;
+                                Response.Write("<script>alert('Error, Ingrese un NIT valido!')</script>");
                             }
 
-
-                        }
-                        else if (siexiste == 0)
-                        {
-                            Button6_ModalPopupExtender.Show();
                         }
                     }
                     else
                     {
-                        Response.Write("<script>alert('Error, Ingrese un NIT valido!')</script>");
+                        if (TextBox3.Text != "")
+                        {
+                            int siexiste = 0;
+
+                            siexiste = datos2.SiExisteCliente(Convert.ToInt32(TextBox3.Text));
+
+                            if (siexiste == 1)
+                            {
+                                if (TextBox3.Text == "" && Nit == 1)
+                                {
+                                    string idTienda = Session["IDtienda"].ToString();
+                                    string idEmpleado = Session["IdEmpleado"].ToString();
+
+                                    double iva = 0;
+                                    iva = 0.12 * Convert.ToDouble(TextBox14.Text);
+                                    msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
+                                    datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                    foreach (GridViewRow row in GridView1.Rows)
+                                    {
+                                        datos.InsertarDetalleVenta(
+                                            Convert.ToInt32(row.Cells[5].Text),
+                                            Convert.ToDecimal(row.Cells[3].Text),
+                                            Convert.ToDecimal(row.Cells[6].Text),
+                                            Convert.ToInt32(msj),
+                                            Convert.ToInt32(DropDownList4.SelectedValue),
+                                            Convert.ToInt32(row.Cells[7].Text)
+
+                                            );
+                                    }
+                                    if (CheckBox1.Checked == true)
+                                    {
+                                        datos.InsertarMOtorista(Convert.ToInt32(msj), Convert.ToInt32(DropDownList9.SelectedValue));
+                                    }
+                                    TipoFactura = 1;
+                                    nit = TextBox3.Text;
+                                    nombre = TextBox4.Text;
+                                    ciudad = TextBox5.Text;
+                                    motorista = DropDownList9.SelectedItem.ToString();
+                                    Pago = DropDownList4.SelectedItem.ToString();
+                                    Label6.Text = "La venta ya fue guardada!!!";
+                                    Button3.Enabled = false;
+                                    botonCot.Disabled = true;
+                                }
+                                else
+                                {
+                                    string idTienda = Session["IDtienda"].ToString();
+                                    string idEmpleado = Session["IdEmpleado"].ToString();
+
+                                    double iva = 0;
+                                    iva = 0.12 * Convert.ToDouble(TextBox14.Text);
+                                    msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
+                                    datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+
+                                    foreach (GridViewRow row in GridView1.Rows)
+                                    {
+                                        datos.InsertarDetalleVenta(
+                                            Convert.ToInt32(row.Cells[5].Text),
+                                            Convert.ToDecimal(row.Cells[3].Text),
+                                            Convert.ToDecimal(row.Cells[6].Text),
+                                            Convert.ToInt32(msj),
+                                            Convert.ToInt32(DropDownList4.SelectedValue),
+                                            Convert.ToInt32(row.Cells[7].Text)
+
+                                            );
+                                    }
+                                    if (CheckBox1.Checked == true)
+                                    {
+                                        datos.InsertarMOtorista(Convert.ToInt32(msj), Convert.ToInt32(DropDownList9.SelectedValue));
+                                    }
+                                    TipoFactura = 1;
+                                    nit = TextBox3.Text;
+                                    nombre = TextBox4.Text;
+                                    ciudad = TextBox5.Text;
+                                    motorista = DropDownList9.SelectedItem.ToString();
+                                    Pago = DropDownList4.SelectedItem.ToString();
+                                    Label6.Text = "La venta ya fue guardada!!!";
+                                    Nit = 1;
+                                    Button3.Enabled = false;
+                                    botonCot.Disabled = true;
+                                }
+
+
+                            }
+                            else if (siexiste == 0)
+                            {
+                                Button6_ModalPopupExtender.Show();
+                            }
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Error, Ingrese un NIT valido!')</script>");
+                        }
+
                     }
-
-
                 }
                 Nit = 1;
 
@@ -381,31 +525,50 @@ namespace UI
         {
             try
             {
-                string idCliente;
-                string idTienda = Session["IDtienda"].ToString();
-                string idEmpleado = Session["IdEmpleado"].ToString();
-                tabla = datos2.ListaCreditoMax(Convert.ToInt32(TextBox3.Text));
-                idCliente = tabla.Rows[0][3].ToString();
-                datos2.EditarInfoCredito(Convert.ToDecimal(TextBox6.Text), Convert.ToInt32(TextBox15.Text), Convert.ToInt32(idCliente));
-                string msj = "", msj2 = "";
-                msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda), Convert.ToInt32(idCliente));
-                msj2 = datos2.InsertarCredito(Convert.ToDecimal(TextBox14.Text), Convert.ToInt32(idCliente), Convert.ToInt32(msj));
-                foreach (GridViewRow row in GridView1.Rows)
+                decimal totalSaldo;
+                totalSaldo = saldopendiente + Convert.ToDecimal(Label2.Text);
+                if (totalSaldo > Convert.ToDecimal(TextBox6.Text))
                 {
-                    datos.InsertarDetalleVenta(
-                        Convert.ToInt32(row.Cells[5].Text),
-                        Convert.ToDecimal(row.Cells[3].Text),
-                        Convert.ToDecimal(row.Cells[6].Text),
-                        Convert.ToInt32(msj),
-                        Convert.ToInt32(DropDownList4.SelectedValue),
-                        Convert.ToInt32(row.Cells[7].Text));
-                    datos2.InsertarCreditoPorItem(Convert.ToInt32(row.Cells[1].Text), Convert.ToInt32(msj2));
+                    Label7.Text = "El total de venta y el total de saldo pendiente supera al credito permitido, solicita autorizacion";
+                    Button4_ModalPopupExtender.Show();
                 }
-                TipoFactura = 1;
-                nit = TextBox3.Text;
-                nombre = TextBox4.Text;
-                ciudad = TextBox5.Text;
-                Label6.Text = "La venta ya fue guardada!!!";
+                else
+                {
+                    string idCliente;
+                    string idTienda = Session["IDtienda"].ToString();
+                    string idEmpleado = Session["IdEmpleado"].ToString();
+                    tabla = datos2.ListaCreditoMax(Convert.ToInt32(TextBox3.Text));
+                    idCliente = tabla.Rows[0][3].ToString();
+                    datos2.EditarInfoCredito(Convert.ToDecimal(TextBox6.Text), Convert.ToInt32(TextBox15.Text), Convert.ToInt32(idCliente));
+                    string msj2 = "";
+                    msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda), Convert.ToInt32(idCliente));
+                    msj2 = datos2.InsertarCredito(Convert.ToDecimal(TextBox14.Text), Convert.ToInt32(idCliente), Convert.ToInt32(msj));
+                    foreach (GridViewRow row in GridView1.Rows)
+                    {
+                        datos.InsertarDetalleVenta(
+                            Convert.ToInt32(row.Cells[5].Text),
+                            Convert.ToDecimal(row.Cells[3].Text),
+                            Convert.ToDecimal(row.Cells[6].Text),
+                            Convert.ToInt32(msj),
+                            Convert.ToInt32(DropDownList4.SelectedValue),
+                            Convert.ToInt32(row.Cells[7].Text));
+                        datos2.InsertarCreditoPorItem(Convert.ToInt32(row.Cells[7].Text), Convert.ToInt32(msj2));
+                    }
+                    if (CheckBox1.Checked == true)
+                    {
+                        datos.InsertarMOtorista(Convert.ToInt32(msj), Convert.ToInt32(DropDownList9.SelectedValue));
+                    }
+                    TipoFactura = 1;
+                    nit = TextBox3.Text;
+                    nombre = TextBox4.Text;
+                    ciudad = TextBox5.Text;
+                    motorista = DropDownList9.SelectedItem.ToString();
+                    Pago = DropDownList4.SelectedItem.ToString();
+                    Label6.Text = "La venta ya fue guardada!!!";
+                    Button3.Enabled = false;
+                    botonCot.Disabled = true;
+                }
+
             }
             catch
             {
@@ -445,10 +608,11 @@ namespace UI
                 tabla = datos2.ListaUncliente(Convert.ToInt32(TextBox3.Text));
                 idCliente = tabla.Rows[0][0].ToString();
                 datos2.InsertarInfoCredito(Convert.ToDecimal(TextBox6.Text), Convert.ToInt32(TextBox15.Text), Convert.ToInt32(idCliente));
-                string msj = "", msj2 = "";
+                string msj2 = "";
 
                 msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), 0, Convert.ToInt32(idEmpleado), Convert.ToInt32(idTienda), Convert.ToInt32(idCliente));
                 msj2 = datos2.InsertarCredito(Convert.ToDecimal(TextBox14.Text), Convert.ToInt32(idCliente), Convert.ToInt32(msj));
+
                 foreach (GridViewRow row in GridView1.Rows)
                 {
                     datos.InsertarDetalleVenta(
@@ -459,16 +623,23 @@ namespace UI
                        Convert.ToInt32(DropDownList4.SelectedValue),
                        Convert.ToInt32(row.Cells[7].Text)
                         );
-                    TipoFactura = 1;
                     datos2.InsertarCreditoPorItem(
-                     Convert.ToInt32(row.Cells[1].Text),
+                     Convert.ToInt32(row.Cells[7].Text),
                       Convert.ToInt32(msj2));
                 }
+                if (CheckBox1.Checked == true)
+                {
+                    datos.InsertarMOtorista(Convert.ToInt32(msj), Convert.ToInt32(DropDownList9.SelectedValue));
+                }
+                TipoFactura = 1;
                 nit = TextBox3.Text;
                 nombre = TextBox4.Text;
                 ciudad = TextBox5.Text;
-                // Response.Redirect("Caja.aspx"); 
+                motorista = DropDownList9.SelectedItem.ToString();
+                Pago = DropDownList4.SelectedItem.ToString();
                 Label6.Text = "La venta ya fue guardada!!!";
+                Button3.Enabled = false;
+                botonCot.Disabled = true;
             }
             catch
             {
@@ -509,32 +680,16 @@ namespace UI
                 Response.Write("<script>window.open('Factura2.aspx','Titulo', 'height=300','width=300')</script>");
             }
         }
-        public static bool estadoAuto = false;
+
         protected void Button11_Click(object sender, EventArgs e)
         {
+            //if(Convert.ToInt32(TxtDescuento.Value) > 30)
+            //{
+            //    estadoAuto = true;
+            //}
             if (TxtDescuento.Value != "")
             {
-
-                if (Convert.ToInt32(TxtDescuento.Value) >= 8)
-                {
-                    // TxtDescuento.Disabled = true;
-                    Response.Write("<script>window.open('Autorizacion.aspx','Titulo', 'height=200','width=400')</script>");
-                    if (estadoAuto == true)
-                    {
-                        // TxtDescuento.Disabled = false;
-                        double TotalFinal = 0;
-                        double porc = 0;
-                        porc = (Convert.ToDouble(TxtDescuento.Value) * 0.01) * Convert.ToDouble(TextBox12.Text);
-                        TotalFinal = Convert.ToDouble(TextBox12.Text) - (porc + Convert.ToDouble(TextBox13.Text));
-                        TextBox14.Text = TotalFinal.ToString();
-                        TextBox13.Text = porc.ToString();
-                    }
-                    else
-                    {
-                        Response.Write("<script>window.open('Autorizacion.aspx','Titulo', 'height=200','width=400')</script>");
-                    }
-                }
-                else
+                try
                 {
                     double TotalFinal = 0;
                     double porc = 0;
@@ -543,7 +698,10 @@ namespace UI
                     TextBox14.Text = TotalFinal.ToString();
                     TextBox13.Text = porc.ToString();
                 }
-
+                catch
+                {
+                    Response.Write("<script>alert('Ingrese un producto.')</script>");
+                }
 
             }
             else
@@ -556,7 +714,22 @@ namespace UI
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+
                 string _estado = DataBinder.Eval(e.Row.DataItem, "Tienda").ToString();
+                int _siExisteDevo = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ID_Existencia").ToString());
+                string _Pendiente = DataBinder.Eval(e.Row.DataItem, "Pendiente").ToString();
+
+                SqlDataSource14.SelectParameters["ID_Existencia"].DefaultValue = _siExisteDevo.ToString();
+                SqlDataSource14.DataSourceMode = SqlDataSourceMode.DataReader;
+                SqlDataReader datoDevolucion;
+                datoDevolucion = (SqlDataReader)SqlDataSource14.Select(DataSourceSelectArguments.Empty);
+                if (datoDevolucion.Read())
+                {
+                    e.Row.Cells[12].Text = datoDevolucion["Cantidad"].ToString();
+                    //e.Row.Cells[12].BackColor = System.Drawing.Color.Red;
+                    e.Row.Cells[12].CssClass = "label label-warning";
+                }
+
 
                 if (_estado == Session["Tienda"].ToString())
                 {
@@ -574,7 +747,7 @@ namespace UI
         protected void DropDownList3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            SqlDataSource2.SelectCommand = "SELECT DISTINCT Producto.ID_Producto,stuff((Select ', ' + OEM.OEM From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM , stuff((Select ', ' + CodigoProducto.Codigo From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP,Producto.Descripcion, stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria, MarcaProd.MarcaP, Stock.PrecioVenta, Stock.Cantidad, Stock.PrecioUnitario, Stock.Ubicacion, Medida.Medida,           Tienda.Tienda, Stock.ID_Existencia FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN          SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN          MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN          Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join OEM on Producto.ID_Producto = OEM.ID_Producto inner join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto inner join AnioProducto on Producto.ID_Producto = AnioProducto.ID_Producto Where (Producto.Estado = 1)  AND SubCategoria.ID_SubCategoria =" + DropDownList3.SelectedValue;
+            SqlDataSource2.SelectCommand = "SELECT DISTINCT Producto.ID_Producto, stuff((Select ', ' + OEM.OEM From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM , stuff((Select ', ' + CodigoProducto.Codigo From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP,Producto.Descripcion, stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria, MarcaProd.MarcaP, Stock.PrecioVenta, Stock.Cantidad, Stock.PrecioUnitario, Stock.Ubicacion, Medida.Medida, Tienda.Tienda, Stock.ID_Existencia, 0 AS Pendiente FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN          SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN          MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN          Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join OEM on Producto.ID_Producto = OEM.ID_Producto inner join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto inner join AnioProducto on Producto.ID_Producto = AnioProducto.ID_Producto Where (Producto.Estado = 1)  AND SubCategoria.ID_SubCategoria =" + DropDownList3.SelectedValue;
             SqlDataSource2.DataBind();
         }
 
@@ -626,9 +799,7 @@ namespace UI
             dt = (DataTable)GridView1.DataSource;
             ViewState["Detalles"] = dt;
             IDcoti = Convert.ToInt32(DropDownList8.SelectedValue);
-
-
-
+            botonCot.Disabled = true;
         }
 
         protected void TextBox3_TextChanged(object sender, EventArgs e)
@@ -673,6 +844,43 @@ namespace UI
             }
         }
 
+        protected void DropDownList4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DropDownList4.SelectedItem.ToString() == "Cheque")
+            {
+                TextBox100.Visible = true;
+                labelcheque.Visible = true;
+            }
+        }
+
+        private static double margenganancia, precioProductoSinGanancia, precioSinDescuento, PrecioProductoConDescuento = 0;
+
+        protected void TextBox9_TextChanged(object sender, EventArgs e)
+        {
+            //decimal precioAntes = 0;
+            precioDespues = Convert.ToDecimal(TextBox9.Text);
+            if (precioDespues < precioAntes)
+            {
+                TextBox9.Text = precioDespues.ToString();
+                Response.Write("<script>alert('El precio ingresado es menor al precio establecido')</script>");
+            }
+        }
+
+        protected void TextBox10_TextChanged(object sender, EventArgs e)
+        {
+
+            if (Convert.ToDouble(TextBox10.Text) > 35)
+            {
+                Response.Write("<script>alert('Descuento excede mayor a 35%')</script>");
+                TextBox10.Text = "35";
+            }
+            if (Convert.ToDouble(TextBox10.Text) != 0)
+            {
+                TxtDescuento.Disabled = true;
+            }
+
+        }
+
         protected void Button10_Click(object sender, EventArgs e)
         {
             Response.Redirect("Caja.aspx");
@@ -701,20 +909,11 @@ namespace UI
 
                     if (CheckBox2.Checked == false)
                     {
-                        SqlDataSource2.SelectCommand = "SELECT DISTINCT Producto.ID_Producto,stuff((Select ', ' + OEM.OEM From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM , stuff((Select ', ' + CodigoProducto.Codigo From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP,Producto.Descripcion, stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal  From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria, MarcaProd.MarcaP, Stock.PrecioVenta, Stock.Cantidad, Stock.PrecioUnitario, Stock.Ubicacion, Medida.Medida,           Tienda.Tienda, Stock.ID_Existencia FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN          SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN          MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN          Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join OEM on Producto.ID_Producto = OEM.ID_Producto inner join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto  Where (Producto.Estado = 1) AND  (OEM.OEM like '%" + TextBox20.Text.Trim() + "%' OR CodigoProducto.Codigo like '%" + TextBox20.Text.Trim() + "%' OR Producto.Producto like '%" + TextBox20.Text.Trim() + "%')";
+                        SqlDataSource2.SelectCommand = "SELECT DISTINCT Producto.ID_Producto, stuff((Select ', ' + OEM.OEM From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM , stuff((Select ', ' + CodigoProducto.Codigo From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP,Producto.Descripcion, stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal  From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria, MarcaProd.MarcaP, Stock.PrecioVenta, Stock.Cantidad, Stock.PrecioUnitario, Stock.Ubicacion, Medida.Medida,           Tienda.Tienda, Stock.ID_Existencia, 0 AS Pendiente FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN          SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN          MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN          Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join OEM on Producto.ID_Producto = OEM.ID_Producto inner join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto  Where (Producto.Estado = 1) AND  (OEM.OEM like '%" + TextBox20.Text.Trim() + "%' OR CodigoProducto.Codigo like '%" + TextBox20.Text.Trim() + "%' OR Producto.Producto like '%" + TextBox20.Text.Trim() + "%')";
 
                         SqlDataSource2.DataBind();
                     }
-                    //else if (CheckBox2.Checked == false && CheckBox3.Checked == true && CheckBox4.Checked == false)
-                    //{
-                    //    SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2,  Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE Producto.Estado = 1 AND (Producto.Codigo like '%" + TextBox20.Text.Trim() + "%' OR Producto.Producto like '%" + TextBox20.Text.Trim() + "%' OR Producto.Codigo2 like '%" + TextBox20.Text.Trim() + "%') AND Marca.ID_Marca =" + DropDownList2.SelectedValue;//  AND Rubro.ID_Rubro = " + ID_Rubro;//agregado 11/07
-                    //    SqlDataSource2.DataBind();
-                    //}
-                    //else if (CheckBox2.Checked == false && CheckBox3.Checked == false && CheckBox4.Checked == true)
-                    //{
-                    //    SqlDataSource2.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2,  Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE Producto.Estado = 1 AND (Producto.Codigo like '%" + TextBox20.Text.Trim() + "%' OR Producto.Producto like '%" + TextBox20.Text.Trim() + "%' OR Producto.Codigo2 like '%" + TextBox20.Text.Trim() + "%') AND Modelo.ID_Modelo =" + DropDownList5.SelectedValue;//  AND Rubro.ID_Rubro = " + ID_Rubro;//agregado 11/07
-                    //    SqlDataSource2.DataBind();
-                    //}
+
                     else if (CheckBox2.Checked == true)
                     {
                         if (Convert.ToInt16(DropDownList6.SelectedValue) == 0 || Convert.ToInt16(DropDownList7.SelectedValue) == 0)
@@ -723,7 +922,7 @@ namespace UI
                         }
                         else
                         {
-                            SqlDataSource2.SelectCommand = "SELECT DISTINCT Producto.ID_Producto,stuff((Select ', ' + OEM.OEM From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM , stuff((Select ', ' + CodigoProducto.Codigo From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP,Producto.Descripcion, stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal  From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria, MarcaProd.MarcaP, Stock.PrecioVenta, Stock.Cantidad, Stock.PrecioUnitario, Stock.Ubicacion, Medida.Medida,           Tienda.Tienda, Stock.ID_Existencia FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN          SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN  MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join OEM on Producto.ID_Producto = OEM.ID_Producto inner join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto inner join AnioProducto on Producto.ID_Producto = AnioProducto.ID_Producto Where (Producto.Estado = 1) AND (OEM.OEM like '%" + TextBox20.Text.Trim() + "%' OR CodigoProducto.Codigo like '%" + TextBox20.Text.Trim() + "%' OR Producto.Producto like '%" + TextBox20.Text.Trim() + "%') AND (" + DropDownList7.SelectedItem + " BETWEEN AnioProducto.AnioInicio AND AnioProducto.AnioFinal) AND AnioProducto.ID_Rubro =" + DropDownList6.SelectedValue;
+                            SqlDataSource2.SelectCommand = "SELECT DISTINCT Producto.ID_Producto, stuff((Select ', ' + OEM.OEM From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM , stuff((Select ', ' + CodigoProducto.Codigo From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP,Producto.Descripcion, stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal  From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria, MarcaProd.MarcaP, Stock.PrecioVenta, Stock.Cantidad, Stock.PrecioUnitario, Stock.Ubicacion, Medida.Medida,           Tienda.Tienda, Stock.ID_Existencia, 0 AS Pendiente FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN          SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN  MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join OEM on Producto.ID_Producto = OEM.ID_Producto inner join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto inner join AnioProducto on Producto.ID_Producto = AnioProducto.ID_Producto Where (Producto.Estado = 1) AND (OEM.OEM like '%" + TextBox20.Text.Trim() + "%' OR CodigoProducto.Codigo like '%" + TextBox20.Text.Trim() + "%' OR Producto.Producto like '%" + TextBox20.Text.Trim() + "%') AND (" + DropDownList7.SelectedItem + " BETWEEN AnioProducto.AnioInicio AND AnioProducto.AnioFinal) AND AnioProducto.ID_Rubro =" + DropDownList6.SelectedValue;
                             SqlDataSource2.DataBind();
                         }
                     }
@@ -740,16 +939,18 @@ namespace UI
             }
         }
 
+        private static decimal precioAntes, precioDespues = 0;
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow gd = GridView2.SelectedRow;
-            TextBox7.Text = GridView2.SelectedRow.Cells[10].Text;
+            TextBox7.Text = GridView2.SelectedRow.Cells[11].Text;
             TextBox8.Text = gd.Cells[2].Text + " ~ " + gd.Cells[4].Text;
-            TextBox9.Text = gd.Cells[5].Text;
+            TextBox9.Text = gd.Cells[6].Text;
             TextBox10.Text = "0";
             TextBox11.Text = "1";
-            cantProd = Convert.ToInt32(gd.Cells[6].Text);
-            idStock = Convert.ToInt32(gd.Cells[10].Text);
+            cantProd = Convert.ToInt32(gd.Cells[7].Text);
+            idStock = Convert.ToInt32(gd.Cells[11].Text);
+            precioAntes = Convert.ToDecimal(gd.Cells[6].Text);
         }
     }
 }

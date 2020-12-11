@@ -3,7 +3,7 @@
 </asp:Content>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    
     <style type="text/css">
         .fondo{
             background-color:black;
@@ -90,7 +90,7 @@
                         <div class="form-group">
                             <asp:FileUpload ID="FileUpload1" runat="server" placeholder="subir" CssClass="form-control"/>
                     </div>   
-                      <div class="form-group">
+                     <div class="form-group">
                         <label>Proveedor</label>
                         <asp:TextBox ID="TextBox11" runat="server" TextMode="SingleLine" CssClass="form-control"></asp:TextBox>
                     </div>
@@ -132,12 +132,11 @@
                         <asp:BoundField DataField="ID_ProdXen" HeaderText="ID" SortExpression="ID_ProdXen" InsertVisible="False" ReadOnly="True"/>
                           <asp:BoundField DataField="Nombre" HeaderText="Empleado" SortExpression="Nombre"/>
                         <asp:BoundField DataField="Tienda" HeaderText="Tienda" SortExpression="Tienda" />
-                        <asp:BoundField DataField="Proveedor" HeaderText="Proveedor" SortExpression="Proveedor" />
+                         <asp:BoundField DataField="Proveedor" HeaderText="Proveedor" SortExpression="Proveedor" />
                         <asp:CommandField ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
-            <asp:SqlDataSource ID="ListaEncargos" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Cliente.NIT, Cliente.Nombre + '  ' + Cliente.Apellidos AS Nom, ProductoXencargo.Producto, ProductoXencargo.FechaPedido, ProductoXencargo.FechaEntrega, ProductoXencargo.Anticipo, ProductoXencargo.PrecioReal, ProductoXencargo.Descripcion, ProductoXencargo.Fotografia, ProductoXencargo.Estado, ProductoXencargo.ID_ProdXen, Empleado.Nombre + ' ' + Empleado.Apellidos AS Nombre, Tienda.Tienda, ProductoXencargo.Proveedor FROM ProductoXencargo INNER JOIN Cliente ON ProductoXencargo.ID_Cliente = Cliente.ID_Cliente INNER JOIN Empleado ON ProductoXencargo.ID_Empleado = Empleado.ID_Empleado INNER JOIN Tienda ON Empleado.ID_Tienda = Tienda.ID_Tienda WHERE (ProductoXencargo.Estado = 0)"></asp:SqlDataSource> 
-
+                <asp:SqlDataSource ID="ListaEncargos" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Cliente.NIT, Cliente.Nombre + '  ' + Cliente.Apellidos AS Nom, ProductoXencargo.Producto, ProductoXencargo.FechaPedido, ProductoXencargo.FechaEntrega, ProductoXencargo.Anticipo, ProductoXencargo.PrecioReal, ProductoXencargo.Descripcion, ProductoXencargo.Fotografia, ProductoXencargo.Estado, ProductoXencargo.ID_ProdXen, Empleado.Nombre + ' ' + Empleado.Apellidos AS Nombre, Tienda.Tienda, ProductoXencargo.Proveedor FROM ProductoXencargo INNER JOIN Cliente ON ProductoXencargo.ID_Cliente = Cliente.ID_Cliente INNER JOIN Empleado ON ProductoXencargo.ID_Empleado = Empleado.ID_Empleado INNER JOIN Tienda ON Empleado.ID_Tienda = Tienda.ID_Tienda WHERE (ProductoXencargo.Estado = 0)"></asp:SqlDataSource>
             </div>
         </div>
     
@@ -218,7 +217,7 @@
 								</button>
 							</div>
         <div class="modal-body">
-            <h3>Cancelar producto para ingreso en caja?</h3>
+            <h3>Realizar entrega de producto al cliente?</h3>
             <div class="form-group">
                 <label>Cliente</label>
                 <asp:TextBox ID="TextBox10" runat="server" CssClass="form-control"></asp:TextBox>

@@ -34,19 +34,18 @@
             </asp:SqlDataSource>
         </div>
        
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="table table-responsive" DataKeyNames="ID_Venta" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="table table-responsive" DataKeyNames="ID_Venta" CellPadding="4" ForeColor="#333333" GridLines="None">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="ID_Venta" ItemStyle-BackColor ="Red" HeaderText="ID Venta" InsertVisible="False" ReadOnly="True" SortExpression="ID_Venta" />
-            <asp:BoundField DataField="NoFac_Pref" HeaderText="No Factura" SortExpression="NoFac_Pref" />
             <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
             <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" SortExpression="Subtotal" DataFormatString="{0:0.00}" />
             <asp:BoundField DataField="Descuento" HeaderText="Descuento" SortExpression="Descuento" DataFormatString="{0:0.00}" />
-            <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}"/>
+            <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}"  ItemStyle-Font-Size="Larger" ItemStyle-Font-Bold="true"/>
             <asp:BoundField DataField="Caja" HeaderText="Caja" SortExpression="Caja" />
             <asp:TemplateField ShowHeader="False">
                 <ItemTemplate>
-                    <asp:LinkButton ID="LinkButton1" CssClass="label label-success glyphicon-lamp" runat="server" CausesValidation="False" CommandName="Delete" Text="Cobrar" OnClientClick='return confirm("Esta seguro de cobrar esta venta?");'></asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton1" CssClass="label label-success fa fa-money" runat="server" CausesValidation="False" CommandName="Delete" Text="Cobrar" OnClientClick='return confirm("Esta seguro de cobrar esta venta?");'></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
@@ -60,7 +59,7 @@
         <SortedDescendingCellStyle BackColor="#FCF6C0" />
         <SortedDescendingHeaderStyle BackColor="#820000" />
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha, Venta.Subtotal, Venta.Descuento, Venta.Total, Caja.Caja FROM Estados INNER JOIN Venta ON Estados.ID_Venta = Venta.ID_Venta INNER JOIN Tienda ON Estados.ID_Tienda = Tienda.ID_Tienda INNER JOIN Caja ON Tienda.ID_Tienda = Caja.ID_Tienda INNER JOIN Bitacora ON Venta.ID_Venta = Bitacora.ID_Venta AND Caja.ID_Caja = Bitacora.ID_Caja WHERE (Tienda.ID_Tienda = @IDtienda) AND (Estados.EstadoCajero = 1)" DeleteCommand="UPDATE Estados SET EstadoCajero = 0 WHERE (ID_Venta = @ID_Venta)">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha, Venta.Subtotal, Venta.Descuento, 'Q '+ CAST(Venta.Total AS nvarchar) AS Total, Caja.Caja FROM Estados INNER JOIN Venta ON Estados.ID_Venta = Venta.ID_Venta INNER JOIN Tienda ON Estados.ID_Tienda = Tienda.ID_Tienda INNER JOIN Caja ON Tienda.ID_Tienda = Caja.ID_Tienda INNER JOIN Bitacora ON Venta.ID_Venta = Bitacora.ID_Venta AND Caja.ID_Caja = Bitacora.ID_Caja WHERE (Tienda.ID_Tienda = @IDtienda) AND (Estados.EstadoCajero = 1)" DeleteCommand="UPDATE Estados SET EstadoCajero = 0 WHERE (ID_Venta = @ID_Venta)">
         <DeleteParameters>
             <asp:Parameter Name="ID_Venta" />
         </DeleteParameters>
