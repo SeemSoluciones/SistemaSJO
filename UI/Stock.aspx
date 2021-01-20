@@ -69,7 +69,7 @@
                        
                         <div class="form-group">
                             <label>Precio producto </label>
-                            <asp:TextBox ID="precioProd"  CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="precioProd"  CssClass="form-control" runat="server" ></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <label>Precio producto para venta</label>
@@ -241,7 +241,7 @@ Where Tienda.ID_Tienda = @IdTienda AND Producto.Estado = 1" DeleteCommand="DELET
                                </div>
                                 <div class="form-group">
                                    <label>Precio venta</label>
-                                   <asp:TextBox ID="PrecioVe" runat="server" CssClass="form-control"></asp:TextBox>
+                                   <asp:TextBox ID="PrecioVe" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="PrecioVe_TextChanged">0</asp:TextBox>
                                </div> 
                       	</div>
 										<div class="col-12 col-sm-6">

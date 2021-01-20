@@ -24,9 +24,10 @@ namespace UI
 
            // tl = datos.ListaUncliente()
         }
-        private static string Totalprod, IDdetalleVenta, precio, idStock;
+        private static string Totalprod, IDdetalleVenta, precio, idStock, totalDirecto;
 
-      
+        private static string idCredito = "0";
+        private static decimal precioProdConDescuento;
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow fila = GridView1.SelectedRow;
@@ -37,15 +38,18 @@ namespace UI
             precio = fila.Cells[5].Text;
             idStock= fila.Cells[9].Text;
             IDdetalleVenta = fila.Cells[8].Text;
+            idCredito =  fila.Cells[10].Text;
+            totalDirecto = fila.Cells[7].Text;
+            precioProdConDescuento =  Convert.ToDecimal(totalDirecto) / Convert.ToDecimal( Totalprod);
             Button2_ModalPopupExtender.Show();
         }
-
+            int SubtotalProd;
+                decimal totalPrecio;
         protected void Button3_Click(object sender, EventArgs e)
         {
             try
             {
-                int SubtotalProd;
-                decimal totalPrecio;
+               
                 if (Convert.ToInt32(TextBox2.Text) > Convert.ToInt32(Totalprod))
                 {
                     Response.Write("<script>alert('El valor ingresado es mayor al total del producto en el sistema')</script>");
@@ -54,6 +58,22 @@ namespace UI
                 {
                     if (Convert.ToInt32(Totalprod) == Convert.ToInt32(TextBox2.Text))
                     {
+                        //  SubtotalProd = Convert.ToInt32(Totalprod) - Convert.ToInt32(TextBox2.Text);
+                        try
+                        {
+                            totalPrecio = Convert.ToDecimal(precio) * Convert.ToDecimal(SubtotalProd);
+                            SqlDataSource2.UpdateParameters["Monto"].DefaultValue = totalDirecto;
+                            SqlDataSource2.UpdateParameters["SaldoPendiente"].DefaultValue = totalDirecto;
+                            SqlDataSource2.UpdateParameters["ID_Credito"].DefaultValue = idCredito;
+                            SqlDataSource2.Update();
+                            SqlDataSource2.DeleteParameters["ID_Credito"].DefaultValue = idCredito;
+                            SqlDataSource2.DeleteParameters["ID_Existencia"].DefaultValue = idStock;
+                            SqlDataSource2.Delete();
+                        }
+                        catch
+                        {
+                           
+                        }
                         datos2.EliminarDetallV(Convert.ToInt32(IDdetalleVenta), Convert.ToInt32(Totalprod), Convert.ToInt32(idStock));
                         SqlDataSource1.SelectParameters["ID_Venta"].DefaultValue = TextBox1.Text;
                         SqlDataSource1.DataBind();
@@ -61,10 +81,25 @@ namespace UI
                     }
                     else
                     {
+                        decimal totalCredito = 0;
+                        
                             SubtotalProd = Convert.ToInt32(Totalprod) - Convert.ToInt32(TextBox2.Text);
-                            totalPrecio = Convert.ToDecimal(precio) * Convert.ToDecimal(SubtotalProd);
+                            totalPrecio = Convert.ToDecimal(precioProdConDescuento) * Convert.ToDecimal(SubtotalProd);
+                       
                             datos2.EditarDetalleVenta(SubtotalProd, totalPrecio, Convert.ToInt32(IDdetalleVenta));
                             datos2.EditarStockDevol(Convert.ToInt32(TextBox2.Text), Convert.ToInt32(idStock));
+                        try
+                        {
+                            totalCredito = precioProdConDescuento * Convert.ToDecimal(TextBox2.Text);
+                            SqlDataSource2.UpdateParameters["Monto"].DefaultValue = totalCredito.ToString();
+                            SqlDataSource2.UpdateParameters["SaldoPendiente"].DefaultValue = totalCredito.ToString();
+                            SqlDataSource2.UpdateParameters["ID_Credito"].DefaultValue = idCredito;
+                            SqlDataSource2.Update();
+                        }
+                        catch
+                        {
+
+                        }
                         SqlDataSource1.SelectParameters["ID_Venta"].DefaultValue = TextBox1.Text;
                         SqlDataSource1.DataBind();
                         Label3.Text = "Se ha devuelto: " + TextBox2.Text + " productos con exitos!";

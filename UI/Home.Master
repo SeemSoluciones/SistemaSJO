@@ -163,6 +163,7 @@
                             <li><a href="Compra.aspx"><i class="fa fa-circle-o"></i>Realizar compras</a></li>
                             <li><a href="Stock.aspx"><i class="fa fa-circle-o"></i>Stock </a></li>
                             <li><a href="Productos.aspx"><i class="fa fa-circle-o"></i>Productos</a></li>
+                            <li><a href="PagoAproveedores.aspx"><i class="fa fa-circle-o"></i>Pago a Proveedores</a></li>
                             <li><a href="Proveedor.aspx"><i class="fa fa-circle-o"></i>Proveedores</a></li>
                             <li><a href="Categoria.aspx"><i class="fa fa-circle-o"></i>Categoria</a></li>
                             <li><a href="StockMinimo.aspx"><i class="fa fa-circle-o"></i>Productos bajos </a></li>

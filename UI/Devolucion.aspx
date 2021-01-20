@@ -33,11 +33,13 @@
             <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
             <asp:BoundField DataField="ID_DetalleVenta" HeaderText="ID dv" InsertVisible="False" ReadOnly="True" SortExpression="ID_DetalleVenta" />
             <asp:BoundField DataField="ID_Existencia" HeaderText="ID Stock" InsertVisible="False" ReadOnly="True" SortExpression="ID_Existencia" />
+            <asp:BoundField DataField="ID_Credito" HeaderText="Credito" InsertVisible="False" ReadOnly="True" SortExpression="ID_Credito" />
             <asp:CommandField ShowSelectButton="True" />
         </Columns>
     </asp:GridView>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha, Producto.ID_Producto,  Producto.Descripcion, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta, Stock.ID_Existencia FROM Stock INNER JOIN DetalleVenta ON Stock.ID_Existencia = DetalleVenta.ID_Existencia INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Producto ON Producto.ID_Producto = Stock.ID_Producto  WHERE (Venta.ID_Venta = @ID_Venta) AND (Producto.Estado = 1)">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT Venta.ID_Venta, Venta.NoFac_Pref, Venta.Fecha, Producto.ID_Producto,  Producto.Descripcion, DetalleVenta.PrecioUnitario, DetalleVenta.Cantidad, DetalleVenta.Total, DetalleVenta.ID_DetalleVenta, Stock.ID_Existencia, Credito.ID_Credito FROM Stock INNER JOIN DetalleVenta ON Stock.ID_Existencia = DetalleVenta.ID_Existencia INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Producto ON Producto.ID_Producto = Stock.ID_Producto left join Credito
+ on Venta.ID_Venta = Credito.ID_Venta  WHERE (Venta.ID_Venta = @ID_Venta) AND (Producto.Estado = 1)">
         <SelectParameters>
             <asp:ControlParameter ControlID="TextBox1" Name="ID_Venta" PropertyName="Text" />
         </SelectParameters>
@@ -82,7 +84,17 @@
             </div>
         </div>
     </asp:Panel>
-
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' DeleteCommand="DELETE FROM ItemProdCliente WHERE (ID_Existencia = @ID_Existencia) AND (ID_Credito = @ID_Credito)" SelectCommand="SELECT Credito.* FROM Credito WHERE SaldoPendiente > 0" UpdateCommand="UPDATE Credito SET Monto = Monto - @Monto, SaldoPendiente = SaldoPendiente - @SaldoPendiente WHERE (ID_Credito = @ID_Credito)">
+            <DeleteParameters>
+                <asp:Parameter Name="ID_Existencia"></asp:Parameter>
+                <asp:Parameter Name="ID_Credito"></asp:Parameter>
+            </DeleteParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="Monto"></asp:Parameter>
+                <asp:Parameter Name="SaldoPendiente"></asp:Parameter>
+                <asp:Parameter Name="ID_Credito"></asp:Parameter>
+            </UpdateParameters>
+        </asp:SqlDataSource>
 
 </section>
 </asp:Content>

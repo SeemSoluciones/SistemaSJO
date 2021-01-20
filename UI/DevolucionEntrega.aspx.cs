@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Data.SqlClient;
 namespace UI
 {
     public partial class DevolucionEntrega : System.Web.UI.Page
@@ -14,14 +14,42 @@ namespace UI
             Home.Mensaje = "Cambio por devolucion";
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void OnClick_LinkButton1(object sender, EventArgs e)
         {
-            SqlDataSource1.UpdateParameters["ID_DevPro"].DefaultValue = GridView1.SelectedRow.Cells[0].Text;
-            SqlDataSource1.UpdateParameters["Cantidad"].DefaultValue = GridView1.SelectedRow.Cells[3].Text;
-            SqlDataSource1.UpdateParameters["ID_Existencia"].DefaultValue = GridView1.SelectedRow.Cells[6].Text;
-            SqlDataSource1.Update();
+            GridViewRow tabla = (GridViewRow)(((LinkButton)sender).Parent.Parent);
+            //IdProducto = ((Label)tabla.FindControl("Label1")).Text.ToString();
+            SqlDataSource10.SelectParameters["ID_Existencia"].DefaultValue = ((Label)tabla.FindControl("Label7")).Text.ToString();
+            SqlDataSource10.DataSourceMode = SqlDataSourceMode.DataReader;
+            SqlDataReader PRECIOPROD;
+            PRECIOPROD = (SqlDataReader)SqlDataSource10.Select(DataSourceSelectArguments.Empty);
+            if (PRECIOPROD.Read())
+            {
+                precioProducto = PRECIOPROD["PrecioUnitario"].ToString();
+            }
+
+            SqlDataSource10.InsertParameters["Cantidad"].DefaultValue = ((Label)tabla.FindControl("Label4")).Text.ToString();
+            SqlDataSource10.InsertParameters["Precio"].DefaultValue = precioProducto;
+            SqlDataSource10.InsertParameters["Total"].DefaultValue = (Convert.ToDecimal(precioProducto) * Convert.ToDecimal(((Label)tabla.FindControl("Label4")).Text.ToString())).ToString();
+            SqlDataSource10.InsertParameters["ID_Existencia"].DefaultValue = ((Label)tabla.FindControl("Label7")).Text.ToString();
+            SqlDataSource10.InsertParameters["ID_Compra"].DefaultValue = ((Label)tabla.FindControl("Label10")).Text.ToString();
+            SqlDataSource10.Insert();
+
+            SqlDataSource10.UpdateParameters["ID_DevPro"].DefaultValue = ((Label)tabla.FindControl("Label1")).Text.ToString();
+            SqlDataSource10.UpdateParameters["Cantidad"].DefaultValue = ((Label)tabla.FindControl("Label4")).Text.ToString();
+            SqlDataSource10.UpdateParameters["ID_Existencia"].DefaultValue = ((Label)tabla.FindControl("Label7")).Text.ToString();
+            SqlDataSource10.Update();
+
             Response.Redirect("DevolucionEntrega.aspx");
 
+        }
+        string precioProducto;
+        protected void OnClick_LinkButton2(object sender, EventArgs e)
+        {
+
+            GridViewRow tabla = (GridViewRow)(((LinkButton)sender).Parent.Parent);
+            SqlDataSource1.UpdateParameters["ID_DevPro"].DefaultValue = ((Label)tabla.FindControl("Label1")).Text.ToString();
+            SqlDataSource1.Update();
+            Response.Redirect("DevolucionEntrega.aspx");
         }
     }
 }

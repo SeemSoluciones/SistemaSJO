@@ -55,17 +55,17 @@ namespace UI
                 int SiExiste = datosProd.SiExisteStock(TextBox6.Text, Convert.ToInt32(Session["IDtienda"].ToString()), Convert.ToInt32(DropDownList1.SelectedValue));
                 if(SiExiste == 0)
                 {
-                    if(Convert.ToInt16(precioVenta.Text) == 0)
+                    if(Convert.ToDecimal(precioVenta.Text) == 0)
                     {
-                        double precioGan = Convert.ToDouble(precioProd.Text) * 0.7;
-                        double precioVentaP = precioGan + Convert.ToDouble(precioProd.Text);
+                       // double precioGan = 
+                        double precioVentaP = Convert.ToDouble(precioProd.Text) * 2;
                         int idTtienda = 0;
                     idTtienda = Convert.ToInt32(Session["IDtienda"]);
                     datosProd.InsertarStock (Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVentaP), Convert.ToInt32(Label1.Text),idTtienda, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(DropDownList8.SelectedValue), Convert.ToInt32(DropDownList6.SelectedValue));
                     Response.Redirect("Stock.aspx");
                     }
                     else{
-                        double precioGan = Convert.ToDouble(precioVenta.Text) * 0.35;
+                        double precioGan = Convert.ToDouble(precioVenta.Text) * 0.5385;
                         double precioVentaP = precioGan + Convert.ToDouble(precioVenta.Text);
                         int idTtienda = 0;
                         idTtienda = Convert.ToInt32(Session["IDtienda"]);
@@ -114,6 +114,7 @@ namespace UI
            
             
         }*/
+        public static double Ganancia, costoproducto, costoproductoVenta;
 
 
         protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
@@ -132,21 +133,38 @@ namespace UI
             DropDownList9.SelectedIndex = DropDownList9.Items.IndexOf(DropDownList9.Items.FindByText(miValor2));
             DropDownList10.SelectedIndex = DropDownList10.Items.IndexOf(DropDownList10.Items.FindByText(miValor3));
             Button6_ModalPopupExtender.Show();
-            
+            //costoproducto = Convert.ToDouble(r.Cells[5].Text);
+            //costoproductoVenta = Convert.ToDouble(r.Cells[6].Text);
+
         }
 
         protected void Button4_Click1(object sender, EventArgs e)
         {
             try
             {
+
+
+                //if (Convert.ToDecimal(PrecioVe.Text) == 0)
+                //{
+                //    double precioGan =  Convert.ToDouble(preco) * 0.7;
+                //    double precioVentaP = precioGan + Convert.ToDouble(PrecioP.Text);
                 datosProd.EditarStock(Convert.ToInt32(IDstock.Text),Convert.ToInt32(Cant.Text) , Ubi.Text,Convert.ToDecimal(PrecioP.Text), Convert.ToDecimal(PrecioVe.Text), Convert.ToInt32(DropDownList7.SelectedValue), Convert.ToInt32(DropDownList9.SelectedValue), Convert.ToInt32(DropDownList10.SelectedValue));
                 Response.Redirect("Stock.aspx");
-             }
+
+                //}
+                //else
+                //{
+                //    double precioGan = Convert.ToDouble(PrecioVe.Text) * 0.35;
+                //    double precioVentaP = precioGan + Convert.ToDouble(PrecioVe.Text);
+                //    datosProd.EditarStock(Convert.ToInt32(IDstock.Text), Convert.ToInt32(Cant.Text), Ubi.Text, Convert.ToDecimal(PrecioP.Text), Convert.ToDecimal(precioVentaP), Convert.ToInt32(DropDownList7.SelectedValue), Convert.ToInt32(DropDownList9.SelectedValue), Convert.ToInt32(DropDownList10.SelectedValue));
+                //    Response.Redirect("Stock.aspx");
+                //}
+            }
             catch
             {
                 Response.Write("<script>alert('Error, Datos no actualizado')</script>");
             }
-}
+        }
 
   
 
@@ -194,6 +212,38 @@ namespace UI
             //}
         }
 
+     
+        protected void PrecioVe_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+
+                if (Convert.ToDecimal(PrecioVe.Text) == 0)
+                {
+                    //double precioGan = ;
+                    double precioVentaP = Convert.ToDouble(PrecioP.Text) * 2;
+                    PrecioVe.Text = precioVentaP.ToString();
+
+                }
+                else
+                {
+                    double precioGan = Convert.ToDouble(PrecioVe.Text) * 0.5385;
+                    double precioVentaP = precioGan + Convert.ToDouble(PrecioVe.Text);
+                    PrecioVe.Text = precioVentaP.ToString();
+      
+                }
+
+       
+            }
+            catch
+            {
+                Response.Write("<script>alert('Error, solamente numeros')</script>");
+            }
+          Button6_ModalPopupExtender.Show();
+        }
+
         protected void Button5_Click(object sender, EventArgs e)
         {
             int mens = 0;
@@ -231,5 +281,7 @@ namespace UI
                 Response.Write("<script>alert('Error, revise los campos')</script>");
             }
         }
+
+  
     }
 }

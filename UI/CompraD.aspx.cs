@@ -136,11 +136,10 @@ namespace UI
                            Convert.ToInt32(row.Cells[5].Text),
                            Convert.ToDecimal(row.Cells[4].Text),
                            Convert.ToDecimal(row.Cells[6].Text),
-                          Convert.ToInt32(row.Cells[1].Text),
                            Convert.ToInt32(row.Cells[7].Text),
                            Convert.ToInt32(msj),
-                           Convert.ToDecimal(row.Cells[3].Text)
-
+                           Convert.ToDecimal(row.Cells[3].Text),
+                           Convert.ToInt32(DropDownList1.SelectedValue)
                            );
                     }
 

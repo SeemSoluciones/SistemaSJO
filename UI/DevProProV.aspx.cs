@@ -109,7 +109,7 @@ namespace UI
                 // msj = datos.InsertarCompra(Convert.ToDecimal(TextBox12.Text), TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue));
                 foreach (GridViewRow row in GridView1.Rows)
                 {
-                    datos.InsertDevProPro(Convert.ToInt32(row.Cells[0].Text), row.Cells[2].Text, TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(row.Cells[3].Text));
+                 //   datos.InsertDevProPro(Convert.ToInt32(row.Cells[0].Text), row.Cells[2].Text, TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(row.Cells[3].Text));
                 }
 
                 Response.Redirect("DevProPro.aspx");

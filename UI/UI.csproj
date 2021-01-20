@@ -7221,6 +7221,7 @@
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\UI.dll.config" />
+    <Content Include="PagoAproveedores.aspx" />
     <Content Include="ProductoD.aspx" />
     <Content Include="ProveedorD.aspx" />
     <Content Include="ProveedoresB.aspx" />
@@ -7552,6 +7553,13 @@
       <DependentUpon>ImpresionCredito.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListaS.cs" />
+    <Compile Include="PagoAproveedores.aspx.cs">
+      <DependentUpon>PagoAproveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagoAproveedores.aspx.designer.cs">
+      <DependentUpon>PagoAproveedores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ProductoD.aspx.cs">
       <DependentUpon>ProductoD.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

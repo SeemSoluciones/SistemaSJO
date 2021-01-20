@@ -500,25 +500,25 @@ namespace BLL
         #region COMPRA
         public string InsertarCompra(decimal total, string Nofac, int Idprov, DateTime fecha, int idtpago)
         {
-            //try
-            //{
+            try
+            {
 
                 string msj = "";
 
                 msj = PROVEEDOR.InsertCompra(total, Nofac, Idprov, fecha, idtpago).ToString();
                 return msj;
-            //}
-            //catch
-            //{
-            //    return "Error, datos no ingresado";
-            //}
+        }
+            catch
+            {
+                return "Error, datos no ingresado";
+            }
         }
 
-        public string InsertarDetalleCompra(int cantidad, decimal preciov, decimal total, int IDprod, int IDstock , int IDcompr, decimal precioCompra)
+        public string InsertarDetalleCompra(int cantidad, decimal preciov, decimal total, int IDstock , int IDcompr, decimal precioCompra, int idProv)
         {
             try
             {
-                PROVEEDOR.InsertDetalleCompra(cantidad, preciov, total, IDprod, IDstock, IDcompr, precioCompra);
+                PROVEEDOR.InsertDetalleCompra(cantidad, preciov, total, IDstock, IDcompr, precioCompra, idProv);
                 return "Datos ingresados correctamente";
 
             }
@@ -611,11 +611,11 @@ namespace BLL
 
 
 
-        public string InsertDevProPro(int codigo, string motivo, string factura, int idproveedor, int Cantidad)
+        public string InsertDevProPro(int codigo, string motivo, string factura, int idproveedor, int Cantidad, decimal precio, decimal precioventa, int IDcompra)
         {
             try
             {
-                PROVEEDOR.InsertDevProPro(codigo, motivo, factura, idproveedor, Cantidad);
+                PROVEEDOR.InsertDevProPro(codigo, motivo, factura, idproveedor, Cantidad, precio, precioventa, IDcompra);
                 return "1";
             }
             catch
