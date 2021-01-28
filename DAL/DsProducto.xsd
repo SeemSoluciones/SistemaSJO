@@ -749,7 +749,7 @@ WHERE        (Producto.Codigo = @Codigo)</CommandText>
               </DbCommand>
             </UpdateCommand>
           </DbSource>
-          <DbSource ConnectionRef="BDautorepuestoConnectionString2 (Settings)" DbObjectName="BDautorepuesto.dbo.SiExisteStock" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="SiExisteStock" MethodsParameterType="CLR" Modifier="Public" Name="SiExisteStock" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy31" UserSourceName="SiExisteStock">
+          <DbSource ConnectionRef="BDautorepuestoConnectionString2 (Settings)" DbObjectName="BDautorepuesto4.dbo.SiExisteStock" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="SiExisteStock" MethodsParameterType="CLR" Modifier="Public" Name="SiExisteStock" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy31" UserSourceName="SiExisteStock">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.SiExisteStock</CommandText>
@@ -949,7 +949,7 @@ WHERE (ID_Producto = @idProducto)</CommandText>
   <xs:element name="DsProducto" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsProducto" msprop:Generator_UserDSName="DsProducto">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Producto" msprop:Generator_TableClassName="ProductoDataTable" msprop:Generator_TableVarName="tableProducto" msprop:Generator_TablePropName="Producto" msprop:Generator_RowDeletingName="ProductoRowDeleting" msprop:Generator_RowChangingName="ProductoRowChanging" msprop:Generator_RowEvHandlerName="ProductoRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductoRowDeleted" msprop:Generator_UserTableName="Producto" msprop:Generator_RowChangedName="ProductoRowChanged" msprop:Generator_RowEvArgName="ProductoRowChangeEvent" msprop:Generator_RowClassName="ProductoRow">
+        <xs:element name="Producto" msprop:Generator_TableClassName="ProductoDataTable" msprop:Generator_TableVarName="tableProducto" msprop:Generator_RowChangedName="ProductoRowChanged" msprop:Generator_TablePropName="Producto" msprop:Generator_RowDeletingName="ProductoRowDeleting" msprop:Generator_RowChangingName="ProductoRowChanging" msprop:Generator_RowEvHandlerName="ProductoRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductoRowDeleted" msprop:Generator_RowClassName="ProductoRow" msprop:Generator_UserTableName="Producto" msprop:Generator_RowEvArgName="ProductoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID_Producto" msprop:Generator_ColumnVarNameInTable="columnID_Producto" msprop:Generator_ColumnPropNameInRow="ID_Producto" msprop:Generator_ColumnPropNameInTable="ID_ProductoColumn" msprop:Generator_UserColumnName="ID_Producto" type="xs:int" />
@@ -984,7 +984,7 @@ WHERE (ID_Producto = @idProducto)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Categoria" msprop:Generator_TableClassName="CategoriaDataTable" msprop:Generator_TableVarName="tableCategoria" msprop:Generator_TablePropName="Categoria" msprop:Generator_RowDeletingName="CategoriaRowDeleting" msprop:Generator_RowChangingName="CategoriaRowChanging" msprop:Generator_RowEvHandlerName="CategoriaRowChangeEventHandler" msprop:Generator_RowDeletedName="CategoriaRowDeleted" msprop:Generator_UserTableName="Categoria" msprop:Generator_RowChangedName="CategoriaRowChanged" msprop:Generator_RowEvArgName="CategoriaRowChangeEvent" msprop:Generator_RowClassName="CategoriaRow">
+        <xs:element name="Categoria" msprop:Generator_TableClassName="CategoriaDataTable" msprop:Generator_TableVarName="tableCategoria" msprop:Generator_RowChangedName="CategoriaRowChanged" msprop:Generator_TablePropName="Categoria" msprop:Generator_RowDeletingName="CategoriaRowDeleting" msprop:Generator_RowChangingName="CategoriaRowChanging" msprop:Generator_RowEvHandlerName="CategoriaRowChangeEventHandler" msprop:Generator_RowDeletedName="CategoriaRowDeleted" msprop:Generator_RowClassName="CategoriaRow" msprop:Generator_UserTableName="Categoria" msprop:Generator_RowEvArgName="CategoriaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID_Categoria" msprop:Generator_ColumnVarNameInTable="columnID_Categoria" msprop:Generator_ColumnPropNameInRow="ID_Categoria" msprop:Generator_ColumnPropNameInTable="ID_CategoriaColumn" msprop:Generator_UserColumnName="ID_Categoria" type="xs:int" />
@@ -1006,7 +1006,7 @@ WHERE (ID_Producto = @idProducto)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BuscarProducto" msprop:Generator_TableClassName="BuscarProductoDataTable" msprop:Generator_TableVarName="tableBuscarProducto" msprop:Generator_TablePropName="BuscarProducto" msprop:Generator_RowDeletingName="BuscarProductoRowDeleting" msprop:Generator_RowChangingName="BuscarProductoRowChanging" msprop:Generator_RowEvHandlerName="BuscarProductoRowChangeEventHandler" msprop:Generator_RowDeletedName="BuscarProductoRowDeleted" msprop:Generator_UserTableName="BuscarProducto" msprop:Generator_RowChangedName="BuscarProductoRowChanged" msprop:Generator_RowEvArgName="BuscarProductoRowChangeEvent" msprop:Generator_RowClassName="BuscarProductoRow">
+        <xs:element name="BuscarProducto" msprop:Generator_TableClassName="BuscarProductoDataTable" msprop:Generator_TableVarName="tableBuscarProducto" msprop:Generator_RowChangedName="BuscarProductoRowChanged" msprop:Generator_TablePropName="BuscarProducto" msprop:Generator_RowDeletingName="BuscarProductoRowDeleting" msprop:Generator_RowChangingName="BuscarProductoRowChanging" msprop:Generator_RowEvHandlerName="BuscarProductoRowChangeEventHandler" msprop:Generator_RowDeletedName="BuscarProductoRowDeleted" msprop:Generator_RowClassName="BuscarProductoRow" msprop:Generator_UserTableName="BuscarProducto" msprop:Generator_RowEvArgName="BuscarProductoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Codigo" msprop:Generator_ColumnVarNameInTable="columnCodigo" msprop:Generator_ColumnPropNameInRow="Codigo" msprop:Generator_ColumnPropNameInTable="CodigoColumn" msprop:Generator_UserColumnName="Codigo">
@@ -1026,7 +1026,7 @@ WHERE (ID_Producto = @idProducto)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTableCotiza" msprop:Generator_TableClassName="DataTableCotizaDataTable" msprop:Generator_TableVarName="tableDataTableCotiza" msprop:Generator_RowChangedName="DataTableCotizaRowChanged" msprop:Generator_TablePropName="DataTableCotiza" msprop:Generator_RowDeletingName="DataTableCotizaRowDeleting" msprop:Generator_RowChangingName="DataTableCotizaRowChanging" msprop:Generator_RowEvHandlerName="DataTableCotizaRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableCotizaRowDeleted" msprop:Generator_RowClassName="DataTableCotizaRow" msprop:Generator_UserTableName="DataTableCotiza" msprop:Generator_RowEvArgName="DataTableCotizaRowChangeEvent">
+        <xs:element name="DataTableCotiza" msprop:Generator_TableClassName="DataTableCotizaDataTable" msprop:Generator_TableVarName="tableDataTableCotiza" msprop:Generator_TablePropName="DataTableCotiza" msprop:Generator_RowDeletingName="DataTableCotizaRowDeleting" msprop:Generator_RowChangingName="DataTableCotizaRowChanging" msprop:Generator_RowEvHandlerName="DataTableCotizaRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableCotizaRowDeleted" msprop:Generator_UserTableName="DataTableCotiza" msprop:Generator_RowChangedName="DataTableCotizaRowChanged" msprop:Generator_RowEvArgName="DataTableCotizaRowChangeEvent" msprop:Generator_RowClassName="DataTableCotizaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -1062,7 +1062,7 @@ WHERE (ID_Producto = @idProducto)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK__Producto__ID_Cat__4E88ABD4" msdata:parent="Categoria" msdata:child="Producto" msdata:parentkey="ID_Categoria" msdata:childkey="ID_Categoria" msprop:Generator_UserChildTable="Producto" msprop:Generator_ChildPropName="GetProductoRows" msprop:Generator_UserRelationName="FK__Producto__ID_Cat__4E88ABD4" msprop:Generator_RelationVarName="relationFK__Producto__ID_Cat__4E88ABD4" msprop:Generator_UserParentTable="Categoria" msprop:Generator_ParentPropName="CategoriaRow" />
+      <msdata:Relationship name="FK__Producto__ID_Cat__4E88ABD4" msdata:parent="Categoria" msdata:child="Producto" msdata:parentkey="ID_Categoria" msdata:childkey="ID_Categoria" msprop:Generator_UserChildTable="Producto" msprop:Generator_ChildPropName="GetProductoRows" msprop:Generator_UserRelationName="FK__Producto__ID_Cat__4E88ABD4" msprop:Generator_ParentPropName="CategoriaRow" msprop:Generator_RelationVarName="relationFK__Producto__ID_Cat__4E88ABD4" msprop:Generator_UserParentTable="Categoria" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

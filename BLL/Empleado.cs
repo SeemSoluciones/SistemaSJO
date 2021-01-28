@@ -70,6 +70,13 @@ namespace BLL
             return tabla;
         }
 
+
+        public DataTable BuscarUserYPass(string user, string pass)
+        {
+            DataTable tabla  = new DataTable();
+            tabla = USUARIO2.UsserYPass(user, pass);
+            return tabla;
+        }
         public DataTable BuscarUsuario2(int idEmplead)
         {
             DataTable tabla = new DataTable();

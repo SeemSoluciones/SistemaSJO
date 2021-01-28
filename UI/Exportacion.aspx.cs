@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 using BLL;
 
 namespace UI
@@ -13,7 +14,14 @@ namespace UI
         Cproducto datos = new Cproducto();
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
             TextBox1.Text = Session["Tienda"].ToString();
+            }
+            catch
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
 
         protected void Button9_Click(object sender, EventArgs e)
@@ -71,6 +79,13 @@ namespace UI
             SqlDataSource4.DataBind();
         }
         public static string[] separar;
+
+        protected void DropDownListCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlDataSource4.SelectCommand = "SELECT DISTINCT Producto.ID_Producto,stuff((Select ', ' + OEM.OEM From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM , stuff((Select ', ' + CodigoProducto.Codigo From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP,Producto.Descripcion, stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal  From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria, CAST(MarcaProd.ID_MaraProd AS VARCHAR) + ', '+ MarcaProd.MarcaP AS MarcaP, Stock.PrecioVenta, Stock.Cantidad, Stock.PrecioUnitario, Stock.Ubicacion, Medida.Medida,           Tienda.Tienda, Stock.ID_Existencia FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN          SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN          MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN          Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join OEM on Producto.ID_Producto = OEM.ID_Producto inner join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto inner join AnioProducto on Producto.ID_Producto = AnioProducto.ID_Producto Where Tienda.ID_Tienda = " + Session["IDtienda"].ToString() + " AND SubCategoria.ID_Categoria =" + DropDownListCat.SelectedValue;
+            SqlDataSource4.DataBind();
+        }
+
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
            
@@ -78,11 +93,21 @@ namespace UI
             GridViewRow row = GridView2.SelectedRow;
             idMarcapro = row.Cells[5].Text;
             separar = idMarcapro.Split(',');
-            siExiste = datos.SiExisteStock(row.Cells[0].Text, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(separar[0]));
+            SqlDataSource9.SelectParameters["IDprod"].DefaultValue = row.Cells[0].Text;
+            SqlDataSource9.SelectParameters["ID_Tienda"].DefaultValue = DropDownList1.SelectedValue;
+            SqlDataSource9.SelectParameters["idMarcaP"].DefaultValue = separar[0].ToString();
+            SqlDataSource9.DataSourceMode = SqlDataSourceMode.DataReader;
+            SqlDataReader total;
+            total = (SqlDataReader)SqlDataSource9.Select(DataSourceSelectArguments.Empty);
+
+            if(total.Read())
+            {
+                siExiste = Convert.ToInt32(total["total"]);
+            }
+           // siExiste = datos.SiExisteStock(Convert.ToInt32(DropDownList1.SelectedValue),Convert.ToInt32(row.Cells[0].Text),  Convert.ToInt32(separar[0]));
             if (siExiste == 1)
             {
                 codigop = row.Cells[0].Text;
-               
                 cant = Convert.ToInt32(row.Cells[8].Text);
                 idStock = row.Cells[12].Text;
                 Label1.Text = row.Cells[8].Text + " de productos en la tienda: " + Session["Tienda"].ToString();
@@ -92,11 +117,14 @@ namespace UI
             if(siExiste == 0)
             {
                 codigop = row.Cells[0].Text;
-      
+               precioCompra = Convert.ToDecimal(row.Cells[6].Text);
+                precioVentass = Convert.ToDecimal(row.Cells[7].Text);
                 cant = Convert.ToInt32(row.Cells[8].Text);
                 idStock = row.Cells[12].Text;
                 Label3.Text = row.Cells[8].Text + " de productos en la tienda: " + Session["Tienda"].ToString();
                 Label4.Text = DropDownList1.SelectedItem.ToString();
+                DropDownList6.SelectedIndex = DropDownList6.Items.IndexOf(DropDownList6.Items.FindByText(row.Cells[9].Text));
+
                 Button10_ModalPopupExtender.Show();
              
             }
@@ -111,12 +139,15 @@ namespace UI
         {
             try
             {
-                if(Convert.ToInt32(TextBox2.Text) <= cant)
+                if (Convert.ToInt32(TextBox2.Text) <= cant)
                 {
-                    datos.exportarStock(Convert.ToInt32(TextBox2.Text),Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(codigop), Convert.ToInt32(separar[0]), Convert.ToInt32(idStock));
                     string idTienda = Session["IDtienda"].ToString();
-                    //SqlDataSource1.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2,  Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda, Anio.ID_Anio FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE (Producto.Estado = 1)  AND (Producto.Codigo like '%" + TextBox20.Text + "%' OR Producto.Producto like '%" + TextBox20.Text + "%') AND (Tienda.ID_Tienda =" + idTienda + ")";//  AND Rubro.ID_Rubro = " + ID_Rubro;
-                    //SqlDataSource1.DataBind();
+                    datos.exportarStock(Convert.ToInt32(TextBox2.Text),Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(codigop), Convert.ToInt32(separar[0]), Convert.ToInt32(idStock));
+                    SqlDataSource9.InsertParameters["ID_Existencia"].DefaultValue = idStock.ToString();
+                    SqlDataSource9.InsertParameters["ID_Empleado"].DefaultValue = Session["IdEmpleado"].ToString();
+                    SqlDataSource9.InsertParameters["tiendaAtienda"].DefaultValue = Session["Tienda"] + "a " + DropDownList1.SelectedItem;
+                    SqlDataSource9.InsertParameters["fecha"].DefaultValue = DateTime.Today.ToString("dd/MM/yyyy");
+                    SqlDataSource9.Insert();
                     Label5.Text = "Transaccion realizada con exitos.";
                 }
                 else
@@ -131,17 +162,20 @@ namespace UI
                 Response.Write("<script>alert('Error, ingrese un valor!')</script>");
             }
         }
+        decimal precioVentass, precioCompra;
+        string StockMi, ubicacionStock;
         protected void Button2_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(TextBox3.Text) <= cant)
             {
-                datos.InsertarStock(0,Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text),   Convert.ToDecimal(precioVenta.Text), Convert.ToInt32(codigop), Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(separar[0]), 1, Convert.ToInt32(DropDownList6.SelectedValue));
+                datos.InsertarStock(0,Convert.ToInt32(StockMi), ubicacionStock, precioCompra,  precioVentass, Convert.ToInt32(codigop), Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(separar[0]), 1, Convert.ToInt32(DropDownList6.SelectedValue));
                 datos.exportarStock(Convert.ToInt32(TextBox3.Text), Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(codigop), Convert.ToInt32(separar[0]), Convert.ToInt32(idStock));
-              //  string idTienda = Session["IDtienda"].ToString();
-                
-                //SqlDataSource1.SelectCommand = "SELECT Producto.Codigo, Producto.Codigo2,  Producto.Descripcion AS Producto, MarcaProd.MarcaP, Rubro.Rubro, Modelo.Modelo, Marca.Marca, Anio.Anio, Stock.Cantidad, Stock.Ubicacion, Stock.PrecioUnitario, Stock.PrecioVenta, Stock.ID_Existencia, Medida.Medida, Tienda.Tienda, Anio.ID_Anio FROM Anio INNER JOIN Stock INNER JOIN Producto ON Stock.Codigo = Producto.Codigo ON Anio.ID_Anio = Stock.ID_Anio INNER JOIN Rubro ON Producto.ID_Rubro = Rubro.ID_Rubro INNER JOIN Marca INNER JOIN Modelo ON Marca.ID_Marca = Modelo.ID_Marca ON Rubro.ID_Modelo = Modelo.ID_Modelo INNER JOIN MarcaProd ON Producto.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN Medida on Stock.ID_Medida = Medida.ID_Medida INNER JOIN Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda WHERE (Producto.Estado = 1)  AND (Producto.Codigo like '%" + TextBox20.Text + "%' OR Producto.Producto like '%" + TextBox20.Text + "%') AND (Tienda.ID_Tienda =" + idTienda + ")";//  AND Rubro.ID_Rubro = " + ID_Rubro;
-                //SqlDataSource1.DataBind();
-                Label5.Text = "Transaccion realizada con exitos.";
+                SqlDataSource9.InsertParameters["ID_Existencia"].DefaultValue = idStock.ToString();
+                SqlDataSource9.InsertParameters["ID_Empleado"].DefaultValue = Session["IdEmpleado"].ToString();
+                SqlDataSource9.InsertParameters["tiendaAtienda"].DefaultValue = Session["Tienda"].ToString().Trim() + "a " + DropDownList1.SelectedItem.ToString().Trim();
+                SqlDataSource9.InsertParameters["fecha"].DefaultValue = DateTime.Today.ToString("dd/MM/yyyy");
+                SqlDataSource9.Insert();
+                Response.Redirect("Exportacion.aspx");
             }
             else
             {

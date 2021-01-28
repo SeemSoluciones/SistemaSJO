@@ -97,7 +97,7 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                     <a href="Login.aspx" ><i class="btn btn-default btn-flat"></i>Salir </a>
+                                     <a href="Login.aspx" ><i class="btn btn-default btn-flat">Salir</i> </a>
                                     </div>
                                 </li>
                             </ul>
@@ -195,6 +195,7 @@
                             <li><a href="TipoDePago.aspx"><i class="fa fa-circle-o"></i>Tipo pago</a></li>
                             <li><a href="Empleados.aspx"><i class="fa fa-circle-o"></i>Empleados</a> </li>
                             <li> <a href="Exportacion.aspx"><i class="fa fa-circle-o"></i>Exportacion</a></li>
+                            <li> <a href="CajaChica.aspx"><i class="fa fa-circle-o"></i>Caja chica</a></li>
                         </ul>
                     </li>
                     <li class="treeview">

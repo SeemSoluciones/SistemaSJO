@@ -100,6 +100,7 @@
     <Content Include="AgreCajas.aspx" />
     <Content Include="AgregarCaja.aspx" />
     <Content Include="Autorizacion.aspx" />
+    <Content Include="CajaChica.aspx" />
     <Content Include="CajaCobrador.aspx" />
     <Content Include="CajaDatos.aspx" />
     <Content Include="CajaV.aspx" />
@@ -7320,6 +7321,13 @@
     </Compile>
     <Compile Include="Bodegero.Master.designer.cs">
       <DependentUpon>Bodegero.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CajaChica.aspx.cs">
+      <DependentUpon>CajaChica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CajaChica.aspx.designer.cs">
+      <DependentUpon>CajaChica.aspx</DependentUpon>
     </Compile>
     <Compile Include="CajaCobrador.aspx.cs">
       <DependentUpon>CajaCobrador.aspx</DependentUpon>
