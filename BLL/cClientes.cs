@@ -96,11 +96,11 @@ namespace BLL
             tabla = CREDTIO.ListaLimiteCredito(Nit);
             return tabla;
         }
-       public string InsertarCliente(int nit, string nom, string ape, string dire, int tel, int cel, string empre, string correo)
+       public string InsertarCliente(int nit, string nom, string ape, string dire, int tel, int cel, string empre, string correo, decimal porcentaje)
         {
             try
             {
-                CLIENTES.InsertarCliente(nit, nom, ape, dire, tel, cel, empre, correo);
+                CLIENTES.InsertarCliente(nit, nom, ape, dire, tel, cel, empre, correo, porcentaje);
                 return "Datos ingresados correctamente";
 
             }

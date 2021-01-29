@@ -104,7 +104,7 @@ namespace UI
             try
             {
                 string msj;
-                msj = DatosCl.InsertarCliente(Convert.ToInt32(TextBox5.Text), TextBox6.Text, TextBox7.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text), 0, "", "");
+                msj = DatosCl.InsertarCliente(Convert.ToInt32(TextBox5.Text), TextBox6.Text, TextBox7.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text), 0, "", "",0);
                 Label2.Text = msj;
 
                 tabla = DatosCl.ListaUncliente(Convert.ToInt32(TextBox1.Text));

@@ -16,6 +16,9 @@
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#fm-modal-grid"><i class="fa fa-plus">Nuevo</i></button>               
                 </span>
               </div>
+              <div class="table table-responsive">
+
+             
               <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ID_Cliente" DataSourceID="ListaClientes" CssClass="table table-responsive" AllowPaging="True" AllowSorting="True">
                   <Columns>
                      
@@ -28,10 +31,12 @@
                       <asp:BoundField DataField="Celular" HeaderText="Celular" SortExpression="Celular" />
                       <asp:BoundField DataField="Empresa" HeaderText="Empresa" SortExpression="Empresa" />
                       <asp:BoundField DataField="Correo" HeaderText="Correo" SortExpression="Correo" />
+                       <asp:BoundField DataField="Porcentaje" HeaderText="%" SortExpression="Porcentaje" />
                       <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                   </Columns>
               </asp:GridView>
-              <asp:SqlDataSource ID="ListaClientes" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Cliente, NIT, Nombre, Apellidos, Direccion, Telefono, Celular, Empresa, Correo FROM Cliente WHERE (Estado = 1)" UpdateCommand="EditarCliente" UpdateCommandType="StoredProcedure" DeleteCommand="EliminarCliente" DeleteCommandType="StoredProcedure">
+                 </div>
+              <asp:SqlDataSource ID="ListaClientes" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT ID_Cliente, NIT, Nombre, Apellidos, Direccion, Telefono, Celular, Empresa, Correo, Porcentaje FROM Cliente WHERE (Estado = 1)" UpdateCommand="EditarCliente" UpdateCommandType="StoredProcedure" DeleteCommand="EliminarCliente" DeleteCommandType="StoredProcedure">
                   <DeleteParameters>
                       <asp:Parameter Name="ID_Cliente" Type="Int32" />
                   </DeleteParameters>
@@ -45,6 +50,7 @@
                       <asp:Parameter Name="Celular" Type="Int32" />
                       <asp:Parameter Name="Empresa" Type="String" />
                       <asp:Parameter Name="Correo" Type="String" />
+                      <asp:Parameter Name ="Porcentaje" Type="Decimal"/>
                   </UpdateParameters>
               </asp:SqlDataSource>
 
@@ -115,6 +121,12 @@
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="TextBox7" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                                   <div class="form-group">
+                            <label>%</label>
+                        </div>
+                         <div class="form-group">
+                            <asp:TextBox ID="TextBox8" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
 
                             </div>

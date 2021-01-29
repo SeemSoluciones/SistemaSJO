@@ -582,7 +582,7 @@ namespace UI
             try
             {
                 string nom, ape;
-                datos2.InsertarCliente(Convert.ToInt32(TextBox16.Text), TextBox17.Text, TextBox18.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text), 0, "", "");
+                datos2.InsertarCliente(Convert.ToInt32(TextBox16.Text), TextBox17.Text, TextBox18.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text), 0, "", "",0);
                 tabla = datos2.ListaUncliente(Convert.ToInt32(TextBox3.Text));
                 nom = tabla.Rows[0][2].ToString();
                 ape = tabla.Rows[0][3].ToString();

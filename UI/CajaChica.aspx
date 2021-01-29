@@ -72,48 +72,101 @@
         <!-- ./col -->
       </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
                <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker"/>
+                   <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control pull-right" TextMode="Date"></asp:TextBox>
                 </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
                <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker2"/>
+                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control pull-right" TextMode="Date"></asp:TextBox>
                 </div>
+        </div>
+        <div class="col-md-4">
+            <asp:Button ID="Button1" runat="server" Text="Aceptar"  CssClass="form-control" OnClick="Button1_Click" />
         </div>
     </div>
     <div class="row">
         <div  class="col-md-3">
-            <label>Total ingresado a caja</label>
+            <label>Total ingresado a caja</label><br />
             <asp:label runat="server" ID="lblTotalI" CssClass="h2" text="0.00"></asp:label>
         </div>
         <div  class="col-md-3">
-            <label>Total retirado de la caja</label>
+            <label>Total retirado de la caja</label><br />
              <asp:label runat="server" ID="lblTotalR" CssClass="h2" text="0.00"></asp:label>
         </div>
         <div  class="col-md-3">
-             <label>Total Venta</label><br />
-            <label>Contado</label> <asp:label runat="server" ID="lblVentaC" CssClass="h2" text="0.00"></asp:label><br />
-                        <label>Credito</label> <asp:label runat="server" ID="lblVentaCre" CssClass="h2" text="0.00"></asp:label><br />
-            <label>Cheque</label><asp:label runat="server" ID="lblVentaCheque" CssClass="h2" text="0.00"></asp:label><br />
+            <asp:GridView ID="GridView2" CssClass="table table-responsive table-bordered table-condensed table-striped" runat="server" DataSourceID="SqlDataSource4" AutoGenerateColumns="False" OnRowDataBound="GridView2_RowDataBound">
+                <Columns>
+                    <asp:BoundField DataField="Total" HeaderText="Total Venta - Q" ItemStyle-Font-Size="Large" ItemStyle-Font-Bold="true" ReadOnly="True" SortExpression="Total" DataFormatString="{0:0.00}"></asp:BoundField>
+                    <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
+<%--                    <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" ReadOnly="True" SortExpression="Subtotal"></asp:BoundField>
+                    <asp:BoundField DataField="TOTALDETALLE" HeaderText="TOTALDETALLE" ReadOnly="True" SortExpression="TOTALDETALLE"></asp:BoundField>--%>
+                </Columns>
+            </asp:GridView>
+            Total Venta : <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
         </div>
         <div  class="col-md-3">
-             <label>Total compra</label><br />
-            <label>Al Contado</label> <asp:label runat="server" ID="lblCompraC" CssClass="h2" text="0.00"></asp:label><br />
-              <label>Credito</label>   <asp:label runat="server" ID="lblCompraCre" CssClass="h2" text="0.00"></asp:label><br />
-            <label>Cheque</label> <asp:label runat="server" ID="lblCheque" CssClass="h2" text="0.00"></asp:label><br />
+            <asp:GridView ID="GridView1" runat="server" CssClass="table table-responsive table-hover table-striped" AutoGenerateColumns="False" DataSourceID="SqlDataSource3" OnRowDataBound="GridView1_RowDataBound">
+                <Columns>
+
+                    <asp:BoundField DataField="TotalCompraDetalle" ItemStyle-Font-Bold="true"  ItemStyle-Font-Size="Large" HeaderText="Total Compra - Q" ReadOnly="True" SortExpression="TotalCompraDetalle" DataFormatString="{0:0.00}"></asp:BoundField>
+                   <%-- <asp:BoundField DataField="TotalCompra" HeaderText="TotalCompra" ReadOnly="True" SortExpression="TotalCompra"></asp:BoundField>--%>
+                    <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
+                </Columns>
+            </asp:GridView>
+              Total Compra : <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
         </div>
     </div>
+    <br />
+    <br />
+    
     <div class="jumbotron">
-        <label>Total en caja chica</label>
+        <div class="row">
+        <div  class="col-md-6">
+            <label>Total ingresados</label><br />
+            <asp:label runat="server" ID="Label1" CssClass="h2 pull-right-container" text="0.00"></asp:label>
+        </div>
+        <div  class="col-md-6">
+            <label>Total retirados</label><br />
+             <asp:label runat="server" ID="Label2" CssClass="h2 pull-right-container" text="0.00"></asp:label>
+        </div>
+           </div>
     </div>
+
+
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT SUM(MontoInicial) AS TotalEntrada FROM CajaEntrada WHERE (Fecha BETWEEN @FechaInicio AND @FechaFinal)">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="TextBox1" PropertyName="Text" Name="FechaInicio"></asp:ControlParameter>
+            <asp:ControlParameter ControlID="TextBox2" PropertyName="Text" Name="FechaFinal"></asp:ControlParameter>
+
+        </SelectParameters>
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT SUM(MontoSalida) AS TotalSalida FROM CajaSalidas WHERE (Fecha BETWEEN @FechaInicio AND @FechaFinal)">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="TextBox1" PropertyName="Text" Name="FechaInicio"></asp:ControlParameter>
+            <asp:ControlParameter ControlID="TextBox2" PropertyName="Text" Name="FechaFinal"></asp:ControlParameter>
+        </SelectParameters>
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT SUM(DetalleCompra.Total) AS TotalCompraDetalle, SUM(Compra.Total) AS TotalCompra, TipoPago.Tipo FROM DetalleCompra INNER JOIN Compra ON DetalleCompra.ID_Compra = Compra.ID_Compra INNER JOIN TipoPago ON Compra.ID_TPago = TipoPago.ID_TPago WHERE (CAST(Compra.Fecha AS DATE)  BETWEEN @FechaInicio AND @FechaFinal) GROUP BY TipoPago.Tipo ORDER BY TipoPago.Tipo">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="TextBox1" PropertyName="Text" Name="FechaInicio"></asp:ControlParameter>
+            <asp:ControlParameter ControlID="TextBox2" PropertyName="Text" Name="FechaFinal"></asp:ControlParameter>
+        </SelectParameters>
+    </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT SUM(Venta.Total) AS Total, TipoPago.Tipo, SUM(Venta.Subtotal) AS Subtotal, SUM(DetalleVenta.Total) AS TOTALDETALLE FROM DetalleVenta INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN TipoPago ON DetalleVenta.ID_TPago = TipoPago.ID_TPago WHERE (Cast(Venta.Fecha AS DATE) BETWEEN @FechaInicio AND @FechaFinal) GROUP BY TipoPago.Tipo ORDER BY TipoPago.Tipo">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="TextBox1" PropertyName="Text" Name="FechaInicio"></asp:ControlParameter>
+            <asp:ControlParameter ControlID="TextBox2" PropertyName="Text" Name="FechaFinal"></asp:ControlParameter>
+        </SelectParameters>
+    </asp:SqlDataSource>
+
 
         <script src="assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap datepicker -->
