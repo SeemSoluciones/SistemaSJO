@@ -4,7 +4,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     
-
     
     <div class="content-head">
 
@@ -131,7 +130,6 @@
                                                 <asp:LinkButton runat="server" Text="" CssClass="fa fa-cart-plus" CommandName="Select" CausesValidation="False" ID="LinkButton1"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
                                     </Columns>
                         </asp:GridView>
                     </div>
@@ -142,7 +140,7 @@
             </div>
         </div>
          <div class="row">
-             <div class="col-sm-2">
+             <div class="col-sm-1">
             <div class="form-group">
             <label>ID</label>
             <asp:TextBox ID="TextBox7" CssClass="form-control" runat="server" Enabled="False"></asp:TextBox>
@@ -166,12 +164,19 @@
             <asp:TextBox ID="TextBox9" CssClass="form-control" runat="server"></asp:TextBox>
             </div> 
         </div>
-         <div class="col-sm-2">
+         <div class="col-sm-1">
              <div class="form-group">
             <label>Cantidad</label>
             <asp:TextBox ID="TextBox11" CssClass="form-control" runat="server"></asp:TextBox>
             </div> 
         </div>
+             <div class="col-sm-2">
+                 <div class="form-group">
+                 <label>Motivo</label>
+                 <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control"></asp:TextBox>
+             </div>
+             </div>
+            
           <div class="col-sm-2">
              <div class="form-group">
             <label>Aceptar</label>
@@ -182,11 +187,17 @@
         <div class="table table-responsive">
         <asp:GridView ID="GridView1" runat="server" CssClass="table table-responsive" OnRowDataBound="GridView1_RowDataBound" OnRowDeleting="GridView1_RowDeleting">
              <Columns>
+                  <asp:TemplateField HeaderText="Devol">
+                                            <ItemTemplate>
+                                                <asp:CheckBox runat="server" ID="CheckBox1"></asp:CheckBox>
+                                            </ItemTemplate>
+                  </asp:TemplateField>
                 <asp:TemplateField>
                     <ItemTemplate>
                         <asp:LinkButton ID="Button1" runat="server" CssClass="btn btn-danger fa fa-trash-o" CausesValidation="False" CommandName="Delete"  />
                     </ItemTemplate>
                 </asp:TemplateField>
+                 
             </Columns>
         </asp:GridView>
         </div>
@@ -210,9 +221,14 @@
 
         
 
-        <asp:Button ID="Button3" runat="server" CssClass="btn btn-success pull-right" Text="Guardar" OnClick="Button3_Click" />
+        <asp:Button ID="Button3" runat="server" CssClass="btn btn-success pull-right" Text="Guardar" OnClick="Button3_Click" OnClientClick="return confirm('Proceder a guardar la compra?. Recuerde si tiene un producto para devolucion / cambio debe de tener habilitado el checkecito (Columna Devol) caso contrario omitir');" />
         <asp:Button ID="Button1" runat="server" CssClass="btn btn-warning pull-right" Text="Cancelar" OnClick="Button4_Click" />
     </div>
 
     <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
+    <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' InsertCommand="INSERT INTO PagoPreveedor(ID_Compra, Estado) VALUES (@ID_Compra, 0)" SelectCommand="SELECT PagoPreveedor.* FROM PagoPreveedor WHERE Estado = 1">
+        <InsertParameters>
+            <asp:Parameter Name="ID_Compra"></asp:Parameter>
+        </InsertParameters>
+    </asp:SqlDataSource>
 </asp:Content>

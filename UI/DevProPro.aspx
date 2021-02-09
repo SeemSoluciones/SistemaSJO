@@ -1,6 +1,4 @@
 ﻿
-
-
 <%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="DevProPro.aspx.cs" Inherits="UI.DevProPro" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

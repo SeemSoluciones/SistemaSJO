@@ -24,13 +24,10 @@ namespace UI
                 Label5.Text = Session["Tienda"].ToString();
                 Label6.Text = Session["Rol"].ToString();
 
-                if (Label1.Text == "" || Label6.Text == "Bodegero" || Label6.Text == "Mostrador" || Label6.Text == "Caja" || Label6.Text == "Digitador")
+                if (Label1.Text == "" || Label6.Text == "" || Label6.Text == "Bodegero" || Label6.Text == "Mostrador" || Label6.Text == "Caja" || Label6.Text == "Digitador" || Session["Nombre"].ToString() == "" || Session["IDtienda"].ToString() == "")
                 {
                     Response.Redirect("Login.aspx");
                 }
-
-
-
 
             }
             catch (System.Exception)
@@ -38,20 +35,33 @@ namespace UI
 
                 Response.Redirect("Login.aspx");
             }
-            Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
         }
 
-        protected void Click_Boton1(object sender, EventArgs e)
-        {
-               Session.Abandon();
+      
+
+        protected void Button2_Click(object sender, EventArgs e)
+        { 
+           
+           Session.Abandon();
             FormsAuthentication.SignOut();
-         
             Session.Clear();
             Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
             Response.Cookies.Clear();
             Request.Cookies.Clear();
-            Response.Redirect("Login.aspx", true);
 
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            FormsAuthentication.SignOut();
+            Session.Clear();
+            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+            Response.Cookies.Clear();
+            Request.Cookies.Clear();
+
+            Response.Redirect("Login.aspx");
         }
     }
 }

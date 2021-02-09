@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 
 namespace UI
@@ -41,9 +41,27 @@ namespace UI
             }
         }
 
-        protected void Click_Boton1(object sender, EventArgs e)
+        protected void Button2_Click(object sender, EventArgs e)
         {
-            Label1.Text = "";
+            Session.Abandon();
+            FormsAuthentication.SignOut();
+            Session.Clear();
+            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+            Response.Cookies.Clear();
+            Request.Cookies.Clear();
+
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            FormsAuthentication.SignOut();
+            Session.Clear();
+            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+            Response.Cookies.Clear();
+            Request.Cookies.Clear();
+
             Response.Redirect("Login.aspx");
         }
     }

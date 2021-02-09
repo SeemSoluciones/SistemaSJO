@@ -4,7 +4,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-
     
     <script src="assets/plugins/jquery/jquery.min.js"></script>
   <%--  <script>
@@ -104,7 +103,7 @@
                                         <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
                                         <asp:BoundField DataField="LISTANIOP" HeaderText="Rubro-Año" SortExpression="LISTANIOP" ReadOnly="True" />
                                         <asp:BoundField DataField="MarcaP" HeaderText="Marca Prod" SortExpression="MarcaP" />
-                                        <asp:BoundField HeaderText="X" SortExpression="PrecioUnitario"  />
+                                        <asp:BoundField  HeaderText="x" SortExpression="x"  />
                                         <asp:BoundField DataField="PrecioVenta" HeaderText="Precio V" SortExpression="PrecioVenta" DataFormatString="{0:0.00}"  />
                                         <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" ItemStyle-Font-Bold="true" ItemStyle-Font-Size="Large" ItemStyle-BorderColor="LightGreen" />
                                          <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
@@ -272,13 +271,13 @@
 
             </div>
             <div class="col-md-3">
-                <label class="pull-right">Aplicar descuento en general</label>
+                <label class="pull-right"></label>
             </div>
             <div class="col-md-3">
                  <div class="input-group input-group-sm">
-                <input type="text" class="form-control" runat="server" id="TxtDescuento" enableviewstate="False"/>
+                <input type="text" class="form-control" runat="server" id="TxtDescuento" enableviewstate="False" visible="false"/>
                     <span class="input-group-btn">
-                        <asp:Button ID="Button11" runat="server" Text="Aplicar" CssClass="btn btn-info btn-flat" OnClick="Button11_Click"/>
+                        <asp:Button ID="Button11" runat="server" Text="Aplicar" CssClass="btn btn-info btn-flat" Visible="false" OnClick="Button11_Click"/>
                     </span>
               </div>
             </div>
@@ -498,5 +497,6 @@ WHERE (DevProPro.Estado = 1)	AND (Stock.ID_Existencia = @ID_Existencia)">
             $(this).select();
         });
     </script>
+
   
 </asp:Content>

@@ -45,7 +45,7 @@
 
    <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
     <div class="wrapper">
-
+          <form id="form1" runat="server">
         <header class="main-header">
             <!-- Logo -->
             <a href="PanelPricipal.aspx" class="logo">
@@ -96,7 +96,7 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                     <a href="Login.aspx" ><i class="btn btn-default btn-flat"></i>Salir </a>
+                                   <asp:Button ID="Button2" runat="server" Text="Salir" OnClick="Button2_Click" />
                                     </div>
                                 </li>
                             </ul>
@@ -168,11 +168,10 @@
                    
 
                     <li>
-                        <a href="Login.aspx">
-                            <i class="fa fa-user"></i>
-                            <span>Salir</span>
-                            
-                        </a>
+                    
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Salir</asp:LinkButton>
+                        
+                    
                         
                     </li>
                     
@@ -198,7 +197,7 @@
            
               <section class="content">
                 <!-- Small boxes (Stat box) -->
-            <form id="form1" runat="server">
+          
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
           

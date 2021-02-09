@@ -45,7 +45,7 @@
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
    
     <div class="wrapper">
-
+          <form id="form1" runat="server">
         <header class="main-header">
             <!-- Logo -->
             <a href="PanelPricipal.aspx" class="logo">
@@ -96,7 +96,7 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                     <a href="Login.aspx" ><i class="btn btn-default btn-flat"></i>Salir </a>
+                                      <asp:Button ID="Button2" runat="server" Text="Salir" OnClick="Button2_Click" />
                                     </div>
                                 </li>
                             </ul>
@@ -133,27 +133,20 @@
                     <li class="header">MAIN NAVIGATION</li>
                     <li>
                         <a href="CajaCobrador.aspx">
-                            <i class="fa-money"></i><span>Caja</span>
+                            <i class="fa fa-money"></i><span>Caja</span>
                         </a>
                     </li>
                     <li>
                         <a href="EncargoC.aspx">
-                            <i class="fa-bookmark-o"></i><span>Encargos</span>
+                            <i class="fa fa-bookmark-o"></i><span>Encargos</span>
                         </a>
                     </li>                  
-                    <li>
-                        <a href="#" target="_blank"> 
-                            <i class="fa fa-internet-explorer"></i>
-                            <span>.</span>
-                        </a>
-                    </li>
 
                     <li>
-                        <a href="Login.aspx">
-                            <i class="fa fa-user"></i>
-                            <span>Salir</span>
-                            
-                        </a>
+                         <li>
+                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Salir</asp:LinkButton>
+                        
+                    </li>
                         
                     </li>
                     
@@ -179,7 +172,6 @@
            
               <section class="content">
                 <!-- Small boxes (Stat box) -->
-            <form id="form1" runat="server">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
           

@@ -26,7 +26,6 @@ namespace UI
         decimal total;
         private static int cantProd = 0, idStock = 0;
         public static int TipoFactura = 0;
-        public static bool estadoAuto = false;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -35,7 +34,7 @@ namespace UI
                 TipoFactura = 0;
 
                 TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                Vendedor.Mensaje = "Ventana Ventas";
+                Home.Mensaje = "Ventana Ventas";
                 if (!IsPostBack)
                 {
                     // this.Button12.Click += new System.EventHandler(this.Button12_Click);
@@ -151,19 +150,20 @@ namespace UI
                             {
                                 decimal valorVenta, valorsindescuento, descuento;
                                 valorVenta = Convert.ToDecimal(TextBox9.Text);
-                                valorsindescuento = (valorVenta * 100) / 135;
-                                descuento = (valorsindescuento * (Convert.ToDecimal(TextBox10.Text) / 100));
+                                // valorsindescuento = (valorVenta * 100) / 135;
+                                descuento = valorVenta - (valorVenta * (Convert.ToDecimal(TextBox10.Text) / 100));
+
                                 Label8.Text = descuento.ToString("0.00");
-                                subtotal = (Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox9.Text)) - Convert.ToDecimal(Label8.Text);
-                                descuento = Convert.ToDecimal(Label8.Text) * Convert.ToDecimal(TextBox11.Text);
+                                subtotal = (valorVenta * (Convert.ToDecimal(TextBox10.Text) / 100)) * Convert.ToDecimal(TextBox11.Text);
+                                descuentos = Convert.ToDecimal(Label8.Text) * Convert.ToDecimal(TextBox11.Text);
                                 dr = dt.NewRow();
                                 //  dr["ID"] = Label1.Text;
                                 dr["ID"] = TextBox7.Text;
                                 dr["Descripcion"] = TextBox8.Text;
                                 dr["Precio"] = TextBox9.Text;
-                                dr["Descuento"] = descuento.ToString(); ;
+                                dr["Descuento"] = Convert.ToDecimal(subtotal).ToString("0.00");
                                 dr["Cantidad"] = TextBox11.Text;
-                                dr["Total"] = Convert.ToDecimal(subtotal).ToString("0.00");
+                                dr["Total"] = Convert.ToDecimal(descuentos).ToString("0.00");
                                 dr["IDstock"] = idStock;
                                 dt.Rows.Add(dr);
                                 GridView1.DataSource = dt;
@@ -177,19 +177,19 @@ namespace UI
                     {
                         decimal valorVenta, valorsindescuento, descuento;
                         valorVenta = Convert.ToDecimal(TextBox9.Text);
-                        valorsindescuento = (valorVenta * 100) / 135;
-                        descuento = (valorsindescuento * (Convert.ToDecimal(TextBox10.Text) / 100));
+                        // valorsindescuento = (valorVenta * 100) / 135;
+                        descuento = valorVenta - (valorVenta * (Convert.ToDecimal(TextBox10.Text) / 100));
                         Label8.Text = descuento.ToString("0.00");
-                        subtotal = (Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox9.Text)) - Convert.ToDecimal(Label8.Text);
+                        subtotal = (valorVenta * (Convert.ToDecimal(TextBox10.Text) / 100)) * Convert.ToDecimal(TextBox11.Text);
                         descuentos = Convert.ToDecimal(Label8.Text) * Convert.ToDecimal(TextBox11.Text);
                         dr = dt.NewRow();
                         // dr["ID"] = Label1.Text;
                         dr["ID"] = TextBox7.Text;
                         dr["Descripcion"] = TextBox8.Text;
                         dr["Precio"] = TextBox9.Text;
-                        dr["Descuento"] = descuentos.ToString();
+                        dr["Descuento"] = Convert.ToDecimal(subtotal).ToString("0.00");
                         dr["Cantidad"] = TextBox11.Text;
-                        dr["Total"] = Convert.ToDecimal(subtotal).ToString("0.00");
+                        dr["Total"] = Convert.ToDecimal(descuentos).ToString("0.00");
                         dr["IDstock"] = idStock;
                         dt.Rows.Add(dr);
                         GridView1.DataSource = dt;
@@ -582,7 +582,7 @@ namespace UI
             try
             {
                 string nom, ape;
-                datos2.InsertarCliente(Convert.ToInt32(TextBox16.Text), TextBox17.Text, TextBox18.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text), 0, "", "",0);
+                datos2.InsertarCliente(Convert.ToInt32(TextBox16.Text), TextBox17.Text, TextBox18.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text), 0, "", "", 0);
                 tabla = datos2.ListaUncliente(Convert.ToInt32(TextBox3.Text));
                 nom = tabla.Rows[0][2].ToString();
                 ape = tabla.Rows[0][3].ToString();
@@ -683,10 +683,6 @@ namespace UI
 
         protected void Button11_Click(object sender, EventArgs e)
         {
-            //if(Convert.ToInt32(TxtDescuento.Value) > 30)
-            //{
-            //    estadoAuto = true;
-            //}
             if (TxtDescuento.Value != "")
             {
                 try
@@ -801,7 +797,7 @@ namespace UI
             IDcoti = Convert.ToInt32(DropDownList8.SelectedValue);
             botonCot.Disabled = true;
         }
-
+        private static decimal porcentaje = 0;
         protected void TextBox3_TextChanged(object sender, EventArgs e)
         {
             string str = TextBox3.Text.Trim();
@@ -818,14 +814,21 @@ namespace UI
                 {
                     Button6_ModalPopupExtender.Show();
                     TextBox16.Text = TextBox3.Text;
-                    // TextBox4.Text = TextBox17.Text+ " "+TextBox18.Text;
-                    //TextBox5.Text = txtEdad.Text;
                 }
                 else
                 {
                     tabla = DatosCl.ListaUncliente(Convert.ToInt32(TextBox3.Text));
                     Nit = Convert.ToInt32(tabla.Rows[0][0]);
                     TextBox4.Text = tabla.Rows[0][7].ToString();
+                    try
+                    {
+                        porcentaje = Convert.ToDecimal(tabla.Rows[0][8].ToString());
+                    }
+                    catch
+                    {
+                        porcentaje = Convert.ToDecimal("0.00");
+                    }
+
                 }
 
             }
@@ -946,11 +949,12 @@ namespace UI
             TextBox7.Text = GridView2.SelectedRow.Cells[11].Text;
             TextBox8.Text = gd.Cells[2].Text + " ~ " + gd.Cells[4].Text;
             TextBox9.Text = gd.Cells[6].Text;
-            TextBox10.Text = "0";
+            TextBox10.Text = porcentaje.ToString();
             TextBox11.Text = "1";
             cantProd = Convert.ToInt32(gd.Cells[7].Text);
             idStock = Convert.ToInt32(gd.Cells[11].Text);
             precioAntes = Convert.ToDecimal(gd.Cells[6].Text);
         }
+
     }
 }

@@ -21,12 +21,21 @@ namespace UI
         {
             try
             {
-                datos.InsertarEmpleado(user.Text, contra.Text, Convert.ToInt32(DropDownList3.SelectedValue), nombre.Text, apellido.Text, Convert.ToInt64( dpi.Text), direccion.Text, Convert.ToInt32( telefono.Text), Convert.ToInt32(DropDownList2.SelectedValue));
-                Response.Redirect("Empleados.aspx");
+              string msj =  datos.InsertarEmpleado(user.Text, contra.Text, Convert.ToInt32(DropDownList3.SelectedValue), nombre.Text, apellido.Text, Convert.ToInt64( dpi.Text), direccion.Text, Convert.ToInt32( telefono.Text), Convert.ToInt32(DropDownList2.SelectedValue));
+
+                if(Convert.ToInt16(msj) != 0)
+                {
+                    Response.Redirect("Empleados.aspx");
+                }
+                else
+                {
+                    Response.Write("<script>alert('"+msj+"')</script>");
+                }
+               
             }
             catch
             {
-                Response.Write("<script>alert('Error, revise los campos')</script>");
+                Response.Write("<script>alert('Error, revise los campos. EL USUARIO no es repetible')</script>");
             }
 
         }

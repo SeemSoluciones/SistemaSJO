@@ -10,10 +10,16 @@ namespace UI
     public partial class PanelPricipal : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {  
+        {
             try
             {
+                if (Session["IDtienda"].ToString() == "" && Session["IdEmpleado"].ToString() == "")
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
                 Home.Mensaje = "Dashboard";
+            
             }
             catch
             {

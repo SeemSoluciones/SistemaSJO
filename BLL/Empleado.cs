@@ -86,14 +86,15 @@ namespace BLL
 
         public string InsertarEmpleado(string user, string pass, int idRl, string nom, string ape, long dpi,  string dire, int tel, int idTienda )
         {
+            int msj = 0;
             try
             {
-                EMPELADO.InsertarEmpleado(user, pass, idRl, nom, ape, dpi, tel, dire, idTienda);
-                return "Datos ingresados correctamente";
+               msj =  EMPELADO.InsertarEmpleado(user, pass, idRl, nom, ape, dpi, tel, dire, idTienda);
+                return msj.ToString();
             }
-            catch
+            catch(Exception e)
             {
-                return "Error, datos no guardados";
+                return e.ToString();
             }
         }
 

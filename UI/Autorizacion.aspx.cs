@@ -6,19 +6,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-
 namespace UI
 {
     public partial class Autorizacion : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(CajaV.estadoAuto == true)
-            {
-                string script = "window.close();";
+            //if(CajaV.estadoAuto == true)
+            //{
+            //    string script = "window.close();";
 
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);
-            }
+            //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);
+            //}
 
         }
         public static string Quien = "";
@@ -35,7 +34,7 @@ namespace UI
                 {
                     if (Convert.ToInt32(Lista["total"]) == 1)
                     {
-                        CajaV.estadoAuto = true;
+                       // CajaV.estadoAuto = true;
                         string script = "window.close();";
                         Quien = Lista["Nom"].ToString();
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);

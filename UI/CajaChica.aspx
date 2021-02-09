@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="assets/plugins/timepicker/bootstrap-timepicker.min.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row">
+    <%--<div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
@@ -70,7 +70,7 @@
           </div>
         </div>
         <!-- ./col -->
-      </div>
+      </div>--%>
     <div class="row">
         <div class="col-md-4">
                <div class="input-group date">
@@ -78,7 +78,8 @@
                     <i class="fa fa-calendar"></i>
                   </div>
                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control pull-right" TextMode="Date"></asp:TextBox>
-                </div>
+             
+               </div>
         </div>
         <div class="col-md-4">
                <div class="input-group date">
@@ -110,7 +111,7 @@
                     <asp:BoundField DataField="TOTALDETALLE" HeaderText="TOTALDETALLE" ReadOnly="True" SortExpression="TOTALDETALLE"></asp:BoundField>--%>
                 </Columns>
             </asp:GridView>
-            Total Venta : <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+            Total Venta : <asp:Label ID="Label3" runat="server" Text="0.0"></asp:Label>
         </div>
         <div  class="col-md-3">
             <asp:GridView ID="GridView1" runat="server" CssClass="table table-responsive table-hover table-striped" AutoGenerateColumns="False" DataSourceID="SqlDataSource3" OnRowDataBound="GridView1_RowDataBound">
@@ -121,7 +122,7 @@
                     <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo"></asp:BoundField>
                 </Columns>
             </asp:GridView>
-              Total Compra : <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+              Total Compra : <asp:Label ID="Label4" runat="server" Text="0.0"></asp:Label>
         </div>
     </div>
     <br />

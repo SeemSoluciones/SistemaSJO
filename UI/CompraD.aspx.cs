@@ -21,7 +21,7 @@ namespace UI
         protected void Page_Load(object sender, EventArgs e)
         {
             TextBox2.Text = DateTime.Now.ToString();
-            Digitador.Mensaje = "Ventana compras";
+            Home.Mensaje = "Ventana compras";
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace UI
             }
             else
             {
-                // dt.Columns.Add("ID");
+
                 dt.Columns.Add("Codigo");
                 dt.Columns.Add("Descripcion");
                 dt.Columns.Add("PrecioC");
@@ -58,7 +58,62 @@ namespace UI
                 dt.Columns.Add("Cantidad");
                 dt.Columns.Add("Total");
                 dt.Columns.Add("IDstock");
+                dt.Columns.Add("Motivo");
+                //if (Convert.ToDecimal(TextBox9.Text) == 0)
+                //{
+                //    double precioVentaP = Convert.ToDouble(TextBox3.Text) * 2;
 
+                //    DataRow dr = null;
+                //    if (ViewState["Detalles"] != null)
+                //    {
+                //        for (int i = 0; i < 1; i++)
+                //        {
+                //            dt = (DataTable)ViewState["Detalles"];
+                //            if (dt.Rows.Count > 0)
+                //            {
+                //                subtotal = Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox3.Text);
+                //                dr = dt.NewRow();
+                //                //  dr["ID"] = Label1.Text;
+                //                dr["Codigo"] = TextBox7.Text;
+                //                dr["Descripcion"] = TextBox8.Text;
+                //                dr["PrecioC"] = TextBox3.Text;
+                //                dr["PrecioV"] = precioVentaP.ToString();
+                //                dr["Cantidad"] = TextBox11.Text;
+                //                dr["Total"] = subtotal;
+                //                dr["IDstock"] = idStock;
+                //                dr["Motivo"] = TextBox4.Text;
+                //                dt.Rows.Add(dr);
+                //                GridView1.DataSource = dt;
+                //                GridView1.DataBind();
+
+                //            }
+                //        }
+
+                //    }
+                //    else
+                //    {
+                //        subtotal = Convert.ToDecimal(TextBox11.Text) * Convert.ToDecimal(TextBox3.Text);
+                //        dr = dt.NewRow();
+                //        // dr["ID"] = Label1.Text;
+                //        dr["Codigo"] = TextBox7.Text;
+                //        dr["Descripcion"] = TextBox8.Text;
+                //        dr["PrecioC"] = TextBox3.Text;
+                //        dr["PrecioV"] = precioVentaP.ToString();
+                //        dr["Cantidad"] = TextBox11.Text;
+                //        dr["Total"] = subtotal;
+                //        dr["IDstock"] = idStock;
+                //        dr["Motivo"] = TextBox4.Text;
+                //        dt.Rows.Add(dr);
+                //        GridView1.DataSource = dt;
+                //        GridView1.DataBind();
+                //    }
+                //    ViewState["Detalles"] = dt;
+                //    limpiar();
+                //}
+                //else
+                //{
+                //  double precioGan = Convert.ToDouble(TextBox9.Text) * 0.5385;
+                // double precioVentaP = precioGan + Convert.ToDouble(TextBox9.Text);
                 DataRow dr = null;
                 if (ViewState["Detalles"] != null)
                 {
@@ -77,6 +132,7 @@ namespace UI
                             dr["Cantidad"] = TextBox11.Text;
                             dr["Total"] = subtotal;
                             dr["IDstock"] = idStock;
+                            dr["Motivo"] = TextBox4.Text;
                             dt.Rows.Add(dr);
                             GridView1.DataSource = dt;
                             GridView1.DataBind();
@@ -97,12 +153,14 @@ namespace UI
                     dr["Cantidad"] = TextBox11.Text;
                     dr["Total"] = subtotal;
                     dr["IDstock"] = idStock;
+                    dr["Motivo"] = TextBox4.Text;
                     dt.Rows.Add(dr);
                     GridView1.DataSource = dt;
                     GridView1.DataBind();
                 }
                 ViewState["Detalles"] = dt;
                 limpiar();
+                //    }
 
             }
         }
@@ -118,46 +176,60 @@ namespace UI
         }
         protected void Button3_Click(object sender, EventArgs e)
         {
-            try
+            //try
+            //{
+            if (TextBox1.Text.Equals(String.Empty) || DropDownList3.SelectedValue.Equals(0) || DropDownList1.SelectedValue.Equals(0))
             {
-                if (TextBox1.Text.Equals(String.Empty))
+                Response.Write("<script>alert('Favor, de ingresar correlativo de la factura/comprobante')</script>");
+            }
+            else
+            {
+                string msj = "";
+                msj = datos.InsertarCompra(Convert.ToDecimal(TextBox12.Text), TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToDateTime(TextBox2.Text), Convert.ToInt32(DropDownList3.SelectedValue));
+                foreach (GridViewRow row in GridView1.Rows)
                 {
-                    Response.Write("<script>alert('Favor, de ingresar correlativo de la factura/comprobante')</script>");
-                }
-                else
-                {
+                    CheckBox VerSiCheck = (CheckBox)(row.FindControl("CheckBox1"));
 
-
-                    string msj = "";
-                    msj = datos.InsertarCompra(Convert.ToDecimal(TextBox12.Text), TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToDateTime(TextBox2.Text), Convert.ToInt32(DropDownList3.SelectedValue));
-                    foreach (GridViewRow row in GridView1.Rows)
+                    if (!VerSiCheck.Checked)
                     {
                         datos.InsertarDetalleCompra(
-                           Convert.ToInt32(row.Cells[5].Text),
-                           Convert.ToDecimal(row.Cells[4].Text),
-                           Convert.ToDecimal(row.Cells[6].Text),
-                           Convert.ToInt32(row.Cells[7].Text),
-                           Convert.ToInt32(msj),
-                           Convert.ToDecimal(row.Cells[3].Text),
-                           Convert.ToInt32(DropDownList1.SelectedValue)
-                           );
+                   Convert.ToInt32(row.Cells[6].Text),
+                   Convert.ToDecimal(row.Cells[5].Text),
+                   Convert.ToDecimal(row.Cells[7].Text),
+                   Convert.ToInt32(row.Cells[8].Text),
+                   Convert.ToInt32(msj),
+                   Convert.ToDecimal(row.Cells[4].Text),
+                   Convert.ToInt32(DropDownList1.SelectedValue)
+                      );
+
+                    }
+                    else
+                    {
+                        datos.InsertDevProPro(Convert.ToInt32(row.Cells[8].Text), row.Cells[9].Text, TextBox1.Text, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(row.Cells[6].Text), Convert.ToDecimal(row.Cells[4].Text), Convert.ToDecimal(row.Cells[5].Text), Convert.ToInt32(msj));
+
                     }
 
-                    Response.Redirect("Compra.aspx");
                 }
+                if (DropDownList3.SelectedItem.ToString().Trim() == "Credito")
+                {
+                    SqlDataSource9.InsertParameters["ID_Compra"].DefaultValue = msj;
+                    SqlDataSource9.Insert();
+                }
+                Response.Redirect("Compra.aspx");
             }
-            catch (Exception)
-            {
+            //}
+            //    catch (Exception)
+            //    {
 
-                Response.Write("<script>alert('Error, Compra no registrada')</script>");
-            }
+            //        Response.Write("<script>alert('Error, Compra no registrada')</script>");
+            //    }
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                total = total + Convert.ToDecimal(e.Row.Cells[6].Text);
+                total = total + Convert.ToDecimal(e.Row.Cells[7].Text);
 
             }
 
@@ -275,6 +347,8 @@ namespace UI
             TextBox8.Text = "";
             TextBox9.Text = "0";
             TextBox11.Text = "1";
+            TextBox4.Text = "";
+            TextBox3.Text = "0.0";
         }
     }
 }
