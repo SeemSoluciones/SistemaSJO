@@ -1013,11 +1013,9 @@ namespace DAL {
             
             private global::System.Data.DataColumn columnNombre;
             
-            private global::System.Data.DataColumn columnMonto;
+            private global::System.Data.DataColumn columnPendiente;
             
-            private global::System.Data.DataColumn columnSaldoPendiente;
-            
-            private global::System.Data.DataColumn columnTotalVenta;
+            private global::System.Data.DataColumn columnTotal;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1070,25 +1068,17 @@ namespace DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MontoColumn {
+            public global::System.Data.DataColumn PendienteColumn {
                 get {
-                    return this.columnMonto;
+                    return this.columnPendiente;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SaldoPendienteColumn {
+            public global::System.Data.DataColumn TotalColumn {
                 get {
-                    return this.columnSaldoPendiente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TotalVentaColumn {
-                get {
-                    return this.columnTotalVenta;
+                    return this.columnTotal;
                 }
             }
             
@@ -1129,14 +1119,13 @@ namespace DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BuscarClienteCreditoRow AddBuscarClienteCreditoRow(int NIT, string Nombre, decimal Monto, decimal SaldoPendiente, decimal TotalVenta) {
+            public BuscarClienteCreditoRow AddBuscarClienteCreditoRow(int NIT, string Nombre, decimal Pendiente, decimal Total) {
                 BuscarClienteCreditoRow rowBuscarClienteCreditoRow = ((BuscarClienteCreditoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         NIT,
                         Nombre,
-                        Monto,
-                        SaldoPendiente,
-                        TotalVenta};
+                        Pendiente,
+                        Total};
                 rowBuscarClienteCreditoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBuscarClienteCreditoRow);
                 return rowBuscarClienteCreditoRow;
@@ -1161,9 +1150,8 @@ namespace DAL {
             internal void InitVars() {
                 this.columnNIT = base.Columns["NIT"];
                 this.columnNombre = base.Columns["Nombre"];
-                this.columnMonto = base.Columns["Monto"];
-                this.columnSaldoPendiente = base.Columns["SaldoPendiente"];
-                this.columnTotalVenta = base.Columns["TotalVenta"];
+                this.columnPendiente = base.Columns["Pendiente"];
+                this.columnTotal = base.Columns["Total"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1173,17 +1161,14 @@ namespace DAL {
                 base.Columns.Add(this.columnNIT);
                 this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNombre);
-                this.columnMonto = new global::System.Data.DataColumn("Monto", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMonto);
-                this.columnSaldoPendiente = new global::System.Data.DataColumn("SaldoPendiente", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSaldoPendiente);
-                this.columnTotalVenta = new global::System.Data.DataColumn("TotalVenta", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTotalVenta);
+                this.columnPendiente = new global::System.Data.DataColumn("Pendiente", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPendiente);
+                this.columnTotal = new global::System.Data.DataColumn("Total", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotal);
                 this.columnNombre.ReadOnly = true;
                 this.columnNombre.MaxLength = 102;
-                this.columnMonto.ReadOnly = true;
-                this.columnSaldoPendiente.ReadOnly = true;
-                this.columnTotalVenta.ReadOnly = true;
+                this.columnPendiente.ReadOnly = true;
+                this.columnTotal.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1645,51 +1630,33 @@ namespace DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal Monto {
+            public decimal Pendiente {
                 get {
                     try {
-                        return ((decimal)(this[this.tableBuscarClienteCredito.MontoColumn]));
+                        return ((decimal)(this[this.tableBuscarClienteCredito.PendienteColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Monto\' de la tabla \'BuscarClienteCredito\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Pendiente\' de la tabla \'BuscarClienteCredito\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBuscarClienteCredito.MontoColumn] = value;
+                    this[this.tableBuscarClienteCredito.PendienteColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal SaldoPendiente {
+            public decimal Total {
                 get {
                     try {
-                        return ((decimal)(this[this.tableBuscarClienteCredito.SaldoPendienteColumn]));
+                        return ((decimal)(this[this.tableBuscarClienteCredito.TotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SaldoPendiente\' de la tabla \'BuscarClienteCredito\' es DBN" +
-                                "ull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Total\' de la tabla \'BuscarClienteCredito\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBuscarClienteCredito.SaldoPendienteColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal TotalVenta {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableBuscarClienteCredito.TotalVentaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalVenta\' de la tabla \'BuscarClienteCredito\' es DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableBuscarClienteCredito.TotalVentaColumn] = value;
+                    this[this.tableBuscarClienteCredito.TotalColumn] = value;
                 }
             }
             
@@ -1719,38 +1686,26 @@ namespace DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMontoNull() {
-                return this.IsNull(this.tableBuscarClienteCredito.MontoColumn);
+            public bool IsPendienteNull() {
+                return this.IsNull(this.tableBuscarClienteCredito.PendienteColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMontoNull() {
-                this[this.tableBuscarClienteCredito.MontoColumn] = global::System.Convert.DBNull;
+            public void SetPendienteNull() {
+                this[this.tableBuscarClienteCredito.PendienteColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSaldoPendienteNull() {
-                return this.IsNull(this.tableBuscarClienteCredito.SaldoPendienteColumn);
+            public bool IsTotalNull() {
+                return this.IsNull(this.tableBuscarClienteCredito.TotalColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSaldoPendienteNull() {
-                this[this.tableBuscarClienteCredito.SaldoPendienteColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTotalVentaNull() {
-                return this.IsNull(this.tableBuscarClienteCredito.TotalVentaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTotalVentaNull() {
-                this[this.tableBuscarClienteCredito.TotalVentaColumn] = global::System.Convert.DBNull;
+            public void SetTotalNull() {
+                this[this.tableBuscarClienteCredito.TotalColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2062,8 +2017,8 @@ SELECT ID_Cliente, NIT, Nombre, Apellidos, Direccion, Telefono, Estado FROM Clie
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT ID_Cliente, NIT, Nombre + \'  \' + Apellidos AS Nom, Direccion, Telefono, Es" +
-                "tado FROM Cliente WHERE (NIT = @nit) AND (Estado = 1)";
+            this._commandCollection[1].CommandText = "SELECT ID_Cliente, NIT, Nombre + \'  \' + Apellidos AS Nom, Direccion, Porcentaje F" +
+                "ROM Cliente WHERE (NIT = @nit) AND (Estado = 1)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "NIT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -2519,7 +2474,7 @@ SELECT ID_Cliente, NIT, Nombre, Apellidos, Direccion, Telefono, Estado FROM Clie
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        InfoCreditos.ID_InfoCreditos, InfoCreditos.CreditoMax, InfoCreditos.DiasMax, Cliente.ID_Cliente
@@ -2546,13 +2501,17 @@ WHERE        (Cliente.NIT = @nit)";
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idCliente", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT        InfoCreditos.DiasMax + Credito.FechaCredito AS Fecha, Credito.SaldoPendiente, Credito.Estado
-FROM            InfoCreditos INNER JOIN
-                         Cliente ON InfoCreditos.ID_Cliente = Cliente.ID_Cliente INNER JOIN
-                         Credito ON Cliente.ID_Cliente = Credito.ID_Cliente
-WHERE        (Cliente.NIT = @nit) AND (Credito.Estado = 1)";
+            this._commandCollection[3].CommandText = "SELECT TOP (1) InfoCreditos.DiasMax + Credito.FechaCredito AS Fecha FROM InfoCred" +
+                "itos INNER JOIN Cliente ON InfoCreditos.ID_Cliente = Cliente.ID_Cliente INNER JO" +
+                "IN Credito ON Cliente.ID_Cliente = Credito.ID_Cliente WHERE (Cliente.NIT = @nit)" +
+                "";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "NIT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = @"SELECT ISNULL(SUM(Credito.SaldoPendiente), 0 ) as Pendiente  FROM InfoCreditos INNER JOIN Cliente ON InfoCreditos.ID_Cliente = Cliente.ID_Cliente INNER JOIN Credito ON Cliente.ID_Cliente = Credito.ID_Cliente WHERE (Cliente.NIT = @nit) AND (Credito.SaldoPendiente <> 0)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "NIT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2669,6 +2628,40 @@ WHERE        (Cliente.NIT = @nit) AND (Credito.Estado = 1)";
                 }
             }
             return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual object SaldoPendientes(global::System.Nullable<int> nit) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            if ((nit.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(nit.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -2795,9 +2788,8 @@ WHERE        (Cliente.NIT = @nit) AND (Credito.Estado = 1)";
             tableMapping.DataSetTable = "BuscarClienteCredito";
             tableMapping.ColumnMappings.Add("NIT", "NIT");
             tableMapping.ColumnMappings.Add("Nombre", "Nombre");
-            tableMapping.ColumnMappings.Add("Monto", "Monto");
-            tableMapping.ColumnMappings.Add("SaldoPendiente", "SaldoPendiente");
-            tableMapping.ColumnMappings.Add("TotalVenta", "TotalVenta");
+            tableMapping.ColumnMappings.Add("Pendiente", "Pendiente");
+            tableMapping.ColumnMappings.Add("Total", "Total");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2818,25 +2810,6 @@ WHERE        (Cliente.NIT = @nit) AND (Credito.Estado = 1)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Cliente.BuscarClienteCreditoDataTable dataTable, global::System.Nullable<int> Nit) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((Nit.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(Nit.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2902,9 +2875,10 @@ WHERE        (Cliente.NIT = @nit) AND (Credito.Estado = 1)";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Direccion", global::System.Data.SqlDbType.NVarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Telefono", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_Cliente", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cel", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@empresa", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@correo", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Celular", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Empresa", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Correo", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Porcentaje", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Connection = new global::System.Data.SqlClient.SqlConnection(global::DAL.Properties.Settings.Default.BDautorepuestoConnectionString);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).CommandText = "dbo.InsertarCliente";
@@ -2918,6 +2892,7 @@ WHERE        (Cliente.NIT = @nit) AND (Credito.Estado = 1)";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cel", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@empresa", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@correo", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Porcentaje", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[3])).Connection = new global::System.Data.SqlClient.SqlConnection(global::DAL.Properties.Settings.Default.BDautorepuestoConnectionString);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[3])).CommandText = "SELECT COUNT(NIT) AS Cantidad FROM Cliente WHERE (NIT = @IdCliente)";
@@ -2967,7 +2942,7 @@ WHERE        (Cliente.NIT = @nit) AND (Credito.Estado = 1)";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).CommandText = "dbo.InsertarItemProdCliente";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).CommandType = global::System.Data.CommandType.StoredProcedure;
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codigo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idstock", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_Credito", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[10] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[10])).Connection = new global::System.Data.SqlClient.SqlConnection(global::DAL.Properties.Settings.Default.BDautorepuestoConnectionString);
@@ -3041,7 +3016,7 @@ GROUP BY Cliente.NIT, Cliente.Nombre, Cliente.Apellidos";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual object EditarCliente(global::System.Nullable<int> NIT, string Nombre, string Apellidos, string Direccion, global::System.Nullable<int> Telefono, global::System.Nullable<int> ID_Cliente, global::System.Nullable<int> cel, string empresa, string correo) {
+        public virtual object EditarCliente(global::System.Nullable<int> NIT, string Nombre, string Apellidos, string Direccion, global::System.Nullable<int> Telefono, global::System.Nullable<int> ID_Cliente, global::System.Nullable<int> Celular, string Empresa, string Correo, global::System.Nullable<decimal> Porcentaje) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[1]));
             if ((NIT.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(NIT.Value));
@@ -3079,23 +3054,29 @@ GROUP BY Cliente.NIT, Cliente.Nombre, Cliente.Apellidos";
             else {
                 command.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((cel.HasValue == true)) {
-                command.Parameters[7].Value = ((int)(cel.Value));
+            if ((Celular.HasValue == true)) {
+                command.Parameters[7].Value = ((int)(Celular.Value));
             }
             else {
                 command.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((empresa == null)) {
+            if ((Empresa == null)) {
                 command.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[8].Value = ((string)(empresa));
+                command.Parameters[8].Value = ((string)(Empresa));
             }
-            if ((correo == null)) {
+            if ((Correo == null)) {
                 command.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[9].Value = ((string)(correo));
+                command.Parameters[9].Value = ((string)(Correo));
+            }
+            if ((Porcentaje.HasValue == true)) {
+                command.Parameters[10].Value = ((decimal)(Porcentaje.Value));
+            }
+            else {
+                command.Parameters[10].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3124,7 +3105,7 @@ GROUP BY Cliente.NIT, Cliente.Nombre, Cliente.Apellidos";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual object InsertarCliente(global::System.Nullable<int> nit, string nom, string ape, string dire, global::System.Nullable<int> tel, global::System.Nullable<int> cel, string empresa, string correo) {
+        public virtual object InsertarCliente(global::System.Nullable<int> nit, string nom, string ape, string dire, global::System.Nullable<int> tel, global::System.Nullable<int> cel, string empresa, string correo, global::System.Nullable<decimal> Porcentaje) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[2]));
             if ((nit.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(nit.Value));
@@ -3173,6 +3154,12 @@ GROUP BY Cliente.NIT, Cliente.Nombre, Cliente.Apellidos";
             }
             else {
                 command.Parameters[8].Value = ((string)(correo));
+            }
+            if ((Porcentaje.HasValue == true)) {
+                command.Parameters[9].Value = ((decimal)(Porcentaje.Value));
+            }
+            else {
+                command.Parameters[9].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3444,10 +3431,10 @@ GROUP BY Cliente.NIT, Cliente.Nombre, Cliente.Apellidos";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual object InsertarCreditoXitem(global::System.Nullable<int> codigo, global::System.Nullable<int> ID_Credito) {
+        public virtual object InsertarCreditoXitem(global::System.Nullable<int> idstock, global::System.Nullable<int> ID_Credito) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[9]));
-            if ((codigo.HasValue == true)) {
-                command.Parameters[1].Value = ((int)(codigo.Value));
+            if ((idstock.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(idstock.Value));
             }
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;

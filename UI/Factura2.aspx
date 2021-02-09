@@ -52,7 +52,7 @@
           <strong>Autorepuesto SanJuan, Inc.</strong><br>
           Direccion: Entrada a San Juan <br>
           Ostuncalco, Quetzaltenango.<br>
-          Phone: (502) 4067 8250<br>
+          Telefono: (502) 4067 8250 / 5560 5310<br>
         </address>
       </div>
       <!-- /.col -->
@@ -77,6 +77,12 @@
           <b>Forma de pago:</b>
             <asp:Label ID="Label7" runat="server" Text=""></asp:Label>
           <br/>
+           <b>Vendedor:</b>
+            <asp:Label ID="Label8" runat="server" Text=""></asp:Label>
+          <br/>
+           <b>Motorista:</b>
+            <asp:Label ID="Label9" runat="server" Text=""></asp:Label>
+          <br/>
       </div>
       <!-- /.col -->
     </div>
@@ -86,13 +92,13 @@
     <div class="row">
       <div class="col-xs-12 table-responsive">
       <table class="table table-striped">
-            <asp:GridView ID="GridView1" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowDataBound="GridView1_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" >
-                <Columns>
-                                <asp:BoundField DataField="Cantidad" HeaderText="Cant" ReadOnly="True" SortExpression="Codigo" />
-                                <asp:BoundField DataField="Codigos" HeaderText="Codigos" SortExpression="Codigos" />   
-                                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
-                                <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}"/>
-                                <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
+          <asp:GridView ID="GridView1" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowDataBound="GridView1_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" DataKeyNames="ID" Visible="False">
+              <Columns>
+                  <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" />
+                  <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" ReadOnly="True" />
+                  <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
+                  <asp:BoundField DataField="PrecioUnitario" HeaderText="PrecioUnitario" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}" />
+                  <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
                 </Columns>
                 <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                 <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
@@ -103,13 +109,17 @@
                 <SortedDescendingCellStyle BackColor="#E5E5E5" />
                 <SortedDescendingHeaderStyle BackColor="#242121" />
             </asp:GridView>
-       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand=""></asp:SqlDataSource>
+          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT DetalleVenta.Cantidad, Producto.ID_Producto AS ID, Producto.Descripcion, DetalleVenta.PrecioUnitario, DetalleVenta.Total FROM DetalleVenta INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Stock ON DetalleVenta.ID_Existencia = Stock.ID_Existencia INNER JOIN Producto ON Stock.ID_Producto = Producto.ID_Producto WHERE (Venta.ID_Venta = @idVenta)">
+              <SelectParameters>
+                  <asp:Parameter Name="idVenta"></asp:Parameter>
+              </SelectParameters>
+          </asp:SqlDataSource>
        </table>
             <table class="table table-striped">
-            <asp:GridView ID="GridView2" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" OnRowDataBound="GridView1_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" >
+            <asp:GridView ID="GridView2" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" OnRowDataBound="GridView1_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" Visible="False" >
                 <Columns>
                                 <asp:BoundField DataField="Cantidad" HeaderText="Cant" ReadOnly="True" SortExpression="Codigo" />
-                                <asp:BoundField DataField="Codigos" HeaderText="Codigos" SortExpression="Codigos" />   
+                                <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID"  ReadOnly="True" />
                                 <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
                                 <asp:BoundField DataField="Precio" HeaderText="Precio" SortExpression="Precio" DataFormatString="{0:0.00}"/>
                                 <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />

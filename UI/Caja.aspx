@@ -6,21 +6,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="assets/plugins/jquery/jquery.min.js"></script>
-    <script type="text/javascript">
-        function detectar_tecla() {
-            with (event) {
-                if(keyCode==113)
-                {
-                 
-          <%--        //  $('#<%=LinkButton12.ClientID%>').click();--%>
-                    return false;
-                
-                }
-               
-            }
+  <%--  <script>
+
+        function validarPrecio() {
+            let precioProducto = document.getElementById('<%=TextBox9.Text %>').value;
+            if(precioProducto)
         }
-        document.onkeydown = detectar_tecla;
-    </script>
+         
+
+    </script>--%>
+
     <style type="text/css">
         .fondo{
             background-color:black;
@@ -110,17 +105,20 @@
                                         <asp:BoundField DataField="MarcaP" HeaderText="Marca Prod" SortExpression="MarcaP" />
                                         <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio C" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}"  />
                                         <asp:BoundField DataField="PrecioVenta" HeaderText="Precio V" SortExpression="PrecioVenta" DataFormatString="{0:0.00}"  />
-                                        <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" ItemStyle-Font-Bold="true" ItemStyle-BorderColor="LightGreen" />
+                                        <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" ItemStyle-Font-Bold="true" ItemStyle-Font-Size="Large" ItemStyle-BorderColor="LightGreen" />
                                          <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
                                         <asp:BoundField DataField="Medida" HeaderText="Medida" SortExpression="Medida" />
                                         <asp:BoundField DataField="Tienda" HeaderText="Tienda" SortExpression="Tienda" />
-                                        <asp:BoundField DataField="ID_Existencia" HeaderText="ID2" SortExpression="ID_Existencia" InsertVisible="False" ReadOnly="True" />
+                                        <asp:BoundField DataField="ID_Existencia" HeaderText="ID1" SortExpression="ID_Existencia" InsertVisible="False" ReadOnly="True" />
+                                         <asp:BoundField DataField="Pendiente" HeaderText="NO Vender" SortExpression="Pendiente" ItemStyle-Font-Size="Large" />
+                                       <asp:HyperLinkField DataNavigateUrlFields="ID_Producto" DataNavigateUrlFormatString="Details.aspx?id={0}" Text="Ver" Target="_blank" HeaderText="Foto"></asp:HyperLinkField>
                                         <asp:TemplateField ShowHeader="False">
                                             <ItemTemplate>
-                                                <asp:LinkButton runat="server" Text="" CssClass="fa fa-cart-plus" CommandName="Select" CausesValidation="False" ID="LinkButton1"></asp:LinkButton>
+                                                <asp:LinkButton runat="server" Text="" CssClass="btn btn-success fa fa-cart-plus" CommandName="Select" CausesValidation="False" ID="LinkButton1"></asp:LinkButton>
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
+                                       
                                     </Columns>
                         </asp:GridView>
                     </div>
@@ -232,14 +230,15 @@
          <div class="col-sm-2">
              <div class="form-group">
             <label>Precio Venta</label>
-            <asp:TextBox ID="TextBox9" CssClass="form-control" runat="server" ></asp:TextBox>
+            <asp:TextBox ID="TextBox9" CssClass="form-control" runat="server" AutoPostBack="True" OnTextChanged="TextBox9_TextChanged" ></asp:TextBox>
             </div> 
         </div>
               <div class="col-sm-2">
              <div class="form-group">
             <label>Descuento</label>
             <asp:TextBox ID="TextBox10" CssClass="form-control" runat="server" OnTextChanged="TextBox10_TextChanged" AutoPostBack="True"></asp:TextBox>
-            </div> 
+                 <asp:Label ID="Label8" runat="server" Text="Label" Visible="False"></asp:Label>
+                  </div> 
         </div>
               <div class="col-sm-2">
              <div class="form-group">
@@ -272,13 +271,13 @@
 
             </div>
             <div class="col-md-3">
-                <label class="pull-right">Aplicar descuento en general</label>
+                <label class="pull-right"></label>
             </div>
             <div class="col-md-3">
                  <div class="input-group input-group-sm">
-                <input type="text" class="form-control" runat="server" id="TxtDescuento" enableviewstate="False"/>
+                <input type="text" class="form-control" runat="server" id="TxtDescuento" enableviewstate="False" visible="false"/>
                     <span class="input-group-btn">
-                        <asp:Button ID="Button11" runat="server" Text="Aplicar" CssClass="btn btn-info btn-flat" OnClick="Button11_Click"/>
+                        <asp:Button ID="Button11" runat="server" Text="Aplicar" CssClass="btn btn-info btn-flat" Visible="false" OnClick="Button11_Click"/>
                     </span>
               </div>
             </div>
@@ -373,6 +372,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Crédito al cliente</h3>
+                <asp:Label ID="Label7" runat="server"  CssClass="label label-danger" Text=""></asp:Label>
             </div>
             <div class="modal-body">
                 <div class="col-12 col-sm-6">
@@ -391,7 +391,7 @@
                     <asp:TextBox ID="TextBox15" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                     <div class="form-group">
-                        <asp:Label ID="Label4" runat="server" Text="" CssClass="label-warning"></asp:Label>
+                        <asp:Label ID="Label4" runat="server" Text="" CssClass="label-warning"></asp:Label><br />
                         <asp:Label ID="Label5" runat="server" Text="" CssClass="label-info"></asp:Label>
                     </div>
             </div>
@@ -480,6 +480,16 @@ Where CotizacionVenta.ID_Cotizacion = @IDcotizacion AND CotizacionVenta.Estado =
                 <asp:Parameter Name="Cantidad" />
                 <asp:Parameter Name="ID_Venta" />
             </InsertParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource14" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT DevProPro.ID_DevProPro,  DevProPro.Cantidad,  Stock.ID_Existencia
+FROM DevProPro INNER JOIN Proveedor ON DevProPro.ID_Proveedor = Proveedor.ID_Proveedor INNER JOIN 
+Stock ON DevProPro.ID_Existencia = Stock.ID_Existencia inner join 
+Producto on Producto.ID_Producto = Stock.ID_Producto inner join 
+MarcaProd on Stock.ID_MaraProd = MarcaProd.ID_MaraProd 
+WHERE (DevProPro.Estado = 1)	AND (Stock.ID_Existencia = @ID_Existencia)">
+            <SelectParameters>
+                <asp:Parameter Name="ID_Existencia"></asp:Parameter>
+            </SelectParameters>
         </asp:SqlDataSource>
     </asp:Panel>
     <script type="text/javascript">

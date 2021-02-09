@@ -20,19 +20,28 @@ namespace UI
             nit.Text = Caja.nit;
             Dire.Text = Caja.ciudad;
             Label7.Text = Caja.Pago;
+            Label9.Text = Caja.motorista;
+            Label8.Text = Session["Nombre"].ToString();
             if (Caja.TipoFactura == 1)
             {
                 GridView1.Visible = true;
                 GridView2.Visible = false;
-                SqlDataSource1.SelectCommand = "Select DetalleVenta.Cantidad, STUFF((Select ', ' + CodigoProducto.Codigo From CodigoProducto Where CodigoProducto.ID_Producto = Producto.ID_Producto for XML Path('')) , 1, 2 ,'') AS Codigos, Producto.Descripcion, DetalleVenta.PrecioUnitario , DetalleVenta.Total from DetalleVenta inner join Venta on DetalleVenta.ID_Venta = Venta.ID_Venta inner join Stock on DetalleVenta.ID_Existencia = Stock.ID_Existencia inner join Producto on Stock.ID_Producto = Producto.ID_Producto Where Venta.ID_Venta =" + Caja.msj;
+                SqlDataSource1.SelectParameters["idVenta"].DefaultValue = Caja.msj;
                 SqlDataSource1.DataBind();
             }
             else if (Caja.TipoFactura == 2)
             {
                 GridView2.Visible = true;
                 GridView1.Visible = false;
-                SqlDataSource2.SelectCommand = "Select DetalleCotizacion.Cantidad, STUFF((Select ', ' + CodigoProducto.Codigo From CodigoProducto Where CodigoProducto.ID_Producto = Producto.ID_Producto for XML Path('')) , 1, 2 ,'') AS Codigos, Producto.Descripcion, DetalleCotizacion.Precio, DetalleCotizacion.Total from DetalleCotizacion inner join CotizacionVenta on DetalleCotizacion.ID_Cotizacion = CotizacionVenta.ID_Cotizacion inner join Stock on DetalleCotizacion.ID_Existencia = Stock.ID_Existencia inner join Producto on Stock.ID_Producto = Producto.ID_Producto Where CotizacionVenta.ID_Cotizacion =" + Caja.msj;
+                SqlDataSource2.SelectCommand = "Select DetalleCotizacion.Cantidad, Producto.ID_Producto AS ID, Producto.Descripcion, DetalleCotizacion.Precio, DetalleCotizacion.Total from DetalleCotizacion inner join CotizacionVenta on DetalleCotizacion.ID_Cotizacion = CotizacionVenta.ID_Cotizacion inner join Stock on DetalleCotizacion.ID_Existencia = Stock.ID_Existencia inner join Producto on Stock.ID_Producto = Producto.ID_Producto Where CotizacionVenta.ID_Cotizacion =" + Caja.idCoti;
                 SqlDataSource2.DataBind();
+            }
+            else
+            {
+                GridView1.Visible = true;
+                GridView2.Visible = false;
+                SqlDataSource1.SelectParameters["idVenta"].DefaultValue = Caja.msj;
+                SqlDataSource1.DataBind();
             }
         }
         decimal subtotal, descuento, total;
