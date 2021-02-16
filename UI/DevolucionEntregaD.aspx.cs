@@ -12,7 +12,7 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Home.Mensaje = "Cambio por devolucion";
+            Digitador.Mensaje = "Cambio por devolucion";
         }
 
         protected void OnClick_LinkButton1(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace UI
             SqlDataSource10.UpdateParameters["ID_Existencia"].DefaultValue = ((Label)tabla.FindControl("Label7")).Text.ToString();
             SqlDataSource10.Update();
 
-            Response.Redirect("DevolucionEntrega.aspx");
+            Response.Redirect("DevolucionEntregaD.aspx");
 
         }
         string precioProducto;
@@ -50,7 +50,7 @@ namespace UI
             GridViewRow tabla = (GridViewRow)(((LinkButton)sender).Parent.Parent);
             SqlDataSource1.UpdateParameters["ID_DevPro"].DefaultValue = ((Label)tabla.FindControl("Label1")).Text.ToString();
             SqlDataSource1.Update();
-            Response.Redirect("DevolucionEntrega.aspx");
+            Response.Redirect("DevolucionEntregaD.aspx");
         }
     }
 }

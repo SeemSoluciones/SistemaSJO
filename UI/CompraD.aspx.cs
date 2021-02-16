@@ -21,7 +21,8 @@ namespace UI
         protected void Page_Load(object sender, EventArgs e)
         {
             TextBox2.Text = DateTime.Now.ToString();
-            Home.Mensaje = "Ventana compras";
+           Digitador.Mensaje = "Ventana compras";
+      
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -215,7 +216,7 @@ namespace UI
                     SqlDataSource9.InsertParameters["ID_Compra"].DefaultValue = msj;
                     SqlDataSource9.Insert();
                 }
-                Response.Redirect("Compra.aspx");
+                Response.Redirect("CompraD.aspx");
             }
             //}
             //    catch (Exception)
@@ -288,7 +289,7 @@ namespace UI
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Compra.aspx");
+            Response.Redirect("CompraD.aspx");
         }
 
         protected void DropDownListCat_SelectedIndexChanged1(object sender, EventArgs e)

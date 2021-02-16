@@ -149,6 +149,8 @@
                             <li><a href="StockM.aspx"><i class="fa fa-circle-o"></i>Productos bajos </a></li>
                             <li><a href="DevProProD.aspx"><i class="fa fa-circle-o"></i>Devolucion a proveedores </a></li>
                              <li><a href="DevolucionEntregaD.aspx"><i class="fa fa-circle-o"></i>Cambios por devolucion </a></li>
+                            <li><a href="PagoAproveedorD.aspx"><i class="fa fa-circle-o"></i>Pago a proveedores</a></li>
+                              <li><a href="CategoriaB.aspx"><i class="fa fa-circle-o"></i>Categorias</a></li>
                         </ul>
                     </li>
                     
@@ -206,11 +208,9 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-       <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Tel: 42543965 / 57219147</b>
-            </div>
-            <strong>Copyright &copy; 2014-2019 <a>SEEM Soluciones tecnólogicas.</a>.</strong> All rights
+          <footer class="main-footer">
+           
+            <strong>Copyright &copy; 2014-2019 <a>AUTOREPUESTOS SAN JUAN, SAN JUAN OST.</a>.</strong> All rights
     reserved.
         </footer>
 

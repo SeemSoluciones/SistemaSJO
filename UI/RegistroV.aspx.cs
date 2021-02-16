@@ -16,7 +16,7 @@ namespace UI
         string idUser;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Home.Mensaje = "Ventana Registro";
+            Vendedor.Mensaje = "Ventana Registro";
             string idEmp;
             idEmp = Session["IdEmpleado"].ToString();
             tabla = datos.BuscarUsuario2(Convert.ToInt32(idEmp));

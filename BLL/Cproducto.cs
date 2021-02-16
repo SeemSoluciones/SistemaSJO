@@ -580,11 +580,11 @@ namespace BLL
         #endregion
 
         #region
-        public string InsertarEstdos(int idVenta, int idTienda)
+        public string InsertarEstdos(int idVenta, int idTienda, bool estadoBodega)
         {
             try
             {
-                PROVEEDOR.InsertEstados(idVenta, idTienda);
+                PROVEEDOR.InsertEstados(idVenta, idTienda, estadoBodega);
                 return "Datos ingresados correctamente";
 
             }

@@ -98,6 +98,7 @@
                   <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" ReadOnly="True" />
                   <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
                   <asp:BoundField DataField="PrecioUnitario" HeaderText="PrecioUnitario" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}" />
+                   <asp:BoundField DataField="Descuento" HeaderText="Descuento" SortExpression="Descuento" DataFormatString="{0:0.00}" />
                   <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
                 </Columns>
                 <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
@@ -109,7 +110,7 @@
                 <SortedDescendingCellStyle BackColor="#E5E5E5" />
                 <SortedDescendingHeaderStyle BackColor="#242121" />
             </asp:GridView>
-          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT DetalleVenta.Cantidad, Producto.ID_Producto AS ID, Producto.Descripcion, DetalleVenta.PrecioUnitario, DetalleVenta.Total FROM DetalleVenta INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Stock ON DetalleVenta.ID_Existencia = Stock.ID_Existencia INNER JOIN Producto ON Stock.ID_Producto = Producto.ID_Producto WHERE (Venta.ID_Venta = @idVenta)">
+          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="SELECT DetalleVenta.Cantidad, Producto.ID_Producto AS ID, Producto.Descripcion, DetalleVenta.PrecioUnitario,((DetalleVenta.PrecioUnitario * DetalleVenta.Cantidad ) - DetalleVenta.Total) as Descuento, DetalleVenta.Total FROM DetalleVenta INNER JOIN Venta ON DetalleVenta.ID_Venta = Venta.ID_Venta INNER JOIN Stock ON DetalleVenta.ID_Existencia = Stock.ID_Existencia INNER JOIN Producto ON Stock.ID_Producto = Producto.ID_Producto WHERE (Venta.ID_Venta = @idVenta)">
               <SelectParameters>
                   <asp:Parameter Name="idVenta"></asp:Parameter>
               </SelectParameters>
@@ -118,10 +119,11 @@
             <table class="table table-striped">
             <asp:GridView ID="GridView2" CssClass="table table-responsive table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" OnRowDataBound="GridView1_RowDataBound" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" Visible="False" >
                 <Columns>
-                                <asp:BoundField DataField="Cantidad" HeaderText="Cant" ReadOnly="True" SortExpression="Codigo" />
+                                <asp:BoundField DataField="Cantidad" HeaderText="Cant" ReadOnly="True" SortExpression="Cantidad" />
                                 <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID"  ReadOnly="True" />
                                 <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
                                 <asp:BoundField DataField="Precio" HeaderText="Precio" SortExpression="Precio" DataFormatString="{0:0.00}"/>
+                                <asp:BoundField DataField="Descuento" HeaderText="Descuento" SortExpression="Descuento" DataFormatString="{0:0.00}" />
                                 <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:0.00}" />
                 </Columns>
                 <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
@@ -133,7 +135,11 @@
                 <SortedDescendingCellStyle BackColor="#E5E5E5" />
                 <SortedDescendingHeaderStyle BackColor="#242121" />
             </asp:GridView>
-       <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand=""></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" SelectCommand="Select DetalleCotizacion.Cantidad, Producto.ID_Producto AS ID, Producto.Descripcion, DetalleCotizacion.Precio, ((DetalleCotizacion.Precio * DetalleCotizacion.Cantidad) -  DetalleCotizacion.Total) as Descuento, DetalleCotizacion.Total from DetalleCotizacion inner join CotizacionVenta on DetalleCotizacion.ID_Cotizacion = CotizacionVenta.ID_Cotizacion inner join Stock on DetalleCotizacion.ID_Existencia = Stock.ID_Existencia inner join Producto on Stock.ID_Producto = Producto.ID_Producto Where CotizacionVenta.ID_Cotizacion = @ID_Cotizacion ">
+                    <SelectParameters>
+                        <asp:Parameter Name="ID_Cotizacion"></asp:Parameter>
+                    </SelectParameters>
+                </asp:SqlDataSource>
        </table>
       </div>
       <!-- /.col -->

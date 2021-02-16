@@ -115,6 +115,10 @@ namespace UI
                 {
                     Response.Redirect("CajaCobrador.aspx");
                 }
+                else if(tabla.Rows[0][4].ToString().Trim() == "Chequeador")
+                {
+                    Response.Redirect("AsignacionMotorista.aspx");
+                }
                 Response.Redirect(strRedirect, true);
             }
             else

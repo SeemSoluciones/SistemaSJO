@@ -99,6 +99,7 @@
   <ItemGroup>
     <Content Include="AgreCajas.aspx" />
     <Content Include="AgregarCaja.aspx" />
+    <Content Include="AsignacionMotorista.aspx" />
     <Content Include="Autorizacion.aspx" />
     <Content Include="CajaChica.aspx" />
     <Content Include="CajaCobrador.aspx" />
@@ -117,6 +118,7 @@
     <Content Include="DevolucionV.aspx" />
     <Content Include="DevProPro.aspx" />
     <Content Include="DevProProD.aspx" />
+    <Content Include="DevProProR.aspx" />
     <Content Include="DevProProV.aspx" />
     <Content Include="EditarFoto.aspx" />
     <Content Include="EncargoC.aspx" />
@@ -7222,6 +7224,7 @@
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\UI.dll.config" />
+    <Content Include="PagoAproveedorD.aspx" />
     <Content Include="PagoAproveedores.aspx" />
     <Content Include="ProductoD.aspx" />
     <Content Include="ProveedorD.aspx" />
@@ -7267,6 +7270,7 @@
     <Content Include="StockD.aspx" />
     <Content Include="StockM.aspx" />
     <Content Include="Vendedor.Master" />
+    <Content Include="Revisable.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7302,6 +7306,13 @@
     </Compile>
     <Compile Include="AgregarCaja.aspx.designer.cs">
       <DependentUpon>AgregarCaja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AsignacionMotorista.aspx.cs">
+      <DependentUpon>AsignacionMotorista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AsignacionMotorista.aspx.designer.cs">
+      <DependentUpon>AsignacionMotorista.aspx</DependentUpon>
     </Compile>
     <Compile Include="Autorizacion.aspx.cs">
       <DependentUpon>Autorizacion.aspx</DependentUpon>
@@ -7469,6 +7480,13 @@
     <Compile Include="DevProProD.aspx.designer.cs">
       <DependentUpon>DevProProD.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DevProProR.aspx.cs">
+      <DependentUpon>DevProProR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DevProProR.aspx.designer.cs">
+      <DependentUpon>DevProProR.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DevProProV.aspx.cs">
       <DependentUpon>DevProProV.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7561,6 +7579,13 @@
       <DependentUpon>ImpresionCredito.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListaS.cs" />
+    <Compile Include="PagoAproveedorD.aspx.cs">
+      <DependentUpon>PagoAproveedorD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagoAproveedorD.aspx.designer.cs">
+      <DependentUpon>PagoAproveedorD.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PagoAproveedores.aspx.cs">
       <DependentUpon>PagoAproveedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7797,6 +7822,13 @@
     </Compile>
     <Compile Include="ReporteVentaTienda.aspx.designer.cs">
       <DependentUpon>ReporteVentaTienda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Revisable.Master.cs">
+      <DependentUpon>Revisable.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Revisable.Master.designer.cs">
+      <DependentUpon>Revisable.Master</DependentUpon>
     </Compile>
     <Compile Include="Stock.aspx.cs">
       <DependentUpon>Stock.aspx</DependentUpon>

@@ -1,13 +1,12 @@
-﻿
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="UI.Home" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Revisable.master.cs" Inherits="UI.Revisable" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head runat="server">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Ar San Juan | Inicio</title>
+    <title>Chequeo | San Juan </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
     <!-- Bootstrap 3.3.7 -->
@@ -46,7 +45,7 @@
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
    
     <div class="wrapper">
-         <form id="form1" runat="server">
+           <form id="form1" runat="server">
         <header class="main-header">
             <!-- Logo -->
             <a href="PanelPricipal.aspx" class="logo">
@@ -90,7 +89,6 @@
                                 </li>
                                 <!-- Menu Body -->
                                 <!-- Menu Footer-->
-
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="Registro.aspx" class="btn btn-default btn-flat">Cambiar Contraseña</a>
@@ -98,7 +96,7 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-right">
-                                        <asp:Button ID="Button2" runat="server" Text="Salir" OnClick="Button2_Click" />
+                                <asp:Button ID="Button2" runat="server" Text="Salir" OnClick="Button2_Click" />
                                     </div>
                                 </li>
                             </ul>
@@ -134,163 +132,18 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
                     <li>
-                        <a href="PanelPricipal.aspx">
+                        <a href="AsignacionMotorista.aspx">
                             <i class="fa fa-dashboard"></i><span>Panel Principal</span>
                         </a>
                     </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-tags"></i>
-                            <span>Ventas</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="Encargos.aspx"><i class="fa fa-circle-o"></i>Encargo de productos</a></li>
-                            <li><a href="Caja.aspx"><i class="fa fa-circle-o"></i>Nueva venta</a></li>
-                            <li><a href="Devolucion.aspx"> <i class=" fa fa-circle-o"></i>Devoluciones</a> </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-laptop"></i>
-                            <span>Inventario</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="Compra.aspx"><i class="fa fa-circle-o"></i>Realizar compras</a></li>
-                            <li><a href="Stock.aspx"><i class="fa fa-circle-o"></i>Stock </a></li>
-                            <li><a href="Productos.aspx"><i class="fa fa-circle-o"></i>Productos</a></li>
-                            <li><a href="PagoAproveedores.aspx"><i class="fa fa-circle-o"></i>Pago a Proveedores</a></li>
-                            <li><a href="Proveedor.aspx"><i class="fa fa-circle-o"></i>Proveedores</a></li>
-                            <li><a href="Categoria.aspx"><i class="fa fa-circle-o"></i>Categoria</a></li>
-                            <li><a href="StockMinimo.aspx"><i class="fa fa-circle-o"></i>Productos bajos </a></li>
-                            <li><a href="DevProPro.aspx"><i class="fa fa-circle-o"></i>Devolucion a proveedor</a> </li>
-                             <li><a href="DevolucionEntrega.aspx"><i class="fa fa-circle-o"></i>Cambio por devolucion</a> </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-users"></i><span>Clientes</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="Cliente.aspx"><i class="fa fa-circle-o"></i>CRUD Clientes</a></li>
-                            <li><a href="Credito2.aspx"><i class="fa fa-circle-o"></i>Creditos</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-table"></i><span>Administración</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="Tiendas.aspx"><i class="fa fa-circle-o"></i>Tiendas</a></li>
-                            <li><a href="TipoDePago.aspx"><i class="fa fa-circle-o"></i>Tipo pago</a></li>
-                            <li><a href="Empleados.aspx"><i class="fa fa-circle-o"></i>Empleados</a> </li>
-                            <li> <a href="Exportacion.aspx"><i class="fa fa-circle-o"></i>Exportacion</a></li>
-                            <li> <a href="CajaChica.aspx"><i class="fa fa-circle-o"></i>Caja chica</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-money"></i>  <span>Caja</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li> <a href="CambiosEnCaja.aspx"><i class="fa fa-circle-o"></i>Ingresos y egresos monetarios</a></li>
-                            <li> <a href="AgreCajas.aspx"><i class="fa fa-circle-o"></i>Cajas monetarias</a></li>
-                            <li> <a href="AgregarCaja.aspx"><i class="fa fa-circle-o"></i>Conceptos</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                       <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>Reportes</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                          <li class="treeview">
-                              <a href="#">
-                            <i class="fa fa-bank"></i>
-                            <span>Ventas</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                               <ul class="treeview-menu">
-                                 <li><a href="ReporteVentaTienda.aspx"><i class="fa fa-circle-o"></i>Venta General</a></li>
-                                   <li><a href="ReporteVentaEmple.aspx"><i class="fa fa-circle-o"></i>Venta Por Empleado</a></li>
-                                   <li><a href="ReporteVentasTarjeta.aspx"><i class="fa fa-circle-o"></i>Venta Tipo Pago</a></li>
-                                  <%-- <li><a href="#"><i class="fa fa-circle-o"></i>Venta Por Articulo</a></li>--%>
-                                   <%--<li><a href="ReporteVentaTienda.aspx"><i class="fa fa-circle-o"></i>Venta Por Tienda</a></li>--%>
-                                   <li><a href="ReporteVentasMarca.aspx"><i class="fa fa-circle-o"></i>Venta Por Marca</a></li>
-                                  <%-- <li><a href="ReporteVentaRubro.aspx"><i class="fa fa-circle-o"></i>Venta Por Rubro</a></li>--%>
-                                  <%-- <li><a href="Descuento8.aspx"><i class="fa fa-circle-o"></i>Descueto 8%</a></li>--%>
-                                   
-                            </ul>
-                          </li> 
-
-
-                            <li class="treeview">
-                              <a href="#">
-                            <i class="fa fa-money"></i>
-                            <span>Compras</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                               <ul class="treeview-menu">
-                                 <li><a href="ReporteCompras.aspx"><i class="fa fa-circle-o"></i>Compra General</a></li>
-                                  <%-- <li><a href="ReporteCompraArticulos2.aspx"><i class="fa fa-circle-o"></i>Compra Por Articulo</a></li>--%>
-                                   <li><a href="ReporteCompraArticulos2.aspx"><i class="fa fa-circle-o"></i>Compra Por Proveedor</a></li>
-                                  <%-- <li><a href="#"><i class="fa fa-circle-o"></i>Venta Por Articulo</a></li>--%>
-                                   <li><a href="ReporteCompraPago.aspx"><i class="fa fa-circle-o"></i>Compra Por Pagos</a></li>
-                                   
-                                   
-                            </ul>
-                          </li>
-
-
-                            <li class="treeview">
-                              <a href="#">
-                            <i class="fa fa-th"></i>
-                            <span>Stock</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                               <ul class="treeview-menu">
-                                 <li><a href="StockCeroAdmin.aspx"><i class="fa fa-circle-o"></i>Stock 0</a></li>
-                                   <li><a href="ReporteStockTienda.aspx"><i class="fa fa-circle-o"></i>Stock Minimo</a></li>
-                                   
-                                   
-                                   
-                            </ul>
-                          </li>
-
-
-                            </ul>
-
-                    </li>
-
-                   
-
-                    <li>
+                       <li><a href="DevProPro.aspx"><i class="fa fa-circle-o"></i>Devolucion a proveedor</a> </li>
+               
+                         <li>
                         <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Salir</asp:LinkButton>
                         
                     </li>
+                        
+                  
                     
                 </ul>
             </section>
@@ -314,16 +167,17 @@
            
               <section class="content">
                 <!-- Small boxes (Stat box) -->
-           
+         
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
           
-           </form>
+          
       </section>
+             </form>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-             <footer class="main-footer">
+         <footer class="main-footer">
            
             <strong>Copyright &copy; 2014-2019 <a>AUTOREPUESTOS SAN JUAN, SAN JUAN OST.</a>.</strong> All rights
     reserved.
@@ -561,4 +415,3 @@
 </body>
    
 </html>
-

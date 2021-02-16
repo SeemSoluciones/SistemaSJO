@@ -98,8 +98,8 @@
                                 <div class="col-sm-1">
                               
                               <button type="button" class="btn btn-social-icon btn-success" data-widget="collapse"><i class="fa fa-plus-square"></i> </button>
-                                        <button type="button" class="btn btn-social-icon btn-warning"><a href="Productos.aspx" target="_blank"><i class="fa fa-product-hunt"></i></a> </button>
-                                     <button type="button" class="btn btn-social-icon btn-warning"><a href="Stock.aspx" target="_blank"><i class="fa fa-archive"></i></a> </button>
+                                        <button type="button" class="btn btn-social-icon btn-warning"><a href="ProductoD.aspx" target="_blank"><i class="fa fa-product-hunt"></i></a> </button>
+                                     <button type="button" class="btn btn-social-icon btn-warning"><a href="StockD.aspx" target="_blank"><i class="fa fa-archive"></i></a> </button>
                                </div>
                         
                               
@@ -108,7 +108,7 @@
                     <div class="box-body">
                       
                             <div class="table table-responsive">
-                                <asp:GridView ID="GridView2" runat="server" CssClass="table table-responsive-lg table-hover" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
+                                <asp:GridView ID="GridView2" runat="server" CssClass="table table-responsive-lg table-striped" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
                                     <Columns>
                                         
                                         <asp:BoundField DataField="ID_Producto" HeaderText="ID" ReadOnly="True" SortExpression="ID_Producto" InsertVisible="False" />
@@ -119,7 +119,7 @@
                                         <asp:BoundField DataField="Categoria" HeaderText="Categoria" SortExpression="Categoria" ReadOnly="True" />
                                         <asp:BoundField DataField="MarcaP" HeaderText="Marca Prod" SortExpression="MarcaP" />
                                         <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio C" SortExpression="PrecioUnitario" DataFormatString="{0:0.00}" />
-                                        <asp:BoundField DataField="PrecioVenta" HeaderText="Precio V" SortExpression="PrecioVenta" DataFormatString="{0:0.00}" />
+                                        <asp:BoundField DataField="PrecioVenta" HeaderText="X" ItemStyle-ForeColor="White" SortExpression="PrecioVenta" DataFormatString="{0:0.00}" />
                                         <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" ItemStyle-Font-Bold="true" ItemStyle-BorderColor="LightGreen" />
                                          <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
                                         <asp:BoundField DataField="Medida" HeaderText="Medida" SortExpression="Medida" />

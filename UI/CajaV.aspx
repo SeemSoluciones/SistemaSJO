@@ -4,18 +4,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-  <%--  <script>
-
-        function validarPrecio() {
-            let precioProducto = document.getElementById('<%=TextBox9.Text %>').value;
-            if(precioProducto)
-        }
-         
-
-    </script>--%>
-
     <style type="text/css">
         .fondo{
             background-color:black;
@@ -103,7 +91,7 @@
                                         <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
                                         <asp:BoundField DataField="LISTANIOP" HeaderText="Rubro-Año" SortExpression="LISTANIOP" ReadOnly="True" />
                                         <asp:BoundField DataField="MarcaP" HeaderText="Marca Prod" SortExpression="MarcaP" />
-                                        <asp:BoundField  HeaderText="x" SortExpression="x"  />
+                                        <asp:BoundField HeaderText="x" SortExpression="x" />
                                         <asp:BoundField DataField="PrecioVenta" HeaderText="Precio V" SortExpression="PrecioVenta" DataFormatString="{0:0.00}"  />
                                         <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" SortExpression="Cantidad" ItemStyle-Font-Bold="true" ItemStyle-Font-Size="Large" ItemStyle-BorderColor="LightGreen" />
                                          <asp:BoundField DataField="Ubicacion" HeaderText="Ubicacion" SortExpression="Ubicacion" />
@@ -136,7 +124,7 @@
                         <asp:ListItem Value="00">Elija una opcion...</asp:ListItem>
                         
                     </asp:DropDownList>
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource9" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT ID_Cotizacion, CAST(ID_Cotizacion AS char) + ' ~ ' + Nombre AS Nombre FROM CotizacionVenta WHERE (Estado = 1)"></asp:SqlDataSource>
+                    <asp:SqlDataSource runat="server" ID="SqlDataSource9" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT ID_Cotizacion, 'ID Cotizacion' + ': '+ CAST(ID_Cotizacion as nvarchar) + ' - ' + Nombre + ' = '  + (CASE WHEN ID_Empleado > 1 THEN 'En condicion' ELSE 'Libre' END) As Nombre FROM CotizacionVenta WHERE (Estado = 1)"></asp:SqlDataSource>
                     <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT Empleado.ID_Empleado, Empleado.Nombre + ' ' + Empleado.Apellidos AS Nombre FROM Empleado INNER JOIN CotizacionVenta ON Empleado.ID_Empleado = CotizacionVenta.ID_Empleado WHERE (CotizacionVenta.ID_Cotizacion = @ID_Cotizacion)">
                         <SelectParameters>
                             <asp:Parameter Name="ID_Cotizacion"></asp:Parameter>
@@ -151,10 +139,10 @@
             </div>
                 <div class="col-xs-4">
                     <div class="form-group">
-                        <label>Motoristas (Habilitar motoristas)</label>
-                        <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="True" />
-                        <asp:DropDownList ID="DropDownList9" runat="server" CssClass="form-control select2-dropdown" DataSourceID="SqlDataSource11" DataTextField="Nombre" DataValueField="ID_Empleado" Enabled="False" AppendDataBoundItems="True">
-                            <asp:ListItem Value="0">Elje una opcion</asp:ListItem>
+                        <label>Enviar para asignar motorista.</label>
+                        <asp:CheckBox ID="CheckBox1" runat="server" />
+                        <asp:DropDownList ID="DropDownList9" runat="server" BackColor="White" ForeColor="White" CssClass="form-control select2-dropdown" DataSourceID="SqlDataSource11" DataTextField="Nombre" DataValueField="ID_Empleado" Enabled="False" AppendDataBoundItems="True">
+                            <asp:ListItem Value="0">______________</asp:ListItem>
                         </asp:DropDownList>
                         <asp:SqlDataSource runat="server" ID="SqlDataSource11" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT Empleado.ID_Empleado, Empleado.Nombre + ' ' + Empleado.Apellidos AS Nombre FROM Empleado INNER JOIN Usuario ON Empleado.ID_Usuario = Usuario.ID_Usuario INNER JOIN Rol ON Usuario.ID_Rol = Rol.ID_Rol WHERE (Empleado.Estado = 1) AND (Empleado.ID_Tienda = @ID_Tienda) AND (Rol.Rol = 'Motorista' OR Rol.Rol = 'MOTORISTA')">
                             <SelectParameters>
@@ -497,6 +485,6 @@ WHERE (DevProPro.Estado = 1)	AND (Stock.ID_Existencia = @ID_Existencia)">
             $(this).select();
         });
     </script>
+   
 
-  
 </asp:Content>

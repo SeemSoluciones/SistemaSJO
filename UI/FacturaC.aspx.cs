@@ -18,19 +18,41 @@ namespace UI
             nit.Text = CajaV.nit;
             Dire.Text = CajaV.ciudad;
             Label7.Text = CajaV.Pago;
-            SqlDataSource1.SelectCommand = "Select DetalleVenta.Cantidad, DetalleVenta.Codigo, Producto.Codigo2, Producto.Producto + ' ' + Producto.Descripcion as Producto, DetalleVenta.PrecioUnitario , DetalleVenta.Total from venta inner join DetalleVenta on Venta.ID_Venta = DetalleVenta.ID_Venta inner join Producto on DetalleVenta.Codigo = Producto.Codigo Where Venta.ID_Venta =" + CajaV.msj;
-            SqlDataSource1.DataBind();
+            Label9.Text = CajaV.motorista;
+            Label8.Text = Session["Nombre"].ToString();
+            if (CajaV.TipoFactura == 1)
+            {
+                GridView1.Visible = true;
+                GridView2.Visible = false;
+                SqlDataSource1.SelectParameters["idVenta"].DefaultValue = CajaV.msj;
+                SqlDataSource1.DataBind();
+            }
+            else if (CajaV.TipoFactura == 2)
+            {
+                GridView2.Visible = true;
+                GridView1.Visible = false;
+                SqlDataSource2.SelectParameters["ID_Cotizacion"].DefaultValue = CajaV.idCoti;
+                SqlDataSource2.DataBind();
+            }
+            else
+            {
+                GridView1.Visible = true;
+                GridView2.Visible = false;
+                SqlDataSource1.SelectParameters["idVenta"].DefaultValue = CajaV.msj;
+                SqlDataSource1.DataBind();
+            }
         }
         decimal subtotal, descuento, total;
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                subtotal = subtotal + Convert.ToDecimal(e.Row.Cells[5].Text);
-                //descuento = descuento + Convert.ToDecimal(e.Row.Cells[4].Text);
+
+                subtotal = subtotal + (Convert.ToDecimal(e.Row.Cells[0].Text) * Convert.ToDecimal(e.Row.Cells[3].Text));
+                descuento = descuento + Convert.ToDecimal(e.Row.Cells[4].Text);
                 //total = subtotal - descuento;
             }
-            descuento = Caja.descuentoFactura;
+            // descuento = descuento;
             total = subtotal - descuento;
             Label1.Text = subtotal.ToString();
             Label2.Text = descuento.ToString();

@@ -17,7 +17,7 @@ namespace UI
             {
 
             }
-
+            Bodegero.Mensaje = "Stock";
         }
 
         protected void Button1_Click(object sender, EventArgs e)

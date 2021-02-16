@@ -33,7 +33,7 @@ namespace UI
             {
                 GridView2.Visible = true;
                 GridView1.Visible = false;
-                SqlDataSource2.SelectCommand = "Select DetalleCotizacion.Cantidad, Producto.ID_Producto AS ID, Producto.Descripcion, DetalleCotizacion.Precio, DetalleCotizacion.Total from DetalleCotizacion inner join CotizacionVenta on DetalleCotizacion.ID_Cotizacion = CotizacionVenta.ID_Cotizacion inner join Stock on DetalleCotizacion.ID_Existencia = Stock.ID_Existencia inner join Producto on Stock.ID_Producto = Producto.ID_Producto Where CotizacionVenta.ID_Cotizacion =" + Caja.idCoti;
+                SqlDataSource2.SelectParameters[".ID_Cotizacion "].DefaultValue = Caja.idCoti;
                 SqlDataSource2.DataBind();
             }
             else
@@ -49,11 +49,12 @@ namespace UI
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                subtotal = subtotal + Convert.ToDecimal(e.Row.Cells[4].Text);
-                //descuento = descuento + Convert.ToDecimal(e.Row.Cells[4].Text);
+              
+                subtotal = subtotal + (Convert.ToDecimal(e.Row.Cells[0].Text) * Convert.ToDecimal(e.Row.Cells[3].Text));
+                descuento = descuento + Convert.ToDecimal(e.Row.Cells[4].Text);
                 //total = subtotal - descuento;
             }
-            descuento = Caja.descuentoFactura;
+           // descuento = descuento;
             total = subtotal - descuento;
             Label1.Text = subtotal.ToString();
             Label2.Text = descuento.ToString();

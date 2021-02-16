@@ -15,7 +15,7 @@ namespace UI
         Cproducto Datos = new Cproducto();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Bodegero.Mensaje = "Ventana Categorias";
+           Digitador.Mensaje = "Ventana Categorias";
         }
 
         protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
@@ -97,7 +97,7 @@ namespace UI
                             string ms = "";
                             ms = Datos.InsertaModelo(TextBox2.Text, Convert.ToInt32(DropDownList2.SelectedValue));
                             Response.Write("<script>alert('" + ms + "')</script>");
-                            Response.Redirect("Categoria.aspx");
+                            Response.Redirect("CategoriaB.aspx");
                             borrar();
                         }
                     }
@@ -132,7 +132,7 @@ namespace UI
                     string ms = "";
                     ms = Datos.InsertaMarca(TextBox5.Text);
                     Response.Write("<script>alert('" + ms + "')</script>");
-                    Response.Redirect("Categoria.aspx");
+                    Response.Redirect("CategoriaB.aspx");
                     borrar();
                 }
                 else
@@ -154,7 +154,7 @@ namespace UI
                 if (TextBox3.Text != "")
                 {
                     Datos.InsertarMarcaProd(TextBox3.Text);
-                    Response.Redirect("Categoria.aspx");
+                    Response.Redirect("CategoriaB.aspx");
                     borrar();
                 }
                 else
@@ -175,7 +175,7 @@ namespace UI
                 if (TextBox4.Text != "")
                 {
                     Datos.InsertarMedida(TextBox4.Text);
-                    Response.Redirect("Categoria.aspx");
+                    Response.Redirect("CategoriaB.aspx");
                     borrar();
                 }
                 else

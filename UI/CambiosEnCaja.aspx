@@ -41,7 +41,7 @@
             </div>
             <div class="box-footer clearfix">
                 <asp:Button ID="Button1" runat="server"  Text="Aceptar" CssClass="btn btn-success pull-right" Width="200" OnClick="Button1_Click" />
-                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" InsertCommand="INSERT INTO CajaEntrada(MontoInicial, Fecha, ID_Caja) VALUES (@MontoInicial, @Fecha, @ID_Caja)" SelectCommand="SELECT CajaEntrada.ID_CEntrada, CajaEntrada.MontoInicial, CajaEntrada.Fecha, Caja.Caja FROM CajaEntrada INNER JOIN Caja ON CajaEntrada.ID_Caja = Caja.ID_Caja WHERE (CajaEntrada.Fecha &gt;= DATEADD(day, - 30, GETDATE()))">
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" InsertCommand="INSERT INTO CajaEntrada(MontoInicial, Fecha, ID_Caja) VALUES (@MontoInicial, @Fecha, @ID_Caja)" SelectCommand="SELECT CajaEntrada.ID_CEntrada, CajaEntrada.MontoInicial, CajaEntrada.Fecha, Caja.Caja FROM CajaEntrada INNER JOIN Caja ON CajaEntrada.ID_Caja = Caja.ID_Caja WHERE (CajaEntrada.Fecha = CONVERT(DATE,GETDATE()))">
                     <InsertParameters>
                         <asp:Parameter Name="MontoInicial" />
                         <asp:Parameter Name="Fecha" />
@@ -122,7 +122,7 @@
             </div>
             <div class="box-footer clearfix">
              <asp:Button ID="Button2" runat="server"  Text="Aceptar" CssClass="btn btn-warning pull-right" Width="200" OnClick="Button2_Click" />
-                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" InsertCommand="INSERT INTO CajaSalidas(MontoSalida, ID_Concepto, Fecha, ID_Caja, Informacion) VALUES (@MontoSalida, @ID_Concepto, @Fecha, @ID_Caja, @Informacion)" SelectCommand="SELECT CajaSalidas.ID_CSalida, CajaSalidas.MontoSalida, CajaSalidas.Fecha, Conceptos.Concepto, CajaSalidas.Informacion ,Caja.Caja FROM CajaSalidas INNER JOIN Conceptos ON CajaSalidas.ID_Concepto = Conceptos.ID_Conceptos INNER JOIN Caja ON CajaSalidas.ID_Caja = Caja.ID_Caja WHERE (CajaSalidas.Fecha &gt;= DATEADD(day, - 30, GETDATE()))">
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BDautorepuestoConnectionString %>" InsertCommand="INSERT INTO CajaSalidas(MontoSalida, ID_Concepto, Fecha, ID_Caja, Informacion) VALUES (@MontoSalida, @ID_Concepto, @Fecha, @ID_Caja, @Informacion)" SelectCommand="SELECT CajaSalidas.ID_CSalida, CajaSalidas.MontoSalida, CajaSalidas.Fecha, Conceptos.Concepto, CajaSalidas.Informacion ,Caja.Caja FROM CajaSalidas INNER JOIN Conceptos ON CajaSalidas.ID_Concepto = Conceptos.ID_Conceptos INNER JOIN Caja ON CajaSalidas.ID_Caja = Caja.ID_Caja WHERE (CajaSalidas.Fecha = CONVERT(DATE,GETDATE()))">
                     <InsertParameters>
                         <asp:Parameter Name="MontoSalida" />
                         <asp:Parameter Name="ID_Concepto" />

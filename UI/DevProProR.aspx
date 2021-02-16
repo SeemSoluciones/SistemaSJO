@@ -1,9 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vendedor.Master" AutoEventWireup="true" CodeBehind="DevProProV.aspx.cs" Inherits="UI.DevProProV" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Revisable.Master" AutoEventWireup="true" CodeBehind="DevProProR.aspx.cs" Inherits="UI.DevProProR" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-
     
     <div class="content-head">
 
@@ -19,7 +17,7 @@
                         <asp:Label runat="server" Text='<%# Eval("ID_DevProPro") %>' ID="Label1"></asp:Label>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("ID_DevProPro") %>' ID="Label1"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("ID_DevProPro") %>' ID="Label2"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Factura" SortExpression="Factura">
@@ -27,7 +25,7 @@
                         <asp:TextBox runat="server" Text='<%# Bind("Factura") %>' ID="TextBox1"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("Factura") %>' ID="Label2"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("Factura") %>' ID="Label3"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Motivo" SortExpression="Motivo">
@@ -35,7 +33,7 @@
                         <asp:TextBox runat="server" Text='<%# Bind("Motivo") %>' ID="TextBox2"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("Motivo") %>' ID="Label3"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("Motivo") %>' ID="Label4"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Cantidad" SortExpression="Cantidad">
@@ -43,7 +41,7 @@
                         <asp:TextBox runat="server" Text='<%# Bind("Cantidad") %>' ID="TextBox3"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("Cantidad") %>' ID="Label4"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("Cantidad") %>' ID="Label5"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="P / V" SortExpression="PrecioVenta">
@@ -51,15 +49,15 @@
                         <asp:TextBox runat="server" Text='<%# Bind("PrecioVenta") %>' ID="TextBox4"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("PrecioVenta") %>' ID="Label5"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("PrecioVenta") %>' ID="Label6"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Descripcion" SortExpression="Descripcion">
                     <EditItemTemplate>
-                        <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="Label2"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="Label7"></asp:Label>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("Descripcion") %>' ID="Label6"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("Descripcion") %>' ID="Label8"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Proveedor" SortExpression="Proveedor">
@@ -67,49 +65,49 @@
                         <asp:TextBox runat="server" Text='<%# Bind("Proveedor") %>' ID="TextBox5"></asp:TextBox>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("Proveedor") %>' ID="Label7"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("Proveedor") %>' ID="Label9"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="IDStock" InsertVisible="False" SortExpression="ID_Existencia">
                     <EditItemTemplate>
-                        <asp:Label runat="server" Text='<%# Eval("ID_Existencia") %>' ID="Label3"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Eval("ID_Existencia") %>' ID="Label10"></asp:Label>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("ID_Existencia") %>' ID="Label8"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("ID_Existencia") %>' ID="Label11"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="IDProveedor" InsertVisible="False" SortExpression="ID_Proveedor">
                     <EditItemTemplate>
-                        <asp:Label runat="server" Text='<%# Eval("ID_Proveedor") %>' ID="Label4"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Eval("ID_Proveedor") %>' ID="Label12"></asp:Label>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("ID_Proveedor") %>' ID="Label9"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("ID_Proveedor") %>' ID="Label13"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="IDCompra" InsertVisible="False" SortExpression="ID_Compra">
                     <EditItemTemplate>
-                        <asp:Label runat="server" Text='<%# Eval("ID_Compra") %>' ID="Label5"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Eval("ID_Compra") %>' ID="Label14"></asp:Label>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("ID_Compra") %>' ID="Label10"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("ID_Compra") %>' ID="Label15"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
 
 
                 <asp:TemplateField HeaderText="Cambio">
                     <ItemTemplate>
-                        <asp:LinkButton runat="server" Text="Cambio" Enabled="false" CommandName="Select" CausesValidation="False" ID="LinkButton1" OnClick="OnClick_LinkButton1" ></asp:LinkButton>
+                        <asp:LinkButton runat="server" Text="Cambio" CommandName="Select" CausesValidation="False" ID="LinkButton1" OnClick="OnClick_LinkButton1" OnClientClick="return confirm('Desea realizar la entrega del producto al provedor, para su posterior cambio de la misma');"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Comprar">
                     <ItemTemplate>
-                        <asp:LinkButton runat="server" Text="Comprar" Enabled="false" CommandName="Select" CausesValidation="false" ID="LinkButton2" OnClick="OnClick_LinkButton2"></asp:LinkButton>
+                        <asp:LinkButton runat="server" Text="Comprar" CommandName="Select" CausesValidation="false" ID="LinkButton2" OnClick="OnClick_LinkButton2" OnClientClick="return confirm('Desea realizar la re-comprar con el mismo precio que esta en el stock');"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Devolucion">
                     <ItemTemplate>
-                        <asp:LinkButton runat="server" Text="Devolucion" Enabled="false" CommandName="Select" CausesValidation="false" ID="LinkButton3" OnClick="OnClick_LinkButton3"></asp:LinkButton>
+                        <asp:LinkButton runat="server" Text="Devolucion" CommandName="Select" CausesValidation="false" ID="LinkButton3" OnClick="OnClick_LinkButton3" OnClientClick="return confirm('Desea realizar la entrega del producto sin realizar un registo, solamente eliminar de la lista? Aplica si hay devolucion del DINERO');"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

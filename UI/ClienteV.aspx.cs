@@ -25,7 +25,7 @@ namespace UI
                 string msj;
                 msj = Datos.InsertarCliente(Convert.ToInt32(TextBox1.Text), TextBox2.Text, TextBox4.Text, txtEdad.Text, Convert.ToInt32(txtTelefono.Text), Convert.ToInt32(TextBox5.Text), TextBox6.Text, TextBox7.Text,0);
 
-                Response.Redirect("Cliente.aspx");
+                Response.Redirect("ClienteV.aspx");
             }
             catch
             {

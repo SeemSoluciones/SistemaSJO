@@ -2,20 +2,9 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-      <link rel="stylesheet" href="assets/plugins/toastr/toastr.min.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-  <%--  <script>
-
-        function validarPrecio() {
-            let precioProducto = document.getElementById('<%=TextBox9.Text %>').value;
-            if(precioProducto)
-        }
-         
-
-    </script>--%>
-
+   
     <style type="text/css">
         .fondo{
             background-color:black;
@@ -136,7 +125,7 @@
                         <asp:ListItem Value="00">Elija una opcion...</asp:ListItem>
                         
                     </asp:DropDownList>
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource9" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT ID_Cotizacion, CAST(ID_Cotizacion AS char) + ' ~ ' + Nombre AS Nombre FROM CotizacionVenta WHERE (Estado = 1)"></asp:SqlDataSource>
+                    <asp:SqlDataSource runat="server" ID="SqlDataSource9" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="Select ID_Cotizacion, 'ID Cotizacion' + ': '+ CAST(ID_Cotizacion as nvarchar) + ' - ' + Nombre + ' = '  + (CASE WHEN ID_Empleado > 1 THEN 'En condicion' ELSE 'Libre' END) As Nombre FROM CotizacionVenta WHERE (Estado = 1)"></asp:SqlDataSource>
                     <asp:SqlDataSource ID="SqlDataSource12" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT Empleado.ID_Empleado, Empleado.Nombre + ' ' + Empleado.Apellidos AS Nombre FROM Empleado INNER JOIN CotizacionVenta ON Empleado.ID_Empleado = CotizacionVenta.ID_Empleado WHERE (CotizacionVenta.ID_Cotizacion = @ID_Cotizacion)">
                         <SelectParameters>
                             <asp:Parameter Name="ID_Cotizacion"></asp:Parameter>
@@ -151,10 +140,10 @@
             </div>
                 <div class="col-xs-4">
                     <div class="form-group">
-                        <label>Motoristas (Habilitar motoristas)</label>
-                        <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="True" />
-                        <asp:DropDownList ID="DropDownList9" runat="server" CssClass="form-control select2-dropdown" DataSourceID="SqlDataSource11" DataTextField="Nombre" DataValueField="ID_Empleado" Enabled="False" AppendDataBoundItems="True">
-                            <asp:ListItem Value="0">Elje una opcion</asp:ListItem>
+                        <label>Enviar para asignar motorista.</label>
+                        <asp:CheckBox ID="CheckBox1" runat="server" />
+                        <asp:DropDownList ID="DropDownList9" runat="server" BackColor="White" ForeColor="White" CssClass="form-control select2-dropdown" DataSourceID="SqlDataSource11" DataTextField="Nombre" DataValueField="ID_Empleado" Enabled="False" AppendDataBoundItems="True">
+                            <asp:ListItem Value="0">______________</asp:ListItem>
                         </asp:DropDownList>
                         <asp:SqlDataSource runat="server" ID="SqlDataSource11" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT Empleado.ID_Empleado, Empleado.Nombre + ' ' + Empleado.Apellidos AS Nombre FROM Empleado INNER JOIN Usuario ON Empleado.ID_Usuario = Usuario.ID_Usuario INNER JOIN Rol ON Usuario.ID_Rol = Rol.ID_Rol WHERE (Empleado.Estado = 1) AND (Empleado.ID_Tienda = @ID_Tienda) AND (Rol.Rol = 'Motorista' OR Rol.Rol = 'MOTORISTA')">
                             <SelectParameters>

@@ -12,7 +12,9 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Cobrador.Mensaje = "Ventana de cobro";
+           try
+            {
+                   Cobrador.Mensaje = "Ventana de cobro";
             SqlDataSource3.SelectParameters["IdTienda"].DefaultValue = Session["IdTienda"].ToString();
             SqlDataSource3.DataSourceMode = SqlDataSourceMode.DataReader;
             SqlDataReader totalP;
@@ -21,6 +23,20 @@ namespace UI
             {
                 Label1.Text = totalP["total"].ToString();
             }
+            }
+            catch
+            {
+                Response.Redirect("Login.aspx");
+            }
+         
+            //SqlDataSource2.DataSourceMode = SqlDataSourceMode.DataReader;
+            //SqlDataReader totalRec;
+            //totalRec = (SqlDataReader)SqlDataSource2.Select(DataSourceSelectArguments.Empty);
+            //if (totalRec.Read())
+            //{
+            //    Label2.Text = "Q. " + Convert.ToDecimal(totalRec["TOTAL"]).ToString("0.00");
+            //}
+   
         }
 
     }

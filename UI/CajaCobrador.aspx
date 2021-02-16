@@ -7,7 +7,33 @@
     <div class="content">
         <h3 class="">Clientes pendiente de cobro.</h3>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-4">
+                    <div class="small-box bg-gray-light">
+            <div class="inner">
+               <asp:GridView ID="GridView2" runat="server" CssClass="table table-responsive" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SqlDataSource2" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="False">
+                      <Columns>
+                          <asp:BoundField DataField="TOTAL" HeaderText="TOTAL     " ReadOnly="True" SortExpression="TOTAL" />
+                          <asp:BoundField DataField="Tipo" HeaderText="Formas de pago" SortExpression="Tipo" />
+                      </Columns>
+                      <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                      <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                      <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                      <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                      <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                      <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                      <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                      <SortedDescendingHeaderStyle BackColor="#242121" />
+                  </asp:GridView>
+
+              <p>Total recaudado hoy.</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-cash"></i>
+            </div>
+            <a href="CajaCobrador.aspx" class="small-box-footer">Refrescar la pagina<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+            </div>
+            <div class="col-md-4">
 
             </div>
             <div class="col-md-4">
@@ -15,6 +41,7 @@
             <div class="inner">
               <h3>
                   <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></h3>
+                
 
               <p>Total Nuevos Ordenes</p>
             </div>
@@ -67,5 +94,10 @@
             <asp:SessionParameter Name="IDtienda" SessionField="IDtienda" />
         </SelectParameters>
     </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString='<%$ ConnectionStrings:BDautorepuestoConnectionString %>' SelectCommand="SELECT 'Q.'+ CAST(ISNULL(SUM(Venta.Total), 0) AS VARCHAR) AS TOTAL, TipoPago.Tipo FROM Venta INNER JOIN DetalleVenta ON Venta.ID_Venta = DetalleVenta.ID_Venta INNER JOIN Estados ON Venta.ID_Venta = Estados.ID_Venta inner JOIN TipoPago on TipoPago.ID_TPago = DetalleVenta.ID_TPago WHERE (Estados.ID_Tienda = @IDtienda) AND (Estados.EstadoCajero = 0) AND (CONVERT (date, Venta.Fecha) = CONVERT (date, GETDATE())) GROUP BY TipoPago.Tipo">
+            <SelectParameters>
+                <asp:SessionParameter SessionField="IDtienda" Name="IDtienda"></asp:SessionParameter>
+            </SelectParameters>
+        </asp:SqlDataSource>
         </div>
 </asp:Content>

@@ -22,6 +22,7 @@ namespace UI
             tbOEM.Columns.Add("OEM");
             tbOEM.Columns.Add("ID_Marca");
             tbOEM.Columns.Add("Marca");
+            Digitador.Mensaje = "Productos";
         }
         Cproducto DatosP = new Cproducto();
         // string IDFinal = "";

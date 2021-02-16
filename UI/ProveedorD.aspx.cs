@@ -32,7 +32,7 @@ namespace UI
                 {
                     msj = Datos.nuevoProvedor(TextBox6.Text, TextBox2.Text, TextBox3.Text, Convert.ToInt32(TextBox5.Text), Convert.ToInt32(TextBox1.Text), TextBox7.Text, Convert.ToInt32(TextBox8.Text), TextBox9.Text);
                     // Response.Close();
-                    Response.Redirect("Proveedor.aspx");
+                    Response.Redirect("ProveedorD.aspx");
                 }
             }
             catch

@@ -60,7 +60,7 @@ namespace UI
                         int idTtienda = 0;
                         idTtienda = Convert.ToInt32(Session["IDtienda"]);
                         datosProd.InsertarStock(Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVentaP), Convert.ToInt32(Label1.Text), idTtienda, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(DropDownList8.SelectedValue), Convert.ToInt32(DropDownList6.SelectedValue));
-                        Response.Redirect("Stock.aspx");
+                        Response.Redirect("StockD.aspx");
                     }
                     else
                     {
@@ -69,7 +69,7 @@ namespace UI
                         int idTtienda = 0;
                         idTtienda = Convert.ToInt32(Session["IDtienda"]);
                         datosProd.InsertarStock(Convert.ToInt32(cantidad.Text), Convert.ToInt32(cantidadMinima.Text), ubicacion.Text, Convert.ToDecimal(precioProd.Text), Convert.ToDecimal(precioVentaP), Convert.ToInt32(Label1.Text), idTtienda, Convert.ToInt32(DropDownList1.SelectedValue), Convert.ToInt32(DropDownList8.SelectedValue), Convert.ToInt32(DropDownList6.SelectedValue));
-                        Response.Redirect("Stock.aspx");
+                        Response.Redirect("StockD.aspx");
                     }
 
                 }
@@ -113,7 +113,7 @@ namespace UI
             try
             {
                 datosProd.EditarStock(Convert.ToInt32(IDstock.Text), Convert.ToInt32(Cant.Text), Ubi.Text, Convert.ToDecimal(PrecioP.Text), Convert.ToDecimal(PrecioVe.Text), Convert.ToInt32(DropDownList7.SelectedValue), Convert.ToInt32(DropDownList9.SelectedValue), Convert.ToInt32(DropDownList10.SelectedValue));
-                Response.Redirect("Stock.aspx");
+                Response.Redirect("StockD.aspx");
             }
             catch
             {

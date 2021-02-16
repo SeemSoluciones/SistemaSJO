@@ -7,9 +7,10 @@ using System.Web.UI.WebControls;
 using BLL;
 using System.Data;
 using System.Data.SqlClient;
+
 namespace UI
 {
-    public partial class DevProProV : System.Web.UI.Page
+    public partial class DevProProR : System.Web.UI.Page
     {
 
         Cproducto datos = new Cproducto();
@@ -20,7 +21,7 @@ namespace UI
         protected void Page_Load(object sender, EventArgs e)
         {
             //TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            Vendedor.Mensaje = "Ventana devolucion de productos a proveedores";
+            Home.Mensaje = "Ventana devolucion de productos a proveedores";
         }
 
         //protected void Button1_Click(object sender, EventArgs e)
@@ -187,7 +188,7 @@ namespace UI
             //SqlDataSource4.UpdateParameters["idStock"].DefaultValue = ((Label)tabla.FindControl("Label8")).Text.ToString();
             SqlDataSource10.Update();
 
-            Response.Redirect("DevProProV.aspx");
+            Response.Redirect("DevProPro.aspx");
         }
         string precioProducto;
 
@@ -219,7 +220,7 @@ namespace UI
             SqlDataSource4.UpdateParameters["idStock"].DefaultValue = ((Label)tabla.FindControl("Label8")).Text.ToString();
             SqlDataSource4.Update();
 
-            Response.Redirect("DevProProV.aspx");
+            Response.Redirect("DevProPro.aspx");
         }
 
 
@@ -229,7 +230,7 @@ namespace UI
             SqlDataSource10.UpdateParameters["ID_DevProPro"].DefaultValue = ((Label)tabla.FindControl("Label1")).Text.ToString();
             SqlDataSource10.Update();
 
-            Response.Redirect("DevProProV.aspx");
+            Response.Redirect("DevProPro.aspx");
         }
         //    protected void Button9_Click(object sender, EventArgs e)
         //    {

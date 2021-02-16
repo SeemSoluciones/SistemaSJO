@@ -19,7 +19,7 @@ namespace UI
         protected void Page_Load(object sender, EventArgs e)
         {
             //TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            Home.Mensaje = "Ventana devolucion de productos a proveedores";
+            Digitador.Mensaje = "Ventana devolucion de productos a proveedores";
         }
 
         //protected void Button1_Click(object sender, EventArgs e)
@@ -186,7 +186,7 @@ namespace UI
             //SqlDataSource4.UpdateParameters["idStock"].DefaultValue = ((Label)tabla.FindControl("Label8")).Text.ToString();
             SqlDataSource10.Update();
 
-            Response.Redirect("DevProPro.aspx");
+            Response.Redirect("DevProProD.aspx");
         }
         string precioProducto;
 
@@ -218,7 +218,7 @@ namespace UI
             SqlDataSource4.UpdateParameters["idStock"].DefaultValue = ((Label)tabla.FindControl("Label8")).Text.ToString();
             SqlDataSource4.Update();
 
-            Response.Redirect("DevProPro.aspx");
+            Response.Redirect("DevProProD.aspx");
         }
 
 
@@ -228,7 +228,7 @@ namespace UI
             SqlDataSource10.UpdateParameters["ID_DevProPro"].DefaultValue = ((Label)tabla.FindControl("Label1")).Text.ToString();
             SqlDataSource10.Update();
 
-            Response.Redirect("DevProPro.aspx");
+            Response.Redirect("DevProProD.aspx");
         }
         //    protected void Button9_Click(object sender, EventArgs e)
         //    {

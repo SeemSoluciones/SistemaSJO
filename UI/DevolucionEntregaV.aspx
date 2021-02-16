@@ -73,13 +73,13 @@
             </asp:TemplateField>
               <asp:TemplateField HeaderText="Recibir">
                     <ItemTemplate>
-                        <asp:LinkButton runat="server" Text="Recibir" CommandName="Select" CausesValidation="False" ID="LinkButton1" OnClick="OnClick_LinkButton1" OnClientClick="return confirm('Ah recibido el producto para su ingresar al stock');"></asp:LinkButton>
+                        <asp:LinkButton runat="server" Text="Recibir" Enabled="false" CommandName="Select" CausesValidation="False" ID="LinkButton1" OnClick="OnClick_LinkButton1" OnClientClick="return confirm('Ah recibido el producto para su ingresar al stock');"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Cancelar">
                     <ItemTemplate>
-                        <asp:LinkButton runat="server" Text="Cancelar" CommandName="Select" CausesValidation="false" ID="LinkButton2" OnClick="OnClick_LinkButton2" OnClientClick="return confirm('Desea descontar el producto de la factura?');"></asp:LinkButton>
+                        <asp:LinkButton runat="server" Text="Cancelar" Enabled="false" CommandName="Select" CausesValidation="false" ID="LinkButton2" OnClick="OnClick_LinkButton2" OnClientClick="return confirm('Desea descontar el producto de la factura?');"></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
 

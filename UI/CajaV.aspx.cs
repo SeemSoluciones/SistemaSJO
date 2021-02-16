@@ -34,7 +34,7 @@ namespace UI
                 TipoFactura = 0;
 
                 TextBox2.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                Home.Mensaje = "Ventana Ventas";
+                Vendedor.Mensaje = "Ventana Ventas";
                 if (!IsPostBack)
                 {
                     // this.Button12.Click += new System.EventHandler(this.Button12_Click);
@@ -52,7 +52,6 @@ namespace UI
                 Response.Redirect("Login.aspx");
             }
         }
-
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -79,8 +78,16 @@ namespace UI
                 {
 
                     string idTienda = Session["IDtienda"].ToString();
+                    TipoFactura = 2;
+                    if (CheckBox1.Checked == true)
+                    {
+                        idCoti = datos.InsertarCotizacion(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox14.Text), TextBox4.Text, 1);
+                    }
+                    else
+                    {
+                        idCoti = datos.InsertarCotizacion(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox14.Text), TextBox4.Text, 0);
+                    }
 
-                    idCoti = datos.InsertarCotizacion(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), TextBox4.Text, Convert.ToInt32(DropDownList9.SelectedValue));
                     // datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
                     foreach (GridViewRow row in GridView1.Rows)
                     {
@@ -93,13 +100,13 @@ namespace UI
 
                             );
                     }
+                    TipoFactura = 2;
                     nit = TextBox3.Text;
                     nombre = TextBox4.Text;
                     ciudad = TextBox5.Text;
                     Pago = "COTIZACION";
                     motorista = DropDownList9.SelectedItem.ToString();
-                    TipoFactura = 2;
-                    Response.Write("<script>window.open('Factura2.aspx','Titulo', 'height=300','width=300')</script>");
+                    Response.Write("<script>window.open('FacturaC.aspx','Titulo', 'height=300','width=300')</script>");
                     Label6.Text = "Cotizacion guardada!";
                     DropDownList9.Enabled = false;
 
@@ -209,6 +216,7 @@ namespace UI
         public static decimal descuentoFactura;
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 subtotal2 = subtotal2 + (Convert.ToDecimal(e.Row.Cells[3].Text) * Convert.ToDecimal(e.Row.Cells[5].Text));
@@ -321,7 +329,15 @@ namespace UI
                                         double iva = 0;
                                         iva = 0.12 * Convert.ToDouble(TextBox14.Text);
                                         msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
-                                        datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                        if (MotoristaEnviado == true)
+                                        {
+                                            datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda), false);
+                                        }
+                                        else
+                                        {
+                                            datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda), true);
+                                        }
+
                                         SqlDataSource13.InsertParameters["NoCheque"].DefaultValue = TextBox100.Text;
                                         SqlDataSource13.InsertParameters["ID_Venta"].DefaultValue = msj;
                                         SqlDataSource13.InsertParameters["Cantidad"].DefaultValue = TextBox14.Text;
@@ -361,7 +377,14 @@ namespace UI
                                         double iva = 0;
                                         iva = 0.12 * Convert.ToDouble(TextBox14.Text);
                                         msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
-                                        datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                        if (MotoristaEnviado == true)
+                                        {
+                                            datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda), false);
+                                        }
+                                        else
+                                        {
+                                            datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda), true);
+                                        }
                                         SqlDataSource13.InsertParameters["NoCheque"].DefaultValue = TextBox100.Text;
                                         SqlDataSource13.InsertParameters["ID_Venta"].DefaultValue = msj;
                                         SqlDataSource13.InsertParameters["Cantidad"].DefaultValue = TextBox14.Text;
@@ -426,7 +449,14 @@ namespace UI
                                     double iva = 0;
                                     iva = 0.12 * Convert.ToDouble(TextBox14.Text);
                                     msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
-                                    datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                    if (MotoristaEnviado == true)
+                                    {
+                                        datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda), false);
+                                    }
+                                    else
+                                    {
+                                        datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda), true);
+                                    }
                                     foreach (GridViewRow row in GridView1.Rows)
                                     {
                                         datos.InsertarDetalleVenta(
@@ -461,7 +491,14 @@ namespace UI
                                     double iva = 0;
                                     iva = 0.12 * Convert.ToDouble(TextBox14.Text);
                                     msj = datos.InsertarVenta(Convert.ToDecimal(TextBox12.Text), Convert.ToDecimal(TextBox13.Text), Convert.ToDecimal(TextBox14.Text), Convert.ToDecimal(iva), Convert.ToInt32(idEmpleado), Convert.ToInt32(DropDownList1.SelectedValue), Nit);
-                                    datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda));
+                                    if (MotoristaEnviado == true)
+                                    {
+                                        datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda), false);
+                                    }
+                                    else
+                                    {
+                                        datos.InsertarEstdos(Convert.ToInt32(msj), Convert.ToInt32(idTienda), true);
+                                    }
 
                                     foreach (GridViewRow row in GridView1.Rows)
                                     {
@@ -677,7 +714,7 @@ namespace UI
             }
             else
             {
-                Response.Write("<script>window.open('Factura2.aspx','Titulo', 'height=300','width=300')</script>");
+                Response.Write("<script>window.open('FacturaC.aspx','Titulo', 'height=300','width=300')</script>");
             }
         }
 
@@ -746,11 +783,9 @@ namespace UI
             SqlDataSource2.SelectCommand = "SELECT DISTINCT Producto.ID_Producto, stuff((Select ', ' + OEM.OEM From OEM inner join Marca on OEM.ID_Marca = Marca.ID_Marca Where OEM.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTAOEM , stuff((Select ', ' + CodigoProducto.Codigo From CodigoProducto inner join MarcaProd on CodigoProducto.ID_MaraProd = MarcaProd.ID_MaraProd Where CodigoProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTACODP,Producto.Descripcion, stuff((Select '| ' + Marca +', '+ Modelo + ', ' + Rubro + ' ~ ' + AnioInicio + '-'+AnioFinal From Marca inner join Modelo on Marca.ID_Marca = Modelo.ID_Marca inner join Rubro on Modelo.ID_Modelo = Rubro.ID_Modelo inner join AnioProducto on Rubro.ID_Rubro = AnioProducto.ID_Rubro Where AnioProducto.ID_Producto = Producto.ID_Producto For XML Path('')), 1,2,'') AS LISTANIOP,SubCategoria.SubCategoria+', '+ Categoria.Categoria AS Categoria, MarcaProd.MarcaP, Stock.PrecioVenta, Stock.Cantidad, Stock.PrecioUnitario, Stock.Ubicacion, Medida.Medida, Tienda.Tienda, Stock.ID_Existencia, 0 AS Pendiente FROM  Medida INNER JOIN          Stock INNER JOIN          Tienda ON Stock.ID_Tienda = Tienda.ID_Tienda INNER JOIN          Producto ON Stock.ID_Producto = Producto.ID_Producto INNER JOIN          SubCategoria ON Producto.ID_SubCategoria = SubCategoria.ID_SubCategoria ON Medida.ID_Medida = Stock.ID_Medida INNER JOIN          MarcaProd ON Stock.ID_MaraProd = MarcaProd.ID_MaraProd INNER JOIN          Categoria ON SubCategoria.ID_Categoria = Categoria.ID_Categoria inner join OEM on Producto.ID_Producto = OEM.ID_Producto inner join CodigoProducto on Producto.ID_Producto = CodigoProducto.ID_Producto inner join AnioProducto on Producto.ID_Producto = AnioProducto.ID_Producto Where (Producto.Estado = 1)  AND SubCategoria.ID_SubCategoria =" + DropDownList3.SelectedValue;
             SqlDataSource2.DataBind();
         }
-
+        public static bool MotoristaEnviado = false;
         protected void DropDownList8_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
 
             SqlDataSource12.SelectParameters["ID_Cotizacion"].DefaultValue = DropDownList8.SelectedValue;
             SqlDataSource12.DataSourceMode = SqlDataSourceMode.DataReader;
@@ -761,10 +796,9 @@ namespace UI
                 var datosem = listaemp["ID_Empleado"];
                 if (Convert.ToInt16(listaemp["ID_Empleado"].ToString()) != 0)
                 {
-                    DropDownList9.Enabled = true;
-                    CheckBox1.Checked = true;
-                    DropDownList9.SelectedIndex = DropDownList9.Items.IndexOf(DropDownList9.Items.FindByValue(listaemp["ID_Empleado"].ToString()));
 
+                    DropDownList9.SelectedIndex = DropDownList9.Items.IndexOf(DropDownList9.Items.FindByValue(listaemp["ID_Empleado"].ToString()));
+                    MotoristaEnviado = true;
                 }
                 else if (listaemp.IsDBNull(0) || datosem == DBNull.Value || listaemp.IsDBNull(listaemp.GetOrdinal("ID_Empleado")))
                 {
@@ -796,6 +830,7 @@ namespace UI
             ViewState["Detalles"] = dt;
             IDcoti = Convert.ToInt32(DropDownList8.SelectedValue);
             botonCot.Disabled = true;
+            Label6.Text = "Si es una cotizacion que pasa a ser una venta a domicilio, favor de ingresar el cliente";
         }
         private static decimal porcentaje = 0;
         protected void TextBox3_TextChanged(object sender, EventArgs e)
@@ -886,7 +921,7 @@ namespace UI
 
         protected void Button10_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Caja.aspx");
+            Response.Redirect("CajaV.aspx");
         }
 
         protected void DropDownList7_SelectedIndexChanged(object sender, EventArgs e)
@@ -955,6 +990,5 @@ namespace UI
             idStock = Convert.ToInt32(gd.Cells[11].Text);
             precioAntes = Convert.ToDecimal(gd.Cells[6].Text);
         }
-
     }
 }
